@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Connexion
+	{{ parent() }}
+{% endblock %}
+{% block body %}
+    
+		<h1>Se connecter</h1>
+		<form action="{{ path('app.connexion') }}" method="post">
+
+			<div>
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="_username" value="{{ lastUsername }}" placeholder="john@example.com">
+			</div>
+
+			<div >
+				<label for="password" >Password:</label>
+				<input type="password" id="password" name="_password" ="form-control" placeholder="S3CR3T" >
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<button type="submit">Connexion</button>
+		</form>
+	
+{% endblock %}

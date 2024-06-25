@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+{% block body %}
+<h1>Plantarium</h1>
+
+<main>
+<table>
+    <thead>
+        <tr scope="row">
+            <th>ID</th>
+            <th>Nom complet</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Niveau</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        {# <tr scope="row">
+            <td>{{user.id}}</td>
+            <td>{{user.fullname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{ user.roles|join(', ') }}</td>
+            
+        </tr> #}
+        {% endfor %}
+    </tbody>
+</table>
+</main>
+
+{% endblock %}
