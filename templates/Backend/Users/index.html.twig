@@ -11,22 +11,23 @@
     <thead>
         <tr scope="row">
             <th>ID</th>
-            <th>Nom complet</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Nom complet</th>
             <th>Niveau</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
     {% for user in users %}
-        {# <tr scope="row">
+        <tr scope="row">
             <td>{{user.id}}</td>
-            <td>{{user.fullname}}</td>
             <td>{{user.email}}</td>
             <td>{{ user.roles|join(', ') }}</td>
-            
-        </tr> #}
+            <td>{{ user.UserInfos.getFullName() }}</td>
+            <td>{{ user.UserInfos.getLevel() }}</td>
+            <td><a href="{{ path('admin.users.edit', {id: user.id}) }}">Modifier</a></td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>

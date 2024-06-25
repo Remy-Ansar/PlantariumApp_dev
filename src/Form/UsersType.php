@@ -2,9 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\UserInfos;
 use App\Entity\Users;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -12,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class InscriptionType extends AbstractType
+class UsersType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -44,27 +45,32 @@ class InscriptionType extends AbstractType
                             max:4096,
                         ),
                     ]
-                    ],
-                    'second_options' => [
-                        'label' => 'Répéter le mot de passse',
-                        'attr' => [
-                            'placeholder' => 'Motdepasse85-'
-                        ],
-                        ],
-            ]);
-        if ($options['isAdmin']) {
-            $builder->remove('password')
-                ->add('roles', ChoiceType::class, [
-                    'label' => 'Rôles',
-                    'choices' => [
-                        'Utilisateur' => 'ROLE_USER',
-                        'Editeur' => 'ROLE_EDITOR',
-                        'Administrateur' => 'ROLE_ADMIN',
-                    ],
-                    'multiple' => true,
-                    'expanded' => true,
-                ]);
-        }
+                    ]                  
+            ])
+            ->add('FirstName', EntityType::class, [
+                'class' => UserInfos::class,
+                'label' => 'Votre prénom',
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Jane', 
+                ]
+            ])
+            ->add('LastName', EntityType::class, [
+                'class' => UserInfos::class,
+                'label' => 'Votre nom', 
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Doe',
+                ]
+                ])
+                ->add('Level', EntityType::class, [
+                    'class' => UserInfos::class,
+                    'label' => 'Votre niveau de jardinage',
+                    'required' => false,
+                    'choices' => array_combine(UserInfos::getAvailableLevels(), UserInfos::getAvailableLevels()),
+                    'multiple' => false,
+                    'expanded' => false,
+                ]); 
 
     }
 

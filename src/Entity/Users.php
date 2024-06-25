@@ -135,5 +135,20 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
+    public function getFullName(): ?string
+    {
+        if ($this->UserInfos) {
+            return $this->UserInfos->getFirstName() . ' ' . $this->UserInfos->getLastName();
+        }
+        return null;
+    }
+
+    public function getUserLevel(): ?string
+    {
+        if ($this->UserInfos) {
+            return $this->UserInfos->getLevel();
+        }
+        return null;
+    }
 }
