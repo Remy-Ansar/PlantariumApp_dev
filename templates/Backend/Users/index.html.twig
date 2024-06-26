@@ -9,7 +9,7 @@
 <main>
 <table>
     <thead>
-        <tr scope="row">
+        <tr>
             <th>ID</th>
             <th>Email</th>
             <th>Role</th>
@@ -20,17 +20,20 @@
     </thead>
     <tbody>
     {% for user in users %}
-        <tr scope="row">
+        <tr>
             <td>{{user.id}}</td>
             <td>{{user.email}}</td>
             <td>{{ user.roles|join(', ') }}</td>
             <td>{{ user.UserInfos.getFullName() }}</td>
             <td>{{ user.UserInfos.getLevel() }}</td>
+            <td><img src="{{ vich_uploader_asset(user.userInfos.ImageName, 'imageFile') }}" alt="{{ user.UserInfos.imageName }}" loading="lazy" class="rounded"></td>
             <td><a href="{{ path('admin.users.edit', {id: user.id}) }}">Modifier</a></td>
-            <td><form 
+            <td>
+            <form 
                     action="{{path('admin.users.delete', {id: user.id}) }}" 
                     method="POST" 
-                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cet utilisateur? Cette action est irréversible')">
+                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cet utilisateur? Cette action est irréversible')"
+                    enctype="multipart/form-data">
                     <input type="hidden" name="token" value="{{ csrf_token('delete'~ user.id) }}">
                     <button type="submit">Supprimer</button>
             </form></td>

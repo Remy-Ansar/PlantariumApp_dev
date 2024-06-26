@@ -2,13 +2,23 @@ knp_gaufrette:
     stream_wrapper: ~
 
     adapters:
-        product_adapter:
+        profile_adapter:
             local:
-                directory: "%kernel.project_dir%/public/images"
+                directory: "%kernel.project_dir%/public/images/profile"
+        plant_adapter:
+            local:
+                directory: "%kernel.project_dir%/public/images/plants"
+        UserPlantPic_adapter:
+            local:
+                directory: "%kernel.project_dir%/public/images/UserPlants"
 
     filesystems:
-        product_fs:
-            adapter: product_adapter
+        profilePic_fs:
+            adapter: profile_adapter
+        plantPic_fs:
+            adapter: plant_adapter
+        userPlantPic_fs:
+            adapter: UserPlantPic_adapter
 
 vich_uploader:
     db_driver: orm
@@ -20,7 +30,7 @@ vich_uploader:
     mappings:
         profile:
             uri_prefix: /images/profile
-            upload_destination: '%kernel.project_dir%/public/images/profile'
+            upload_destination: profilePic_fs
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
             inject_on_load: false
@@ -29,7 +39,7 @@ vich_uploader:
 
         plants:
             uri_prefix: /images/plants
-            upload_destination: '%kernel.project_dir%/public/images/plants'
+            upload_destination: plantPic_fs
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
             inject_on_load: false

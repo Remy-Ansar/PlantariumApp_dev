@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
-use Vich\UploaderBundle\Entity\File;
+use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\UserInfosRepository;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\component\Validator\Constraints\Choice;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: UserInfosRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -49,6 +49,7 @@ class UserInfos
     private ?File $image = null;
 
     #[ORM\Column(length:255, nullable:true)]
+    #[Groups(['product:read'])]
     private ?string $imageName = null;
 
     #[ORM\OneToOne(targetEntity:"App\Entity\Users", mappedBy: 'UserInfos', cascade: ['persist', 'remove'])]
@@ -161,4 +162,5 @@ class UserInfos
     {
         return "$this->FirstName $this->LastName";
     }
+    
 }

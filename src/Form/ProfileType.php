@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProfileType extends AbstractType
 {
@@ -34,7 +35,14 @@ class ProfileType extends AbstractType
                     'choices' => array_combine(UserInfos::getAvailableLevels(), UserInfos::getAvailableLevels()),
                     'multiple' => false,
                     'expanded' => false,
-                ]);
+                ])
+            ->add('image', VichImageType::class, [
+                'label' => 'Votre photo de profil',
+                'required' => false,
+                'download_uri' => false,
+                'image_uri' => true,
+                'asset_helper' => true,
+            ]);
         }
     
 
