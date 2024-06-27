@@ -21,9 +21,10 @@ security:
                 check_path: app.connexion
                 enable_csrf: true
                 use_referer: true
+                default_target_path: users.userPlants.index
             logout:
-                path: /deconnection
-                target: /
+                path: /deconnexion
+                target: /home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -35,8 +36,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/editor, roles: ROLE_EDITOR }
+        - { path: ^/users, roles: [ROLE_USER, ROLE_EDITOR, ROLE_ADMIN] }
+        - { path: ^/editor, roles: [ROLE_EDITOR, ROLE_ADMIN]}
 
 when@test:
     security:

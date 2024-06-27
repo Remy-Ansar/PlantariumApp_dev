@@ -5,8 +5,13 @@
 	{{ parent() }}
 {% endblock %}
 {% block body %}
-    
-		<h1>Se connecter</h1>
+    		<h1>Plantarium</h1>
+            <ul>
+            <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
+            <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
+
+        </ul>
+		<h2>Se connecter</h2>
 		<form action="{{ path('app.connexion') }}" method="post">
 
 			<div>

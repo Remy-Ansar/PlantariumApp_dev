@@ -1,9 +1,30 @@
 <header>
-<nav>
-     <ul>
-        <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
-        <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
+    <nav>
 
-    </ul>    
-	</nav>
+            {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li><a href="{{ path('admin.users.index') }}">Administration des utilisateurs</a>
+            </li>
+        </ul>
+        {% endif %}
+
+
+
+        {% if users is defined and users is not null %}
+        
+                <ul>
+            <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
+            <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
+
+        </ul>
+
+
+
+        {% else %}
+
+        <li><a href="{{ path('app.deconnexion') }}">Se déconnecter</a></li>
+        {% endif %}
+
+
+    </nav>
 </header>

@@ -5,7 +5,9 @@ namespace App\Controller\Security;
 use App\Entity\Users;
 use App\Entity\UserInfos;
 use App\Form\ProfileType;
+use App\Entity\UserPlants;
 use App\Form\InscriptionType;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +22,7 @@ class SecurityController extends AbstractController
     public function __construct(
         private UserPasswordHasherInterface $hasher,
         private readonly EntityManagerInterface $em,
+        private readonly UsersRepository $usersRepository
     ) {
     }
 
@@ -35,6 +38,14 @@ class SecurityController extends AbstractController
     #[Route('/connexion', name: 'app.connexion', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authUtils): Response
     {
+        // Utilisez le service de sécurité pour obtenir l'utilisateur authentifié
+        $user = $this->getUser();
+        
+    // If the user is already logged in, redirect them to the target route
+        if ($this->getUser()) {
+            return $this->redirectToRoute('users.userPlants.index');
+    }
+
         return $this->render('Security/connexion.html.twig', [
             'error' => $authUtils->getLastAuthenticationError(),
             'lastUsername' => $authUtils->getLastUsername(),
@@ -53,7 +64,11 @@ class SecurityController extends AbstractController
             $users->setPassword(
                 $this->hasher->hashPassword($users, $form->get('password')->getData())
             );
-
+            //Création d'une nouvelle entité UserPlants associée au user
+            $userPlants = new UserPlants();
+            $userPlants->setUser($users);
+            $em->persist($userPlants);
+            
             $em->persist($users);
             $em->flush();
             $userId =$request->getSession()->set('user.id', $users->getId());
@@ -91,6 +106,7 @@ class SecurityController extends AbstractController
             // Rediriger vers la page d'accueil après inscription réussie
             return $this->redirectToRoute('app.connexion');
         }
+        
 
         return $this->render('Security/profil.html.twig', [
             'form' => $form

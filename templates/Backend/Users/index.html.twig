@@ -2,6 +2,7 @@
 
 {% block title %}
     Accueil
+    {{ parent() }}
 {% endblock %}
 {% block body %}
 <h1>Plantarium</h1>
@@ -24,9 +25,18 @@
             <td>{{user.id}}</td>
             <td>{{user.email}}</td>
             <td>{{ user.roles|join(', ') }}</td>
-            <td>{{ user.UserInfos.getFullName() }}</td>
+            <td>
+            {% if user.UserInfos.FirstName and user.UserInfos.Lastname != '' %}
+    <td>{{ user.UserInfos.getFullName() }}</td>
+             {% else %}
+                 { 
+                <td>
+                 </td>
+            } 
+            {% endif %}
+            </td>
             <td>{{ user.UserInfos.getLevel() }}</td>
-            <td><img src="{{ vich_uploader_asset(user.UserInfos, 'image') }}" alt="{{ user.UserInfos }}" loading="lazy" class="rounded"></td>
+            <td><img src="{{ vich_uploader_asset(user.UserInfos, 'image') }}" alt="{{ user.UserInfos }}" loading="lazy" class="rounded" width="50px" height="50px"></td>
             <td><a href="{{ path('admin.users.edit', {id: user.id}) }}">Modifier</a></td>
             <td>
             <form 

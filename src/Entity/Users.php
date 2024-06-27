@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\UsersRepository;
@@ -45,6 +47,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinColumn(name: "user_infos_id", referencedColumnName: "id")]
     private ?UserInfos $UserInfos = null;
 
+    /**
+     * @var Collection<int, UserPlants>
+     */
+    #[ORM\OneToMany(targetEntity: UserPlants::class, mappedBy: 'Users_id', cascade: ['persist', 'remove'])]
+    private Collection $userPlants;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,24 +83,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
+        $this->userPlants = new ArrayCollection();
     }
-    /**
-     * @see UserInterface
-     *
-     * @return list<string>
-     */
+
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
-        }
-
-        return array_unique($roles);
+        return $this->roles;
     }
-    /**
-     * @param list<string> $roles
-     */
+
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -100,10 +98,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -150,5 +145,35 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             return $this->UserInfos->getLevel();
         }
         return null;
+    }
+
+    /**
+     * @return Collection<int, UserPlants>
+     */
+    public function getUserPlants(): Collection
+    {
+        return $this->userPlants;
+    }
+
+    public function addUserPlant(UserPlants $userPlant): static
+    {
+        if (!$this->userPlants->contains($userPlant)) {
+            $this->userPlants->add($userPlant);
+            $userPlant->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserPlant(UserPlants $userPlant): static
+    {
+        if ($this->userPlants->removeElement($userPlant)) {
+            // set the owning side to null (unless already changed)
+            if ($userPlant->getUser() === $this) {
+                $userPlant->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

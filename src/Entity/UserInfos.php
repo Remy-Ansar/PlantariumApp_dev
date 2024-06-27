@@ -71,7 +71,7 @@ class UserInfos
         return $this->FirstName;
     }
 
-    public function setFirstName(?string $FirstName): static
+    public function setFirstName(string $FirstName): static
     {
         $this->FirstName = $FirstName;
 
@@ -83,7 +83,7 @@ class UserInfos
         return $this->LastName;
     }
 
-    public function setLastName(?string $LastName): static
+    public function setLastName(string $LastName): static
     {
         $this->LastName = $LastName;
 
@@ -94,11 +94,11 @@ class UserInfos
     {
         return $this->Level;
     }
-    
+
     public function setLevel(?string $Level): static
     {
         $this->Level = $Level;
-    
+
         return $this;
     }
 
@@ -148,9 +148,11 @@ class UserInfos
         return $this->image;
     }
 
-    public function setImageName(?string $imageName): void
+    public function setImageName(?string $imageName): static
     {
         $this->imageName = $imageName;
+
+        return $this;
     }
 
     public function getImageName(): ?string
@@ -158,14 +160,19 @@ class UserInfos
         return $this->imageName;
     }
 
+    public function __toString(): string
+    {
+        return $this->getFirstName();
+        return $this->getLastName();
+        return $this->getFullName();
+        
+    }
+    
     
     public function getFullName(): string
     {
         return "$this->FirstName $this->LastName";
     }
     
-    public function __toString(): string
-    {
-        return $this->getFullName(); // Ou toute autre propriété qui convient mieux
-    }
+
 }

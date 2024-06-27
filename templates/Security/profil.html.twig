@@ -4,7 +4,13 @@
     profile
 {% endblock %}
 {% block body %}
-    <h1>Inscription</h1>
+		<h1>Plantarium</h1>
+            <ul>
+            <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
+            <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
+
+        </ul>
+    <h2>Inscription</h2>
     {{form_start(form)}}
     {{form_widget(form)}}
     <button type="submit">Valider</button>
