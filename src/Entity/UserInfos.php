@@ -158,9 +158,14 @@ class UserInfos
         return $this->imageName;
     }
 
+    
     public function getFullName(): string
     {
         return "$this->FirstName $this->LastName";
     }
     
+    public function __toString(): string
+    {
+        return $this->getFullName(); // Ou toute autre propriété qui convient mieux
+    }
 }
