@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Ajouter une plante
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Ajouter une nouvelle plante</h1>
+
+		{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
+		<a href="{{ path('editor.plants.index') }}" class="btn btn-secondary">Retour à la liste</a>
+	</section>
+{% endblock %}

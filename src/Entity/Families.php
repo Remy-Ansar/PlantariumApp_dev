@@ -3,33 +3,36 @@
 namespace App\Entity;
 
 use App\Entity\Traits\DateTimeTrait;
-use App\Repository\UserPlantsRepository;
+use App\Repository\FamiliesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: UserPlantsRepository::class)]
+#[ORM\Entity(repositoryClass: FamiliesRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class UserPlants
+class Families
 {
     use DateTimeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'userPlants')]
-    private ?Users $User = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255)]
+    private ?string $Name = null;
 
     /**
      * @var Collection<int, Plants>
      */
-    #[ORM\OneToMany(targetEntity: Plants::class, mappedBy: 'userPlants')]
-    private Collection $plants;
+    #[ORM\OneToMany(targetEntity: Plants::class, mappedBy: 'families')]
+    private Collection $Plants;
 
     public function __construct()
     {
-        $this->plants = new ArrayCollection();
+        $this->Plants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -37,14 +40,14 @@ class UserPlants
         return $this->id;
     }
 
-    public function getUser(): ?Users
+    public function getName(): ?string
     {
-        return $this->User;
+        return $this->Name;
     }
 
-    public function setUser(?Users $User): static
+    public function setName(?string $Name): static
     {
-        $this->User = $User;
+        $this->Name = $Name;
 
         return $this;
     }
@@ -54,14 +57,14 @@ class UserPlants
      */
     public function getPlants(): Collection
     {
-        return $this->plants;
+        return $this->Plants;
     }
 
     public function addPlant(Plants $plant): static
     {
-        if (!$this->plants->contains($plant)) {
-            $this->plants->add($plant);
-            $plant->setUserPlants($this);
+        if (!$this->Plants->contains($plant)) {
+            $this->Plants->add($plant);
+            $plant->setFamilies($this);
         }
 
         return $this;
@@ -69,10 +72,10 @@ class UserPlants
 
     public function removePlant(Plants $plant): static
     {
-        if ($this->plants->removeElement($plant)) {
+        if ($this->Plants->removeElement($plant)) {
             // set the owning side to null (unless already changed)
-            if ($plant->getUserPlants() === $this) {
-                $plant->setUserPlants(null);
+            if ($plant->getFamilies() === $this) {
+                $plant->setFamilies(null);
             }
         }
 
