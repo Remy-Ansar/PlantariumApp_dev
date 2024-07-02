@@ -54,6 +54,7 @@ class PlantsType extends AbstractType
         
         ->add('enable', CheckboxType::class, [
             'label' => 'Activer',
+            'required' => false,
             ])
             ->add('seasons', EntityType::class, [
                 'class' => Seasons::class,

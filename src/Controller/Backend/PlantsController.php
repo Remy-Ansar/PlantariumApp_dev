@@ -50,6 +50,22 @@ class PlantsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($plant->getSeasons() as $season) {
+                $season->addPlant($plant);
+                $em->persist($season);
+            }
+
+            foreach ($plant->getColors() as $color) {
+                $color->addPlant($plant);
+                $em->persist($color);
+            }
+
+            foreach ($plant->getCategories() as $categorie) {
+                $categorie->addPlant($plant);
+                $em->persist($categorie);
+            }
+
             $em->persist($plant);
             $em->flush();
 

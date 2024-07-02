@@ -15,14 +15,12 @@ Administration des plantes
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>Image</th>
-                <th>Visible</th>
                 <th>Photo</th>
+                {# <th>Visible</th> #}
                 <th>Couleurs</th>
                 <th>Saisons</th>
                 <th>Famille</th>
                 <th>Espèce</th>
-                <th>Couleurs</th>
                 <th>Catégorie</th>
                 <th>Action</th>
             </tr>
@@ -34,14 +32,25 @@ Administration des plantes
                 <td>{{ plant.id }}</td>
                 <td>{{ plant.Name }}</td>
                 <td>{{ plant.description }}</td>
-                <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.name }}" loading="lazy"
+                <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
                         class="rounded" width="50px" height="50px"></td>
-                <td>{{ plant.Colors.name() }}</td>
-                <td>{{ plant.Seasons.getName() }}</td>
+                        <td>
+                    {% for color in plant.colors %}
+                    {{ color.Name }}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for season in plant.seasons %}
+                    {{ season.Name }}
+                    {% endfor %}
+                </td>
                 <td>{{ plant.Families.Name }}</td>
                 <td>{{ plant.Species.Name }}</td>
-                <td>{{ plant.Categories.getName() }}</td>
-                
+                <td>
+                    {% for categorie in plant.categories %}
+                    {{ categorie.Name }}
+                    {% endfor %}
+                </td>
 
                 {# <td><a href="{{ path('admin.users.edit', {id: user.id}) }}">Modifier</a></td>
             <td>
@@ -52,8 +61,8 @@ Administration des plantes
                     enctype="multipart/form-data">
                     <input type="hidden" name="token" value="{{ csrf_token('delete'~ user.id) }}">
                     <button type="submit">Supprimer</button>
-            </form> #}
-                </td>
+            </form>
+                </td> #}
             </tr>
             {% endfor %}
         </tbody>

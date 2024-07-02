@@ -79,11 +79,11 @@ class Seasons
         return $this;
     }
 
-    
-
     // Méthode pour obtenir les choix possibles (static pour être utilisée dans les assertions)
     public static function getAvailableSeasons(): array
     {
     return ['Printemps', 'Eté', 'Automne', 'Hiver'];
     }
+
+    
 }
