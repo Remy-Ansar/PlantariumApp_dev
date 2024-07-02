@@ -72,43 +72,35 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($userInfos);
         }
 
-        // // Fixtures pour les familles de plantes
-        // $familyArray =  [
-        //     'APIACÉES','ASTÉRACÉES',
-        //     'BRASSICACÉES','CARYOPHYLLACÉES',
-        //     'CYPERACÉES','FABACÉES',
-        //     'LAMIACÉES','POACÉES',
-        //     'RENONCULACÉES','ROSACÉES'
-        // ];
-        
-        // foreach ($familyArray as $familyName)
-        // {
-        //     $family = (new Families)
-        //         ->setName($familyName);
+  // Fixtures for Families
+  $families = [];
+  $familyNames = [
+      'APIACÉES', 'ASTÉRACÉES', 'BRASSICACÉES', 'CARYOPHYLLACÉES',
+      'CYPERACÉES', 'FABACÉES', 'LAMIACÉES', 'POACÉES',
+      'RENONCULACÉES', 'ROSACÉES'
+  ];
+  
+  foreach ($familyNames as $familyName) {
+      $family = (new Families())
+          ->setName($familyName);
+      $manager->persist($family);
+      $families[] = $family;
+  }
 
-        //     $manager->persist($family);
+  // Fixtures for Species
+  $species = [];
+  $speciesNames = [
+      'Amaranthe', 'Anémone', 'Achilée', 'Choux',
+      'Hélianthème', 'Jonc', 'Lys', 'Rose',
+      'Valériane', 'Sauge'
+  ];
 
-        //     $family[] = $family;
-        // }
-
-        // // Fixtures pour les espèces de plantes
-        // $speciesArray = [
-        //     'Amaranthe','Anémone',
-        //     'Achilée','Choux',
-        //     'Hélianthème','Jonc',
-        //     'Lys','Rose',
-        //     'Valériane','Sauge'
-        // ];
-
-        // foreach ($speciesArray as $specieName)
-        // {
-        //     $specie = (new Species)
-        //         ->setName($specieName);
-
-        //     $manager->persist($specie);
-
-        //     $specie[] = $specie;
-        // }
+  foreach ($speciesNames as $speciesName) {
+      $specie = (new Species())
+          ->setName($speciesName);
+      $manager->persist($specie);
+      $species[] = $specie;
+  }
 
         // Fixture pour ajouter des plantes avec les autres entitées reliées.
         for ($i = 0; $i < 10; $i++) {
@@ -116,27 +108,11 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 ->setName($this->faker->word())
                 ->setDescription($this->faker->sentence(20, true))
                 ->setEnable($this->faker->boolean);
-                
-                
-            $family = (new Families)
-                ->setName($this->faker->randomElement(
-                    [
-                        'APIACÉES','ASTÉRACÉES','BRASSICACÉES','CARYOPHYLLACÉES',
-                        'CYPERACÉES','FABACÉES',
-                        'LAMIACÉES','POACÉES',
-                        'RENONCULACÉES','ROSACÉES'
-                    ]));
-                    $manager->persist($family);
+                 // Set random Family
+            $plant->setFamilies($this->faker->randomElement($families));
 
-                ->setFamilies($this->faker->randomElement($family));
-                // ->setSpecies($this->faker->randomElement(
-                //     [
-                //         'Amaranthe','Anémone',
-                //         'Achilée','Choux',
-                //         'Hélianthème','Jonc',
-                //         'Lys','Rose',
-                //         'Valériane','Sauge'
-                //     ]));
+            // Set random Species
+            $plant->setSpecies($this->faker->randomElement($species));
             // Pour ajouter une ou des couleurs aléatoire aux plantes.
             $randomColors = $this->faker->randomElements(array_values(ColorFixtures::COLOR_REFERENCES), $this->faker->numberBetween(1, 4));
             foreach ($randomColors as $colorReference) {
