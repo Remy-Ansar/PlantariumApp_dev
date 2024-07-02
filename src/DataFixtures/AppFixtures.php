@@ -2,15 +2,16 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
+use Faker\Generator;
 use App\Entity\Users;
+use App\Entity\Seasons;
 use App\Entity\UserInfos;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Faker\Factory;
-use Faker\Generator;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
 
@@ -75,7 +76,10 @@ class AppFixtures extends Fixture
             $manager->persist($userInfos);
         }
             
-       
+        // $seasons = (new Seasons)
+        // ->setName(['Printemps', 'Eté', 'Automne', 'Hiver']);
+
+        // $manager->persist($seasons);
 
         $manager->flush();
     }

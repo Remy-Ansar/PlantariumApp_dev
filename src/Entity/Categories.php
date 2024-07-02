@@ -15,6 +15,8 @@ class Categories
 {
     use DateTimeTrait;
 
+    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -75,4 +77,5 @@ class Categories
 
         return $this;
     }
+
 }

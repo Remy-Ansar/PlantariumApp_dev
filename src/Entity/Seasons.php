@@ -15,13 +15,16 @@ class Seasons
 {
     use DateTimeTrait;
 
+    public const SEASONS = ['Printemps', 'Eté', 'Automne', 'Hiver'];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
-    #[Assert\Length(max: 50)]
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Assert\Length(max: 100)]
+    #[Assert\Choice(callback: [self::class, 'getAvailableSeasons'])]
     private ?string $Name = null;
 
     /**
@@ -74,5 +77,13 @@ class Seasons
         $this->plants->removeElement($plant);
 
         return $this;
+    }
+
+    
+
+    // Méthode pour obtenir les choix possibles (static pour être utilisée dans les assertions)
+    public static function getAvailableSeasons(): array
+    {
+    return ['Printemps', 'Eté', 'Automne', 'Hiver'];
     }
 }

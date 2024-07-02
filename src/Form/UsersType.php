@@ -34,61 +34,61 @@ class UsersType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'constraints' => [
-                        new Assert\Regex([
-                            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                            'message' => 'Votre mot de passe doit contenur au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
-                        ]),
-                        new Assert\NotBlank(),
-                        new Assert\Length(
-                            max:4096,
-                        ),
-                    ]                  
-                    ])
-                    ->add('userInfos', ProfileType::class, [
-                        'label' => false,
-                    ]);
+                    new Assert\Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
+                        'message' => 'Votre mot de passe doit contenur au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
+                    ]),
+                    new Assert\NotBlank(),
+                    new Assert\Length(
+                        max: 4096,
+                    ),
+                ]
+            ])
+            ->add('userInfos', ProfileType::class, [
+                'label' => false,
+            ]);
 
-                    if ($options['isAdmin']) {
-                        $builder->remove('password')
-                            ->add('roles', ChoiceType::class, [
-                                'label' => 'Rôles',
-                                'choices' => [
-                                    'Utilisateur' => 'ROLE_USER',
-                                    'Editeur' => 'ROLE_EDITOR',
-                                    'Administrateur' => 'ROLE_ADMIN',
+        if ($options['isAdmin']) {
+            $builder->remove('password')
+                ->add('roles', ChoiceType::class, [
+                    'label' => 'Rôles',
+                    'choices' => [
+                        'Utilisateur' => 'ROLE_USER',
+                        'Editeur' => 'ROLE_EDITOR',
+                        'Administrateur' => 'ROLE_ADMIN',
 
-                                ],
-                                'multiple' => true,
-                                'expanded' => true,
-                            ]);
-                    }
-            // ->add('FirstName', EntityType::class, [
-            //     'class' => UserInfos::class,
-            //     'label' => 'Votre prénom',
-            //     'required' => false,
-            //     'placeholder' => 'Prénom', 
-            //     'query_builder' => function (EntityRepository $entityRepository): QueryBuilder {
-            //         return $entityRepository->createQueryBuilder('prnm')
-            //             ->andWhere('prnm.FirstName = :FirstName')
-            //             ->orderBy('prnm.FirstName', 'ASC');
-            //     },
-            // ])
-            // ->add('LastName', EntityType::class, [
-            //     'class' => UserInfos::class,
-            //     'label' => 'Votre nom', 
-            //     'required' => false,
-            //     'attr' => [
-            //         'placeholder' => 'Doe',
-            //     ]
-            //     ])
-            //     ->add('Level', EntityType::class, [
-            //         'class' => UserInfos::class,
-            //         'label' => 'Votre niveau de jardinage',
-            //         'required' => false,
-            //         'choices' => array_combine(UserInfos::getAvailableLevels(), UserInfos::getAvailableLevels()),
-            //         'multiple' => false,
-            //         'expanded' => false,
-            //     ]); 
+                    ],
+                    'multiple' => true,
+                    'expanded' => true,
+                ]);
+        }
+        // ->add('FirstName', EntityType::class, [
+        //     'class' => UserInfos::class,
+        //     'label' => 'Votre prénom',
+        //     'required' => false,
+        //     'placeholder' => 'Prénom', 
+        //     'query_builder' => function (EntityRepository $entityRepository): QueryBuilder {
+        //         return $entityRepository->createQueryBuilder('prnm')
+        //             ->andWhere('prnm.FirstName = :FirstName')
+        //             ->orderBy('prnm.FirstName', 'ASC');
+        //     },
+        // ])
+        // ->add('LastName', EntityType::class, [
+        //     'class' => UserInfos::class,
+        //     'label' => 'Votre nom', 
+        //     'required' => false,
+        //     'attr' => [
+        //         'placeholder' => 'Doe',
+        //     ]
+        //     ])
+        //     ->add('Level', EntityType::class, [
+        //         'class' => UserInfos::class,
+        //         'label' => 'Votre niveau de jardinage',
+        //         'required' => false,
+        //         'choices' => array_combine(UserInfos::getAvailableLevels(), UserInfos::getAvailableLevels()),
+        //         'multiple' => false,
+        //         'expanded' => false,
+        //     ]); 
 
     }
 

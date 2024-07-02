@@ -11,10 +11,14 @@ use App\Entity\Traits\EnableTrait;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\PlantsRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\HttpFoundation\File\File;
 
 
 #[ORM\Entity(repositoryClass: PlantsRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[Vich\Uploadable]
 class Plants
 {
     use DateTimeTrait;
@@ -29,11 +33,29 @@ class Plants
     #[Assert\Length(max: 180)]
     private ?string $Name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 180)]
+    private ?string $LatinName = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
 
     #[ORM\ManyToOne(inversedBy: 'plants')]
     private ?UserPlants $userPlants = null;
+
+    #[Vich\UploadableField(mapping: 'profile', fileNameProperty: 'imageName')]
+    #[Assert\Image(
+        mimeTypes: ['image/*'],
+        maxSize: '8M',
+        detectCorrupted: true,
+    )]
+    // #[Assert\NotBlank()]
+    
+    private ?File $image = null;
+
+    #[ORM\Column(length:255, nullable:true)]
+    #[Groups(['product:read'])]
+    private ?string $imageName = null;
 
     /**
      * @var Collection<int, Seasons>
@@ -82,8 +104,6 @@ class Plants
 
         return $this;
     }
-
-
 
     public function getDescription(): ?string
     {
@@ -212,5 +232,59 @@ class Plants
         }
 
         return $this;
+    }
+
+    /**
+     * Get the value of LatinName
+     *
+     * @return ?string
+     */
+    public function getLatinName(): ?string
+    {
+        return $this->LatinName;
+    }
+
+    /**
+     * Set the value of LatinName
+     *
+     * @param ?string $LatinName
+     *
+     * @return self
+     */
+    public function setLatinName(?string $LatinName): self
+    {
+        $this->LatinName = $LatinName;
+
+        return $this;
+    }
+
+    public function setImage(?File $imageFile = null): static
+    {
+        $this->image = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?File
+    {
+        return $this->image;
+    }
+
+    public function setImageName(?string $imageName): static
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
     }
 }
