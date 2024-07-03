@@ -11,10 +11,10 @@ class SeasonsFixtures extends Fixture
 {   
     //liste des saisons utilisables pour les fixtures
     public const SEASONS_REFERENCES = [
-        'spring' => 'Printemps',
-        'summer' => 'Eté',
-        'autumn' => 'Automne',
-        'winter' => 'Hiver',
+        'Printemps' => 'spring',
+        'Eté' => 'summer',
+        'Automne' => 'autumn',
+        'Hiver' => 'winter',
     ];
 
     //fonction pour ajouter les fixtures liées à la relation MtM entre Seasons et Plants.

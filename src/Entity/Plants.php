@@ -33,9 +33,9 @@ class Plants
     #[Assert\Length(max: 180)]
     private ?string $Name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Length(max: 180)]
-    private ?string $LatinName = null;
+    // #[ORM\Column(length: 255, nullable: true)]
+    // #[Assert\Length(max: 180)]
+    // private ?string $LatinName = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
@@ -230,30 +230,6 @@ class Plants
         if ($this->colors->removeElement($color)) {
             $color->removePlant($this);
         }
-
-        return $this;
-    }
-
-    /**
-     * Get the value of LatinName
-     *
-     * @return ?string
-     */
-    public function getLatinName(): ?string
-    {
-        return $this->LatinName;
-    }
-
-    /**
-     * Set the value of LatinName
-     *
-     * @param ?string $LatinName
-     *
-     * @return self
-     */
-    public function setLatinName(?string $LatinName): self
-    {
-        $this->LatinName = $LatinName;
 
         return $this;
     }

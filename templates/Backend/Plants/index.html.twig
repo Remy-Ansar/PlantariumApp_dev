@@ -7,21 +7,21 @@ Administration des plantes
 {% block body %}
 <h1>Plantarium</h1>
 <h2>Administration des plantes</h2>
-
+<a href="{{ path('editor.plants.new') }}">Ajouter une plante</a>
 <main>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Espèce</th>
                 <th>Nom</th>
+                <th>Famille</th>
                 <th>Description</th>
-                <th>Photo</th>
-                {# <th>Visible</th> #}
                 <th>Couleurs</th>
                 <th>Saisons</th>
-                <th>Famille</th>
-                <th>Espèce</th>
                 <th>Catégorie</th>
+                <th>Photo</th>
+                <th>Visible</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -30,11 +30,11 @@ Administration des plantes
             {% for plant in plants %}
             <tr>
                 <td>{{ plant.id }}</td>
+                <td>{{ plant.Species.Name }}</td>
                 <td>{{ plant.Name }}</td>
+                <td>{{ plant.Families.Name }}</td>
                 <td>{{ plant.description }}</td>
-                <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
-                        class="rounded" width="50px" height="50px"></td>
-                        <td>
+                <td>
                     {% for color in plant.colors %}
                     {{ color.Name }}
                     {% endfor %}
@@ -44,25 +44,26 @@ Administration des plantes
                     {{ season.Name }}
                     {% endfor %}
                 </td>
-                <td>{{ plant.Families.Name }}</td>
-                <td>{{ plant.Species.Name }}</td>
                 <td>
                     {% for categorie in plant.categories %}
                     {{ categorie.Name }}
                     {% endfor %}
                 </td>
-
-                {# <td><a href="{{ path('admin.users.edit', {id: user.id}) }}">Modifier</a></td>
-            <td>
+                <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
+                        class="rounded" width="50px" height="50px"></td>
+                <td>
+                <td>{{plant.enable ? 'Oui' : 'Non' }}</td>
+                <td><a href="{{ path('editor.plants.edit', {id: plant.id}) }}">Modifier une plante</a></td>
+                <td>
             <form 
-                    action="{{path('admin.users.delete', {id: user.id}) }}" 
+                    action="{{path('editor.plants.delete', {id: plant.id}) }}" 
                     method="POST" 
                     onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
                     enctype="multipart/form-data">
-                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ user.id) }}">
-                    <button type="submit">Supprimer</button>
+                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ plant.id) }}">
+                    <button type="submit">Supprimer une plante</button>
             </form>
-                </td> #}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
