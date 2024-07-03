@@ -3,30 +3,32 @@
 namespace App\Form;
 
 use App\Entity\Colors;
-use App\Entity\Plants;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use App\Validator\Constraints\UniqueEntityField;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ColorsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Name')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('Plants', EntityType::class, [
-                'class' => Plants::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-        ;
+        ->add('Name', TextType::class, [
+            'label' => 'Nouvelle couleur de plante à ajouter :',
+            'attr' => [
+                'placeholder' => 'Bleu'
+            ],
+            'required' => false,
+            'constraints' => [
+                    new NotBlank(),
+                    new UniqueEntityField([
+                        'entityClass' => Colors::class,
+                        'field' => 'Name',
+                    ]),
+                ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

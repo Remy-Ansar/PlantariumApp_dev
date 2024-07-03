@@ -6,7 +6,6 @@ use Faker\Factory;
 use Faker\Generator;
 use App\Entity\Users;
 use App\Entity\Plants;
-use App\Entity\Seasons;
 use App\Entity\UserInfos;
 use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;

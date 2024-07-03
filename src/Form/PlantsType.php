@@ -26,9 +26,10 @@ class PlantsType extends AbstractType
         ->add('species', EntityType::class, [
             'class' => Species::class,
             'choice_label' => 'Name',
+            
         ])  
         ->add('Name', TextType::class, [
-            'label' => 'Nom de la nouvelle plante',
+            'label' => 'Nom de la nouvelle plante :',
             'attr' => [
                 'placeholder' => 'Ma nouvelle plante' 
             ],
@@ -41,7 +42,7 @@ class PlantsType extends AbstractType
         ])
 
         ->add('Description', TextareaType::class, [
-            'label' => 'Description', 
+            'label' => 'Description :', 
             'attr' => [
                 'placeholder' => 'Votre description de cette plante',
                 'row' => 3,
@@ -50,13 +51,13 @@ class PlantsType extends AbstractType
         ])
         
         ->add('enable', CheckboxType::class, [
-            'label' => 'Activer',
+            'label' => 'Visible',
             'required' => false,
             ])
 
         ->add('seasons', EntityType::class, [
             'class' => Seasons::class,
-            'label' => 'Choisissez saisonabilité',
+            'label' => 'Choisissez saisonabilité :',
             'choice_label' => 'Name',
             'multiple' => true,
             'expanded' => false, 
@@ -66,7 +67,7 @@ class PlantsType extends AbstractType
 
         ->add('categories', EntityType::class, [
             'class' => Categories::class,
-            'label' => 'Choisissez la ou les catégories correspondantes',
+            'label' => 'Choisissez la ou les catégories correspondantes :',
             'choice_label' => 'Name',
             'multiple' => true,
             'expanded' => false, 
@@ -75,16 +76,15 @@ class PlantsType extends AbstractType
 
         ->add('colors', EntityType::class, [
             'class' => Colors::class,
-            'label' => 'Choisissez la ou les couleurs de la plante',
+            'label' => 'Choisissez la ou les couleurs de la plante :',
             'choice_label' => 'Name',
-            'multiple' => true,
             'multiple' => true,
             'expanded' => false, // Set to true if you want checkboxes/radio buttons
             'by_reference' => true,
         ])
 
         ->add('image', VichImageType::class, [
-            'label' => 'Ajouter une image ou une photo de la plante',
+            'label' => 'Ajouter une image ou une photo de la plante :',
             'required' => false,
             'download_uri' => false,
             'image_uri' => true,

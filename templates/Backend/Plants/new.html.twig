@@ -8,6 +8,7 @@
 {% block body %}
 	<section>
 		<h1>Ajouter une nouvelle plante</h1>
+<a href="{{ path('editor.plants.new.field') }}">Ajouter des champs</a>
 
 		{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
 		<a href="{{ path('editor.plants.index') }}" class="btn btn-secondary">Retour à la liste</a>

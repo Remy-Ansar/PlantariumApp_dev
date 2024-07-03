@@ -2,25 +2,26 @@
 
 namespace App\Controller\Backend;
 
-use App\Entity\Categories;
 use App\Entity\Colors;
-use App\Entity\Families;
 use App\Entity\Plants;
 use App\Entity\Seasons;
 use App\Entity\Species;
+use App\Entity\Families;
+use App\Form\FieldsType;
 use App\Form\PlantsType;
+use App\Entity\Categories;
+use App\Entity\UserPlants;
+use Doctrine\ORM\Mapping\Entity;
 use App\Entity\Trait\EnableTrait;
 use App\Entity\Traits\DateTimeTrait;
-use App\Entity\UserPlants;
-use App\Repository\FamiliesRepository;
 use App\Repository\PlantsRepository;
+use App\Repository\FamiliesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/editor/plants', name: 'editor.plants')]
 class PlantsController extends AbstractController
@@ -80,7 +81,39 @@ class PlantsController extends AbstractController
             'form' => $form,
         ]);
     }
+#[Route('/new/field', name: '.new.field', methods:['GET', 'POST'])]
+    public function newField(EntityManagerInterface $em, Request $request): Response | RedirectResponse
+     {
+        $specie = new Species();
+        $family = new Families();
+        $color = new Colors();
 
+
+        $form = $this->createForm(FieldsType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($specie);
+            $em->persist($family);
+            $em->persist($color);
+
+            $em->flush();
+
+            $this->addFlash('success', 'Les nouveautées ont bien été ajoutées.');
+
+            return $this->redirectToRoute('editor.plants.index', [], Response::HTTP_SEE_OTHER);
+        } else {
+            // Debugging output for invalid form
+            dump($form->getErrors(true, false));
+        }
+        
+        return $this->render('Backend/Plants/newfield.html.twig', [
+            'form' => $form,
+        ]);
+     } 
+    
+    
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
     public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em): Response
     {

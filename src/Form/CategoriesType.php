@@ -3,30 +3,32 @@
 namespace App\Form;
 
 use App\Entity\Categories;
-use App\Entity\Plants;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use App\Validator\Constraints\UniqueEntityField;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CategoriesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Name')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('Plants', EntityType::class, [
-                'class' => Plants::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-            ])
-        ;
+        ->add('Name', TextType::class, [
+            'label' => 'Nouvelle catégorie de plante à ajouter :',
+            'attr' => [
+                'placeholder' => 'Plante de ...'
+            ],
+            'required' => false,
+            'constraints' => [
+                    new NotBlank(),
+                    new UniqueEntityField([
+                        'entityClass' => Categories::class,
+                        'field' => 'Name',
+                    ]),
+                ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

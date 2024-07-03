@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class SeasonType extends AbstractType
+class SeasonsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,13 +23,6 @@ class SeasonType extends AbstractType
                 'expanded' => false,
 
             ]);
-
-            // ->add('plants', EntityType::class, [
-            //     'class' => Plants::class,
-            //     'choice_label' => 'id',
-            //     'multiple' => true,
-            // ])
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
