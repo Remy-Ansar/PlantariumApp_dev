@@ -81,7 +81,8 @@ class PlantsController extends AbstractController
             'form' => $form,
         ]);
     }
-#[Route('/new/field', name: '.new.field', methods:['GET', 'POST'])]
+
+    #[Route('/new/field', name: '.new.field', methods:['GET', 'POST'])]
     public function newField(EntityManagerInterface $em, Request $request): Response | RedirectResponse
      {
         $specie = new Species();
@@ -89,7 +90,11 @@ class PlantsController extends AbstractController
         $color = new Colors();
 
 
-        $form = $this->createForm(FieldsType::class);
+        $form = $this->createForm(FieldsType::class, [
+            'species' => $specie,
+            'families' => $family,
+            'colors' => $color,
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -111,8 +116,7 @@ class PlantsController extends AbstractController
         return $this->render('Backend/Plants/newfield.html.twig', [
             'form' => $form,
         ]);
-     } 
-    
+     }     
     
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
     public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em): Response
