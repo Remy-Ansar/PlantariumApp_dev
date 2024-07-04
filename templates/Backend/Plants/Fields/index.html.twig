@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Administration des champs
+{{ parent() }}
+{% endblock %}
+{% block body %}
+<h1>Plantarium</h1>
+<h2>Administration des champs</h2>
+<a href="{{ path('editor.plants.field.family.new') }}">Ajouter une famille de plante</a>
+<a href="{{ path('editor.plants.field.specie.new') }}">Ajouter une espèce de plante</a>
+<a href="{{ path('editor.plants.field.color.new') }}">Ajouter une couleur de plante</a>
+<main>
+    <table>
+        <thead>
+            <tr>
+                <th>Espèce</th>
+                <th>Famille</th>
+                <th>Couleurs</th>
+            </tr>
+        </thead>
+        <tbody>
+
+{% for plant in plants %}
+<tr>
+    <td>{{ plant.species.name }}
+        <a href="{{ path('editor.plants.field.specie.edit', {'name': plant.species.name}) }}">Modifier une espèce</a>
+    </td>
+    <td>{{ plant.families.name }}
+        <a href="{{ path('editor.plants.field.family.edit', {'name': plant.families.name}) }}">Modifier une famille</a>
+    </td>
+    <td>
+        {% for color in plant.colors %}
+            {{ color.name }}
+            <a href="{{ path('editor.plants.field.color.edit', {'name': color.name}) }}">Modifier une couleur</a>
+        {% endfor %}
+    </td>
+</tr>
+{% endfor %}
+        </tbody>
+    </table>
+</main>
+
+{% endblock %}

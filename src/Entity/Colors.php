@@ -2,15 +2,19 @@
 
 namespace App\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\ColorsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ColorsRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ORM\UniqueConstraint(name: 'UNIQ_NAME_COLORS', columns: ['Name'])]
+#[UniqueEntity(fields: ['Name'], message: 'Cette couleur existe déjà.')]
 class Colors
 {
     use DateTimeTrait;
@@ -22,6 +26,7 @@ class Colors
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255)]
+    #[Gedmo\Slug(fields: ['Name'], unique: true)]
     private ?string $Name = null;
 
     /**

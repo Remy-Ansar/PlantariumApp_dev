@@ -16,6 +16,11 @@ class FamiliesRepository extends ServiceEntityRepository
         parent::__construct($registry, Families::class);
     }
 
+    public function findOneByName(string $name): ?Families
+    {
+        return $this->findOneBy(['Name' => $name]);
+    }
+
     //    /**
     //     * @return Families[] Returns an array of Families objects
     //     */

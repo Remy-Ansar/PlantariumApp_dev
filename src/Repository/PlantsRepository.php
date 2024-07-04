@@ -16,6 +16,12 @@ class PlantsRepository extends ServiceEntityRepository
         parent::__construct($registry, Plants::class);
     }
 
+    public function findOneByName(string $name): ?Plants
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+
+    
     //    /**
     //     * @return Plants[] Returns an array of Plants objects
     //     */

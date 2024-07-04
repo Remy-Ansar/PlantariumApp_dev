@@ -9,26 +9,41 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class ColorsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-        ->add('Name', TextType::class, [
-            'label' => 'Nouvelle couleur de plante à ajouter :',
-            'attr' => [
-                'placeholder' => 'Bleu'
-            ],
-            'required' => false,
-            'constraints' => [
-                    new NotBlank(),
-                    new UniqueEntityField([
-                        'entityClass' => Colors::class,
-                        'field' => 'Name',
-                    ]),
+        // Add the event listener to modify constraints based on the entity state
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $form = $event->getForm();
+            $data = $event->getData();
+
+            // Check if the entity is new or existing
+            $isNew = null === $data || null === $data->getId();
+
+            $constraints = [
+                new UniqueEntityField([
+                    'entityClass' => Colors::class,
+                    'field' => 'Name',
+                ]),
+            ];
+
+            if ($isNew) {
+                $constraints[] = new NotBlank();
+            }
+
+            $form->add('Name', TextType::class, [
+                'label' => 'Nouvelle couleur de plante à ajouter :',
+                'attr' => [
+                    'placeholder' => 'Bleu'
                 ],
-        ]);
+                'required' => $isNew,
+                'constraints' => $constraints,
+            ]);
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

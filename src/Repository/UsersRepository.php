@@ -33,6 +33,10 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         $this->getEntityManager()->flush();
     }
 
+    public function findOneByEmail(string $email): ?Users
+    {
+        return $this->findOneBy(['email' => $email]);
+    }
     //    /**
     //     * @return Users[] Returns an array of Users objects
     //     */

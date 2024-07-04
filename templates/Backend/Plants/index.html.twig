@@ -7,7 +7,11 @@ Administration des plantes
 {% block body %}
 <h1>Plantarium</h1>
 <h2>Administration des plantes</h2>
+<div>
 <a href="{{ path('editor.plants.new') }}">Ajouter une plante</a>
+<a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a>
+{# <a href="{{ path('editor.plants.field.edit') }}">modifier des champs</a> #}
+</div>
 <main>
     <table>
         <thead>

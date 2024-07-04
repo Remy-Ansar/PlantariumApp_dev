@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Ajouter une couleur
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>Ajouter une couleur</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_end(form) }}
+		<a href="{{ path('editor.plants.index') }}" class="btn btn-secondary">Retour à la liste des plantes</a>
+                {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+	</section>
+{% endblock %}

@@ -16,6 +16,11 @@ class ColorsRepository extends ServiceEntityRepository
         parent::__construct($registry, Colors::class);
     }
 
+    public function findOneByName(string $name): ?Colors
+    {
+        return $this->findOneBy(['Name' => $name]);
+    }
+
     //    /**
     //     * @return Colors[] Returns an array of Colors objects
     //     */

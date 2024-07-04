@@ -16,6 +16,10 @@ class SpeciesRepository extends ServiceEntityRepository
         parent::__construct($registry, Species::class);
     }
 
+    public function findOneByName(string $name): ?Species
+    {
+        return $this->findOneBy(['Name' => $name]);
+    }
     //    /**
     //     * @return Species[] Returns an array of Species objects
     //     */

@@ -16,6 +16,16 @@ class UserInfosRepository extends ServiceEntityRepository
         parent::__construct($registry, UserInfos::class);
     }
 
+    public function findOneByFirstName(string $firstname): ?UserInfos
+    {
+        return $this->findOneBy(['FirstName' => $firstname]);
+    }
+
+    public function findOneByLastName(string $lastname): ?UserInfos
+    {
+        return $this->findOneBy(['LastName' => $lastname]);
+    }
+
     //    /**
     //     * @return UserInfos[] Returns an array of UserInfos objects
     //     */

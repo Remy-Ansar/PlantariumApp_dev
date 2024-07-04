@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\FamiliesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: FamiliesRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_NAME_FAMILY', columns: ['Name'])]
+#[UniqueEntity(fields: ['Name'], message: 'Cette famille de plante existe déjà')]
 #[ORM\HasLifecycleCallbacks]
 class Families
 {
@@ -22,6 +26,7 @@ class Families
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 255)]
+    #[Gedmo\Slug(fields: ['Name'], unique: true)]
     private ?string $Name = null;
 
     /**

@@ -16,6 +16,11 @@ class SeasonsRepository extends ServiceEntityRepository
         parent::__construct($registry, Seasons::class);
     }
 
+    public function findOneByName(string $name): ?Seasons
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
+
     //    /**
     //     * @return Seasons[] Returns an array of Seasons objects
     //     */
