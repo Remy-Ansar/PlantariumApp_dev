@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Administration des plantes
+{{ parent() }}
+{% endblock %}
+{% block body %}
+<h1>Plantarium</h1>
+
+<nav>
+<h2>Trouver une plante</h2>
+</nav>
+<div>
+
+</div>
+<main>
+    <table>
+        <thead>
+            <tr>
+                <th>Espèce</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for plant in plants %}
+            <tr>
+
+                <td>{{ plant.Species.Name }}</td>
+                <td>{{ plant.Name }}
+                 <a href="{{ path('.users.add.plants', {'plantId': plant.id}) }}">Ajouter cette plante à mon profil</a></td>
+                <td>{{ plant.description }}</td>
+                <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
+                        class="rounded" width="50px" height="50px"></td>
+                <td>
+
+                <td>
+            {# <form 
+                    action="{{path('editor.plants.delete', {id: plant.id}) }}" 
+                    method="POST" 
+                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ plant.id) }}">
+                    <button type="submit">Supprimer une plante</button>
+            </form> #}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+{% endblock %}

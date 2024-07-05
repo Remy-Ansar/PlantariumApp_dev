@@ -169,7 +169,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->userPlants;
     }
 
-    public function addUserPlant(UserPlants $userPlant): static
+    public function addUserPlant(UserPlants $userPlant): self
     {
         if (!$this->userPlants->contains($userPlant)) {
             $this->userPlants->add($userPlant);
@@ -179,7 +179,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeUserPlant(UserPlants $userPlant): static
+    public function removeUserPlant(UserPlants $userPlant): self
     {
         if ($this->userPlants->removeElement($userPlant)) {
             // set the owning side to null (unless already changed)

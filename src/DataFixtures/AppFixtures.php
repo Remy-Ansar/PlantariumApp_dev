@@ -6,11 +6,12 @@ use Faker\Factory;
 use Faker\Generator;
 use App\Entity\Users;
 use App\Entity\Plants;
+use App\Entity\Species;
+use App\Entity\Families;
 use App\Entity\UserInfos;
+use App\Entity\UserPlants;
 use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
-use App\Entity\Families;
-use App\Entity\Species;
 use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -35,9 +36,12 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 $this->hasher->hashPassword(new Users(), 'Test1234!')
             )
             ->setRoles(['ROLE_ADMIN']);
-
+        
+        $userPlant = new UserPlants();
+        $userPlant->setUser($user);
         $manager->persist($user);
-
+        $manager->persist($userPlant);
+        
         $userInfos = (new UserInfos)
             ->setFirstName('Remy')
             ->setLastName('Ansar')
@@ -58,8 +62,11 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 ->setRoles(
                     $this->faker->randomElements(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_EDITOR'], 1)
                 );
-
+            $userPlant = new UserPlants();
+            $userPlant->setUser($user);
+           
             $manager->persist($user);
+            $manager->persist($userPlant);
 
             $userInfos = (new UserInfos)
                 ->setFirstName($this->faker->firstName())

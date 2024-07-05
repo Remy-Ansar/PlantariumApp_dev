@@ -5,6 +5,7 @@ namespace App\Controller\Security;
 use App\Entity\Users;
 use App\Entity\UserInfos;
 use App\Form\ProfileType;
+use App\Entity\UserPlants;
 use App\Form\InscriptionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,8 +54,12 @@ class SecurityController extends AbstractController
             $users->setPassword(
                 $this->hasher->hashPassword($users, $form->get('password')->getData())
             );
-
+            $userPlant = new UserPlants();
+            $userPlant->setUser($users);
+           
             $em->persist($users);
+            $em->persist($userPlant);
+            
             $em->flush();
             $userId =$request->getSession()->set('user.id', $users->getId());
 

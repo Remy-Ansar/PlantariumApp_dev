@@ -16,6 +16,10 @@ services:
     #Add a validation condition to verify if the value allready exist
     App\Validator\Constraints\UniqueEntityFieldValidator:
         tags: ['validator.constraint_validator']
+
+    App\EventListener\UserEntityListener:
+        tags:
+            - { name: doctrine.event_listener, event: postPersist, entity: App\Entity\Users }
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
