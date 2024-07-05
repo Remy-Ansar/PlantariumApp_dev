@@ -23,6 +23,8 @@ class CategoriesFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         foreach (self::CATEGORIES_REFERENCES as $name => $reference) {
+            $cleanName = str_replace('-', '', $name);
+
             $categorie = new Categories();
             $categorie->setName($name);
             $manager->persist($categorie);

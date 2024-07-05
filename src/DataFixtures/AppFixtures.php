@@ -11,6 +11,7 @@ use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
 use App\Entity\Families;
 use App\Entity\Species;
+use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -81,7 +82,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   
   foreach ($familyNames as $familyName) {
       $family = (new Families())
-          ->setName($familyName);
+          ->setName(strtoupper ($familyName));
       $manager->persist($family);
       $families[] = $family;
   }

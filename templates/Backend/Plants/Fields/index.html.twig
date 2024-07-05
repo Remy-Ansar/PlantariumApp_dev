@@ -1,16 +1,17 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-Administration des champs
-{{ parent() }}
+    Administration des champs
+    {{ parent() }}
 {% endblock %}
+
 {% block body %}
 <h1>Plantarium</h1>
 <h2>Administration des champs</h2>
 <div>
-<a href="{{ path('editor.plants.field.specie.new') }}">Ajouter une espèce de plante</a>
-<a href="{{ path('editor.plants.field.family.new') }}">Ajouter une famille de plante</a>
-<a href="{{ path('editor.plants.field.color.new') }}">Ajouter une couleur de plante</a>
+    <a href="{{ path('editor.plants.field.specie.new') }}">Ajouter une espèce de plante</a>
+    <a href="{{ path('editor.plants.field.family.new') }}">Ajouter une famille de plante</a>
+    <a href="{{ path('editor.plants.field.color.new') }}">Ajouter une couleur de plante</a>
 </div>
 <main>
     <table>
@@ -22,35 +23,33 @@ Administration des champs
             </tr>
         </thead>
         <tbody>
-
-{% for plant in plants %}
-<tr>
-    <td>{% for specie in species %}
-            <li>{{ specie.Name }}</li>
-            <a href="{{ path('editor.plants.field.specie.edit', {'name': plant.species.name}) }}">Modifier une espèce</a>
-        {% endfor %}
-        
-    </td>
-    <td>{% for family in families %}
-            <li>{{ family.Name }}</li>
-            <a href="{{ path('editor.plants.field.family.edit', {'name': plant.families.name}) }}">Modifier une famille</a>
-        {% endfor %}
-        
-    </td>
-    <td>
-        {% for color in plant.colors %}
-            <li>{{ color.name }}</li>
-            <a href="{{ path('editor.plants.field.color.edit', {'name': color.name}) }}">Modifier une couleur</a>
-        {% endfor %}
-    </td>
-</tr>
-{% endfor %}
+            {% for plant in plants %}
+                <tr>
+                    <td>
+                        <li>{{ plant.species.name }}
+                            <a href="{{ path('editor.plants.field.specie.edit', {'name': plant.species.name}) }}">Modifier une espèce</a>
+                        </li>
+                    </td>
+                    <td>
+                        <li>{{ plant.families.name }}
+                            <a href="{{ path('editor.plants.field.family.edit', {'name': plant.families.name}) }}">Modifier une famille</a>
+                        </li>
+                    </td>
+                    <td>
+                        {% for color in plant.colors %}
+                            <li>{{ color.name }}
+                                <a href="{{ path('editor.plants.field.color.edit', {'name': color.name}) }}">Modifier une couleur</a>
+                            </li>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </main>
 
 <footer>
-<a href="{{ path('editor.plants.index')}}">Retourner à l'administration des plantes</a>
+    <a href="{{ path('editor.plants.index') }}">Retourner à l'administration des plantes</a>
 </footer>
 
 {% endblock %}
