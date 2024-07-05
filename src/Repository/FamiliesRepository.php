@@ -21,6 +21,24 @@ class FamiliesRepository extends ServiceEntityRepository
         return $this->findOneBy(['Name' => $name]);
     }
 
+    
+    /**
+     * @param string $sort
+     * @return Families[]
+     */
+    public function findAllOrderByName(string $sort = 'ASC'): array
+    {
+        $sort = strtoupper($sort);
+        if (!in_array($sort, ['ASC', 'DESC'])) {
+            throw new \InvalidArgumentException('Invalid sort direction');
+        }
+
+        return $this->createQueryBuilder('f')
+            ->orderBy('f.Name', $sort)
+            ->getQuery()
+            ->getResult();
+    }
+}
     //    /**
     //     * @return Families[] Returns an array of Families objects
     //     */
@@ -45,4 +63,4 @@ class FamiliesRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-}
+

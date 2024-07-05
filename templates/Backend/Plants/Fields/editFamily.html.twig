@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block body %}
-	<section>
-		<h1>Modification d'une famille</h1>
-		{% include 'Backend/Plants/Fields/_form.html.twig' %}
-	</section>
+    <h1>Ajouter une nouvelle famille de plante</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.Name) }}
+        <button type="submit">Ajouter</button>
+    {{ form_end(form) }}
 {% endblock %}

@@ -53,7 +53,7 @@ class FieldsController extends AbstractController
     {
         return $this->render('Backend/Plants/Fields/index.html.twig', [
             'plants' => $this->plantsRepository->findAll(),
-            'families' => $this->familiesRepository->findAll(),
+            'families' => $this->familiesRepository->findAllOrderByName(),
             'species' => $this->speciesRepository->findAll(),
             'colors' => $this->colorsRepository->findAll(),
         ]);
@@ -103,9 +103,7 @@ class FieldsController extends AbstractController
 
         $family = new Families();
 
-        $form = $this->createForm(FamiliesType::class, [
-            'families' => $family,
-        ]);
+        $form = $this->createForm(FamiliesType::class,$family);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -121,7 +119,7 @@ class FieldsController extends AbstractController
             dump($form->getErrors(true, false));
         }
         
-        return $this->render('Backend/Plants/Fields/newColor.html.twig', [
+        return $this->render('Backend/Plants/Fields/newFamily.html.twig', [
             'form' => $form,
         ]);
     } 
@@ -132,9 +130,7 @@ class FieldsController extends AbstractController
 
         $specie = new Species();
 
-        $form = $this->createForm(SpeciesType::class, [
-            'species' => $specie,
-        ]);
+        $form = $this->createForm(SpeciesType::class,$specie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -150,7 +146,7 @@ class FieldsController extends AbstractController
             dump($form->getErrors(true, false));
         }
         
-        return $this->render('Backend/Plants/Fields/newColor.html.twig', [
+        return $this->render('Backend/Plants/Fields/newSpecie.html.twig', [
             'form' => $form,
         ]);
     } 
@@ -160,9 +156,7 @@ class FieldsController extends AbstractController
     {
         $color = new Colors();
 
-        $form = $this->createForm(ColorType::class, [
-            'colors' => $color,
-        ]);
+        $form = $this->createForm(ColorsType::class,$color);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
