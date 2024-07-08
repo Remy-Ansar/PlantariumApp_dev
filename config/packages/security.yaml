@@ -21,9 +21,10 @@ security:
                 check_path: app.connexion
                 enable_csrf: true
                 use_referer: true
+                default_target_path: users.index # This will redirect to the home route after successful login
             logout:
-                path: /deconnection
-                target: /
+                path: /logout
+                target: /home
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -35,7 +36,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: [ROLE_ADMIN, ROLE_EDITOR, ROLE_USER] }
+        - { path: ^/users, roles: [ROLE_ADMIN, ROLE_EDITOR, ROLE_USER] }
         - { path: ^/editor, roles: [ROLE_ADMIN, ROLE_EDITOR] }
 
 when@test:

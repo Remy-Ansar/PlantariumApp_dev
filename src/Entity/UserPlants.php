@@ -18,13 +18,15 @@ class UserPlants
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'userPlants')]
+    #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'userPlants')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Users $User = null;
 
     /**
      * @var Collection<int, Plants>
      */
-    #[ORM\OneToMany(targetEntity: Plants::class, mappedBy: 'userPlants')]
+    #[ORM\ManyToOne(targetEntity: Plants::class, inversedBy: 'userPlants')]
+    #[ORM\JoinColumn(nullable: false)]
     private Collection $plants;
 
     public function __construct()
@@ -42,19 +44,26 @@ class UserPlants
         return $this->User;
     }
 
-    public function setUser(?Users $User): static
+    public function setUser(?Users $User): self
     {
         $this->User = $User;
 
         return $this;
     }
-
+    
     /**
      * @return Collection<int, Plants>
      */
     public function getPlants(): Collection
     {
         return $this->plants;
+    }
+
+    public function setPlant(Plants $plant): self
+    {
+        $this->plants = $plant;
+
+        return $this;
     }
 
     public function addPlant(Plants $plant): static
@@ -78,4 +87,6 @@ class UserPlants
 
         return $this;
     }
+    
+
 }

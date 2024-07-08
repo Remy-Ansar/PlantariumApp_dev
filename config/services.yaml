@@ -17,6 +17,10 @@ services:
     App\Validator\Constraints\UniqueEntityFieldValidator:
         tags: ['validator.constraint_validator']
 
+    #UserPlant factory to ad a plant in the user own collection 
+    App\Factory\UserPlantFactory:
+        public: true
+        
     App\EventListener\UserEntityListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, entity: App\Entity\Users }

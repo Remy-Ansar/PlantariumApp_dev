@@ -1,14 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-Administration des plantes
+Mes plantes
 {{ parent() }}
 {% endblock %}
 {% block body %}
 <h1>Plantarium</h1>
 
 <nav>
-<h2>Trouver une plante</h2>
+<h2>Mes plantes</h2>
 </nav>
 <div>
 
@@ -24,35 +24,7 @@ Administration des plantes
             </tr>
         </thead>
         <tbody>
- {% if userPlants is empty %}
-        <p>Vous n'avez pas encore ajouté de plantes à votre collection.</p>
-    {% else %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Espèce</th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Photo</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for userPlant in userPlants %}
-                <tr>
-                {% for plant in userPlant %}
-                    <li> {{plant.species}}
-                    </li>
-                    
-                {% endfor %}
-                    {# <td>{{ userPlant.plant.species.name }}</td>
-                    <td>{{ userPlant.plant.name }}</td>
-                    <td>{{ userPlant.plant.description }}</td> #}
-                    {# <td><img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}" loading="lazy" class="rounded" width="50px" height="50px"></td> #}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+
         </tbody>
     </table>
 </main>

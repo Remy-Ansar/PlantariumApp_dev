@@ -31,8 +31,6 @@ class SecurityController extends AbstractController
         return $this->render('Security/home.html.twig');
     }
 
-    
-
     #[Route('/connexion', name: 'app.connexion', methods: ['GET', 'POST'])]
     public function login(AuthenticationUtils $authUtils): Response
     {
@@ -40,6 +38,7 @@ class SecurityController extends AbstractController
             'error' => $authUtils->getLastAuthenticationError(),
             'lastUsername' => $authUtils->getLastUsername(),
         ]);
+
     }
 
     #[Route('/inscription', name: 'app.inscription', methods: ['GET', 'POST'])]
@@ -102,5 +101,9 @@ class SecurityController extends AbstractController
         ]);
     }
 
-
+    #[Route('logout', name: 'app_logout')]
+    public function logout()
+    {
+        // The security layer will intercept this request
+    }
 }

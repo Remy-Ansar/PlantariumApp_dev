@@ -1,9 +1,40 @@
 <header>
-<nav>
-     <ul>
+    <nav>
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <div>
+            <ul>
+                <li><a href="{{ path('admin.users.index') }}">Administration des utilisateurs</a></li>
+            </ul>
+        </div>
+            {% endif %}
+
+            {% if is_granted('ROLE_EDITOR' or 'ROLE_ADMIN') %}
+                <div>
+            <ul>
+                <li><a href="{{ path('editor.plants.index') }}">Administration des plantes</a></li>
+            </ul>
+        </div>
+            {% endif %}
+            
+        <div>
+            <ul>
+                <li><a href="{{ path('users.index') }}">Mes plantes</a></li>
+                <li><a href="{{ path('users.calendar') }}">Mon calendrier</a></li>
+                <li><a href="{{ path('users.plantarium') }}">Plantarium</a></li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            </ul>
+        </div>
+
+        {% else %}
         <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
         <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
-
-    </ul>    
-	</nav>
+        {% endif %}
+        </ul>
+    </nav>
 </header>

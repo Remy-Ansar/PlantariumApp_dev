@@ -33,15 +33,12 @@ class Plants
     #[Assert\Length(max: 180)]
     private ?string $Name = null;
 
-    // #[ORM\Column(length: 255, nullable: true)]
-    // #[Assert\Length(max: 180)]
-    // private ?string $LatinName = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plants')]
-    private ?UserPlants $userPlants = null;
+    #[ORM\OneToMany(targetEntity: UserPlants::class, mappedBy: 'plant')]
+    private Collection $userPlants;
 
     #[Vich\UploadableField(mapping: 'profile', fileNameProperty: 'imageName')]
     #[Assert\Image(
@@ -83,6 +80,7 @@ class Plants
 
     public function __construct()
     {
+        $this->userPlants = new ArrayCollection();
         $this->seasons = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->colors = new ArrayCollection();
@@ -117,7 +115,10 @@ class Plants
         return $this;
     }
 
-    public function getUserPlants(): ?UserPlants
+        /**
+     * @return Collection|UserPlants[]
+     */
+    public function getUserPlants(): ?Collection
     {
         return $this->userPlants;
     }
@@ -128,6 +129,29 @@ class Plants
 
         return $this;
     }
+
+    public function addUserPlant(UserPlants $userPlant): self
+    {
+        if (!$this->userPlants->contains($userPlant)) {
+            $this->userPlants[] = $userPlant;
+            $userPlant->setPlant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserPlant(UserPlants $userPlant): self
+    {
+        if ($this->userPlants->removeElement($userPlant)) {
+            // set the owning side to null (unless already changed)
+            if ($userPlant->getUser() === $this) {
+                $userPlant->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Seasons>

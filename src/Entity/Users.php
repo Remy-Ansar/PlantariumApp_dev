@@ -69,7 +69,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-   
+
 
     /**
      * A visual identifier that represents this user.

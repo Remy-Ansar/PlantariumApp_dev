@@ -21,6 +21,10 @@ class PlantsRepository extends ServiceEntityRepository
         return $this->findOneBy(['name' => $name]);
     }
 
+    public function findOneById(string $id): ?Plants
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
     
     //    /**
     //     * @return Plants[] Returns an array of Plants objects

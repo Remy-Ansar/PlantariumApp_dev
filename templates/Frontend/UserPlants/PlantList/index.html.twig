@@ -30,7 +30,11 @@ Administration des plantes
 
                 <td>{{ plant.Species.Name }}</td>
                 <td>{{ plant.Name }}
-                 <a href="{{ path('.users.add.plants', {'plantId': plant.id}) }}">Ajouter cette plante à mon profil</a></td>
+                <form action="{{ path('users.plantarium.addPlant') }}" method="post">
+    <a href="{{ path('users.plantarium.addPlant', {id: plant.id}) }}">
+    
+    <button type="submit">Ajouter cette plante à mon profil</button>
+</form>
                 <td>{{ plant.description }}</td>
                 <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
                         class="rounded" width="50px" height="50px"></td>

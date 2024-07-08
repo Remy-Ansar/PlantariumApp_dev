@@ -37,10 +37,10 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             )
             ->setRoles(['ROLE_ADMIN']);
         
-        $userPlant = new UserPlants();
-        $userPlant->setUser($user);
+        // $userPlant = new UserPlants();
+        // $userPlant->setUser($user);
         $manager->persist($user);
-        $manager->persist($userPlant);
+        // $manager->persist($userPlant);
         
         $userInfos = (new UserInfos)
             ->setFirstName('Remy')
@@ -62,11 +62,11 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 ->setRoles(
                     $this->faker->randomElements(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_EDITOR'], 1)
                 );
-            $userPlant = new UserPlants();
-            $userPlant->setUser($user);
+            // $userPlant = new UserPlants();
+            // $userPlant->setUser($user);
            
             $manager->persist($user);
-            $manager->persist($userPlant);
+            // $manager->persist($userPlant);
 
             $userInfos = (new UserInfos)
                 ->setFirstName($this->faker->firstName())
