@@ -5,7 +5,7 @@ namespace App\DataFixtures\Providers;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ProduitProvider
+class PlantsProvider
 {
     public function uploadImage(): UploadedFile
     {

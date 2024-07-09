@@ -21,7 +21,15 @@ Mes plantes
                     {% else %}
                         <p>No image available</p>
                     {% endif %}
-                    <p>{{ userPlant.plant.name }}</p>
+                    <p>{{ userPlant.plant.name }} {{ userPlant.plant.species.Name }}</p>
+                    <form 
+                    action="{{path('users.delete', {id: userPlant.id}) }}" 
+                    method="POST" 
+                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ userPlant.id) }}">
+                    <button type="submit">Supprimer cette plante</button>
+            </form>
                 </li>
             {% endfor %}
         </ul>
