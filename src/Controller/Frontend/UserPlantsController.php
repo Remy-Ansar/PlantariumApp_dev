@@ -6,6 +6,7 @@ use App\Entity\Users;
 use App\Entity\Plants;
 use App\Entity\UserPlants;
 use App\Factory\UserPlantFactory;
+use App\Manager\UserPlantManager;
 use App\Repository\UsersRepository;
 use App\Repository\PlantsRepository;
 use App\Repository\UserInfosRepository;
@@ -27,7 +28,8 @@ class UserPlantsController extends AbstractController
         private readonly EntityManagerInterface $em,
         private readonly Security $security,
         private readonly UserPlantsRepository $userPlantsRepository,
-        private readonly PlantsRepository $plantsRepository
+        private readonly PlantsRepository $plantsRepository,
+        private readonly UserPlantManager $userPlantManager,
     ) {
     }
     
@@ -53,49 +55,39 @@ class UserPlantsController extends AbstractController
         ]);
     }
 
-    #[Route('/plantarium/{id}/addPlant', name: '.plantarium.addPlant')]
-    public function addPlant(Request $request, PlantsRepository $plantsRepository, int $id): Response
-    {
-        $user = $this->getUser();
-        if (!$user instanceof Users) {
-            $this->addFlash('danger', 'Vous n\'êtes pas authorisé.');
-            return $this->redirectToRoute('app_login');
-        }
+    #[Route('/plantarium/addPlant', name: '.plantarium.addPlant', methods: ['GET','POST'])]
+    public function addPlant(Request $request): Response
+        {
+            // Step 2: Fetch the Current User and Selected Plant
+            $user = $this->getUser();
+            if (!$user instanceof Users) {
+                $this->addFlash('danger', 'Vous n\'êtes pas authorisé.');
+                return $this->redirectToRoute('app_login');
+            }
     
-        $userId = $user->getId();
-        $plantId = $request->get('plant_id');
-        if (!$plantId) {
-            $this->addFlash('danger', 'La plante est introuvable.');
+            $plantId = $request->request->get('plant_id'); // Ensure the form sends plant_id as POST parameter
+            if (!$plantId) {
+                $this->addFlash('danger', 'Plant ID is missing.');
+                return $this->redirectToRoute('users.plantarium');
+            }
+    
+            $plant = $this->em->getRepository(Plants::class)->find($plantId);
+            if (!$plant) {
+                $this->addFlash('danger', 'La plante n\'existe pas.');
+                return $this->redirectToRoute('users.plantarium');
+            }
+    
+            // Step 3: Create and Persist the UserPlant Entity
+            $userPlant = new UserPlants();
+            $userPlant->setUser($user);
+            $userPlant->setPlant($plant);
+    
+            $this->em->persist($userPlant);
+            $this->em->flush();
+    
+            $this->addFlash('success', 'Votre plante a bien été ajoutée.');
             return $this->redirectToRoute('users.plantarium');
         }
-        
-        // Debugging: log the plantId
-        dump($plantId);
-
-        $user = $this->em->getRepository(Users::class)->find($userId);
-        if (!$user) {
-            $this->addFlash('danger', 'L\'utilisateur n\'existe pas', 400);
-            return $this->redirectToRoute('users.index');
-        }
-
-        $plant = $this->em->getRepository(Plants::class)->find($plantId);
-        if (!$plant) {
-        $this->addFlash('danger', 'La plante n\'existe pas', 400);
-        return $this->redirectToRoute('users.plantarium');
-        }
-        $userPlant = new UserPlants();
-        $plant = $plantsRepository->find($id);
-        $userPlant = $plant->setUserPlant();
-
-        // $userPlant = $this->userPlantFactory->createUserPlant($plant);
-
-        $this->em->persist($userPlant);
-        $this->em->flush();
-
-        return new Response('Votre plante à bien été ajoutée.');
-
-    }
-
     // #[Route('/{id}/mesPlantes', name: '.myplants', methods: ['GET'])]
     // public function myPlants(): Response
     // {

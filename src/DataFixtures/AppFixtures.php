@@ -14,6 +14,8 @@ use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
 use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -114,7 +116,8 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $plant = (new Plants)
                 ->setName($this->faker->word())
                 ->setDescription($this->faker->sentence(20, true))
-                ->setEnable($this->faker->boolean);
+                ->setEnable($this->faker->boolean)
+                ->setImage($this->uploadImage());
                  // Set random Family
             $plant->setFamilies($this->faker->randomElement($families));
 
@@ -138,12 +141,8 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 $category = $this->getReference($categoryReference);
                 $plant->addCategory($category);
             }
-            
-    
 
-
-
-            $manager->persist($plant);
+                $manager->persist($plant);
         }
 
         $manager->flush();
@@ -156,5 +155,17 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             SeasonsFixtures::class,
             CategoriesFixtures::class,
         ];
+    }
+
+    private function uploadImage(): UploadedFile
+    {
+        $files = glob(__DIR__ . '/images/Plant/*.*');
+
+        $index = array_rand($files);
+
+        $file = new File($files[$index]);
+        $file = new UploadedFile($file, $file->getFilename());
+
+        return $file;
     }
 }

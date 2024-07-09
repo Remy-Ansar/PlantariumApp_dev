@@ -19,7 +19,11 @@ services:
 
     #UserPlant factory to ad a plant in the user own collection 
     App\Factory\UserPlantFactory:
-        public: true
+        autowire: true
+
+    #UserPlant manager to ad a plant in the user own collection 
+    App\Manager\UserPlantManager:
+        autowire: true
         
     App\EventListener\UserEntityListener:
         tags:
@@ -38,3 +42,6 @@ services:
     App\DataFixtures\:
         resource: '../src/DataFixtures'
         tags: ['doctrine.fixture.orm']
+
+    App\DataFixtures\Providers\PlantsProviders:
+        tags: [{ name: nelmio_alice.faker.provider }]

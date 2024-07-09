@@ -7,26 +7,25 @@ Mes plantes
 {% block body %}
 <h1>Plantarium</h1>
 
-<nav>
 <h2>Mes plantes</h2>
-</nav>
-<div>
 
-</div>
-<main>
-    <table>
-        <thead>
-            <tr>
-                <th>Espèce</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Photo</th>
-            </tr>
-        </thead>
-        <tbody>
+    {% if userPlants is empty %}
+        <p>Vous n'avez aucune plantes d'enregistrées sur votre profil.</p>
+    {% else %}
+        <ul>
+            {% for userPlant in userPlants %}
+                <li>
+                    {% if userPlant.plant %}
+                        <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}" style="max-width: 200px; max-height: 200px;">
+                      
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <p>{{ userPlant.plant.name }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-        </tbody>
-    </table>
-</main>
 
 {% endblock %}

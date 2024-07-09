@@ -1,3 +1,28 @@
+
 body {
     background-color: skyblue;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+}
+ul  {
+    list-style: none;
+}
+/* nav div ul {
+    display: flex;
+    justify-content: space-around;
+} */
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+li a {
+    padding: 1em;
 }

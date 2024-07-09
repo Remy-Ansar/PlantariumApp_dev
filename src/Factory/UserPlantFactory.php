@@ -14,23 +14,31 @@ class UserPlantFactory
     ) {   
     }
 
-    /**
-     * Create a UserPlant object
-     *
-     * @param Users $user
-     * @param Plants $plant
-     * @return UserPlants
-     */
-    public function createUserPlant(Plants $plant): UserPlants
+    public function createUserPlant(Users $user, Plants $plant): UserPlants
     {
         $userPlant = new UserPlants();
-
-        if ($this->security->getUser()) {
-            $userPlant->setUser($this->security->getUser());
-        }
-        
+        $userPlant->setUser($user);
         $userPlant->setPlant($plant);
 
         return $userPlant;
     }
+    // /**
+    //  * Create a UserPlant object
+    //  *
+    //  * @param Users $user
+    //  * @param Plants $plant
+    //  * @return UserPlants
+    //  */
+    // public function createUserPlant(Plants $plant): UserPlants
+    // {
+    //     $userPlant = new UserPlants();
+
+    //     if ($this->security->getUser()) {
+    //         $userPlant->setUser($this->security->getUser());
+    //     }
+        
+    //     $userPlant->setPlant($plant);
+
+    //     return $userPlant;
+    // }
 }

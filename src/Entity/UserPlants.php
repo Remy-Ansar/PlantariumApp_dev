@@ -23,16 +23,11 @@ class UserPlants
     private ?Users $User = null;
 
     /**
-     * @var Collection<int, Plants>
+     * @var Plants<int, Plants>
      */
     #[ORM\ManyToOne(targetEntity: Plants::class, inversedBy: 'userPlants')]
     #[ORM\JoinColumn(nullable: false)]
-    private Collection $plants;
-
-    public function __construct()
-    {
-        $this->plants = new ArrayCollection();
-    }
+    private ?Plants $plant = null;
 
     public function getId(): ?int
     {
@@ -51,42 +46,16 @@ class UserPlants
         return $this;
     }
     
-    /**
-     * @return Collection<int, Plants>
-     */
-    public function getPlants(): Collection
+    public function getPlant(): ?Plants
     {
-        return $this->plants;
+        return $this->plant;
     }
 
-    public function setPlant(Plants $plant): self
+    public function setPlant(?Plants $plant): self
     {
-        $this->plants = $plant;
-
+        $this->plant = $plant;
         return $this;
     }
 
-    public function addPlant(Plants $plant): static
-    {
-        if (!$this->plants->contains($plant)) {
-            $this->plants->add($plant);
-            $plant->setUserPlants($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlant(Plants $plant): static
-    {
-        if ($this->plants->removeElement($plant)) {
-            // set the owning side to null (unless already changed)
-            if ($plant->getUserPlants() === $this) {
-                $plant->setUserPlants(null);
-            }
-        }
-
-        return $this;
-    }
-    
 
 }
