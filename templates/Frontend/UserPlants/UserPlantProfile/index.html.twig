@@ -21,7 +21,7 @@ Mes plantes
                     {% else %}
                         <p>No image available</p>
                     {% endif %}
-                    <p>{{ userPlant.plant.name }} {{ userPlant.plant.species.Name }}</p>
+                    <p>{{ userPlant.plant.species.Name }} {{ userPlant.plant.name }} </p>
                     <form 
                     action="{{path('users.delete', {id: userPlant.id}) }}" 
                     method="POST" 

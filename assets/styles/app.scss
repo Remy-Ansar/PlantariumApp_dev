@@ -1,15 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
+
+@import "~bootstrap/scss/bootstrap";
+//utils
 @import "utils/functions";
 @import "utils/mixins";
-@import "utils/variables";
 @import 'utils/placeholders';
+@import "utils/variables";
 
 
+//pages
+@import "pages/calendar";
 @import "pages/home";
+@import "pages/plantarium";
+@import "pages/profile";
 
 
+//base
+@import 'base/base';
 @import 'base/reset';
 @import 'base/typography';
 
+
+//layout
 @import 'layout/navigation';
 @import 'layout/grid';
 @import 'layout/header';
@@ -17,12 +29,13 @@
 @import 'layout/sidebar';
 @import 'layout/forms';
 
+//components
 @import 'components/buttons';
 @import 'components/cover';
 @import 'components/dropdown';
 
-@import 'pages/home';
 
-
+//themes
 @import 'themes/theme';
 @import 'themes/admin';
+

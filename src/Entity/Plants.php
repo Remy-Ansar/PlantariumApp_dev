@@ -78,12 +78,19 @@ class Plants
     #[ORM\ManyToMany(targetEntity: Colors::class, mappedBy: 'Plants')]
     private Collection $colors;
 
+    /**
+     * @var Collection<int, PlantDetail>
+     */
+    #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'Plant')]
+    private Collection $plantDetails;
+
     public function __construct()
     {
         $this->userPlants = new ArrayCollection();
         $this->seasons = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->plantDetails = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -286,6 +293,36 @@ class Plants
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    /**
+     * @return Collection<int, PlantDetail>
+     */
+    public function getPlantDetails(): Collection
+    {
+        return $this->plantDetails;
+    }
+
+    public function addPlantDetail(PlantDetail $plantDetail): static
+    {
+        if (!$this->plantDetails->contains($plantDetail)) {
+            $this->plantDetails->add($plantDetail);
+            $plantDetail->setPlant($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlantDetail(PlantDetail $plantDetail): static
+    {
+        if ($this->plantDetails->removeElement($plantDetail)) {
+            // set the owning side to null (unless already changed)
+            if ($plantDetail->getPlant() === $this) {
+                $plantDetail->setPlant(null);
+            }
+        }
+
+        return $this;
     }
 
 

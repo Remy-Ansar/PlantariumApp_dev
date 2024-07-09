@@ -29,6 +29,17 @@ class UserPlants
     #[ORM\JoinColumn(nullable: false)]
     private ?Plants $plant = null;
 
+    /**
+     * @var Collection<int, PlantDetail>
+     */
+    #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants')]
+    private Collection $plantDetails;
+
+    public function __construct()
+    {
+        $this->plantDetails = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +65,36 @@ class UserPlants
     public function setPlant(?Plants $plant): self
     {
         $this->plant = $plant;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PlantDetail>
+     */
+    public function getPlantDetails(): Collection
+    {
+        return $this->plantDetails;
+    }
+
+    public function addPlantDetail(PlantDetail $plantDetail): static
+    {
+        if (!$this->plantDetails->contains($plantDetail)) {
+            $this->plantDetails->add($plantDetail);
+            $plantDetail->setUserPlants($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlantDetail(PlantDetail $plantDetail): static
+    {
+        if ($this->plantDetails->removeElement($plantDetail)) {
+            // set the owning side to null (unless already changed)
+            if ($plantDetail->getUserPlants() === $this) {
+                $plantDetail->setUserPlants(null);
+            }
+        }
+
         return $this;
     }
 

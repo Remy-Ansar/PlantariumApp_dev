@@ -1,6 +1,7 @@
 <?php
 
-namespace App\DataFixtures\Providers;
+namespace App\DataFixtures\Providers\PlantsProviders;
+
 
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

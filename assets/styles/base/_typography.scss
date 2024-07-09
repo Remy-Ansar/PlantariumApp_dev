@@ -1,0 +1,15 @@
+body {
+    @include font-secondary; // Default font for the body
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @include font-primary; // Primary font for headings
+  }
+  
+  p {
+    @include font-tertiary; // Tertiary font for paragraphs
+  }
+  
+  .quote {
+    @include font-quaternary; // Quaternary font for quotes or specific elements
+  }

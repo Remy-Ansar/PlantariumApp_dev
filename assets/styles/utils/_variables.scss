@@ -18,7 +18,14 @@ $glassmorphism: rgba(255, 255, 255, 0.5);
 $dark-font: #111212;
 $white-font: #FAFFFC;
 
-    /* Border bottom */
+
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
+$font-primary: 'EB Garamond', serif;
+$font-secondary: 'Lato', sans-serif;
+$font-tertiary: 'Playfair Display', serif;
+$font-quaternary: 'Wittgenstein', serif;
+/* Border bottom */
 
 // $border-botom:( rgba(222, 255, 201, 1), border-radius: 0, 24px, 24px, 0 height: 6px);
 

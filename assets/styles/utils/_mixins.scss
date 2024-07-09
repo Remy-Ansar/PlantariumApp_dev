@@ -5,3 +5,18 @@
        gap: $gap;
        flex-wrap: $flex-wrap;
     }
+@mixin font-primary {
+font-family: $font-primary;
+}
+
+@mixin font-secondary {
+font-family: $font-secondary;
+}
+
+@mixin font-tertiary {
+font-family: $font-tertiary;
+}
+
+@mixin font-quaternary {
+font-family: $font-quaternary;
+}
