@@ -1,31 +1,34 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    Connexion
-	{{ parent() }}
+Connexion
+{{ parent() }}
 {% endblock %}
 {% block body %}
-    <body class="connexion">
-		
 
-<nav>
+<body class="connexion">
+
+	<nav>
 		<h1>Se connecter</h1>
-		</nav>
-		<main>
+	</nav>
+	<main>
 		<form action="{{ path('app.connexion') }}" method="post">
 
 			<div>
-				<label for="email">Email:</label>
-				<input type="email" id="email" name="_username" value="{{ lastUsername }}" placeholder="john@example.com">
+				<div><label for="email">Veuillez entrer votre adresse mail</label></div>
+				<input type="email" id="email" name="_username" value="{{ lastUsername }}"
+					placeholder="john@example.com">
 			</div>
 
-			<div >
-				<label for="password" >Password:</label>
-				<input type="password" id="password" name="_password" ="form-control" placeholder="S3CR3T" >
+			<div>
+				<div><label for="password">Votre mot de passe</label></div>
+				<input type="password" id="password" name="_password"="form-control" placeholder="S3CR3T">
 
-			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			<button type="submit">Connexion</button>
+				<div><input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<button class="button" type="submit">Connexion</button></div>
 		</form>
-		</main>
-		</body>
+
+		<p>Mot de passe oublié ? <br> Cliquez ici pour le réinitialiser</p>
+	</main>
+</body>
 {% endblock %}

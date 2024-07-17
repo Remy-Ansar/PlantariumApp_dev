@@ -5,7 +5,7 @@
  * which should already be in your base.html.twig.
  */
 import './styles/app.scss';
-
+import './javascript/javascript.js';
 // start the Stimulus application
 // import './bootstrap.js';
 

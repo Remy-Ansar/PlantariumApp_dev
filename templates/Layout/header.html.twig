@@ -22,8 +22,10 @@
     </ul>
 
     {% else %}
-    <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
+    <ul class="registerLogin" id="registerLogin">
     <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
+    <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
+
     {% endif %}
     </ul>
     

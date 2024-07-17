@@ -1,5 +1,9 @@
 .button {
-    @include font-secondary;
-    // other styles...
-    color: $glassmorphism;
-  }
+  margin-top: 1em;
+  margin-bottom: 1em;
+  @include font-secondary;
+
+  background: $glassmorphism;
+  color: $dark-font;
+  border-radius: 8px;
+}

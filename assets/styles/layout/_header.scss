@@ -1,32 +1,31 @@
 .header {
   @include font-primary;
-  // other styles...
 }
 header {
   height: 25%;
   margin-bottom: 5em;
 }
-nav {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  margin-bottom: 5em;
 
-}
 ul  {
   list-style: none;
-}
-/* nav div ul {
-  display: flex;
-  justify-content: space-around;
-} */
-.menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
 }
 
 li a {
   padding: 1em;
+}
+
+.registerLogin {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 2em;
+  font-size: 1em;
+}
+
+.link {
+  font-size: 1em;
+}
+.active {
+  font-size: 2em;
+  font-weight: bold;
 }
