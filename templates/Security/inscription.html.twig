@@ -1,11 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    Inscription
-
+    inscription
+{{ parent() }}
 {% endblock %}
 {% block body %}
-    <h1>Inscription</h1>
+<body class="inscription">
+    
+
+<nav>   
+<h1>Inscription</h1>
+</nav>
     <main>
     <div>
     {{form_start(form)}}
@@ -24,5 +29,5 @@
         <div class="alert alert-danger">{{ message }}</div>
     {% endfor %}
 
-
+</body>
 {% endblock %}

@@ -29,15 +29,17 @@ Administration des plantes
             <tr>
 
                 <td>{{ plant.Species.Name }}</td>
-                <td>{{ plant.Name }}
-                 <form action="{{ path('users.plantarium.addPlant') }}" method="post">
-                    <input type="hidden" name="plant_id" value="{{ plant.id }}">
-                    <button type="submit">Ajouter cette plante à mon profil</button>
-                </form>
+                <td>{{ plant.Name }}</td>
                 <td>{{ plant.description }}</td>
                 <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
                         class="rounded" width="50px" height="50px"></td>
                 <td>
+                <td><form action="{{ path('users.plantarium.addPlant') }}" method="post">
+                    <input type="hidden" name="plant_id" value="{{ plant.id }}">
+                    <button type="submit">Ajouter cette plante à mon profil</button>
+                </form></td>
+                
+                
 
                 <td>
             {# <form 

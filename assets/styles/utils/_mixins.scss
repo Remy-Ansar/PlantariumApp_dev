@@ -1,10 +1,11 @@
-@mixin flexbox($justify-content: flex-start, $align-items:flex-start,$gap: 0, $flex-wrap: wrap){
+@mixin flexbox($justify-content: center, $align-items:center, $gap: 0, $flex-wrap: wrap){
     display: flex;
        justify-content: $justify-content;
        align-items: $align-items;
        gap: $gap;
        flex-wrap: $flex-wrap;
     }
+
 @mixin font-primary {
 font-family: $font-primary;
 }
@@ -20,3 +21,9 @@ font-family: $font-tertiary;
 @mixin font-quaternary {
 font-family: $font-quaternary;
 }
+
+@mixin background-image($name) {
+    // $url: "../../../public/images/background/' +$name + .png";
+    background-image: "'url(../../../public/images/background/' +$name + .png')'";
+    background-size: cover;
+  }

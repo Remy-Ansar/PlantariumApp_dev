@@ -1,0 +1,21 @@
+@import '../utils/mixins';
+
+.home {
+   background-image: url('../../../public/images/background/HomeBackground.png');
+   background-size: cover;
+}
+
+.inscription {
+    background-image: url('../../../public/images/background/RegisterBackground.png');
+    background-size: cover;
+}
+
+.connexion {
+    background-image: url('../../../public/images/background/ConnexionBackground.png');
+    background-size: cover;
+}
+
+.main {
+    background-image: url('../../../public/images/background/MainBackground.png');
+    background-size: cover;
+}

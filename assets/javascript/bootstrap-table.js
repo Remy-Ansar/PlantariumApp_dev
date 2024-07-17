@@ -1,1 +1,1 @@
-import 'bootstrap-table';
+// import 'bootstrap-table';

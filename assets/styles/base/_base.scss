@@ -2,6 +2,7 @@
 
 body {
     @include font-secondary; // Default font for the body
+    // background-color: aqua;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -11,7 +12,40 @@ body {
   p {
     @include font-tertiary; // Tertiary font for paragraphs
   }
-  
+
   .quote {
     @include font-quaternary; // Quaternary font for quotes or specific elements
   }
+
+
+li {
+  list-style: none;
+}
+header {
+  height: 25%;
+  margin-bottom: 5em;
+}
+
+header div ul {
+  display: flex;
+  flex-direction: row;
+}
+
+header div ul li{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+nav {
+  height: 25%;
+  margin-bottom: 5em;
+}
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+

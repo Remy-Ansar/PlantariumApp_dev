@@ -5,8 +5,13 @@
 	{{ parent() }}
 {% endblock %}
 {% block body %}
-    
+    <body class="connexion">
+		
+
+<nav>
 		<h1>Se connecter</h1>
+		</nav>
+		<main>
 		<form action="{{ path('app.connexion') }}" method="post">
 
 			<div>
@@ -21,5 +26,6 @@
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 			<button type="submit">Connexion</button>
 		</form>
-	
+		</main>
+		</body>
 {% endblock %}

@@ -7,11 +7,11 @@
 import './styles/app.scss';
 
 // start the Stimulus application
-import './bootstrap.js';
+// import './bootstrap.js';
 
-require('bootstrap');
+// require('bootstrap');
 
-import './javascript/jquery';
-import './javascript/bootstrap-table';
+// import './javascript/jquery';
+// import './javascript/bootstrap-table';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

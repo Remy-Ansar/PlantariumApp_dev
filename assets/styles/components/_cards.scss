@@ -1,0 +1,21 @@
+.mainCards {
+
+    display: flex;
+    width: 10em;
+  
+}
+
+.card {
+    text-align: center;
+    color: $white-font;
+    border-color: 1px solid $white-font;
+}
+
+.card img {
+    border-radius: 16px;
+    width: 20em;
+    height: 20em;
+   
+    
+}
+

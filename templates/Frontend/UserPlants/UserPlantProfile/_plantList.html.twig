@@ -1,0 +1,8 @@
+{% for userPlant in userPlants %}
+    {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+
+{% else %}
+<div class="alert-info" id="plant-no-image">
+    <p>Cette plant ne possède pas encore d'image.</p>
+    </div>
+{% endfor %}

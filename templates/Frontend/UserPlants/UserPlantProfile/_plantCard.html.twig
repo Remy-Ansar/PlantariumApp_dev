@@ -1,0 +1,14 @@
+<div class="mainCards">
+    <div class="card">
+        <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}"
+            style="max-width: 200px; max-height: 200px;">
+
+        <p>{{ userPlant.plant.species.Name }} {{ userPlant.plant.name }} </p>
+        {# <form action="{{path('users.delete', {id: userPlant.id}) }}" method="POST"
+            onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"
+            enctype="multipart/form-data">
+            <input type="hidden" name="token" value="{{ csrf_token('delete'~ userPlant.id) }}">
+            <button type="submit">Supprimer cette plante</button> #}
+        </form>
+    </div>
+</div>

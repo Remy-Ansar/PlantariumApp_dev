@@ -6,6 +6,16 @@ body {
     @include font-primary; // Primary font for headings
   }
   
+  h1 {
+    font-size: 5em;
+    color: #111212;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: $dark-font;
+  }
   p {
     @include font-tertiary; // Tertiary font for paragraphs
   }
