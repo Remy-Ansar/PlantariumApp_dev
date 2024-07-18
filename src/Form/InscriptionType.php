@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -21,7 +22,8 @@ class InscriptionType extends AbstractType
                 'label' => 'Votre addresse email',
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'exemple@mail.fr'
+                    'placeholder' => 'exemple@mail.fr',
+                    'class' => 'formDisplay',
                 ]
             ])
             ->add('password', RepeatedType::class, [
@@ -33,6 +35,7 @@ class InscriptionType extends AbstractType
                     'label' => 'Mot de passe',
                     'attr' => [
                         'placeholder' => 'Motdepasse85-',
+                        'class' => 'formDisplay',
                     ],
                     'constraints' => [
                         new Assert\Regex([
@@ -48,10 +51,18 @@ class InscriptionType extends AbstractType
                     'second_options' => [
                         'label' => 'Répéter le mot de passse',
                         'attr' => [
-                            'placeholder' => 'Motdepasse85-'
+                            'placeholder' => 'Motdepasse85-',
+                            'class' => 'formDisplay',
                         ],
                         ],
+            ])
+
+            ->add('CGU', CheckboxType::class, [
+                'required' => true,
+                'label' => 'Je confirme avoir pris connaissance des
+                            conditions générales d\'utilisation',
             ]);
+
         if ($options['isAdmin']) {
             $builder->remove('password')
                 ->add('roles', ChoiceType::class, [

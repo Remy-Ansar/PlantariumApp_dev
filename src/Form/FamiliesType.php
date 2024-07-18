@@ -17,7 +17,8 @@ class FamiliesType extends AbstractType
         $builder->add('Name', TextType::class, [
             'label' => 'Nouvelle famille de plante à ajouter (en majuscule) :',
             'attr' => [
-                'placeholder' => 'FAMILLE'
+                'placeholder' => 'FAMILLE',
+                'class' => 'formDisplay',
             ],
             'constraints' => [
                 new NotBlank(),

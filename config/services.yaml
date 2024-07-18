@@ -24,12 +24,19 @@ services:
     #UserPlant manager to ad a plant in the user own collection 
     App\Manager\UserPlantManager:
         autowire: true
-        
+
+    # App\EventListener\RequestListener:
+    #     arguments:
+    #         $security: '@security.helper'
+    #     tags:
+    #         - { name: 'kernel.event_subscriber' }
+
     App\EventListener\UserEntityListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, entity: App\Entity\Users }
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
+
     App\:
         resource: '../src/'
         exclude:

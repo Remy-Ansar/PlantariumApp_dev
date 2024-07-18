@@ -3,6 +3,9 @@
 body {
     @include font-secondary; // Default font for the body
     // background-color: aqua;
+    height: 100%;
+    background-image: url(../../../public/images/background/MainBackground.png);
+    background-size: cover;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -41,11 +44,21 @@ nav {
   margin-bottom: 5em;
 }
 main {
-  height: 100vh;
+  height: auto;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 
+.profilePic {
+  border: 4px solid $white-font;
+  border-radius: 50px;
+}
+
+img {
+  backdrop-filter: blur(0.4);
+  background: 255, 255, 255, 0.5;
+}

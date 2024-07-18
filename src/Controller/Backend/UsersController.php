@@ -31,7 +31,8 @@ class UsersController extends AbstractController
         
         return $this->render('Backend/Users/index.html.twig', [
             'users' => $this->usersRepository->findAll(),
-            'usersInfos' => $this->userInfosRepository->findAll()
+            'usersInfos' => $this->userInfosRepository->findAll(),
+            'header' => $this
         ]);
     }
 

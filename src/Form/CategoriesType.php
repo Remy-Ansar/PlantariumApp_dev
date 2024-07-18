@@ -18,7 +18,8 @@ class CategoriesType extends AbstractType
         ->add('Name', TextType::class, [
             'label' => 'Nouvelle catégorie de plante à ajouter :',
             'attr' => [
-                'placeholder' => 'Plante de ...'
+                'placeholder' => 'Plante de ...',
+                'class' => 'formDisplay',
             ],
             'required' => false,
             'constraints' => [

@@ -26,7 +26,8 @@ class UsersType extends AbstractType
                 'label' => 'Votre addresse email',
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'exemple@mail.fr'
+                    'placeholder' => 'exemple@mail.fr',
+                    'class' => 'formDisplay',
                 ]
             ])
             ->add('password', PasswordType::class, [

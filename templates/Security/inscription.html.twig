@@ -8,15 +8,20 @@
 <body class="inscription">
     
 
-<nav>   
-<h1>Inscription</h1>
-</nav>
+
+<h1>Plantarium</h1>
+
+
+
     <main>
     <div>
+    
     {{form_start(form)}}
-    {{form_widget(form)}}
+    <div>
+    {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
+    </div>
         <div>
-              <button type="submit">Valider</button>
+              <button class="button"type="submit">Valider</button>
         </div>
     {{form_end(form)}}
     </div>

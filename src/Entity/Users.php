@@ -53,6 +53,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: UserPlants::class, mappedBy: 'User')]
     private Collection $userPlants;
 
+    #[ORM\Column]
+    private ?bool $CGU = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +141,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->UserInfos;
     }
 
+    public function __toString()
+    {
+        return $this->getUserInfos(); // tu choisis l'attribut que tu veux retourner en string
+    }
+
     public function setUserInfos(?UserInfos $UserInfos): static
     {
         $this->UserInfos = $UserInfos;
@@ -187,6 +195,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
                 $userPlant->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isCGU(): ?bool
+    {
+        return $this->CGU;
+    }
+
+    public function setCGU(bool $CGU): static
+    {
+        $this->CGU = $CGU;
 
         return $this;
     }

@@ -1,22 +1,22 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    inscription
-    	{{ parent() }}
+inscription
+{{ parent() }}
 {% endblock %}
 {% block body %}
+
 <body class="inscription">
-    
+
+    <h1>Plantarium</h1>
 
 
 
-    <h1>Inscription</h1>
-
-    <main>
-    {{form_start(form)}}
-    {{form_widget(form)}}
-    <button type="submit">Valider</button>
-    {{form_end(form)}}
+    <main class = formDisplay>
+        {{form_start(form)}}
+         {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
+        <button class="button" type="submit">Valider</button>
+        {{form_end(form)}}
     </main>
-    </body>
+</body>
 {% endblock %}

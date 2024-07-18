@@ -17,7 +17,8 @@ class ColorsType extends AbstractType
         $builder->add('Name', TextType::class, [
             'label' => 'Nouvelle couleur de plante à ajouter :',
             'attr' => [
-                'placeholder' => 'couleur'
+                'placeholder' => 'couleur',
+                'class' => 'formDisplay',
             ],
             'constraints' => [
                 new NotBlank(),

@@ -20,6 +20,7 @@ class ProfileType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Jane', 
+                    'class' => 'formDisplay',
                 ]
             ])
             ->add('LastName', TextType::class, [
@@ -27,6 +28,7 @@ class ProfileType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Doe',
+                    'class' => 'formDisplay',
                 ]
                 ])
                 ->add('Level', ChoiceType::class, [

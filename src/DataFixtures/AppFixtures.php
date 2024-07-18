@@ -37,8 +37,8 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             ->setPassword(
                 $this->hasher->hashPassword(new Users(), 'Test1234!')
             )
-            ->setRoles(['ROLE_ADMIN']);
-        
+            ->setRoles(['ROLE_ADMIN'])
+            ->setCGU(true);
         // $userPlant = new UserPlants();
         // $userPlant->setUser($user);
         $manager->persist($user);
@@ -63,12 +63,11 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 )
                 ->setRoles(
                     $this->faker->randomElements(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_EDITOR'], 1)
-                );
-            // $userPlant = new UserPlants();
-            // $userPlant->setUser($user);
+                )
+                ->setCGU(true);
            
             $manager->persist($user);
-            // $manager->persist($userPlant);
+
 
             $userInfos = (new UserInfos)
                 ->setFirstName($this->faker->firstName())
@@ -116,8 +115,8 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $plant = (new Plants)
                 ->setName($this->faker->word())
                 ->setDescription($this->faker->sentence(20, true))
-                ->setEnable($this->faker->boolean)
-                ->setImage($this->uploadImage());
+                ->setEnable($this->faker->boolean);
+                // ->setImage($this->uploadImage());
                  // Set random Family
             $plant->setFamilies($this->faker->randomElement($families));
 
@@ -157,15 +156,15 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         ];
     }
 
-    private function uploadImage(): UploadedFile
-    {
-        $files = glob(__DIR__ . '/images/Plant/*.*');
+    // private function uploadImage(): UploadedFile
+    // {
+    //     $files = glob(__DIR__ . '/images/Plant/*.*');
 
-        $index = array_rand($files);
+    //     $index = array_rand($files);
 
-        $file = new File($files[$index]);
-        $file = new UploadedFile($file, $file->getFilename());
+    //     $file = new File($files[$index]);
+    //     $file = new UploadedFile($file, $file->getFilename());
 
-        return $file;
-    }
+    //     return $file;
+    // }
 }

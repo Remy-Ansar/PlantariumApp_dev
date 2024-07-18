@@ -31,7 +31,8 @@ class PlantsType extends AbstractType
         ->add('Name', TextType::class, [
             'label' => 'Nom de la nouvelle plante :',
             'attr' => [
-                'placeholder' => 'Ma nouvelle plante' 
+                'placeholder' => 'Ma nouvelle plante', 
+                'class' => 'formDisplay',
             ],
             'required' => true,
         ])
@@ -46,6 +47,7 @@ class PlantsType extends AbstractType
             'attr' => [
                 'placeholder' => 'Votre description de cette plante',
                 'row' => 3,
+                'class' => 'formDisplay',
             ],
             'required' => false,
         ])

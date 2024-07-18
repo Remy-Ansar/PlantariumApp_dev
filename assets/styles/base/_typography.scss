@@ -1,5 +1,6 @@
 body {
     @include font-secondary; // Default font for the body
+    font-size: 1.5em;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -8,6 +9,13 @@ body {
   
   h1 {
     font-size: 5em;
+    color: #111212;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  h2 {
+    font-size: 2em;
     color: #111212;
     text-align: center;
   }
@@ -22,4 +30,12 @@ body {
   
   .quote {
     @include font-quaternary; // Quaternary font for quotes or specific elements
+  }
+
+  #homeTitle {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
   }
