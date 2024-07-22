@@ -2,11 +2,13 @@
   @include font-primary;
 }
 header {
+  padding: 5px;
   display: flex;
-  justify-content: space-between;
-
-  height: 25%;
+  align-items: center;
+  justify-content: space-around;
+  // height: 25%;
   margin-bottom: 5em;
+  margin-top: 2em;
 }
 
 ul  {

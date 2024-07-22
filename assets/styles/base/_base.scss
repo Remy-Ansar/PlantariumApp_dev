@@ -2,10 +2,12 @@
 
 body {
     @include font-secondary; // Default font for the body
-    // background-color: aqua;
+
     height: 100%;
     background-image: url(../../../public/images/background/MainBackground.png);
     background-size: cover;
+    margin-left: 2em;
+    margin-right: 3em;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -24,10 +26,7 @@ body {
 li {
   list-style: none;
 }
-header {
-  height: 25%;
-  margin-bottom: 5em;
-}
+
 
 header div ul {
   display: flex;
@@ -51,12 +50,15 @@ main {
   align-items: center;
   flex-wrap: wrap;
   margin-top: 3em;
+
 }
 
 
 .profilePic {
   border: 4px solid $white-font;
-  border-radius: 50px;
+  border-radius: 100px;
+  width: 125px;
+  height: 125px;
 }
 
 img {
