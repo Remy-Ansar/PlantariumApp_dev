@@ -1,0 +1,35 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;  // Ensure the wrap takes the full width
+    margin-bottom: 2em;  // Add some margin at the bottom for spacing
+}
+
+.searchBar {
+    display: flex;
+    justify-content: center;  // Center content within the searchBar
+    width: 50%;  // Adjust this to your preference
+}
+
+.searchText {
+    flex: 1;
+    height: 36px;
+    font-style: italic;
+    border: 3px solid $white-font;
+    padding: 5px;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: $dark-font;
+}
+
+.searchSubmit {
+    width: 40px;
+    height: 36px;
+    border: 3px solid $white-font;
+    background: $glassmorphism;
+    text-align: center;
+    color: $dark-font;
+    border-radius: 0 5px 5px 0;
+    font-size: 20px;
+}

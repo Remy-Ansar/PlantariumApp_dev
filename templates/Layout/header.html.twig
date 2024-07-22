@@ -1,26 +1,16 @@
 <header>
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-{# 
-        <span>
-
-        {% for user in users %}
-        {% if user == app.user %}
-        
-        <img src="{{ vich_uploader_asset( user.UserInfos, 'image') }}" class="profilePic" alt="{{ user.UserInfos }}"
-            loading="lazy" class="rounded" width="50px" height="50px">
-                
-            </span>
-            {% endif %}
-            {% endfor %} #}
-
 
     {% if is_granted('ROLE_ADMIN') %}
-    
     <div>
         <ul>
-            <li><a href="{{ path('admin.users.index') }}"><img src="../../public/images/background/tabler_hexagon-letter-a.png" width="50px" height="50" alt="">Administration des utilisateurs</a></li>
-            
-            <li><a href="{{ path('editor.plants.index') }}">Administration des plantes</a></li>
+            <li><a href="{{ path('admin.users.index') }}"><img
+                        src="{{ asset('images/background/tabler_hexagon-letter-a.png') }}" width="50px" height="50"
+                        alt=""></a></li>
+
+            <li><a href="{{ path('editor.plants.index') }}"><img
+                        src="{{ asset('images/background/tabler_hexagon-letter-e.png') }}" width="50px" height="50"
+                        alt=""></a></li>
         </ul>
     </div>
     {% endif %}
@@ -28,20 +18,21 @@
     {% if is_granted('ROLE_EDITOR') %}
     <div>
         <ul>
-            <li><a href="{{ path('editor.plants.index') }}">Administration des plantes</a></li>
+            <li><a href="{{ path('editor.plants.index') }}"><img
+                        src="{{ asset('images/background/tabler_hexagon-letter-e.png') }}" width="50px" height="50"
+                        alt=""></a></li>
         </ul>
     </div>
     {% endif %}
-    <ul>
-        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
-    </ul>
 
+
+    <div>
+        <ul>
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+        </ul>
+    </div>
     {% else %}
-    <ul class="registerLogin" id="loginMenu">
-    <li><a href="{{ path('app.inscription') }}">S'inscrire</a></li>
-    <li><a href="{{ path('app.connexion') }}">Se connecter</a></li>
-
+    {% include "Layout/_loggin.html.twig" %}
     {% endif %}
-    </ul>
-    
+
 </header>

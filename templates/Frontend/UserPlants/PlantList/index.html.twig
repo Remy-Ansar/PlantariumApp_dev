@@ -5,14 +5,16 @@ Administration des plantes
 {{ parent() }}
 {% endblock %}
 {% block body %}
-<h1>Plantarium</h1>
 
-<nav>
-<h2>Trouver une plante</h2>
-</nav>
-<div>
-
+<h2>Rechercher une plante</h2>
+<div class="wrap">
+    <div class="searchBar">
+        <input type="text" class="searchText" placeholder="Ficus Benjamina">
+        <button type="submit" class="searchSubmit"></button>
+    </div>
 </div>
+
+
 <main>
     <table>
         <thead>
@@ -34,15 +36,15 @@ Administration des plantes
                 <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
                         class="rounded" width="50px" height="50px"></td>
                 <td>
-                <td><form action="{{ path('users.plantarium.addPlant') }}" method="post">
-                    <input type="hidden" name="plant_id" value="{{ plant.id }}">
-                    <button type="submit">Ajouter cette plante à mon profil</button>
-                </form></td>
-                
-                
+                <td>
+                    <form action="{{ path('users.plantarium.addPlant') }}" method="post">
+                        <input type="hidden" name="plant_id" value="{{ plant.id }}">
+                        <button type="submit">Ajouter cette plante à mon profil</button>
+                    </form>
+                </td>
 
                 <td>
-            {# <form 
+                    {# <form 
                     action="{{path('editor.plants.delete', {id: plant.id}) }}" 
                     method="POST" 
                     onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"

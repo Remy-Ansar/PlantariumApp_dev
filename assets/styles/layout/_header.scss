@@ -2,6 +2,9 @@
   @include font-primary;
 }
 header {
+  display: flex;
+  justify-content: space-between;
+
   height: 25%;
   margin-bottom: 5em;
 }
@@ -27,6 +30,21 @@ li a {
 }
 
 .active {
-  font-size: 2em;
+  // border-bottom: 3px solid $border-green;
   font-weight: bold;
+  text-align: center;
+  align-items: flex-start;
+  margin-bottom: 1em;
+  padding-bottom: -25px;
+  height: 5em;
+}
+
+.logginHeader{
+  width: 100%;
+}
+
+.loggin {
+  display: flex;
+flex-direction: column;
+
 }

@@ -12,6 +12,7 @@ body {
     color: #111212;
     text-align: center;
     margin-bottom: 2em;
+    @include font-primary;
   }
 
   h2 {

@@ -2,10 +2,13 @@
     font-size: 2em;
     display: flex;
     justify-content: center;
+    @include font-primary;
+
 }
 
 .menuItem {
     border-bottom: 1em;
-    border-color: #36E719;
+    // border-color: #36E719;
+    text-align: center;
 
 }
