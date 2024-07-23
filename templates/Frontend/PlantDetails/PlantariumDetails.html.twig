@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Détail de la plante
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h2>{{ plant.Name }}</h2>
+    <p>Espèce: {{ plant.species.Name }}</p>
+    <p>Famille: {{ plant.families.Name }}</p>
+    <p>Description: {{ plant.Description }}</p>
+    <h3>Détails supplémentaires:</h3>
+    {% for detail in plant.plantDetails %}
+        <div>
+            <p>Journal: {{ detail.Journal }}</p>
+            <p>Statut de santé: {{ detail.HealthStatus ? detail.HealthStatus.Name : 'N/A' }}</p>
+        </div>
+    {% else %}
+        <p>Aucun détail supplémentaire disponible.</p>
+    {% endfor %}
+{% endblock %}

@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\HttpFoundation\File\File;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 
 #[ORM\Entity(repositoryClass: PlantsRepository::class)]
@@ -31,6 +32,7 @@ class Plants
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Length(max: 180)]
+    #[Gedmo\Slug(fields: ['Name'], unique: true)]
     private ?string $Name = null;
 
 

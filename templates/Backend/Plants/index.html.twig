@@ -8,9 +8,12 @@ Administration des plantes
 <h1>Plantarium</h1>
 <h2>Administration des plantes</h2>
 <div>
-<a href="{{ path('editor.plants.new') }}">Ajouter une plante</a>
-<a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a>
-{# <a href="{{ path('editor.plants.field.edit') }}">modifier des champs</a> #}
+    <div>
+        <a href="{{ path('editor.plants.new') }}">Ajouter une plante</a></div>
+    <div>
+        <a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a>
+
+    </div>{# <a href="{{ path('editor.plants.field.edit') }}">modifier des champs</a> #}
 </div>
 <main>
     <table>
@@ -53,20 +56,20 @@ Administration des plantes
                     {{ categorie.Name }}
                     {% endfor %}
                 </td>
-                <td><img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
-                        class="rounded" width="50px" height="50px"></td>
+                <td><a href="{{ path('editor.plants.showPlant', {name: plant.Name}) }}"><img
+                            src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
+                            class="rounded" width="100px" height="100px">
+                    </a></td>
                 <td>
                 <td>{{plant.enable ? 'Oui' : 'Non' }}</td>
                 <td><a href="{{ path('editor.plants.edit', {id: plant.id}) }}">Modifier une plante</a></td>
                 <td>
-            <form 
-                    action="{{path('editor.plants.delete', {id: plant.id}) }}" 
-                    method="POST" 
-                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
-                    enctype="multipart/form-data">
-                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ plant.id) }}">
-                    <button type="submit">Supprimer une plante</button>
-            </form>
+                    <form action="{{path('editor.plants.delete', {id: plant.id}) }}" method="POST"
+                        onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="token" value="{{ csrf_token('delete'~ plant.id) }}">
+                        <button type="submit">Supprimer une plante</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

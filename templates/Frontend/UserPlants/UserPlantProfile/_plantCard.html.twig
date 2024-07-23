@@ -1,7 +1,8 @@
 <div class="card">
     <div class="img-container">
+    <a href="{{ path('userPlants.details', {name: userPlant.plant.Name}) }}">
         <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}">
-        <div class="gradient-overlay"></div>
+        <div class="gradient-overlay"></div></a>
     </div>
         <div class="plantTitle">
         <p> {{ userPlant.plant.species.Name }}</p>

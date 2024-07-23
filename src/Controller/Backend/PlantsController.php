@@ -35,7 +35,7 @@ class PlantsController extends AbstractController
     ) {
     }
 
-    #[Route('', name: '.index', methods:['GET'])]
+    #[Route('', name: '.index', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('Backend/Plants/index.html.twig', [
@@ -44,7 +44,7 @@ class PlantsController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: '.new', methods:['GET', 'POST'])]
+    #[Route('/new', name: '.new', methods: ['GET', 'POST'])]
     public function newPlant(EntityManagerInterface $em, Request $request): Response | RedirectResponse
     {
         $plant = new Plants();
@@ -82,9 +82,9 @@ class PlantsController extends AbstractController
         ]);
     }
 
-    #[Route('/new/field', name: '.new.field', methods:['GET', 'POST'])]
+    #[Route('/new/field', name: '.new.field', methods: ['GET', 'POST'])]
     public function newField(EntityManagerInterface $em, Request $request): Response | RedirectResponse
-     {
+    {
         $specie = new Species();
         $family = new Families();
         $color = new Colors();
@@ -112,12 +112,12 @@ class PlantsController extends AbstractController
             // Debugging output for invalid form
             dump($form->getErrors(true, false));
         }
-        
+
         return $this->render('Backend/Plants/newfield.html.twig', [
             'form' => $form,
         ]);
-     }     
-    
+    }
+
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
     public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em): Response
     {
@@ -181,5 +181,19 @@ class PlantsController extends AbstractController
         return $this->redirectToRoute('editor.plants.index');
     }
 
+    #[Route('/{name}/details', name: '.showPlant', methods: ['GET', 'POST'])]
+    public function showPlant(string $name): Response | RedirectResponse
+    {
+        $plant = $this->plantsRepository->findOneBy(['Name' => $name]);
 
+        if (!$plant) {
+            $this->addFlash('error', 'Cette plante n\'existe pas');
+
+            return $this->redirectToRoute('editor.plants.index');
+        }
+
+        return $this->render('Backend/Plants/showPlant.html.twig', [
+            'plant' => $plant,
+        ]);
+    }
 }
