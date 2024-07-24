@@ -1,23 +1,73 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Détail de la plante
-	{{ parent() }}
+Détail de la plante
+{{ parent() }}
 {% endblock %}
 
 {% block body %}
 
-    <h2>{{ plant.Name }}</h2>
-    <p>Espèce: {{ plant.species.Name }}</p>
-    <p>Famille: {{ plant.families.Name }}</p>
-    <p>Description: {{ plant.Description }}</p>
-    <h3>Détails supplémentaires:</h3>
-    {% for detail in plant.plantDetails %}
-        <div>
-            <p>Journal: {{ detail.Journal }}</p>
-            <p>Statut de santé: {{ detail.HealthStatus ? detail.HealthStatus.Name : 'N/A' }}</p>
+<span class="return">
+    <a href="{{ path('users.plantarium') }}"><img src="{{ asset('images/components/cross.svg') }}"
+            alt="Retour arrière"></a>
+</span>
+
+<div class="plantCard">
+    <div class="plantHeader">
+        <h2>Plante : {{ plant.Name }}</h2>
+        <h3>Espèce: {{ plant.species.Name }}</h3>
+    </div>
+
+    <div class="plantPic">
+        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
+    </div>
+    <div class="plantInfos">
+        <p>Description </p>
+        <p>{{ plant.Description }}</p>
+        <div class="addButton">
+
+            <form action="{{ path('users.plantarium.addPlant') }}" method="post">
+                <input type="hidden" name="plant_id" value="{{ plant.id }}">
+
+                <label for="plant_id">Ajouter cette plante à ma collection</label>
+                <button type="submit" class="addPlant">
+                    <img src="{{ asset('images/components/plus.png') }}" alt="Retour arrière">
+                </button>
+
+            </form>
         </div>
-    {% else %}
-        <p>Aucun détail supplémentaire disponible.</p>
-    {% endfor %}
+
+        <p>Famille {{ plant.families.Name }}</p>
+        <p>Espèce {{ plant.species.Name }}</p>
+
+        <div class="categFields">
+            <div class="categUnit">
+                <div>Catégorie(s)</div>
+                {% for category in plant.categories %}
+                <div class="categComponent">{{ category.Name }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="categUnit">Saisonalité
+                {% for season in plant.seasons %}
+                <div class="categComponent">{{ season.Name }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="categUnit">Arrosage
+                {# {% for color in plant.colors %}
+                <div class="categComponent">{{ color.Name }}</div>
+                {% endfor %} #}
+            </div>
+
+            <div class="categUnit">Couleurs
+                {% for color in plant.colors %}
+                <div class="categComponent">{{ color.Name }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
 {% endblock %}

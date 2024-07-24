@@ -23,6 +23,7 @@ class PlantDetailsController extends AbstractController
         private readonly FamiliesRepository $familiesRepository
     ) {
     }
+    
 #[Route('/user/plantarium/{name}/details', name: 'plantarium.details', methods: ['GET', 'POST'])]
 public function PlnatariumDetail(string $name): Response | RedirectResponse
 {

@@ -7,3 +7,32 @@
   color: $dark-font;
   border-radius: 8px;
 }
+
+.return {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5em;
+}  
+
+.return img {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.addPlant {
+  background: transparent;
+  border: none;
+}
+
+.addPlant img {
+  display: flex;
+  width: 1.5em;
+  height: 1.5em;
+  align-items: center;
+}
+
+.addButton {
+  display: flex;
+  height: 2em;
+  align-items: center;
+}

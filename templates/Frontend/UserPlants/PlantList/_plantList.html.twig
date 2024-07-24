@@ -1,5 +1,5 @@
-{% for userPlant in userPlants %}
-    {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+{% for plant in plants %}
+    {% include 'Frontend/UserPlants/plantList/_plantCard.html.twig' %}
 
 {% else %}
 <div class="alert-info" id="plant-no-image">

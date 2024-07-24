@@ -5,40 +5,16 @@ main
 {{ parent() }}
 {% endblock %}
 {% block body %}
-
+            {% include "Layout/nav.html.twig" %}
 <body class="main">
     
 
 <h2>Trier mes plantes par </h2>
 <main>
-<div class="mainCards">
+<div class="mainCardsUser">
 {% include 'Frontend/UserPlants/UserPlantProfile/_plantList.html.twig' %}
     </div>
-    {# {% if userPlants is empty %}
-        <p>Vous n'avez aucune plantes d'enregistrées sur votre profil.</p>
-    {% else %}
-        <ul>
-            {% for userPlant in userPlants %}
-                <li>
-                    {% if userPlant.plant %}
-                        <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}" style="max-width: 200px; max-height: 200px;">
-                      
-                    {% else %}
-                        <p>Cette plant ne possède pas encore d'image.</p>
-                    {% endif %}
-                    <p>{{ userPlant.plant.species.Name }} {{ userPlant.plant.name }} </p>
-                    <form 
-                    action="{{path('users.delete', {id: userPlant.id}) }}" 
-                    method="POST" 
-                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"
-                    enctype="multipart/form-data">
-                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ userPlant.id) }}">
-                    <button type="submit">Supprimer cette plante</button>
-            </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %} #}
+   
 </main>
 </body>
 {% endblock %}

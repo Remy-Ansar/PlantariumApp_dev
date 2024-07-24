@@ -1,4 +1,4 @@
-.mainCards {
+.mainCardsUser {
     // width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
@@ -6,7 +6,22 @@
     justify-content: center; // Center items within the grid container
 }
 
-.card { 
+.mainCardsPlantarium {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); // Default to one column
+    gap: 1em; // Space between the grid items
+    justify-content: center; // Center items within the grid container
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr); // Two columns on medium screens and above
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr); // Three columns on large screens and above
+    }
+}
+
+.cardUser { 
     width: 20em;
     height: 20em;
     position: relative;
@@ -35,6 +50,34 @@
     }
 }
 
+.cardPlantarium { 
+    width: 15em;
+    height: 15em;
+    position: relative;
+
+
+    .img-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+    }
+
+    .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%,rgba(11, 12, 11, 1) 100%); // Adjust gradient as needed
+        border-radius: 16px;
+    }
+}
 
 .plantTitle {
     color: $white-font;
@@ -46,4 +89,75 @@
     -webkit-text-stroke: 0.5px $dark-font;
     width: 100%;
     bottom: 0;
+}
+
+.plantCard {
+    margin-left: 2em;
+    margin-right: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 3em;
+}
+
+.plantHeader {
+    text-align: start;
+    margin-bottom: 2em;
+}
+
+.plantHeader h2 {
+    text-align: start;
+}
+
+.plantPic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+     img {
+        width: 25em;
+        height: 25em;
+        border-radius: 16px;
+        margin-bottom: 4em;
+    
+    }
+}
+
+.categUnit {
+    margin-bottom: 0.5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.categComponent {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: $glassmorphism;
+    border: 2px solid $dark-font;
+    padding: 0.5em 1em 0.5em 1em;
+
+}
+
+.plantInfos p {
+    margin-bottom: 2em;
+}
+
+.addButton form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.addButton form label {
+    margin-right: 10em;
+}
+
+.categFields {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5em;
+    
 }
