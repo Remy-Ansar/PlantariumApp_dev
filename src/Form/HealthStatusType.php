@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class HealthStatusType extends AbstractType
 {
@@ -28,6 +29,15 @@ class HealthStatusType extends AbstractType
                 'multiple' => true, 
                 'expanded' => false,
                 ])
+
+            ->add('Description', TextareaType::class, [
+                'label' => 'Description de la maladie',
+                'attr' => [
+                    'placeholder' => 'Les symptômes sont ...',
+                    'rows' => 4,
+                ],
+                'required' => false,
+            ])
         ;
     }
 

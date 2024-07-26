@@ -8,7 +8,7 @@ knp_gaufrette:
         plant_adapter:
             local:
                 directory: "%kernel.project_dir%/public/images/plants"
-        UserPlantPic_adapter:
+        user_plant_adapter:
             local:
                 directory: "%kernel.project_dir%/public/images/UserPlants"
 
@@ -18,7 +18,7 @@ knp_gaufrette:
         plantPic_fs:
             adapter: plant_adapter
         userPlantPic_fs:
-            adapter: UserPlantPic_adapter
+            adapter: user_plant_adapter
 
 vich_uploader:
     db_driver: orm
