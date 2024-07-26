@@ -43,14 +43,16 @@ class HealthStatus
         $this->plantDetails = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getStatus(): ?string
+    public function getName(): ?string
     {
         return $this->Name;
+    }
+    
+    public function setName(?string $Name): static
+    {
+        $this->Name = $Name;
+    
+        return $this;
     }
 
     public function setStatus(?string $Status): static

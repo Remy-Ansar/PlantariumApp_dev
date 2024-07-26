@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Modification de votre plante
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h3>Modification de votre plante</h3>
+		{% include 'Frontend/PlantDetails/_form.html.twig' %}
+	</section>
+{% endblock %}

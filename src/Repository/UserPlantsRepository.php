@@ -16,6 +16,10 @@ class UserPlantsRepository extends ServiceEntityRepository
         parent::__construct($registry, UserPlants::class);
     }
 
+    public function findOneById(string $id): ?UserPlants
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
     //    /**
     //     * @return UserPlants[] Returns an array of UserPlants objects
     //     */

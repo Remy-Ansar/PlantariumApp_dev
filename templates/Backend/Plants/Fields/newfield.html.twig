@@ -10,7 +10,7 @@
 		<h1>Ajouter des champs de selection</h1>
 
 		{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
-		<a href="{{ path('editor.plants.index') }}" class="btn btn-secondary">Retour à la liste des plantes</a>
+		<a href="{{ path('editor.plants.index') }}" class="button">Retour à la liste des plantes</a>
                 {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}

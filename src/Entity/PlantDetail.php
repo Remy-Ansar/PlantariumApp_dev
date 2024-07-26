@@ -26,6 +26,9 @@ class PlantDetail
     #[ORM\ManyToOne(inversedBy: 'plantDetails')]
     private ?HealthStatus $HealthStatus = null;
 
+    #[ORM\ManyToOne(targetEntity: Diseases::class, inversedBy: 'plantDetails')]
+    private ?Diseases $Diseases = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,17 @@ class PlantDetail
     {
         $this->HealthStatus = $HealthStatus;
 
+        return $this;
+    }
+
+    public function getDiseases(): ?Diseases
+    {
+        return $this->Diseases;
+    }
+
+    public function setDiseases(?Diseases $Diseases): static
+    {
+        $this->Diseases = $Diseases;
         return $this;
     }
 }

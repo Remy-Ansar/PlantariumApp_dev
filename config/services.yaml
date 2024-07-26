@@ -22,8 +22,8 @@ services:
         autowire: true
 
     #UserPlant manager to ad a plant in the user own collection 
-    App\Manager\UserPlantManager:
-        autowire: true
+    # App\Manager\UserPlantManager:
+    #     autowire: true
 
     # App\EventListener\RequestListener:
     #     arguments:

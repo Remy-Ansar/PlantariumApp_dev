@@ -54,11 +54,8 @@ class SecurityController extends AbstractController
                 $this->hasher->hashPassword($users, $form->get('password')->getData())
             );
 
-
-           
             $em->persist($users);
-
-            
+      
             $em->flush();
             $userId =$request->getSession()->set('user.id', $users->getId());
 
@@ -80,7 +77,6 @@ class SecurityController extends AbstractController
         $users = $this->em->getRepository(Users::class)->find($userId);
         
  
-        // dd($users, $userId);
 
         $userInfos = new UserInfos();
         $form = $this->createForm(ProfileType::class, $userInfos);

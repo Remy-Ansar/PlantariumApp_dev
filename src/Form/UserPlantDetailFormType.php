@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Plants;
+use App\Entity\Diseases;
 use App\Entity\UserPlants;
 use App\Entity\PlantDetail;
 use App\Entity\HealthStatus;
@@ -18,29 +19,22 @@ class UserPlantDetailFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
-            ->add('userPlants', EntityType::class, [
-                'class' => UserPlants::class,
-                'choice_label' => 'id',
-            ])
-            ->add('Plant', EntityType::class, [
-                'class' => Plants::class,
-                'choice_label' => 'id',
-            ])
-            ->add('HealthStatus', EntityType::class, [
-                'class' => HealthStatus::class,
-                'choice_label' => 'id',
-            ])
 
-            ->add('Journal', TextareaType::class, [
-                'label' => 'Journal :', 
-                'attr' => [
-                    'placeholder' => 'Journal de ma plante',
-                    'row' => 4,
-                ],
-                'required' => false,
-            ])
-        ;
+
+        ->add('HealthStatus', HealthStatusType::class, [
+            'label' => false
+        ])
+        ->add('Diseases', EntityType::class, [
+            'class' => Diseases::class,
+            'choice_label' => 'Name',
+            'label' => 'Maladie',
+            'required' => false,
+        ])
+        
+                ->add('Journal', TextareaType::class, [
+            'label' => 'Journal',
+            'required' => false,
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

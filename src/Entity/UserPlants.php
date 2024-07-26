@@ -33,11 +33,11 @@ class UserPlants
      * @var Collection<int, PlantDetail>
      */
     #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants')]
-    private Collection $plantDetails;
+    private Collection $plantDetail;
 
     public function __construct()
     {
-        $this->plantDetails = new ArrayCollection();
+        $this->plantDetail = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,13 +73,13 @@ class UserPlants
      */
     public function getPlantDetails(): Collection
     {
-        return $this->plantDetails;
+        return $this->plantDetail;
     }
 
     public function addPlantDetail(PlantDetail $plantDetail): static
     {
-        if (!$this->plantDetails->contains($plantDetail)) {
-            $this->plantDetails->add($plantDetail);
+        if (!$this->plantDetail->contains($plantDetail)) {
+            $this->plantDetail->add($plantDetail);
             $plantDetail->setUserPlants($this);
         }
 
@@ -88,7 +88,7 @@ class UserPlants
 
     public function removePlantDetail(PlantDetail $plantDetail): static
     {
-        if ($this->plantDetails->removeElement($plantDetail)) {
+        if ($this->plantDetail->removeElement($plantDetail)) {
             // set the owning side to null (unless already changed)
             if ($plantDetail->getUserPlants() === $this) {
                 $plantDetail->setUserPlants(null);
