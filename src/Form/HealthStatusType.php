@@ -21,6 +21,9 @@ class HealthStatusType extends AbstractType
                 'label' => 'Comment se porte cette plante',
                 'required' => false,
                 'choices' => array_combine(HealthStatus::getAvailableStatus(), HealthStatus::getAvailableStatus()),
+                'attr' => [
+                    'id' => 'health-status-field',
+                ],
                 ])
 
             ->add('Description', TextareaType::class, [
@@ -30,6 +33,7 @@ class HealthStatusType extends AbstractType
                     'rows' => 4,
                 ],
                 'required' => false,
+                
             ])
         ;
     }
@@ -38,6 +42,7 @@ class HealthStatusType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => HealthStatus::class,
+            'sanitize_html' => true,
         ]);
     }
 }

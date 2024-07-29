@@ -16,6 +16,10 @@ class PlantDetailRepository extends ServiceEntityRepository
         parent::__construct($registry, PlantDetail::class);
     }
 
+    public function findOneById(string $id): ?PlantDetail
+    {
+        return $this->findOneBy(['id' => $id]);
+    }
     //    /**
     //     * @return PlantDetail[] Returns an array of PlantDetail objects
     //     */

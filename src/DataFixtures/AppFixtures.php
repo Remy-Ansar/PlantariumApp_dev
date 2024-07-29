@@ -12,6 +12,7 @@ use App\Entity\UserInfos;
 use App\Entity\UserPlants;
 use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
+use App\Entity\Diseases;
 use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\HttpFoundation\File\File;
@@ -109,6 +110,23 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
       $manager->persist($specie);
       $species[] = $specie;
   }
+
+  // Fixtures for Diseases
+  $diseases = [];
+  $diseasesNames = [
+      'Alternariose', 'Mildiou', 'Rouille', 'Acariens',
+      'Feu bactérien ', 'Marsonia', 'Botrytis', 'Tavelure',
+      'Carence en fer '
+  ];
+
+  foreach ($diseasesNames as $diseasesName) {
+    $disease = (new Diseases())
+        ->setName($diseasesName);
+    $manager->persist($disease);
+    $diseases[] = $disease; // Add the disease to the array
+}
+
+$manager->flush();
 
         // Fixture pour ajouter des plantes avec les autres entitées reliées.
         for ($i = 0; $i < 10; $i++) {

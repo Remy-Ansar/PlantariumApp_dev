@@ -33,6 +33,7 @@ class SpeciesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Species::class,
+            'sanitize_html' => true,
         ]);
     }
 }

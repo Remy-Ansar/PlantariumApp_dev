@@ -34,6 +34,7 @@ class ColorsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Colors::class,
+            'sanitize_html' => true,
         ]);
     }
 }

@@ -34,6 +34,7 @@ class FamiliesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Families::class,
+            'sanitize_html' => true,
         ]);
     }
 }

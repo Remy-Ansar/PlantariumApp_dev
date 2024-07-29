@@ -10,18 +10,20 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
     # add a validation condition when uppercase is needed
     App\Validator\Constraints\UppercaseValidator:
         tags: ['validator.constraint_validator']
-    #Add a validation condition to verify if the value allready exist
+    
+    # Add a validation condition to verify if the value already exists
     App\Validator\Constraints\UniqueEntityFieldValidator:
         tags: ['validator.constraint_validator']
 
-    #UserPlant factory to ad a plant in the user own collection 
+    # UserPlant factory to add a plant to the user's own collection 
     App\Factory\UserPlantFactory:
         autowire: true
 
-    #UserPlant manager to ad a plant in the user own collection 
+    # UserPlant manager to add a plant to the user's own collection 
     # App\Manager\UserPlantManager:
     #     autowire: true
 
@@ -34,9 +36,9 @@ services:
     App\EventListener\UserEntityListener:
         tags:
             - { name: doctrine.event_listener, event: postPersist, entity: App\Entity\Users }
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-
     App\:
         resource: '../src/'
         exclude:
@@ -52,3 +54,9 @@ services:
 
     App\DataFixtures\Providers\PlantsProviders:
         tags: [{ name: nelmio_alice.faker.provider }]
+
+    App\Repository\:
+        resource: '../src/Repository'
+        autowire: true
+        autoconfigure: true
+        public: false

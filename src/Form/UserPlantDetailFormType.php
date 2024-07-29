@@ -29,9 +29,11 @@ class UserPlantDetailFormType extends AbstractType
             'choice_label' => 'Name',
             'label' => 'Maladie',
             'required' => false,
+            'attr' => [
+                    'id' => 'diseases-field', // Add an ID attribute
+                ],
         ])
-        
-                ->add('Journal', TextareaType::class, [
+        ->add('Journal', TextareaType::class, [
             'label' => 'Journal',
             'required' => false,
         ]);
@@ -41,6 +43,7 @@ class UserPlantDetailFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => PlantDetail::class,
+            'sanitize_html' => true,
         ]);
     }
 }

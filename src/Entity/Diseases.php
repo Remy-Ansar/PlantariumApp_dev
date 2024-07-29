@@ -2,14 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\DiseasesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DiseasesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: DiseasesRepository::class)]
 class Diseases
-{
+{       
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

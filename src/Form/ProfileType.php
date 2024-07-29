@@ -52,6 +52,7 @@ class ProfileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserInfos::class,
+            'sanitize_html' => true,
         ]);
     }
 }

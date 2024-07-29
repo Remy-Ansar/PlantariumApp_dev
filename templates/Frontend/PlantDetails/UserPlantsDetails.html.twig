@@ -8,7 +8,7 @@
 {% block body %}
 
 <span class="return">
-    <a href="{{ path('users.plantarium') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
+    <a href="{{ path('users.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
 </span>
 
 <div class="plantCard">
@@ -40,9 +40,9 @@
 
             <div class="categUnit">
                 <div>Maladies associées:</div>
-                {% if plantdetail.HealthStatus and plantdetail.HealthStatus.Diseases %}
-                    <div class="categComponent">{{ plantdetail.HealthStatus.Diseases.Name }}</div>
-                    <p>Description de la maladie: {{ plantdetail.HealthStatus.Diseases.Description }}</p>
+                {% if plantdetail.HealthStatus and plantdetail.Diseases %}
+                    <div class="categComponent">{{ plantdetail.Diseases.Name }}</div>
+                    <p>Description de la maladie: {{ plantdetail.Diseases.Description }}</p>
                 {% else %}
                     <p>Aucune maladie associée.</p>
                 {% endif %}
@@ -85,7 +85,7 @@
                 {% endfor %}
             </div>
         </div>
-        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}">Modifier</a>
+        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}">Modification de votre plante</a>
     </div>
 </div>
 {% endblock %}

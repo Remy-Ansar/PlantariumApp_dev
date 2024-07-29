@@ -84,6 +84,7 @@ class InscriptionType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Users::class,
             'isAdmin' => false,
+            'sanitize_html' => true,
         ]);
     }
 }

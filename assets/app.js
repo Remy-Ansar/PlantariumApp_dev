@@ -6,6 +6,7 @@
  */
 import './styles/app.scss';
 import './javascript/activeLinks.js';
+import './javascript/diseasesField.js'
 // start the Stimulus application
 // import './bootstrap.js';
 

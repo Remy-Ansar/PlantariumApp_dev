@@ -28,6 +28,7 @@ class DiseasesFormType extends AbstractType
                     'row' => 2,
                 ],
                 'required' => false,
+                'sanitize_html' => true,
             ])
         ;
     }
@@ -36,6 +37,7 @@ class DiseasesFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Diseases::class,
+            'sanitize_html' => true,
         ]);
     }
 }

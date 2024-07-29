@@ -2,13 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\PlantDetailRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\DateTimeTrait;
+use App\Repository\PlantDetailRepository;
 
 #[ORM\Entity(repositoryClass: PlantDetailRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class PlantDetail
 {
+    use DateTimeTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -17,13 +21,15 @@ class PlantDetail
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Journal = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plantDetails')]
+    #[ORM\ManyToOne(targetEntity: UserPlants::class, inversedBy: 'plantDetails',  cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
     private ?UserPlants $userPlants = null;
+
 
     #[ORM\ManyToOne(inversedBy: 'plantDetails')]
     private ?Plants $Plant = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plantDetails')]
+    #[ORM\ManyToOne(inversedBy: 'plantDetails', cascade: ['persist'])]
     private ?HealthStatus $HealthStatus = null;
 
     #[ORM\ManyToOne(targetEntity: Diseases::class, inversedBy: 'plantDetails')]

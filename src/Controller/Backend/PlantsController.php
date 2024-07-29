@@ -133,10 +133,12 @@ class PlantsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             foreach ($plant->getSeasons() as $season) {
+                $season->removePlant($plant);
                 $season->addPlant($plant);
+                
                 $em->persist($season);
             }
-
+            persist($season);
             foreach ($plant->getColors() as $color) {
                 $color->addPlant($plant);
                 $em->persist($color);

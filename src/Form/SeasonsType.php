@@ -29,6 +29,7 @@ class SeasonsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Seasons::class,
+            'sanitize_html' => true,
         ]);
     }
 }

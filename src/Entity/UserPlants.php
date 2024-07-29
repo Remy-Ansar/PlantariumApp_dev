@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class UserPlants
 {
     use DateTimeTrait;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
