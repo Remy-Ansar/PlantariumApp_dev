@@ -1,0 +1,39 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 3px solid $dark-font;
+    // border-bottom: 3px solid $light-green;
+
+    margin: 1em;
+}
+thead {
+    margin-right: 2em;
+}
+tbody {
+    margin-top: 5em;
+}
+
+th,
+td {
+  padding: 20px;
+}
+thead th:nth-child(5) {
+    width: 15em;
+  }
+
+.fieldAdd {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2em;
+}
+tbody td {
+    text-align: center;
+  }
+tbody tr {
+    text-align: center;
+  }
+  
+  td {
+    letter-spacing: 1px;
+  }

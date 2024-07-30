@@ -22,11 +22,9 @@ body {
     @include font-quaternary; // Quaternary font for quotes or specific elements
   }
 
-
 li {
   list-style: none;
 }
-
 
 header div ul {
   display: flex;
@@ -38,10 +36,12 @@ header div ul li{
   flex-direction: row;
   justify-content: flex-end;
 }
+
 nav {
   height: 25%;
   margin-bottom: 5em;
 }
+
 main {
   height: auto;
   width: 100%;
@@ -58,11 +58,6 @@ main {
   border-radius: 100px;
   width: 125px;
   height: 125px;
-}
-
-img {
-  backdrop-filter: blur(0.4);
-  background: 255, 255, 255, 0.5;
 }
 
 #diseases-field {

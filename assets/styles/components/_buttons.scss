@@ -47,3 +47,19 @@
   height: 2em;
   align-items: center;
 }
+
+.modifyButton {
+  border: 2px solid $pine-green;
+  border-radius: 12px 10px;
+  background: $white-font;
+  color: $dark-font;
+  box-sizing: border-box;
+}
+
+.deleteButton {
+  border: 2px solid $pine-green;
+  border-radius: 12px 10px;
+  background: $pine-green;
+  color: $white-font;
+  box-sizing: border-box;
+}

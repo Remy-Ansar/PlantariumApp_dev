@@ -8,15 +8,16 @@ Administration des plantes
             {% include "Layout/nav.html.twig" %}
 <h1>Plantarium</h1>
 <h2>Administration des plantes</h2>
-<div>
+
+
+<div class=" fieldAdd">
     <div>
-        <a href="{{ path('editor.plants.new') }}">Ajouter une plante</a></div>
+        <a href="{{ path('editor.plants.new') }}"><button class="button">Ajouter une plante</button></a></div>
     <div>
-        <a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a>
+        <a href="{{ path('editor.plants.field.index') }}"><button class="button">Ajouter des champs</button></a>
 
     </div>{# <a href="{{ path('editor.plants.field.edit') }}">modifier des champs</a> #}
 </div>
-<main>
     <table>
         <thead>
             <tr>
@@ -63,19 +64,19 @@ Administration des plantes
                     </a></td>
                 <td>
                 <td>{{plant.enable ? 'Oui' : 'Non' }}</td>
-                <td><a href="{{ path('editor.plants.edit', {id: plant.id}) }}">Modifier une plante</a></td>
+                <td><a href="{{ path('editor.plants.edit', {id: plant.id}) }}"><button class="modifyButton">Modifier une plante</button> </a></td>
                 <td>
                     <form action="{{path('editor.plants.delete', {id: plant.id}) }}" method="POST"
                         onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
                         enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{ csrf_token('delete'~ plant.id) }}">
-                        <button type="submit">Supprimer une plante</button>
+                        <button type="submit" class="deleteButton">Supprimer une plante</button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</main>
+
 
 {% endblock %}

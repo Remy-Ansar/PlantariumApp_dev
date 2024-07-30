@@ -5,8 +5,8 @@ header {
   padding: 5px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  // height: 25%;
+  justify-content: space-between;
+  // column-gap: 5em;
   margin-bottom: 5em;
   margin-top: 2em;
 }
@@ -27,16 +27,16 @@ li a {
   font-size: 1.5em;
 }
 
-.link {
-  font-size: 1.5em;
-}
+// .link {
+//   font-size: 1.5em;
+// }
 
 .active {
   // border-bottom: 3px solid $border-green;
   font-weight: bold;
   text-align: center;
   align-items: flex-start;
-  height: 5em;
+  // height: 5em;
   font-size: 1.5em;
 }
 
@@ -48,4 +48,27 @@ li a {
   display: flex;
 flex-direction: column;
 
+}
+
+.profilPicHeader {
+  margin-left: 4em;
+  position: absolute;
+}
+
+.headerIcons ul li{
+  display: flex;
+  align-items: center;
+
+}
+
+.headerIcons {
+  transform: translate(-12em, 1em);
+}
+.disconnect {
+  margin-right: 4em;
+}
+
+.fullName {
+  position: relative;
+  transform: translate(12em, 0em);
 }
