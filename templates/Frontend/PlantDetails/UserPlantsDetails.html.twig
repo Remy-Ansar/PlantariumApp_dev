@@ -13,8 +13,21 @@
 
 <div class="plantCard">
     <div class="plantHeader">
+        <div>
         <h2>Plante : {{ plant.Name }}</h2>
-        <h3>Espèce: {{ plant.species.Name }}</h3>
+        <h3>Espèce: {{ plant.species.Name }}</h3></div>
+
+        <div>
+        <form action="{{path('userPlants.details.delete', {name: plant.Name, id: plantdetail.id}) }}" method="POST"
+                        onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
+                        enctype="multipart/form-data">
+                        <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
+                        <button type="submit" class="removePlant">
+                                <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
+
+                        </button>
+                    </form>
+                    </div>
     </div>
 
     <div class="plantPic">

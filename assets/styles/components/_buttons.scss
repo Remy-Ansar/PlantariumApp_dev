@@ -31,6 +31,17 @@
   align-items: center;
 }
 
+.removePlant {
+  background: transparent;
+  border: none;
+}
+
+.removePlant img {
+  display: flex;
+  width: 1.5em;
+  height: 1.5em;
+  align-items: center;
+}
 .addButton {
   display: flex;
   height: 2em;

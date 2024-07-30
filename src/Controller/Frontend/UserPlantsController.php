@@ -92,27 +92,27 @@ class UserPlantsController extends AbstractController
             return $this->redirectToRoute('users.plantarium');
         }
 
-        #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
-        public function deleteUserPlant(?UserPlants $userPlant, Request $request): RedirectResponse
-        {
-            if (!$userPlant) {
-                $this->addFlash('danger', 'Cette plante ne fait pas partie de votre profil.');
+        // #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
+        // public function deleteUserPlant(?UserPlants $userPlant, Request $request): RedirectResponse
+        // {
+        //     if (!$userPlant) {
+        //         $this->addFlash('danger', 'Cette plante ne fait pas partie de votre profil.');
 
-                return $this->redirectToRoute('users.index');
-            }
+        //         return $this->redirectToRoute('users.index');
+        //     }
 
-            if ($this->isCsrfTokenValid('delete' . $userPlant->getId(), $request->request->get('token'))) {
-                $this->em->remove($userPlant);
-                $this->em->flush();
+        //     if ($this->isCsrfTokenValid('delete' . $userPlant->getId(), $request->request->get('token'))) {
+        //         $this->em->remove($userPlant);
+        //         $this->em->flush();
     
-                $this->addFlash('success', 'La plante a été supprimée avec succès.');
-            } else {
-                $this->addFlash('danger', 'Le token CSRF est invalide.');
-            }
+        //         $this->addFlash('success', 'La plante a été supprimée avec succès.');
+        //     } else {
+        //         $this->addFlash('danger', 'Le token CSRF est invalide.');
+        //     }
     
-            return $this->redirectToRoute('users.index');
+        //     return $this->redirectToRoute('users.index');
 
-        }
+        // }
     // #[Route('/{id}/mesPlantes', name: '.myplants', methods: ['GET'])]
     // public function myPlants(): Response
     // {

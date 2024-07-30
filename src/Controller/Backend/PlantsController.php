@@ -20,6 +20,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -89,7 +90,6 @@ class PlantsController extends AbstractController
         $family = new Families();
         $color = new Colors();
 
-
         $form = $this->createForm(FieldsType::class, [
             'species' => $specie,
             'families' => $family,
@@ -119,54 +119,91 @@ class PlantsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
-    public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em): Response
-    {
-        if (!$plant) {
-            $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son id?');
+public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em): Response
+{
+    if (!$plant) {
+        $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son id?');
 
-            return $this->redirectToRoute('editor.plants.index');
-        }
+        return $this->redirectToRoute('editor.plants.index');
+    }
 
-        $form = $this->createForm(PlantsType::class, $plant);
-        $form->handleRequest($request);
+    // Fetch original collections
+    $originalSeasons = new ArrayCollection($plant->getSeasons()->toArray());
+    $originalColors = new ArrayCollection($plant->getColors()->toArray());
+    $originalCategories = new ArrayCollection($plant->getCategories()->toArray());
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    $form = $this->createForm(PlantsType::class, $plant);
+    $form->handleRequest($request);
 
-            foreach ($plant->getSeasons() as $season) {
+    if ($form->isSubmitted() && $form->isValid()) {
+
+        // Handle removal of Seasons
+        foreach ($originalSeasons as $season) {
+            if (!$plant->getSeasons()->contains($season)) {
                 $season->removePlant($plant);
-                $season->addPlant($plant);
-                
                 $em->persist($season);
             }
-            
-            foreach ($plant->getColors() as $color) {
+        }
+
+        // Handle removal of Colors
+        foreach ($originalColors as $color) {
+            if (!$plant->getColors()->contains($color)) {
+                $color->removePlant($plant);
+                $em->persist($color);
+            }
+        }
+
+        // Handle removal of Categories
+        foreach ($originalCategories as $category) {
+            if (!$plant->getCategories()->contains($category)) {
+                $category->removePlant($plant);
+                $em->persist($category);
+            }
+        }
+
+        // Handle addition of Seasons
+        foreach ($plant->getSeasons() as $season) {
+            if (!$originalSeasons->contains($season)) {
+                $season->addPlant($plant);
+                $em->persist($season);
+            }
+        }
+
+        // Handle addition of Colors
+        foreach ($plant->getColors() as $color) {
+            if (!$originalColors->contains($color)) {
                 $color->addPlant($plant);
                 $em->persist($color);
             }
-
-            foreach ($plant->getCategories() as $categorie) {
-                $categorie->addPlant($plant);
-                $em->persist($categorie);
-            }
-
-            $em->flush();
-
-            $this->addFlash('success', 'La plante a été modifiée avec succès.');
-
-            return $this->redirectToRoute('editor.plants.index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('Backend/Plants/edit.html.twig', [
-            'plants' => $plant,
-            'form' => $form,
-        ]);
+        // Handle addition of Categories
+        foreach ($plant->getCategories() as $category) {
+            if (!$originalCategories->contains($category)) {
+                $category->addPlant($plant);
+                $em->persist($category);
+            }
+        }
+
+        $em->persist($plant);
+        $em->flush();
+
+        $this->addFlash('success', 'La plante a été modifiée avec succès.');
+
+        return $this->redirectToRoute('editor.plants.index', [], Response::HTTP_SEE_OTHER);
     }
+
+    return $this->render('Backend/Plants/edit.html.twig', [
+        'plants' => $plant,
+        'form' => $form,
+    ]);
+}
 
     #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
     public function deletePlant(?Plants $plant, Request $request): RedirectResponse
     {
         if (!$plant) {
-            $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son id?');
+            $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son identification?');
 
             return $this->redirectToRoute('editor.plants.index');
         }

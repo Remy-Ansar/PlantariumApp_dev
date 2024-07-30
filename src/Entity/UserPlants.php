@@ -33,7 +33,7 @@ class UserPlants
     /**
      * @var Collection<int, PlantDetail>
      */
-    #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants')]
+    #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants', cascade: ['persist'])]
     private Collection $plantDetail;
 
     public function __construct()

@@ -23,7 +23,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Plants
 {
     use DateTimeTrait;
-    use EnableTrait;
+    use EnableTrait; 
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
