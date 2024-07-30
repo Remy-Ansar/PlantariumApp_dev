@@ -98,4 +98,5 @@ class PlantDetail
         $this->Diseases = $Diseases;
         return $this;
     }
+    
 }

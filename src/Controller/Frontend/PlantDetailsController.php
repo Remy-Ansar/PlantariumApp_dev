@@ -62,63 +62,65 @@ public function UserPlantDetails(string $name): Response
     $plantDetail = $this->em->getRepository(PlantDetail::class)->findOneBy(['Plant' => $plant]);
 
     if (!$plantDetail) {
-
         $plantDetail = new PlantDetail();
         $plantDetail->setPlant($plant);
 
         $user = $this->getUser();
         $userPlant = $this->userPlantsRepository->findOneBy(['plant' => $plant, 'User' => $user]);
 
-        $userPlant->setPlant($plant);
-        $userPlant->setUser($user);
-        $this->em->persist($userPlant);
-        $this->em->flush(); 
+        if (!$userPlant) {
+            $userPlant = new UserPlants();
+            $userPlant->setPlant($plant);
+            $userPlant->setUser($user);
+            $this->em->persist($userPlant);
+            $this->em->flush(); 
+        }
 
-    $plantDetail->setUserPlants($userPlant);
-
-        $healthStatus = new HealthStatus();
-        $this->em->persist($healthStatus);
-
-        $plantDetail->setHealthStatus($healthStatus);
+        $plantDetail->setUserPlants($userPlant);
 
         $this->em->persist($plantDetail);
         $this->em->flush();
     }
 
+
     return $this->render('Frontend/PlantDetails/UserPlantsDetails.html.twig', [
         'plant' => $plant,
         'plantdetail' => $plantDetail,
-        
     ]);
 }
 
 #[Route('/users/{name}/details/{id}/edit', name: 'userPlants.details.edit', methods: ['GET', 'POST'])]
-public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail $plantDetail, ?Plants $plant, EntityManagerInterface $em, UserPlants $userPlant): Response
+public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail $plantDetail, ?Plants $plant, EntityManagerInterface $em): Response
 {
+    $plant = $plantDetail->getPlant(); 
+
+
     if (!$plantDetail) {
         $this->addFlash('error', 'Cette plante n\'existe pas');
-        return $this->redirectToRoute('editor.plants.index');
+        return $this->redirectToRoute('users.index');
     }
-
-    $plantDetail = $this->em->getRepository(PlantDetail::class)->findOneBy(['Plant' => $plant]);
 
     $form = $this->createForm(UserPlantDetailFormType::class, $plantDetail);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
 
-        foreach ($plantDetail->getDiseases() as $diseases) {
-            $em->persist($diseases);
-        }
+        $newJournalEntry = $form->get('newJournalEntry')->getData();
 
-        foreach ($plantDetail->getHealthStatus() as $healthStatus) {
-            $em->persist($healthStatus);
-        }
+            // Append the new entry to the existing journal content
+            if ($newJournalEntry) {
+                $currentDateTime = new \DateTime();
+                $journalEntry = sprintf("[%s] %s\n\n", $currentDateTime->format('Y-m-d H:i:s'), $newJournalEntry);
+                $plantDetail->setJournal($plantDetail->getJournal() . $journalEntry);
+            }
 
-        foreach ($plantDetail->getUserPlants() as $userPlant) {
-            $em->persist($userPlant);
-        }
+        $healthStatus = new HealthStatus();
+        $diseases = new Diseases();
+        $this->em->persist($healthStatus);
+        $this->em->persist($diseases);
 
+        $plantDetail->getHealthStatus($healthStatus);
+        $plantDetail->getDiseases($diseases);
         $this->em->flush();
 
         $this->addFlash('success', 'Les détails de la plante ont été modifiés avec succès.');
@@ -129,8 +131,6 @@ public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail
         'form' => $form,
         'plantdetail' => $plantDetail,
         'plant' => $plant,
-        'userplant' => $userPlant,
-        
 
     ]);
 }

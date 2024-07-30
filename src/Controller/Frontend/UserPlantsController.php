@@ -5,6 +5,7 @@ namespace App\Controller\Frontend;
 use App\Entity\Users;
 use App\Entity\Plants;
 use App\Entity\UserPlants;
+use App\Entity\PlantDetail;
 use App\Factory\UserPlantFactory;
 use App\Manager\UserPlantManager;
 use App\Repository\UsersRepository;
@@ -77,12 +78,14 @@ class UserPlantsController extends AbstractController
                 return $this->redirectToRoute('users.plantarium');
             }
     
-            // Step 3: Create and Persist the UserPlant Entity
+            // Create and Persist the UserPlant Entity and the related plantDetail 
             $userPlant = new UserPlants();
-            $userPlant->setUser($user);
-            $userPlant->setPlant($plant);
+            $plantDetail = new PlantDetail();
+            $userPlant->setUser($user, $plantDetail);
+            $userPlant->setPlant($plant, $plantDetail);
+            
     
-            $this->em->persist($userPlant);
+            $this->em->persist($userPlant, $plantDetail);
             $this->em->flush();
     
             $this->addFlash('success', 'Votre plante a bien été ajoutée.');

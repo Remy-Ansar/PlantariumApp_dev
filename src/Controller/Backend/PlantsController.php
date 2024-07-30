@@ -138,7 +138,7 @@ class PlantsController extends AbstractController
                 
                 $em->persist($season);
             }
-            persist($season);
+            
             foreach ($plant->getColors() as $color) {
                 $color->addPlant($plant);
                 $em->persist($color);

@@ -24,18 +24,9 @@ class HealthStatusType extends AbstractType
                 'attr' => [
                     'id' => 'health-status-field',
                 ],
-                ])
+            ]);
 
-            ->add('Description', TextareaType::class, [
-                'label' => 'Description de la maladie',
-                'attr' => [
-                    'placeholder' => 'Les symptômes sont ...',
-                    'rows' => 4,
-                ],
-                'required' => false,
-                
-            ])
-        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

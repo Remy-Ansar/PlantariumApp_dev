@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\DateTimeTrait;
+
 use App\Repository\HealthStatusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,10 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HealthStatusRepository::class)]
-#[ORM\HasLifecycleCallbacks]
 class HealthStatus
 {
-    use DateTimeTrait;
 
     public const STATUS = ['En bonne santé', 'Malade', 'Morte'];
 
@@ -29,9 +27,6 @@ class HealthStatus
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Description = null;
-
-    #[ORM\ManyToOne(inversedBy: 'healthStatuses')]
-    private ?Diseases $Diseases = null;
 
     /**
      * @var Collection<int, PlantDetail>
@@ -71,18 +66,6 @@ class HealthStatus
     public function setDescription(?string $Description): static
     {
         $this->Description = $Description;
-
-        return $this;
-    }
-
-    public function getDiseases(): ?Diseases
-    {
-        return $this->Diseases;
-    }
-
-    public function setDiseases(?Diseases $Diseases): static
-    {
-        $this->Diseases = $Diseases;
 
         return $this;
     }

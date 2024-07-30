@@ -33,8 +33,9 @@ class UserPlantDetailFormType extends AbstractType
                     'id' => 'diseases-field', // Add an ID attribute
                 ],
         ])
-        ->add('Journal', TextareaType::class, [
-            'label' => 'Journal',
+        ->add('newJournalEntry', TextareaType::class, [
+            'label' => 'New Journal Entry',
+            'mapped' => false,
             'required' => false,
         ]);
     }
