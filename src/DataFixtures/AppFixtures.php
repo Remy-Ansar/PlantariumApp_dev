@@ -13,6 +13,7 @@ use App\Entity\UserPlants;
 use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
 use App\Entity\Diseases;
+use App\Entity\HealthStatus;
 use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\HttpFoundation\File\File;
@@ -124,6 +125,19 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         ->setName($diseasesName);
     $manager->persist($disease);
     $diseases[] = $disease; // Add the disease to the array
+  }
+    // Fixtures for HealthStatus
+    $healthStatuses = [];
+    $healthStatusNames = [
+        'En bonne santé', 'Malade', 'Morte'
+    ];
+
+    foreach ($healthStatusNames as $healthStatusName) {
+    $healthStatus = (new HealthStatus())
+        ->setName($healthStatusName);
+    $manager->persist($healthStatus);
+    $healthStatuses[] = $healthStatus;
+
 }
 
 $manager->flush();

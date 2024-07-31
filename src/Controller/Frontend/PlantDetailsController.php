@@ -90,10 +90,9 @@ public function UserPlantDetails(string $name): Response
 }
 
 #[Route('/users/{name}/details/{id}/edit', name: 'userPlants.details.edit', methods: ['GET', 'POST'])]
-public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail $plantDetail, ?Plants $plant, EntityManagerInterface $em): Response
+public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail $plantDetail, ?Plants $plant, ?HealthStatus $healthStatus, ?Diseases $diseases): Response
 {
     $plant = $plantDetail->getPlant(); 
-
 
     if (!$plantDetail) {
         $this->addFlash('error', 'Cette plante n\'existe pas');
@@ -113,14 +112,8 @@ public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail
                 $journalEntry = sprintf("[%s] %s\n\n", $currentDateTime->format('Y-m-d H:i:s'), $newJournalEntry);
                 $plantDetail->setJournal($plantDetail->getJournal() . $journalEntry);
             }
-
-        $healthStatus = new HealthStatus();
-        $diseases = new Diseases();
-        $this->em->persist($healthStatus);
-        $this->em->persist($diseases);
-
-        $plantDetail->getHealthStatus($healthStatus);
-        $plantDetail->getDiseases($diseases);
+            
+        $this->em->persist($plantDetail);
         $this->em->flush();
 
         $this->addFlash('success', 'Les détails de la plante ont été modifiés avec succès.');

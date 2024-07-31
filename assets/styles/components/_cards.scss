@@ -132,11 +132,13 @@
 
 .categComponent {
     display: flex;
-    justify-content: space-evenly;
+
     align-items: center;
-    background: $glassmorphism;
-    border: 2px solid $dark-font;
+    border: 2px solid $pine-green;
+    border-radius: 10px 12px;
     padding: 0.5em 1em 0.5em 1em;
+    color: $white-font;
+    background: $pine-green;
 
 }
 

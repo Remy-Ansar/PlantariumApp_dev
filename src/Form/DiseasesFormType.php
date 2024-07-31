@@ -17,7 +17,7 @@ class DiseasesFormType extends AbstractType
             ->add('Name', TextType::class, [
                 'label' => 'Nom de la maladie :',
                 'attr' => [
-                    'placeholder' => 'Rouille', 
+                    'placeholder' => 'Nom de la maladie', 
                 ],
                 'required' => true,
             ])

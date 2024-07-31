@@ -63,3 +63,11 @@
   color: $white-font;
   box-sizing: border-box;
 }
+
+.tagsButton {
+  border: 2px solid $pine-green;
+  border-radius: 10px 12px;
+  padding: 0 5px 0 5px;
+  color: $white-font;
+  bottom: $pine-green;
+}

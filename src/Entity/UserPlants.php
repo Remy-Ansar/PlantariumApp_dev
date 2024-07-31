@@ -99,5 +99,27 @@ class UserPlants
         return $this;
     }
 
+    /**
+     * Get the value of plantDetail
+     *
+     * @return Collection
+     */
+    public function getPlantDetail(): Collection
+    {
+        return $this->plantDetail;
+    }
 
+    /**
+     * Set the value of plantDetail
+     *
+     * @param Collection $plantDetail
+     *
+     * @return self
+     */
+    public function setPlantDetail(Collection $plantDetail): self
+    {
+        $this->plantDetail = $plantDetail;
+
+        return $this;
+    }
 }

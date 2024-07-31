@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-{{ form_start(form) }}
+
 
 <span class="return">
     <a href="{{ path('users.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
@@ -28,7 +28,11 @@
         <p>Famille: {{ plant.families.name }}</p>
         <p>Espèce: {{ plant.species.name }}</p>
 
-        {{ form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
+  {{ form_start(form)}}
+
+{{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
+
+
 
         <div class="categUnit">
             <div>Catégorie(s):</div>
@@ -55,7 +59,9 @@
             {% endfor %}
         </div>
     </div>
-    <button class="button">Modifier</button>
+ <button class="modifyButton">Modifier</button>
 {{ form_end(form) }}
+
 </div>
+
 {% endblock %}

@@ -23,14 +23,15 @@ class Diseases
     private ?string $Description = null;
 
     /**
-     * @var Collection<int, HealthStatus>
+     * @var Collection<int, PlantDetail>
      */
-    #[ORM\OneToMany(targetEntity: HealthStatus::class, mappedBy: 'Diseases')]
-    private Collection $healthStatuses;
+    #[ORM\ManyToMany(targetEntity: PlantDetail::class, inversedBy: 'diseases')]
+    private Collection $PlantDetail;
 
     public function __construct()
     {
-        $this->healthStatuses = new ArrayCollection();
+
+        $this->PlantDetail = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,32 +64,28 @@ class Diseases
     }
 
     /**
-     * @return Collection<int, HealthStatus>
+     * @return Collection<int, PlantDetail>
      */
-    public function getHealthStatuses(): Collection
+    public function getPlantDetail(): Collection
     {
-        return $this->healthStatuses;
+        return $this->PlantDetail;
     }
 
-    public function addHealthStatus(HealthStatus $healthStatus): static
+    public function addPlantDetail(PlantDetail $plantDetail): self
     {
-        if (!$this->healthStatuses->contains($healthStatus)) {
-            $this->healthStatuses->add($healthStatus);
-            $healthStatus->setDiseases($this);
+        if (!$this->PlantDetail->contains($plantDetail)) {
+            $this->PlantDetail->add($plantDetail);
         }
 
         return $this;
     }
 
-    public function removeHealthStatus(HealthStatus $healthStatus): static
+    public function removePlantDetail(PlantDetail $plantDetail): self
     {
-        if ($this->healthStatuses->removeElement($healthStatus)) {
-            // set the owning side to null (unless already changed)
-            if ($healthStatus->getDiseases() === $this) {
-                $healthStatus->setDiseases(null);
-            }
-        }
+        $this->PlantDetail->removeElement($plantDetail);
 
         return $this;
     }
+
+
 }

@@ -51,15 +51,17 @@
                 {% endif %}
             </div>
 
-            <div class="categUnit">
-                <div>Maladies associées:</div>
-                {% if plantdetail.HealthStatus and plantdetail.Diseases %}
-                    <div class="categComponent">{{ plantdetail.Diseases.Name }}</div>
-                    <p>Description de la maladie: {{ plantdetail.Diseases.Description }}</p>
-                {% else %}
-                    <p>Aucune maladie associée.</p>
-                {% endif %}
-            </div>
+<div class="categUnit">
+    <div>Maladies associées:</div>
+    {% if plantdetail.HealthStatus and plantdetail.diseases|length > 0 %}
+        {% for disease in plantdetail.diseases %}
+            <div class="categComponent">{{ disease.Name }}</div>
+            <p>Description de la maladie: {{ disease.Description }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Aucune maladie associée.</p>
+    {% endif %}
+</div>
 
             <div class="categUnit">
                 <div>Journal:</div>
@@ -98,7 +100,7 @@
                 {% endfor %}
             </div>
         </div>
-        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}">Modification de votre plante</a>
+        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button class="modifyButton">Modification de votre plante</button></a>
     </div>
 </div>
 {% endblock %}

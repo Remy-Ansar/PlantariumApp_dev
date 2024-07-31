@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
@@ -29,11 +31,20 @@ class PlantDetail
     #[ORM\ManyToOne(inversedBy: 'plantDetails')]
     private ?Plants $Plant = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plantDetails', cascade: ['persist'])]
+    /**
+     * @var Collection<int, Diseases>
+     */
+    #[ORM\ManyToMany(targetEntity: Diseases::class, mappedBy: 'PlantDetail')]
+    private Collection $diseases;
+
+
+    #[ORM\ManyToOne(targetEntity: HealthStatus::class, inversedBy: 'plantDetails')]
     private ?HealthStatus $HealthStatus = null;
 
-    #[ORM\ManyToOne(targetEntity: Diseases::class, inversedBy: 'plantDetails')]
-    private ?Diseases $Diseases = null;
+    public function __construct()
+    {
+        $this->diseases = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -76,6 +87,33 @@ class PlantDetail
         return $this;
     }
 
+    /**
+     * @return Collection<int, Diseases>
+     */
+    public function getDiseases(): Collection
+    {
+        return $this->diseases;
+    }
+
+    public function addDisease(Diseases $disease): static
+    {
+        if (!$this->diseases->contains($disease)) {
+            $this->diseases->add($disease);
+            $disease->addPlantDetail($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDisease(Diseases $disease): static
+    {
+        if ($this->diseases->removeElement($disease)) {
+            $disease->removePlantDetail($this);
+        }
+
+        return $this;
+    }
+
     public function getHealthStatus(): ?HealthStatus
     {
         return $this->HealthStatus;
@@ -87,16 +125,18 @@ class PlantDetail
 
         return $this;
     }
-
-    public function getDiseases(): ?Diseases
+    
+    /**
+     * Set the value of diseases
+     *
+     * @param Collection $diseases
+     *
+     * @return self
+     */
+    public function setDiseases(Collection $diseases): self
     {
-        return $this->Diseases;
-    }
+        $this->diseases = $diseases;
 
-    public function setDiseases(?Diseases $Diseases): static
-    {
-        $this->Diseases = $Diseases;
         return $this;
     }
-    
 }
