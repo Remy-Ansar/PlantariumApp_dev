@@ -6,6 +6,8 @@ Administration des plantes
 {% endblock %}
 {% block body %}
             {% include "Layout/nav.html.twig" %}
+
+<main>
 <h1>Plantarium</h1>
 <h2>Administration des plantes</h2>
 
@@ -41,8 +43,8 @@ Administration des plantes
             </tr>
         </thead>
         <tbody>
-
-            {% for plant in plants %}
+    
+{% for plant in pagination.items %}
             <tr>
                 <td>{{ plant.id }}</td>
                 <td>{{ plant.Species.Name }}</td>
@@ -83,6 +85,11 @@ Administration des plantes
             {% endfor %}
         </tbody>
     </table>
+
+        <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    </main>
 
 
 {% endblock %}

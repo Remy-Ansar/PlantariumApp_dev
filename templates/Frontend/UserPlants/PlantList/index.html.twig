@@ -4,8 +4,9 @@
 Administration des plantes
 {{ parent() }}
 {% endblock %}
+
 {% block body %}
-            {% include "Layout/nav.html.twig" %}
+{% include "Layout/nav.html.twig" %}
 <h2>Rechercher une plante</h2>
 <div class="wrap">
     <div class="searchBar">
@@ -14,13 +15,20 @@ Administration des plantes
     </div>
 </div>
 
-
 <main>
-<div class="mainCardsPlantarium">
-{% include 'Frontend/UserPlants/PlantList/_plantList.html.twig' %}
-    </div>
-   
+    <section>
+        <div class="mainCardsPlantarium">
+            {% include 'Frontend/UserPlants/PlantList/_plantList.html.twig' %}
+        </div>
+    </section>
+
+
 </main>
-</body>
+
+    <section>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </section>
 
 {% endblock %}

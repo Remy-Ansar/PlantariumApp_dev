@@ -1,8 +1,8 @@
-{% for plant in plants %}
-    {% include 'Frontend/UserPlants/plantList/_plantCard.html.twig' %}
-
+{% for plant in pagination.items %}
+    {% include 'Frontend/UserPlants/PlantList/_plantCard.html.twig' %}
 {% else %}
-<div class="alert-info" id="plant-no-image">
-    <p>Cette plante ne possède pas encore d'image.</p>
+    <div class="alert-info" id="plant-no-image">
+        <p>Cette plante ne possède pas encore d'image.</p>
     </div>
 {% endfor %}
+

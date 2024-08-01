@@ -10,113 +10,116 @@ Détail de la plante
 <span class="return">
     <a href="{{ path('users.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
 </span>
+<main>
 
-<div class="plantCard">
-    <div class="plantHeader">
-        <div>
-            <h2>Plante : {{ plant.Name }}</h2>
-            <h3>Espèce: {{ plant.species.Name }}</h3>
+    <div class="plantCard">
+        <div class="plantHeader">
+            <div>
+                <h2>Plante : {{ plant.Name }}</h2>
+                <h3>Espèce: {{ plant.species.Name }}</h3>
+            </div>
+
+            <div>
+                <form action="{{path('userPlants.details.delete', {name: plant.Name, id: plantdetail.id}) }}"
+                    method="POST"
+                    onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
+                    <button type="submit" class="removePlant">
+                        <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
+
+                    </button>
+                </form>
+            </div>
         </div>
 
-        <div>
-            <form action="{{path('userPlants.details.delete', {name: plant.Name, id: plantdetail.id}) }}" method="POST"
-                onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
-                enctype="multipart/form-data">
-                <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
-                <button type="submit" class="removePlant">
-                    <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
-
-                </button>
-            </form>
+        <div class="plantPic">
+            <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
         </div>
-    </div>
+        <div class="plantInfos">
+            <p>Description:</p>
+            <p>{{ plant.Description }}</p>
 
-    <div class="plantPic">
-        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
-    </div>
-    <div class="plantInfos">
-        <p>Description:</p>
-        <p>{{ plant.Description }}</p>
+            <p>Famille: {{ plant.families.Name }}</p>
+            <p>Espèce: {{ plant.species.Name }}</p>
 
-        <p>Famille: {{ plant.families.Name }}</p>
-        <p>Espèce: {{ plant.species.Name }}</p>
+            <div class="categFields">
+                <div class="categUnit">
+                    <div>Statut de la plante:</div>
+                    {% if plantdetail.HealthStatus %}
+                    <div class="categComponent">{{ plantdetail.HealthStatus.Name }}</div>
+                    <div class="categComponent">Description du statut: {{ plantdetail.HealthStatus.Description }}</div>
+                    {% else %}
+                    <p>Aucun statut de santé disponible.</p>
+                    {% endif %}
+                </div>
 
-        <div class="categFields">
-            <div class="categUnit">
-                <div>Statut de la plante:</div>
-                {% if plantdetail.HealthStatus %}
-                <div class="categComponent">{{ plantdetail.HealthStatus.Name }}</div>
-                <div class="categComponent">Description du statut: {{ plantdetail.HealthStatus.Description }}</div>
-                {% else %}
-                <p>Aucun statut de santé disponible.</p>
-                {% endif %}
-            </div>
-
-            {% if plantdetail.diseases|length > 0 %}
-            <div class="categUnit">
-                {% if plantdetail.HealthStatus.Name == "Malade" %}
-                {% for disease in plantdetail.diseases %}
-                <div>Maladies associées:</div>
-                <div class="categComponent">{{ disease.Name }}</div>
-                {% endfor %}
-                {% endif %}
-                {# {% else %}
+                {% if plantdetail.diseases|length > 0 %}
+                <div class="categUnit">
+                    {% if plantdetail.HealthStatus.Name == "Malade" %}
+                    {% for disease in plantdetail.diseases %}
+                    <div>Maladies associées:</div>
+                    <div class="categComponent">{{ disease.Name }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {# {% else %}
                 <p>Aucune maladie associée.</p> #}
 
-                {% endif %}
-            </div>
-            {% if plantdetail.diseases|length > 0 %}
-            <div class="categUnit">
-                {% if plantdetail.HealthStatus.Name == "Malade" %}
-                {% for disease in plantdetail.diseases %}
-                <div>Description de la maladie:</div>
-                <div>{{ disease.Description }}</div>
-                {% endfor %}
-                {% endif %}
-                {# {% else %}
+                    {% endif %}
+                </div>
+                {% if plantdetail.diseases|length > 0 %}
+                <div class="categUnit">
+                    {% if plantdetail.HealthStatus.Name == "Malade" %}
+                    {% for disease in plantdetail.diseases %}
+                    <div>Description de la maladie:</div>
+                    <div>{{ disease.Description }}</div>
+                    {% endfor %}
+                    {% endif %}
+                    {# {% else %}
                 <p>Aucune maladie associée.</p> #}
-                {% endif %}
-            </div>
+                    {% endif %}
+                </div>
 
-            <div class="categUnit">
-                <div>Journal:</div>
-                {% if plantdetail.Journal %}
-                <p>{{ plantdetail.Journal }}</p>
-                {% else %}
-                <p>Aucun journal disponible.</p>
-                {% endif %}
-            </div>
+                <div class="categUnit">
+                    <div>Journal:</div>
+                    {% if plantdetail.Journal %}
+                    <p>{{ plantdetail.Journal }}</p>
+                    {% else %}
+                    <p>Aucun journal disponible.</p>
+                    {% endif %}
+                </div>
 
-            <div class="categUnit">
-                <div>Catégorie(s):</div>
-                {% for category in plant.categories %}
-                <div class="categComponent">{{ category.Name }}</div>
-                {% endfor %}
-            </div>
+                <div class="categUnit">
+                    <div>Catégorie(s):</div>
+                    {% for category in plant.categories %}
+                    <div class="categComponent">{{ category.Name }}</div>
+                    {% endfor %}
+                </div>
 
-            <div class="categUnit">
-                Saisonalité:
-                {% for season in plant.seasons %}
-                <div class="categComponent">{{ season.Name }}</div>
-                {% endfor %}
-            </div>
+                <div class="categUnit">
+                    Saisonalité:
+                    {% for season in plant.seasons %}
+                    <div class="categComponent">{{ season.Name }}</div>
+                    {% endfor %}
+                </div>
 
-            <div class="categUnit">
-                Arrosage
-                {# {% for color in plant.colors %}
+                <div class="categUnit">
+                    Arrosage
+                    {# {% for color in plant.colors %}
                 <div class="categComponent">{{ color.Name }}</div>
                 {% endfor %} #}
-            </div>
+                </div>
 
-            <div class="categUnit">
-                Couleurs:
-                {% for color in plant.colors %}
-                <div class="categComponent">{{ color.Name }}</div>
-                {% endfor %}
+                <div class="categUnit">
+                    Couleurs:
+                    {% for color in plant.colors %}
+                    <div class="categComponent">{{ color.Name }}</div>
+                    {% endfor %}
+                </div>
             </div>
+            <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button
+                    class="modifyButton">Modification de votre plante</button></a>
         </div>
-        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button
-                class="modifyButton">Modification de votre plante</button></a>
     </div>
-</div>
+</main>
 {% endblock %}

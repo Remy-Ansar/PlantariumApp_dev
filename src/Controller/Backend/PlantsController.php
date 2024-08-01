@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\Common\Collections\ArrayCollection;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -37,11 +38,20 @@ class PlantsController extends AbstractController
     }
 
     #[Route('', name: '.index', methods: ['GET'])]
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        $queryBuilder = $this->plantsRepository->paginationOrder();
+        
+        $pagination = $paginator->paginate(
+            $queryBuilder, /* query NOT result */
+            $request->query->getInt('page', 1), /* page number */
+            5 /* limit per page */
+        );
+
         return $this->render('Backend/Plants/index.html.twig', [
-            'plants' => $this->plantsRepository->findAll(),
-            'family' => $this->familiesRepository->findAll()
+            // 'plants' => $this->plantsRepository->findAll(),
+            // 'family' => $this->familiesRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

@@ -20,6 +20,12 @@ class UserPlantsRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['id' => $id]);
     }
+
+    public function paginationOrder()
+    {
+    return $this->createQueryBuilder('p')
+        ->orderBy('p.id', 'ASC');
+    }
     //    /**
     //     * @return UserPlants[] Returns an array of UserPlants objects
     //     */

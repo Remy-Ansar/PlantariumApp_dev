@@ -7,6 +7,7 @@
 
 {% block body %}
 
+<main>
     <h2>{{ plant.Name }}</h2>
     <p>Espèce: {{ plant.species.Name }}</p>
     <p>Famille: {{ plant.families.Name }}</p>
@@ -20,4 +21,5 @@
     {% else %}
         <p>Aucun détail supplémentaire disponible.</p>
     {% endfor %}
+</main>
 {% endblock %}

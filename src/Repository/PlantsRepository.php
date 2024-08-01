@@ -26,6 +26,11 @@ class PlantsRepository extends ServiceEntityRepository
         return $this->findOneBy(['id' => $id]);
     }
     
+    public function paginationOrder()
+    {
+    return $this->createQueryBuilder('p')
+        ->orderBy('p.id', 'ASC');
+    }
     //    /**
     //     * @return Plants[] Returns an array of Plants objects
     //     */

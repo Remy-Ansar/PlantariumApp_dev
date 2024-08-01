@@ -13,6 +13,7 @@ use App\Repository\PlantsRepository;
 use App\Repository\UserInfosRepository;
 use App\Repository\UserPlantsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -49,10 +50,20 @@ class UserPlantsController extends AbstractController
     }
 
     #[Route('/plantarium', name: '.plantarium', methods: ['GET', 'POST'])]
-    public function plantariumList(?Plants $plants): Response
+    public function plantariumList(Request $request, PaginatorInterface $paginator, ?Plants $plants): Response
     {
+        $queryBuilder = $this->plantsRepository->paginationOrder();
+
+        $pagination = $paginator->paginate(
+            $queryBuilder, /* query NOT result */
+            $request->query->getInt('page', 1), /* page number */
+            5 /* limit per page */
+        );
+
+
         return $this->render('Frontend/UserPlants/PlantList/index.html.twig',  [
-            'plants' => $this->plantsRepository->findAll(),
+            // 'plants' => $this->plantsRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

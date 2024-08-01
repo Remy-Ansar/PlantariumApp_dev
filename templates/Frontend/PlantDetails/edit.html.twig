@@ -1,67 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Modification de votre plante
-    {{ parent() }}
+Modification de votre plante
+{{ parent() }}
 {% endblock %}
 
 {% block body %}
-
 
 <span class="return">
     <a href="{{ path('users.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
 </span>
 
-<div class="plantCard">
-    <div class="plantHeader">
-        <h2>Plante : {{ plant.name }}</h2>
-        <h3>Espèce: {{ plant.species.name }}</h3>
-    </div>
+<main>
+    <div class="plantCard">
+        <div class="plantHeader">
+            <h2>Plante : {{ plant.name }}</h2>
+            <h3>Espèce: {{ plant.species.name }}</h3>
+        </div>
 
-    <div class="plantPic">
-        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
-    </div>
-    <div class="plantInfos">
-        <p>Description:</p>
-        <p>{{ plant.description }}</p>
+        <div class="plantPic">
+            <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
+        </div>
+        <div class="plantInfos">
+            <p>Description:</p>
+            <p>{{ plant.description }}</p>
 
-        <p>Famille: {{ plant.families.name }}</p>
-        <p>Espèce: {{ plant.species.name }}</p>
+            <p>Famille: {{ plant.families.name }}</p>
+            <p>Espèce: {{ plant.species.name }}</p>
 
-  {{ form_start(form)}}
+            {{ form_start(form)}}
 
-{{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
+            {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
 
-
-
-        <div class="categUnit">
-            <div>Catégorie(s):</div>
-            {% for category in plant.categories %}
+            <div class="categUnit">
+                <div>Catégorie(s):</div>
+                {% for category in plant.categories %}
                 <div class="categComponent">{{ category.name }}</div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
 
-        <div class="categUnit">
-            Saisonalité:
-            {% for season in plant.seasons %}
+            <div class="categUnit">
+                Saisonalité:
+                {% for season in plant.seasons %}
                 <div class="categComponent">{{ season.name }}</div>
-            {% endfor %}
-        </div>
+                {% endfor %}
+            </div>
 
-        <div class="categUnit">
-            Arrosage
-        </div>
+            <div class="categUnit">
+                Arrosage
+            </div>
 
-        <div class="categUnit">
-            Couleurs:
-            {% for color in plant.colors %}
+            <div class="categUnit">
+                Couleurs:
+                {% for color in plant.colors %}
                 <div class="categComponent">{{ color.name }}</div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
- <button class="modifyButton">Modifier</button>
-{{ form_end(form) }}
+        <button class="modifyButton">Modifier</button>
+        {{ form_end(form) }}
 
-</div>
+    </div>
+</main>
 
 {% endblock %}
