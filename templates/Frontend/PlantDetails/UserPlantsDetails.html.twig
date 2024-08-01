@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Détail de la plante
-    {{ parent() }}
+Détail de la plante
+{{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -14,20 +14,21 @@
 <div class="plantCard">
     <div class="plantHeader">
         <div>
-        <h2>Plante : {{ plant.Name }}</h2>
-        <h3>Espèce: {{ plant.species.Name }}</h3></div>
+            <h2>Plante : {{ plant.Name }}</h2>
+            <h3>Espèce: {{ plant.species.Name }}</h3>
+        </div>
 
         <div>
-        <form action="{{path('userPlants.details.delete', {name: plant.Name, id: plantdetail.id}) }}" method="POST"
-                        onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
-                        enctype="multipart/form-data">
-                        <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
-                        <button type="submit" class="removePlant">
-                                <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
+            <form action="{{path('userPlants.details.delete', {name: plant.Name, id: plantdetail.id}) }}" method="POST"
+                onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
+                enctype="multipart/form-data">
+                <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
+                <button type="submit" class="removePlant">
+                    <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
 
-                        </button>
-                    </form>
-                    </div>
+                </button>
+            </form>
+        </div>
     </div>
 
     <div class="plantPic">
@@ -44,31 +45,45 @@
             <div class="categUnit">
                 <div>Statut de la plante:</div>
                 {% if plantdetail.HealthStatus %}
-                    <div class="categComponent">{{ plantdetail.HealthStatus.Name }}</div>
-                    <p>Description du statut: {{ plantdetail.HealthStatus.Description }}</p>
+                <div class="categComponent">{{ plantdetail.HealthStatus.Name }}</div>
+                <div class="categComponent">Description du statut: {{ plantdetail.HealthStatus.Description }}</div>
                 {% else %}
-                    <p>Aucun statut de santé disponible.</p>
+                <p>Aucun statut de santé disponible.</p>
                 {% endif %}
             </div>
 
-<div class="categUnit">
-    <div>Maladies associées:</div>
-    {% if plantdetail.HealthStatus and plantdetail.diseases|length > 0 %}
-        {% for disease in plantdetail.diseases %}
-            <div class="categComponent">{{ disease.Name }}</div>
-            <p>Description de la maladie: {{ disease.Description }}</p>
-        {% endfor %}
-    {% else %}
-        <p>Aucune maladie associée.</p>
-    {% endif %}
-</div>
+            {% if plantdetail.diseases|length > 0 %}
+            <div class="categUnit">
+                {% if plantdetail.HealthStatus.Name == "Malade" %}
+                {% for disease in plantdetail.diseases %}
+                <div>Maladies associées:</div>
+                <div class="categComponent">{{ disease.Name }}</div>
+                {% endfor %}
+                {% endif %}
+                {# {% else %}
+                <p>Aucune maladie associée.</p> #}
+
+                {% endif %}
+            </div>
+            {% if plantdetail.diseases|length > 0 %}
+            <div class="categUnit">
+                {% if plantdetail.HealthStatus.Name == "Malade" %}
+                {% for disease in plantdetail.diseases %}
+                <div>Description de la maladie:</div>
+                <div>{{ disease.Description }}</div>
+                {% endfor %}
+                {% endif %}
+                {# {% else %}
+                <p>Aucune maladie associée.</p> #}
+                {% endif %}
+            </div>
 
             <div class="categUnit">
                 <div>Journal:</div>
                 {% if plantdetail.Journal %}
-                    <p>{{ plantdetail.Journal }}</p>
+                <p>{{ plantdetail.Journal }}</p>
                 {% else %}
-                    <p>Aucun journal disponible.</p>
+                <p>Aucun journal disponible.</p>
                 {% endif %}
             </div>
 
@@ -100,7 +115,8 @@
                 {% endfor %}
             </div>
         </div>
-        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button class="modifyButton">Modification de votre plante</button></a>
+        <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button
+                class="modifyButton">Modification de votre plante</button></a>
     </div>
 </div>
 {% endblock %}

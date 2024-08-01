@@ -115,7 +115,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   // Fixtures for Diseases
   $diseases = [];
   $diseasesNames = [
-      'Alternariose', 'Mildiou', 'Rouille', 'Acariens',
+      '', 'Alternariose', 'Mildiou', 'Rouille', 'Acariens',
       'Feu bactérien ', 'Marsonia', 'Botrytis', 'Tavelure',
       'Carence en fer '
   ];

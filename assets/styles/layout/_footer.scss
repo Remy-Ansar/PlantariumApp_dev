@@ -1,0 +1,14 @@
+footer {
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 2em;
+    height: 100%;
+    background: $glassmorphism;
+}
+
+.footerUnit {
+    height: 3em;
+    padding: 1em;
+}

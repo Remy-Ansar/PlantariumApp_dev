@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240729150621 extends AbstractMigration
+final class Version20240801121731 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,9 +25,10 @@ final class Version20240729150621 extends AbstractMigration
         $this->addSql('CREATE TABLE colors (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', UNIQUE INDEX UNIQ_NAME_COLORS (Name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE colors_plants (colors_id INT NOT NULL, plants_id INT NOT NULL, INDEX IDX_A1D2C1A25C002039 (colors_id), INDEX IDX_A1D2C1A262091EAB (plants_id), PRIMARY KEY(colors_id, plants_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE diseases (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, description VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE diseases_plant_detail (diseases_id INT NOT NULL, plant_detail_id INT NOT NULL, INDEX IDX_422646BBE672F970 (diseases_id), INDEX IDX_422646BB5D9C9023 (plant_detail_id), PRIMARY KEY(diseases_id, plant_detail_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE families (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', UNIQUE INDEX UNIQ_NAME_FAMILY (Name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE health_status (id INT AUTO_INCREMENT NOT NULL, diseases_id INT DEFAULT NULL, name VARCHAR(255) DEFAULT NULL, description VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_EA8D99E672F970 (diseases_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE plant_detail (id INT AUTO_INCREMENT NOT NULL, user_plants_id INT NOT NULL, plant_id INT DEFAULT NULL, health_status_id INT DEFAULT NULL, diseases_id INT DEFAULT NULL, journal LONGTEXT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_CD96AE1862E9934F (user_plants_id), INDEX IDX_CD96AE181D935652 (plant_id), INDEX IDX_CD96AE185A71AB2F (health_status_id), INDEX IDX_CD96AE18E672F970 (diseases_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE health_status (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, description VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE plant_detail (id INT AUTO_INCREMENT NOT NULL, user_plants_id INT NOT NULL, plant_id INT DEFAULT NULL, health_status_id INT DEFAULT NULL, journal LONGTEXT DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_CD96AE1862E9934F (user_plants_id), INDEX IDX_CD96AE181D935652 (plant_id), INDEX IDX_CD96AE185A71AB2F (health_status_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE plants (id INT AUTO_INCREMENT NOT NULL, families_id INT DEFAULT NULL, species_id INT DEFAULT NULL, name VARCHAR(255) DEFAULT NULL, description LONGTEXT DEFAULT NULL, image_name VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', enable TINYINT(1) NOT NULL, INDEX IDX_A5AEDC165DFECCD4 (families_id), INDEX IDX_A5AEDC16B2A1D860 (species_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE seasons (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(100) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE seasons_plants (seasons_id INT NOT NULL, plants_id INT NOT NULL, INDEX IDX_D73DE5D216EB9F66 (seasons_id), INDEX IDX_D73DE5D262091EAB (plants_id), PRIMARY KEY(seasons_id, plants_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -40,11 +41,11 @@ final class Version20240729150621 extends AbstractMigration
         $this->addSql('ALTER TABLE categories_plants ADD CONSTRAINT FK_ADC7E22E62091EAB FOREIGN KEY (plants_id) REFERENCES plants (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE colors_plants ADD CONSTRAINT FK_A1D2C1A25C002039 FOREIGN KEY (colors_id) REFERENCES colors (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE colors_plants ADD CONSTRAINT FK_A1D2C1A262091EAB FOREIGN KEY (plants_id) REFERENCES plants (id) ON DELETE CASCADE');
-        $this->addSql('ALTER TABLE health_status ADD CONSTRAINT FK_EA8D99E672F970 FOREIGN KEY (diseases_id) REFERENCES diseases (id)');
+        $this->addSql('ALTER TABLE diseases_plant_detail ADD CONSTRAINT FK_422646BBE672F970 FOREIGN KEY (diseases_id) REFERENCES diseases (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE diseases_plant_detail ADD CONSTRAINT FK_422646BB5D9C9023 FOREIGN KEY (plant_detail_id) REFERENCES plant_detail (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE plant_detail ADD CONSTRAINT FK_CD96AE1862E9934F FOREIGN KEY (user_plants_id) REFERENCES user_plants (id)');
         $this->addSql('ALTER TABLE plant_detail ADD CONSTRAINT FK_CD96AE181D935652 FOREIGN KEY (plant_id) REFERENCES plants (id)');
         $this->addSql('ALTER TABLE plant_detail ADD CONSTRAINT FK_CD96AE185A71AB2F FOREIGN KEY (health_status_id) REFERENCES health_status (id)');
-        $this->addSql('ALTER TABLE plant_detail ADD CONSTRAINT FK_CD96AE18E672F970 FOREIGN KEY (diseases_id) REFERENCES diseases (id)');
         $this->addSql('ALTER TABLE plants ADD CONSTRAINT FK_A5AEDC165DFECCD4 FOREIGN KEY (families_id) REFERENCES families (id)');
         $this->addSql('ALTER TABLE plants ADD CONSTRAINT FK_A5AEDC16B2A1D860 FOREIGN KEY (species_id) REFERENCES species (id)');
         $this->addSql('ALTER TABLE seasons_plants ADD CONSTRAINT FK_D73DE5D216EB9F66 FOREIGN KEY (seasons_id) REFERENCES seasons (id) ON DELETE CASCADE');
@@ -61,11 +62,11 @@ final class Version20240729150621 extends AbstractMigration
         $this->addSql('ALTER TABLE categories_plants DROP FOREIGN KEY FK_ADC7E22E62091EAB');
         $this->addSql('ALTER TABLE colors_plants DROP FOREIGN KEY FK_A1D2C1A25C002039');
         $this->addSql('ALTER TABLE colors_plants DROP FOREIGN KEY FK_A1D2C1A262091EAB');
-        $this->addSql('ALTER TABLE health_status DROP FOREIGN KEY FK_EA8D99E672F970');
+        $this->addSql('ALTER TABLE diseases_plant_detail DROP FOREIGN KEY FK_422646BBE672F970');
+        $this->addSql('ALTER TABLE diseases_plant_detail DROP FOREIGN KEY FK_422646BB5D9C9023');
         $this->addSql('ALTER TABLE plant_detail DROP FOREIGN KEY FK_CD96AE1862E9934F');
         $this->addSql('ALTER TABLE plant_detail DROP FOREIGN KEY FK_CD96AE181D935652');
         $this->addSql('ALTER TABLE plant_detail DROP FOREIGN KEY FK_CD96AE185A71AB2F');
-        $this->addSql('ALTER TABLE plant_detail DROP FOREIGN KEY FK_CD96AE18E672F970');
         $this->addSql('ALTER TABLE plants DROP FOREIGN KEY FK_A5AEDC165DFECCD4');
         $this->addSql('ALTER TABLE plants DROP FOREIGN KEY FK_A5AEDC16B2A1D860');
         $this->addSql('ALTER TABLE seasons_plants DROP FOREIGN KEY FK_D73DE5D216EB9F66');
@@ -78,6 +79,7 @@ final class Version20240729150621 extends AbstractMigration
         $this->addSql('DROP TABLE colors');
         $this->addSql('DROP TABLE colors_plants');
         $this->addSql('DROP TABLE diseases');
+        $this->addSql('DROP TABLE diseases_plant_detail');
         $this->addSql('DROP TABLE families');
         $this->addSql('DROP TABLE health_status');
         $this->addSql('DROP TABLE plant_detail');
