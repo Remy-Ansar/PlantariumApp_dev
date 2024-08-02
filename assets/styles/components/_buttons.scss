@@ -46,14 +46,17 @@
   display: flex;
   height: 2em;
   align-items: center;
+  box-sizing: border-box;
+
 }
 
 .modifyButton {
-  border: 2px solid $pine-green;
+  border: 3px solid $pine-green;
   border-radius: 12px 10px;
   background: $white-font;
   color: $dark-font;
   box-sizing: border-box;
+  padding: 5px;
 }
 
 .deleteButton {
@@ -62,6 +65,7 @@
   background: $pine-green;
   color: $white-font;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .tagsButton {
@@ -69,5 +73,17 @@
   border-radius: 10px 12px;
   padding: 0 5px 0 5px;
   color: $white-font;
-  bottom: $pine-green;
+  background: $pine-green;
+  box-sizing: border-box;
+}
+
+.categTags {
+  
+  border: 2px solid $white-font;
+  border-radius: 10px 12px;
+  padding: 0.5em 0.1em 0.5em 0.1em;
+  color: $white-font;
+  background: $pine-green;
+  text-align: center;
+
 }

@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block body %}
+<span class="return">
+    <a href="{{ path('editor.plants.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
+</span>
 	<section>
 		<h1>Modification d'une plante</h1>
 		<a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a>

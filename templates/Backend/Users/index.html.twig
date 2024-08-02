@@ -6,17 +6,22 @@ Administration des utilisateurs
 {% endblock %}
 {% block body %}
             {% include "Layout/nav.html.twig" %}
+            <main>
+            <div class="headerMain">
 <h1>Plantarium</h1>
 <h2>Administration des utilisateurs</h2>
 
 <div class="wrap">
     <div class="searchBar">
         <input type="text" class="searchText" placeholder="Ficus Benjamina">
-        <button type="submit" class="searchSubmit"></button>
+        <button type="submit" class="searchSubmit">
+            <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
+        </button>
     </div>
 </div>
+</div>
 
-<main>
+    <div class="table-container">
     <table>
         <thead>
             <tr>
@@ -25,8 +30,9 @@ Administration des utilisateurs
                 <th>Role</th>
                 <th>Nom complet</th>
                 <th>Niveau</th>
-                <th>photo</th>
-                <th>Action</th>
+                <th>Photo</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -39,21 +45,22 @@ Administration des utilisateurs
                 <td>{{ user.UserInfos.getFullName() }}</td>
                 <td>{{ user.UserInfos.getLevel() }}</td>
                 <td><img src="{{ vich_uploader_asset( user.UserInfos, 'image') }}" alt="{{ user.UserInfos }}"
-                        loading="lazy" class="rounded" width="50px" height="50px"></td>
+                        loading="lazy" class="rounded" width="100px" height="100px"></td>
 
-                <td><a href="{{ path('admin.users.edit', {id: user.id}) }}">Modifier</a></td>
+                <td><a href="{{ path('admin.users.edit', {id: user.id}) }}"><button class="modifyButton">Modifier</button></a></td>
                 <td>
                     <form action="{{path('admin.users.delete', {id: user.id}) }}" method="POST"
                         onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cet utilisateur? Cette action est irréversible')"
                         enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{ csrf_token('delete'~ user.id) }}">
-                        <button type="submit">Supprimer</button>
+                        <button type="submit" class="deleteButton">Supprimer</button>
                     </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    </div>
 </main>
 
 {% endblock %}

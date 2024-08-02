@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const hypertext = document.getElementsByTagName('a');
+    const hypertext = document.querySelectorAll('.link');
   
     let setActiveLink = function() {
 

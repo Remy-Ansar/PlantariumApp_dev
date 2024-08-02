@@ -11,7 +11,9 @@ Administration des plantes
 <div class="wrap">
     <div class="searchBar">
         <input type="text" class="searchText" placeholder="Ficus Benjamina">
-        <button type="submit" class="searchSubmit"></button>
+        <button type="submit" class="searchSubmit">
+            <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
+        </button>
     </div>
 </div>
 
@@ -22,13 +24,10 @@ Administration des plantes
         </div>
     </section>
 
-
 </main>
 
-    <section>
-        <div class="navigation">
-            {{ knp_pagination_render(pagination) }}
-        </div>
-    </section>
+<div class="navigation">
+<p>page(s){{ knp_pagination_render(pagination) }}</p>
+</div>
 
 {% endblock %}

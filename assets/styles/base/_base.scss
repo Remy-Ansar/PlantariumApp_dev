@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
 body {
     @include font-secondary; // Default font for the body
 
@@ -8,15 +7,16 @@ body {
     background-size: cover;
     margin-left: 2em;
     margin-right: 3em;
+    overflow-x: auto; /* Enable horizontal scrolling */
   }
   
   h1, h2, h3, h4, h5, h6 {
     @include font-primary; // Primary font for headings
   }
   
-  p {
-    @include font-tertiary; // Tertiary font for paragraphs
-  }
+  // p {
+  //   @include font-primary; // Tertiary font for paragraphs
+  // }
 
   .quote {
     @include font-quaternary; // Quaternary font for quotes or specific elements
@@ -66,4 +66,9 @@ main {
 
 #diseases-field {
   display: none;
+}
+
+.headerMain {
+  display: flex;
+  flex-direction: column;
 }

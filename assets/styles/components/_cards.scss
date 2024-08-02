@@ -82,8 +82,8 @@
 .plantTitle {
     color: $white-font;
     text-align: center;
-    transform: translateY(-50%);
-    font-size: 1.5em;
+    transform: translateY(-10%);
+    font-size: 2em;
     font-style: italic;
     position: absolute;
     -webkit-text-stroke: 0.5px $dark-font;
@@ -132,7 +132,6 @@
 
 .categComponent {
     display: flex;
-
     align-items: center;
     border: 2px solid $pine-green;
     border-radius: 10px 12px;

@@ -3,18 +3,9 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Colors;
-use App\Entity\Plants;
-use App\Entity\Seasons;
 use App\Entity\Species;
 use App\Entity\Families;
-use App\Form\FieldsType;
-use App\Form\PlantsType;
-use App\Entity\Categories;
-use App\Entity\UserPlants;
 use App\Form\FamiliesType;
-use Doctrine\ORM\Mapping\Entity;
-use App\Entity\Trait\EnableTrait;
-use App\Entity\Traits\DateTimeTrait;
 use App\Form\ColorsType;
 use App\Form\SpeciesType;
 use App\Repository\ColorsRepository;

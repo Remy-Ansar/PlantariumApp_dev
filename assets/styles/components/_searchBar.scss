@@ -1,35 +1,47 @@
 .wrap {
     display: flex;
     justify-content: center;
-    width: 100%;  // Ensure the wrap takes the full width
-    margin-bottom: 2em;  // Add some margin at the bottom for spacing
+    align-items: center;
+    margin: 20px;
+    outline: none; /* Remove default outline */
 }
 
 .searchBar {
     display: flex;
-    justify-content: center;  // Center content within the searchBar
-    width: 50%;  // Adjust this to your preference
+    align-items: center;
+    border-radius: 10px 12px 12px 10px;
+    background: $white-font;
+    outline: none; /* Remove default outline */
 }
 
 .searchText {
-    flex: 1;
-    height: 36px;
-    font-style: italic;
-    border: 3px solid $white-font;
-    padding: 5px;
-    border-right: none;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: $dark-font;
+    padding: 10px;
+    font-size: 16px;
+    outline: none; /* Remove default outline */
+    border: none; /* Remove border */
+    border-radius: 10px 12px 12px 10px;
+
+}
+
+.searchText:focus {
+    outline: none; /* Ensure no outline on focus */
+    border: none; /* Ensure no border on focus */
 }
 
 .searchSubmit {
-    width: 40px;
-    height: 36px;
-    border: 3px solid $white-font;
-    background: $glassmorphism;
-    text-align: center;
-    color: $dark-font;
-    border-radius: 0 5px 5px 0;
-    font-size: 20px;
+    border: none; /* Remove default border */
+    background: none; /* Remove default background */
+    cursor: pointer; /* Show pointer cursor on hover */
+    outline: none; /* Remove default outline */
+    display: flex;
+    align-items: center;
+    border-radius: 10px 12px 12px 10px;
+    background: $white-font;
+    padding: 10px;
+}
+
+.searchSubmit img {
+    width: 20px; /* Adjust the size as needed */
+    height: 20px; /* Adjust the size as needed */
+    outline: none; /* Remove default outline */
 }

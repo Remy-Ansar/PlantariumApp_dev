@@ -1,21 +1,26 @@
+
+{% if app.user %}
+
 <footer>
     <div class="footerUnit">
-        <ul>
-            <li><a href="{{ path('footer_contact') }}">Nous contacter</a></li>
-            <li><a href="{{ path('footer_mentions_legales') }}">Mentions légales</a></li>
-        </ul>
+        <p><a href="{{ path('footer_contact') }}" class="link">Nous contacter</a></p>
+    </div>
+
+   <div class="footerUnit">
+        <p><a href="{{ path('footer_mentions_legales') }}" class="link">Mentions légales</a></p>
     </div>
 
     <div class="footerUnit">
-        <ul>
-            <li><a href="{{ path('footer_copyright') }}">Copyright</a></li>
-        </ul>
+        <p><a href="{{ path('footer_copyright') }}" class="link">Copyright</a></p>
     </div>
 
     <div class="footerUnit">
-        <ul>
-            <li><a href="{{ path('footer_credits') }}">Crédits</a></li>
-            <li><a href="{{ path('footer_conditions_generales') }}">Conditions générales</a></li>
-        </ul>
+        <p><a href="{{ path('footer_credits') }}" class="link">Crédits</a></p>
+    </div>
+
+    <div class="footerUnit">
+        <p><a href="{{ path('footer_conditions_generales') }}" class="link">Conditions générales</a></p>
+
     </div>
 </footer>
+{% endif %}

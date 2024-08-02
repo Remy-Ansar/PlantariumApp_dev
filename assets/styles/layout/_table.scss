@@ -16,12 +16,21 @@ tbody {
 
 th,
 td {
-  padding: 20px;
+  padding: 10px;
+  width: 15em;
 }
+
+thead th:nth-child(1) {
+  width: 2em;
+}
+
 thead th:nth-child(5) {
     width: 15em;
   }
 
+thead th:nth-child(10) {
+    width: 2em;
+  }
 .fieldAdd {
     display: flex;
     justify-content: flex-start;
@@ -34,6 +43,21 @@ tbody tr {
     text-align: center;
   }
   
-  td {
+td {
     letter-spacing: 1px;
+    text-align: center;
   }
+
+td a {
+  display: flex;
+  justify-content: center;
+}
+
+td a img {
+width: 200px;
+height: 200px;
+}
+  .table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
