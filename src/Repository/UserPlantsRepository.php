@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Users;
 use App\Entity\UserPlants;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<UserPlants>
@@ -19,6 +20,23 @@ class UserPlantsRepository extends ServiceEntityRepository
     public function findOneById(string $id): ?UserPlants
     {
         return $this->findOneBy(['id' => $id]);
+    }
+
+    
+
+    /**
+     * Récupère les plantes d'un utilisateur spécifique
+     *
+     * @param Users $user
+     * @return UserPlants[]
+     */
+    public function findUserPlantsByUser(Users $user): array
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.User = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 
     public function paginationOrder()

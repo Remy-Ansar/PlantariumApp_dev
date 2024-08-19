@@ -88,38 +88,36 @@ Détail de la plante
                     <p>Aucun journal disponible.</p>
                     {% endif %}
                 </div>
+                
+                    <div class="categUnit">
+                        <div>Catégorie(s)</div>
+                        {% for category in plant.categories %}
+                        <div class="categComponent">{{ category.Name }}</div>
+                        {% endfor %}
+                    </div>
 
-                <div class="categUnit">
-                    <div>Catégorie(s):</div>
-                    {% for category in plant.categories %}
-                    <div class="categComponent">{{ category.Name }}</div>
-                    {% endfor %}
-                </div>
+                    <div class="categUnit">Saisonalité
+                        {% for season in plant.seasons %}
+                        <div class="categComponent">{{ season.Name }}</div>
+                        {% endfor %}
+                    </div>
 
-                <div class="categUnit">
-                    Saisonalité:
-                    {% for season in plant.seasons %}
-                    <div class="categComponent">{{ season.Name }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="categUnit">
-                    Arrosage
-                    {# {% for color in plant.colors %}
+                    <div class="categUnit">Arrosage
+                        {# {% for color in plant.colors %}
                 <div class="categComponent">{{ color.Name }}</div>
                 {% endfor %} #}
-                </div>
+                    </div>
 
-                <div class="categUnit">
-                    Couleurs:
-                    {% for color in plant.colors %}
-                    <div class="categComponent">{{ color.Name }}</div>
-                    {% endfor %}
+                    <div class="categUnit">Couleurs
+                        {% for color in plant.colors %}
+                        <div class="categComponent">{{ color.Name }}</div>
+                        {% endfor %}
+                    </div>
+                
+                <div>
+                    <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button
+                            class="modifyButton">Modification de votre plante</button></a>
                 </div>
             </div>
-            <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button
-                    class="modifyButton">Modification de votre plante</button></a>
-        </div>
-    </div>
 </main>
 {% endblock %}

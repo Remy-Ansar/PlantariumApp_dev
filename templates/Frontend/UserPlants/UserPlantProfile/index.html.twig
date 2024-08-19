@@ -1,20 +1,25 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-main
-{{ parent() }}
+    Mes Plantes
+    {{ parent() }}
 {% endblock %}
-{% block body %}
-            {% include "Layout/nav.html.twig" %}
-<body class="main">
-    
 
-<h2>Trier mes plantes par </h2>
-<main>
-<div class="mainCardsUser">
-{% include 'Frontend/UserPlants/UserPlantProfile/_plantList.html.twig' %}
-    </div>
-   
-</main>
-</body>
+{% block body %}
+    {% include "Layout/nav.html.twig" %}
+
+    <body class="main">
+        <h2>Trier mes plantes par</h2>
+        <main>
+            <div class="mainCardsUser">
+                {% for userPlant in userPlants %}
+                    {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+                {% else %}
+                    <div>
+                        <p>Vous n'avez pas encore de plantes dans votre profil</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+    </body>
 {% endblock %}

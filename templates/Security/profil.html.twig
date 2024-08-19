@@ -12,8 +12,13 @@ inscription
 
 
 
-    <main class = formDisplay>
+    <main>
         {{form_start(form)}}
+        <span>
+    <p> Deuxième étape : 
+    </p>
+    </span>
+
          {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
         <button class="button" type="submit">Valider</button>
         {{form_end(form)}}

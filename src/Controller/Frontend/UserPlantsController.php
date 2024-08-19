@@ -38,8 +38,17 @@ class UserPlantsController extends AbstractController
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(): Response
     {
+        $user = $this->getUser();
+        if (!$user instanceof Users) {
+            $this->addFlash('danger', 'Vous n\'êtes pas autorisé.');
+            return $this->redirectToRoute('app_login');
+        }
+    
+        // Utiliser la méthode findUserPlantsByUser pour récupérer les plantes de cet utilisateur
+        $userPlants = $this->userPlantsRepository->findUserPlantsByUser($user);
+    
         return $this->render('Frontend/UserPlants/UserPlantProfile/index.html.twig', [
-            'userPlants' => $this->userPlantsRepository->findAll()
+            'userPlants' => $userPlants
         ]);
     }
 
@@ -57,7 +66,7 @@ class UserPlantsController extends AbstractController
         $pagination = $paginator->paginate(
             $queryBuilder, /* query NOT result */
             $request->query->getInt('page', 1), /* page number */
-            5 /* limit per page */
+            6 /* limit per page */
         );
 
 
