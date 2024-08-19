@@ -7,3 +7,8 @@ controllers:
 logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
+
+plant_search:
+    path: /plants/search
+    controller: App\Controller\PlantsController::search
+    methods: [GET]

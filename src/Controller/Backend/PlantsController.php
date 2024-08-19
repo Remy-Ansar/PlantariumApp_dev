@@ -24,6 +24,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 #[Route('/editor/plants', name: 'editor.plants')]
 class PlantsController extends AbstractController
@@ -40,18 +42,34 @@ class PlantsController extends AbstractController
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
-        $queryBuilder = $this->plantsRepository->paginationOrder();
-        
+        // Récupération des filtres depuis la requête
+        $filters = $request->query->all();
+    
+        // Utilisation du repository pour appliquer les filtres
+        $query = $this->plantsRepository->findPlantsWithFilters($filters);
+    
+        // Pagination des résultats filtrés
         $pagination = $paginator->paginate(
-            $queryBuilder, /* query NOT result */
-            $request->query->getInt('page', 1), /* page number */
-            5 /* limit per page */
+            $query,
+            $request->query->getInt('page', 1),
+            5
         );
-
+    
+        // Récupération des valeurs nécessaires pour les filtres
+        $colors = $this->em->getRepository(Colors::class)->findAll();
+        $categories = $this->em->getRepository(Categories::class)->findAll();
+        $families = $this->em->getRepository(Families::class)->findAll();
+        $species = $this->em->getRepository(Species::class)->findAll();
+        $seasons = $this->em->getRepository(Seasons::class)->findAll();
+    
+        // Rendu de la vue avec les résultats filtrés
         return $this->render('Backend/Plants/index.html.twig', [
-            // 'plants' => $this->plantsRepository->findAll(),
-            // 'family' => $this->familiesRepository->findAll(),
             'pagination' => $pagination,
+            'colors' => $colors,
+            'categories' => $categories,
+            'families' => $families,
+            'species' => $species,
+            'seasons' => $seasons,
         ]);
     }
 
@@ -244,5 +262,26 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
         return $this->render('Backend/Plants/showPlant.html.twig', [
             'plant' => $plant,
         ]);
+    }
+
+    #[Route('/search/{name}', name: '.search', methods: ['GET'])]
+    public function search(string $name): JsonResponse
+    {
+        $result = $this->plantsRepository->findOneByName($name);
+
+        if ($result) {
+            $data = [
+                'name' => $result->getName(),
+                'family' => $result->getFamilies() ? $result->getFamilies()->getName() : null,
+                'species' => $result->getSpecies() ? $result->getSpecies()->getName() : null,
+                'colors' => $result->getColors()->map(fn($color) => $color->getName())->toArray(),
+                'categories' => $result->getCategories()->map(fn($category) => $category->getName())->toArray(),
+                'seasons' => $result->getSeasons()->map(fn($season) => $season->getName())->toArray(),
+            ];
+
+            return new JsonResponse($data);
+        }
+
+        return new JsonResponse(['message' => 'Plante non trouvée'], Response::HTTP_NOT_FOUND);
     }
 }

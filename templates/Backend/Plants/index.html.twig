@@ -4,6 +4,7 @@
 Administration des plantes
 {{ parent() }}
 {% endblock %}
+
 {% block body %}
 {% include "Layout/nav.html.twig" %}
 
@@ -13,25 +14,74 @@ Administration des plantes
         <h2>Administration des plantes</h2>
 
         <div class="wrap">
-            <div class="searchBar">
-                <input type="text" class="searchText" placeholder="Ficus Benjamina">
-                <button type="submit" class="searchSubmit">
-                    <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
-                </button>
-            </div>
+            <form method="get" action="{{ path('editor.plants.index') }}">
+                <div class="searchBar">
+                    <input type="text" name="name" class="searchText" placeholder="Ficus Benjamina">
+                    <button type="submit" class="searchSubmit">
+                        <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
+                    </button>
+                </div>
+
+                <div class="filters">
+                <span>
+                <p>Rechercher par : </p>
+                </span>
+                    <div class="categFilter">
+                    <p>Couleurs</p>
+                    <select name="colors[]" >
+                        {% for color in colors %}
+                            <option value="{{ color.id }}">{{ color.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <p>Catégories</p>
+                    <select name="categories[]" >
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <p>Catégories</p>
+                    <select name="families">
+                        {% for family in families %}
+                            <option value="{{ family.id }}">{{ family.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <p>Espèce</p>
+                    <select name="species">
+                        {% for specie in species %}
+                            <option value="{{ specie.id }}">{{ specie.name }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <p>Saison</p>
+                    <select name="seasons[]">
+                        {% for season in seasons %}
+                            <option value="{{ season.id }}">{{ season.name }}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                </div>
+
+                <button type="submit">Rechercher</button>
+            </form>
         </div>
 
-        <div class=" fieldAdd">
+        <div class="fieldAdd">
             <div>
-                <a href="{{ path('editor.plants.new') }}"><button class="modifyButton">Ajouter une plante</button></a>
+                <a href="{{ path('editor.plants.new') }}">
+                    <button class="modifyButton">Ajouter une plante</button>
+                </a>
             </div>
             <div>
-                <a href="{{ path('editor.plants.field.index') }}"><button class="modifyButton">Ajouter des
-                        champs</button></a>
-
-            </div>{# <a href="{{ path('editor.plants.field.edit') }}">modifier des champs</a> #}
+                <a href="{{ path('editor.plants.field.index') }}">
+                    <button class="modifyButton">Ajouter des champs</button>
+                </a>
+            </div>
         </div>
     </div>
+
     <div class="table-container">
         <table>
             <thead>
@@ -51,7 +101,11 @@ Administration des plantes
                 </tr>
             </thead>
             <tbody>
-
+            {% if pagination.items is empty %}
+        <tr>
+            <td colspan="12">Aucune plante ne correspond à votre recherche.</td>
+        </tr>
+    {% else %}
                 {% for plant in pagination.items %}
                 <tr>
                     <td>{{ plant.id }}</td>
@@ -62,49 +116,58 @@ Administration des plantes
                     <td>
                         <div class="categTags">
                             {% for color in plant.colors %}
-                            {{ color.Name }}
+                                {{ color.Name }}
                             {% endfor %}
                         </div>
                     </td>
                     <td>
                         <div class="categTags">
                             {% for season in plant.seasons %}
-                            {{ season.Name }}
+                                {{ season.Name }}
                             {% endfor %}
                         </div>
                     </td>
                     <td>
                         <div class="categTags">
                             {% for categorie in plant.categories %}
-                            {{ categorie.Name }}
+                                {{ categorie.Name }}
                             {% endfor %}
                         </div>
                     </td>
-                    <td><a href="{{ path('editor.plants.showPlant', {name: plant.Name}) }}"><img
-                                src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
-                                class="rounded" width="100px" height="100px">
-                        </a></td>
-
-                    <td>{{plant.enable ? 'Oui' : 'Non' }}</td>
-                    <td><a href="{{ path('editor.plants.edit', {id: plant.id}) }}"><button class="modifyButton">Modifier
-                                une plante</button> </a></td>
                     <td>
-                        <form action="{{path('editor.plants.delete', {id: plant.id}) }}" method="POST"
+                        <a href="{{ path('editor.plants.showPlant', {name: plant.Name}) }}">
+                            <img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
+                                class="rounded" width="100px" height="100px">
+                        </a>
+                    </td>
+                    <td>{{ plant.enable ? 'Oui' : 'Non' }}</td>
+                    <td>
+                        <a href="{{ path('editor.plants.edit', {id: plant.id}) }}">
+                            <button class="modifyButton">Modifier une plante</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ path('editor.plants.delete', {id: plant.id}) }}" method="POST"
                             onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
                             enctype="multipart/form-data">
-                            <input type="hidden" name="token" value="{{ csrf_token('delete'~ plant.id) }}">
+                            <input type="hidden" name="token" value="{{ csrf_token('delete' ~ plant.id) }}">
                             <button type="submit" class="deleteButton">Supprimer une plante</button>
                         </form>
                     </td>
-                    </td>
                 </tr>
                 {% endfor %}
+                {% endif %}
             </tbody>
         </table>
     </div>
+
     <div class="navigation">
-        <p>page(s){{ knp_pagination_render(pagination) }}</p>
+        <p>page(s) {{ knp_pagination_render(pagination) }}</p>
     </div>
 </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/plants.js') }}"></script>
 {% endblock %}
