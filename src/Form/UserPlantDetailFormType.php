@@ -52,7 +52,12 @@ class UserPlantDetailFormType extends AbstractType
             'mapped' => false,
             'required' => false,
         ]);
+        
+        // ->add('Warnings', WarningsType::class, [
+        //     'label' => false,
+        // ]);
     }
+        
 
     public function configureOptions(OptionsResolver $resolver): void
     {

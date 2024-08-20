@@ -36,9 +36,16 @@ class UserPlants
     #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants', cascade: ['persist'])]
     private Collection $plantDetail;
 
+    /**
+     * @var Collection<int, Warnings>
+     */
+    #[ORM\ManyToMany(targetEntity: Warnings::class, inversedBy: 'userPlants')]
+    private Collection $Warnings;
+
     public function __construct()
     {
         $this->plantDetail = new ArrayCollection();
+        $this->Warnings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,6 +126,30 @@ class UserPlants
     public function setPlantDetail(Collection $plantDetail): self
     {
         $this->plantDetail = $plantDetail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Warnings>
+     */
+    public function getWarnings(): Collection
+    {
+        return $this->Warnings;
+    }
+
+    public function addWarning(Warnings $warning): static
+    {
+        if (!$this->Warnings->contains($warning)) {
+            $this->Warnings->add($warning);
+        }
+
+        return $this;
+    }
+
+    public function removeWarning(Warnings $warning): static
+    {
+        $this->Warnings->removeElement($warning);
 
         return $this;
     }

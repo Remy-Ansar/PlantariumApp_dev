@@ -7,13 +7,16 @@ use Faker\Generator;
 use App\Entity\Users;
 use App\Entity\Plants;
 use App\Entity\Species;
+use App\Entity\Weather;
+use App\Entity\Diseases;
 use App\Entity\Families;
+use App\Entity\Warnings;
+use App\Entity\Watering;
 use App\Entity\UserInfos;
 use App\Entity\UserPlants;
+use App\Entity\HealthStatus;
 use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
-use App\Entity\Diseases;
-use App\Entity\HealthStatus;
 use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\HttpFoundation\File\File;
@@ -142,12 +145,49 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
 
 $manager->flush();
 
+            // Création des fixtures pour Weather
+            $weatherConditions = [];
+            foreach (Weather::getAvailableWeatherConditions() as $condition) {
+                $weather = (new Weather())
+                    ->setName($condition)
+                    ->setDescription($this->faker->sentence());
+                $manager->persist($weather);
+                $weatherConditions[] = $weather;
+            }
+    
+            // Création des fixtures pour Warnings
+            $warningsList = [];
+            for ($i = 0; $i < 5; $i++) {
+                $warning = (new Warnings())
+                    ->setName($this->faker->sentence(3))
+                    ->setDescription($this->faker->paragraph())
+                    ->setEnable($this->faker->boolean())
+                    ->setWeather($this->faker->randomElement($weatherConditions));
+    
+                $manager->persist($warning);
+                $warningsList[] = $warning;
+            }
+    
+            // Création des fixtures pour Watering
+            $wateringList = [];
+            for ($i = 0; $i < 10; $i++) {
+                $watering = (new Watering())
+                    ->setNote($this->faker->sentence())
+                    ->setFrequency($this->faker->numberBetween(1, 7))
+                    ->setQuantity($this->faker->randomFloat(2, 0.5, 5))
+                    ->setWarnings($this->faker->randomElement($warningsList));
+    
+                $manager->persist($watering);
+                $wateringList[] = $watering;
+            }
+
         // Fixture pour ajouter des plantes avec les autres entitées reliées.
         for ($i = 0; $i < 10; $i++) {
             $plant = (new Plants)
                 ->setName($this->faker->word())
                 ->setDescription($this->faker->sentence(20, true))
-                ->setEnable($this->faker->boolean);
+                ->setEnable($this->faker->boolean)
+                ->setWatering($this->faker->randomElement($wateringList));
                 // ->setImage($this->uploadImage());
                  // Set random Family
             $plant->setFamilies($this->faker->randomElement($families));
@@ -172,12 +212,14 @@ $manager->flush();
                 $category = $this->getReference($categoryReference);
                 $plant->addCategory($category);
             }
-
+            
                 $manager->persist($plant);
         }
 
         $manager->flush();
     }
+
+    
 
     public function getDependencies(): array
     {
@@ -187,6 +229,10 @@ $manager->flush();
             CategoriesFixtures::class,
         ];
     }
+
+    
+
+    
 
     // private function uploadImage(): UploadedFile
     // {

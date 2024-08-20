@@ -100,7 +100,7 @@ Administration des plantes
                     <th>Supprimer</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id='plant-list'>
             {% if pagination.items is empty %}
         <tr>
             <td colspan="12">Aucune plante ne correspond à votre recherche.</td>
@@ -169,5 +169,5 @@ Administration des plantes
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/plants.js') }}"></script>
+    <script src="{{ asset('javascript/sort.js') }}"></script>
 {% endblock %}

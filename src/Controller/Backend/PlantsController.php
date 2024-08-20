@@ -47,21 +47,34 @@ class PlantsController extends AbstractController
     
         // Utilisation du repository pour appliquer les filtres
         $query = $this->plantsRepository->findPlantsWithFilters($filters);
-    
+       
+
+    // Appliquer uniquement le filtre sélectionné
+    if ($filters['colors']) {
+        $this->plantsRepository->applyColorsFilter($queryBuilder, [$filters['colors']]);
+    }
+    if ($filters['categories']) {
+        $this->plantsRepository->applyCategoriesFilter($queryBuilder, [$filters['categories']]);
+    }
+    if ($filters['families']) {
+        $this->plantsRepository->applyFamiliesFilter($queryBuilder, $filters['families']);
+    }
+    if ($filters['species']) {
+        $this->plantsRepository->applySpeciesFilter($queryBuilder, $filters['species']);
+    }
+    if ($filters['seasons']) {
+        $this->plantsRepository->applySeasonsFilter($queryBuilder, [$filters['seasons']]);
+    }
+
+    // Appliquer le filtre par nom s'il est présent
+    $this->plantsRepository->applyNameFilter($queryBuilder, $filters['name']);
         // Pagination des résultats filtrés
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
             5
         );
-    
-        // Récupération des valeurs nécessaires pour les filtres
-        $colors = $this->em->getRepository(Colors::class)->findAll();
-        $categories = $this->em->getRepository(Categories::class)->findAll();
-        $families = $this->em->getRepository(Families::class)->findAll();
-        $species = $this->em->getRepository(Species::class)->findAll();
-        $seasons = $this->em->getRepository(Seasons::class)->findAll();
-    
+
         // Rendu de la vue avec les résultats filtrés
         return $this->render('Backend/Plants/index.html.twig', [
             'pagination' => $pagination,

@@ -86,6 +86,9 @@ class Plants
     #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'Plant')]
     private Collection $plantDetails;
 
+    #[ORM\ManyToOne(inversedBy: 'plants')]
+    private ?Watering $Watering = null;
+
     public function __construct()
     {
         $this->userPlants = new ArrayCollection();
@@ -327,5 +330,37 @@ class Plants
         return $this;
     }
 
+    public function getWatering(): ?Watering
+    {
+        return $this->Watering;
+    }
+
+    public function setWatering(?Watering $Watering): static
+    {
+        $this->Watering = $Watering;
+
+        return $this;
+    }
+
+    public function getWateringEvents(): array
+{
+    $events = [];
+    $watering = $this->getWatering();
+    if ($watering) {
+        $frequency = $watering->getFrequency();
+        $startDate = $this->getUpdatedAt() ?? $this->getCreatedAt();
+        $currentDate = clone $startDate;
+
+        while ($currentDate <= new \DateTime('+1 year')) { // Génère les événements pour un an
+            $events[] = [
+                'title' => 'Arrosage: ' . $this->getName(),
+                'start' => $currentDate->format('Y-m-d'),
+                'description' => 'Quantité: ' . $watering->getQuantity() . 'L',
+            ];
+            $currentDate->modify('+' . $frequency . ' days');
+        }
+    }
+    return $events;
+}
 
 }

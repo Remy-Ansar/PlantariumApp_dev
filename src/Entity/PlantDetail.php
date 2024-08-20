@@ -41,9 +41,16 @@ class PlantDetail
     #[ORM\ManyToOne(targetEntity: HealthStatus::class, inversedBy: 'plantDetails')]
     private ?HealthStatus $HealthStatus = null;
 
+    /**
+     * @var Collection<int, Warnings>
+     */
+    #[ORM\ManyToMany(targetEntity: Warnings::class, inversedBy: 'plantDetails')]
+    private Collection $Warnings;
+
     public function __construct()
     {
         $this->diseases = new ArrayCollection();
+        $this->Warnings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,6 +143,30 @@ class PlantDetail
     public function setDiseases(Collection $diseases): self
     {
         $this->diseases = $diseases;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Warnings>
+     */
+    public function getWarnings(): Collection
+    {
+        return $this->Warnings;
+    }
+
+    public function addWarning(Warnings $warning): static
+    {
+        if (!$this->Warnings->contains($warning)) {
+            $this->Warnings->add($warning);
+        }
+
+        return $this;
+    }
+
+    public function removeWarning(Warnings $warning): static
+    {
+        $this->Warnings->removeElement($warning);
 
         return $this;
     }

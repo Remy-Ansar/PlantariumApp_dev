@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/styles/app.scss')
     .addEntry('plants', './assets/javascript/sort.js')
+    .addEntry('calendar','./assets/javascript/calendar.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
