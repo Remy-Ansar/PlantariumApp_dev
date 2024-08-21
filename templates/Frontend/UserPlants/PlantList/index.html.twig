@@ -9,13 +9,69 @@ Administration des plantes
 {% include "Layout/nav.html.twig" %}
 <h2>Rechercher une plante</h2>
 <div class="wrap">
-    <div class="searchBar">
-        <input type="text" class="searchText" placeholder="Ficus Benjamina">
-        <button type="submit" class="searchSubmit">
-            <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
-        </button>
-    </div>
-</div>
+            <form method="get" action="{{ path('users.plantarium') }}">
+                <div class="searchBar">
+                    <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
+                    <button type="submit" class="searchSubmit">
+                        <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
+                    </button>
+                </div>
+
+                <div class="filters">
+                    <div class="filterGroup">
+                        <label for="species">Espèce</label>
+                        <select name="species" id="species">
+                            <option value="">-- Choisir une espèce --</option>
+                            {% for specie in species %}
+                            <option value="{{ specie.id }}">{{ specie.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="families">Famille</label>
+                        <select name="families" id="families">
+                            <option value="">-- Choisir une famille --</option>
+                            {% for family in families %}
+                            <option value="{{ family.id }}">{{ family.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="colors">Couleur</label>
+                        <select name="colors" id="colors">
+                            <option value="">-- Choisir une couleur --</option> <!-- Corrigé ici -->
+                            {% for color in colors %}
+                            <option value="{{ color.id }}">{{ color.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="seasons">Saison</label>
+                        <select name="seasons" id="seasons">
+                            <option value="">-- Choisir une saison --</option> <!-- Corrigé ici -->
+                            {% for season in seasons %}
+                            <option value="{{ season.id }}">{{ season.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="categories">Catégorie</label>
+                        <select name="categories" id="categories">
+                            <option value="">-- Choisir une catégorie --</option> <!-- Corrigé ici -->
+                            {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit">Rechercher</button>
+                </div>
+            </form>
+        </div>
 
 <main>
     <section>
