@@ -35,74 +35,65 @@ class PlantsRepository extends ServiceEntityRepository
     }
 
     
-    public function findPlantsWithFilters(array $filters)
+    public function findPlantsByName(string $name)
     {
-        $queryBuilder = $this->createQueryBuilder('p');
-
-        $this->applyNameFilter($queryBuilder, $filters['name'] ?? null);
-        $this->applyColorsFilter($queryBuilder, $filters['colors'] ?? null);
-        $this->applyCategoriesFilter($queryBuilder, $filters['categories'] ?? null);
-        $this->applyFamiliesFilter($queryBuilder, $filters['families'] ?? null);
-        $this->applySpeciesFilter($queryBuilder, $filters['species'] ?? null);
-        $this->applySeasonsFilter($queryBuilder, $filters['seasons'] ?? null);
-
-        $queryBuilder->orderBy('p.Name', 'ASC');
-
-        return $queryBuilder->getQuery();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.Name LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->orderBy('p.Name', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
-    private function applyNameFilter($queryBuilder, ?string $name)
+    public function findPlantsBySpecies(int $speciesId)
     {
-        if ($name) {
-            $queryBuilder->andWhere('p.Name LIKE :name')
-                         ->setParameter('name', '%' . $name . '%');
-        }
+        return $this->createQueryBuilder('p')
+            ->join('p.species', 's')
+            ->andWhere('s.id = :speciesId')
+            ->setParameter('speciesId', $speciesId)
+            ->getQuery()
+            ->getResult();
     }
 
-    private function applyColorsFilter($queryBuilder, ?array $colors)
+    public function findPlantsByFamilies(int $familyId)
     {
-        if ($colors) {
-            $queryBuilder->join('p.colors', 'c')
-                         ->andWhere('c.id IN (:colors)')
-                         ->setParameter('colors', $colors);
-        }
+        return $this->createQueryBuilder('p')
+            ->join('p.families', 'f')
+            ->andWhere('f.id = :familyId')
+            ->setParameter('familyId', $familyId)
+            ->getQuery()
+            ->getResult();
     }
 
-    private function applyCategoriesFilter($queryBuilder, ?array $categories)
-    {
-        if ($categories) {
-            $queryBuilder->join('p.categories', 'ca')
-                         ->andWhere('ca.id IN (:categories)')
-                         ->setParameter('categories', $categories);
-        }
-    }
+    public function findPlantsByColors(int $colorId)
+{
+    return $this->createQueryBuilder('p')
+        ->join('p.colors', 'c') // Utilisez un alias 'c' pour clarity
+        ->andWhere('c.id = :colorId') // Utilisez 'colorId' comme paramètre ici
+        ->setParameter('colorId', $colorId)
+        ->getQuery()
+        ->getResult();
+}
 
-    private function applyFamiliesFilter($queryBuilder, ?int $family)
-    {
-        if ($family) {
-            $queryBuilder->join('p.families', 'f')
-                         ->andWhere('f.id = :family')
-                         ->setParameter('family', $family);
-        }
-    }
+public function findPlantsBySeasons(int $seasonId)
+{
+    return $this->createQueryBuilder('p')
+        ->join('p.seasons', 's') 
+        ->andWhere('s.id = :seasonId') 
+        ->setParameter('seasonId', $seasonId)
+        ->getQuery()
+        ->getResult();
+}
 
-    private function applySpeciesFilter($queryBuilder, ?int $species)
-    {
-        if ($species) {
-            $queryBuilder->join('p.species', 's')
-                         ->andWhere('s.id = :species')
-                         ->setParameter('species', $species);
-        }
-    }
-
-    private function applySeasonsFilter($queryBuilder, ?array $seasons)
-    {
-        if ($seasons) {
-            $queryBuilder->join('p.seasons', 'se')
-                         ->andWhere('se.id IN (:seasons)')
-                         ->setParameter('seasons', $seasons);
-        }
-    }
+public function findPlantsByCategories(int $categoryId)
+{
+    return $this->createQueryBuilder('p')
+        ->join('p.categories', 'c') 
+        ->andWhere('c.id = :categoryId') 
+        ->setParameter('categoryId', $categoryId)
+        ->getQuery()
+        ->getResult();
+}
 }
     //    /**
     //     * @return Plants[] Returns an array of Plants objects

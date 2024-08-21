@@ -11,6 +11,7 @@ class ColorFixtures extends Fixture
 {   
     //liste des couleurs utilisables pour les fixtures
     public const COLOR_REFERENCES = [
+        null =>  null,
         'Rouge' => 'red',
         'Vert' => 'green',
         'Bleu' => 'blue',

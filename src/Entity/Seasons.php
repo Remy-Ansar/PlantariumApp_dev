@@ -15,7 +15,7 @@ class Seasons
 {
     use DateTimeTrait;
 
-    public const SEASONS = ['Printemps', 'Eté', 'Automne', 'Hiver'];
+    public const SEASONS = [null,'Printemps', 'Eté', 'Automne', 'Hiver'];
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -82,7 +82,7 @@ class Seasons
     // Méthode pour obtenir les choix possibles (static pour être utilisée dans les assertions)
     public static function getAvailableSeasons(): array
     {
-    return ['Printemps', 'Eté', 'Automne', 'Hiver'];
+    return [null,'Printemps', 'Eté', 'Automne', 'Hiver'];
     }
 
     

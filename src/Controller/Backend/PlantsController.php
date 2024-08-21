@@ -16,6 +16,10 @@ use App\Entity\Trait\EnableTrait;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\PlantsRepository;
 use App\Repository\FamiliesRepository;
+use App\Repository\SpeciesRepository;
+use App\Repository\ColorsRepository;
+use App\Repository\SeasonsRepository;
+use App\Repository\CategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,60 +35,80 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class PlantsController extends AbstractController
 {
 
-    public function __construct(
+    
+    private $plantsRepository;
+    private $speciesRepository;
+    private $familiesRepository;
+    private $colorsRepository;
+    private $seasonsRepository;
+    private $categoriesRepository;
 
-        private readonly EntityManagerInterface $em,
-        private readonly PlantsRepository $plantsRepository,
-        private readonly FamiliesRepository $familiesRepository
+    public function __construct(
+        PlantsRepository $plantsRepository,
+        SpeciesRepository $speciesRepository,
+        FamiliesRepository $familiesRepository,
+        ColorsRepository $colorsRepository,
+        SeasonsRepository $seasonsRepository,
+        CategoriesRepository $categoriesRepository
     ) {
+        $this->plantsRepository = $plantsRepository;
+        $this->speciesRepository = $speciesRepository;
+        $this->familiesRepository = $familiesRepository;
+        $this->colorsRepository = $colorsRepository;
+        $this->seasonsRepository = $seasonsRepository;
+        $this->categoriesRepository = $categoriesRepository;
     }
 
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(Request $request, PaginatorInterface $paginator): Response
-    {
-        // Récupération des filtres depuis la requête
-        $filters = $request->query->all();
-    
-        // Utilisation du repository pour appliquer les filtres
-        $query = $this->plantsRepository->findPlantsWithFilters($filters);
-       
+{
+    // Récupération des filtres depuis la requête
+    $filters = $request->query->all();
 
-    // Appliquer uniquement le filtre sélectionné
-    if ($filters['colors']) {
-        $this->plantsRepository->applyColorsFilter($queryBuilder, [$filters['colors']]);
-    }
-    if ($filters['categories']) {
-        $this->plantsRepository->applyCategoriesFilter($queryBuilder, [$filters['categories']]);
-    }
-    if ($filters['families']) {
-        $this->plantsRepository->applyFamiliesFilter($queryBuilder, $filters['families']);
-    }
-    if ($filters['species']) {
-        $this->plantsRepository->applySpeciesFilter($queryBuilder, $filters['species']);
-    }
-    if ($filters['seasons']) {
-        $this->plantsRepository->applySeasonsFilter($queryBuilder, [$filters['seasons']]);
+    // Initialisation de la variable $plants
+    $plants = [];
+
+    // Application des filtres
+    if (!empty($filters['name'])) {
+        $plants = $this->plantsRepository->findPlantsByName($filters['name']);
+    } elseif (!empty($filters['species'])) {
+        $plants = $this->plantsRepository->findPlantsBySpecies((int)$filters['species']);
+    } elseif (!empty($filters['families'])) {
+        $plants = $this->plantsRepository->findPlantsByFamilies((int)$filters['families']);
+    } elseif (!empty($filters['colors'])) { 
+        $plants = $this->plantsRepository->findPlantsByColors((int)$filters['colors']);
+    } elseif (!empty($filters['seasons'])) {
+        $plants = $this->plantsRepository->findPlantsBySeasons((int)$filters['seasons']);
+    } elseif (!empty($filters['categories'])) { 
+        $plants = $this->plantsRepository->findPlantsByCategories((int)$filters['categories']);
+    } else {
+        $plants = $this->plantsRepository->findAll(); // Afficher toutes les plantes si aucun filtre n'est appliqué
     }
 
-    // Appliquer le filtre par nom s'il est présent
-    $this->plantsRepository->applyNameFilter($queryBuilder, $filters['name']);
-        // Pagination des résultats filtrés
-        $pagination = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            5
-        );
+    // Pagination des résultats filtrés
+    $pagination = $paginator->paginate(
+        $plants,
+        $request->query->getInt('page', 1),
+        5
+    );
 
-        // Rendu de la vue avec les résultats filtrés
-        return $this->render('Backend/Plants/index.html.twig', [
-            'pagination' => $pagination,
-            'colors' => $colors,
-            'categories' => $categories,
-            'families' => $families,
-            'species' => $species,
-            'seasons' => $seasons,
-        ]);
-    }
+    // Récupération des valeurs nécessaires pour les filtres
+    $species = $this->speciesRepository->findAll();
+    $families = $this->familiesRepository->findAll();
+    $colors = $this->colorsRepository->findAll();
+    $seasons = $this->seasonsRepository->findAll();
+    $categories = $this->categoriesRepository->findAll();
+
+    return $this->render('Backend/Plants/index.html.twig', [
+        'pagination' => $pagination,
+        'species' => $species,
+        'families' => $families,
+        'colors' => $colors,
+        'seasons' => $seasons,
+        'categories' => $categories,
+    ]);
+}
+
 
     #[Route('/new', name: '.new', methods: ['GET', 'POST'])]
     public function newPlant(EntityManagerInterface $em, Request $request): Response | RedirectResponse

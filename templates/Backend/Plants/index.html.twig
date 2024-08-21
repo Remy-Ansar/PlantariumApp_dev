@@ -16,57 +16,80 @@ Administration des plantes
         <div class="wrap">
             <form method="get" action="{{ path('editor.plants.index') }}">
                 <div class="searchBar">
-                    <input type="text" name="name" class="searchText" placeholder="Ficus Benjamina">
+                    <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
                     <button type="submit" class="searchSubmit">
                         <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
                     </button>
                 </div>
 
                 <div class="filters">
-                <span>
-                <p>Rechercher par : </p>
-                </span>
-                    <div class="categFilter">
-                    <p>Couleurs</p>
-                    <select name="colors[]" >
-                        {% for color in colors %}
-                            <option value="{{ color.id }}">{{ color.name }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <p>Catégories</p>
-                    <select name="categories[]" >
-                        {% for category in categories %}
-                            <option value="{{ category.id }}">{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <p>Catégories</p>
-                    <select name="families">
-                        {% for family in families %}
-                            <option value="{{ family.id }}">{{ family.name }}</option>
-                        {% endfor %}
-                    </select>
-
-                    <p>Espèce</p>
-                    <select name="species">
-                        {% for specie in species %}
+                    <div class="filterGroup">
+                        <label for="species">Espèce</label>
+                        <select name="species" id="species">
+                            <option value="">-- Choisir une espèce --</option>
+                            {% for specie in species %}
                             <option value="{{ specie.id }}">{{ specie.name }}</option>
-                        {% endfor %}
-                    </select>
-                    
-                    <p>Saison</p>
-                    <select name="seasons[]">
-                        {% for season in seasons %}
-                            <option value="{{ season.id }}">{{ season.name }}</option>
-                        {% endfor %}
-                    </select>
+                            {% endfor %}
+                        </select>
                     </div>
-                </div>
 
-                <button type="submit">Rechercher</button>
+                    <div class="filterGroup">
+                        <label for="families">Famille</label>
+                        <select name="families" id="families">
+                            <option value="">-- Choisir une famille --</option>
+                            {% for family in families %}
+                            <option value="{{ family.id }}">{{ family.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="colors">Couleur</label>
+                        <select name="colors" id="colors">
+                            <option value="">-- Choisir une couleur --</option> <!-- Corrigé ici -->
+                            {% for color in colors %}
+                            <option value="{{ color.id }}">{{ color.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="seasons">Saison</label>
+                        <select name="seasons" id="seasons">
+                            <option value="">-- Choisir une saison --</option> <!-- Corrigé ici -->
+                            {% for season in seasons %}
+                            <option value="{{ season.id }}">{{ season.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filterGroup">
+                        <label for="categories">Catégorie</label>
+                        <select name="categories" id="categories">
+                            <option value="">-- Choisir une catégorie --</option> <!-- Corrigé ici -->
+                            {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <button type="submit">Rechercher</button>
+                </div>
             </form>
         </div>
+
+        {# Affichage des résultats #}
+        {# <div class="results">
+    {% if pagination.items is not empty %}
+        <ul>
+            {% for plant in pagination.items %}
+                <li>{{ plant.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun résultat ne correspond à votre recherche.</p>
+    {% endif %}
+</div> #}
 
         <div class="fieldAdd">
             <div>
@@ -101,11 +124,11 @@ Administration des plantes
                 </tr>
             </thead>
             <tbody id='plant-list'>
-            {% if pagination.items is empty %}
-        <tr>
-            <td colspan="12">Aucune plante ne correspond à votre recherche.</td>
-        </tr>
-    {% else %}
+                {% if pagination.items is empty %}
+                <tr>
+                    <td colspan="12">Aucune plante ne correspond à votre recherche.</td>
+                </tr>
+                {% else %}
                 {% for plant in pagination.items %}
                 <tr>
                     <td>{{ plant.id }}</td>
@@ -116,21 +139,21 @@ Administration des plantes
                     <td>
                         <div class="categTags">
                             {% for color in plant.colors %}
-                                {{ color.Name }}
+                            {{ color.Name }}
                             {% endfor %}
                         </div>
                     </td>
                     <td>
                         <div class="categTags">
                             {% for season in plant.seasons %}
-                                {{ season.Name }}
+                            {{ season.Name }}
                             {% endfor %}
                         </div>
                     </td>
                     <td>
                         <div class="categTags">
                             {% for categorie in plant.categories %}
-                                {{ categorie.Name }}
+                            {{ categorie.Name }}
                             {% endfor %}
                         </div>
                     </td>
@@ -169,5 +192,5 @@ Administration des plantes
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('javascript/sort.js') }}"></script>
+<script src="{{ asset('javascript/sort.js') }}"></script>
 {% endblock %}

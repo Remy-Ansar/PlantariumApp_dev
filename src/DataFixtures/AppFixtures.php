@@ -88,7 +88,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   // Fixtures for Families
   $families = [];
   $familyNames = [
-      'APIACÉES', 'ASTÉRACÉES', 'BRASSICACÉES', 'CARYOPHYLLACÉES',
+      '', 'APIACÉES', 'ASTÉRACÉES', 'BRASSICACÉES', 'CARYOPHYLLACÉES',
       'CYPERACÉES', 'FABACÉES', 'LAMIACÉES', 'POACÉES',
       'RENONCULACÉES', 'ROSACÉES'
   ];
@@ -103,7 +103,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   // Fixtures for Species
   $species = [];
   $speciesNames = [
-      'Amaranthe', 'Anémone', 'Achilée', 'Choux',
+      '', 'Amaranthe', 'Anémone', 'Achilée', 'Choux',
       'Hélianthème', 'Jonc', 'Lys', 'Rose',
       'Valériane', 'Sauge'
   ];
