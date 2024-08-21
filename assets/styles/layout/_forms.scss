@@ -23,3 +23,12 @@ display: flex;
 gap: 1em;
 flex-direction: column;
 }
+
+.formSearch {
+  display: flex;
+  flex-direction: row;
+}
+
+label {
+margin-right: 1em;
+}

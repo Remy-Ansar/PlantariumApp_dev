@@ -14,15 +14,16 @@ Administration des plantes
         <h2>Administration des plantes</h2>
 
         <div class="wrap">
-            <form method="get" action="{{ path('editor.plants.index') }}">
+            <form method="get" action="{{ path('users.plantarium') }}">
                 <div class="searchBar">
                     <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
                     <button type="submit" class="searchSubmit">
                         <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
                     </button>
-                </div>
-
+                </div> 
+  <p>Trier les plantes par :</p>
                 <div class="filters">
+                
                     <div class="filterGroup">
                         <label for="species">Espèce</label>
                         <select name="species" id="species">
@@ -72,9 +73,8 @@ Administration des plantes
                             {% endfor %}
                         </select>
                     </div>
-
-                    <button type="submit">Rechercher</button>
-                </div>
+            </div>
+                    <button type="submit" class="tagsButton">Rechercher</button>
             </form>
         </div>
 
@@ -160,7 +160,7 @@ Administration des plantes
                     <td>
                         <a href="{{ path('editor.plants.showPlant', {name: plant.Name}) }}">
                             <img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
-                                class="rounded" width="100px" height="100px">
+                                class="profilePic" width="100px" height="100px">
                         </a>
                     </td>
                     <td>{{ plant.enable ? 'Oui' : 'Non' }}</td>

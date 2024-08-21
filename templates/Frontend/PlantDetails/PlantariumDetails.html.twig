@@ -41,26 +41,33 @@ Détail de la plante
         <p>Espèce {{ plant.species.Name }}</p>
 
         <div class="categFields">
+        
             <div class="categUnit">
-                <div>Catégorie(s)</div>
+                <div class="categClass">Catégorie(s)</div>
+                </div>
+                <div class="categSpacing">
                 {% for category in plant.categories %}
                 <div class="categComponent">{{ category.Name }}</div>
                 {% endfor %}
-            </div>
+                </div>
+            
 
-            <div class="categUnit">Saisonalité
+            <div class="categUnit">
+            <div class="categClass">Saisonalité</div>
                 {% for season in plant.seasons %}
                 <div class="categComponent">{{ season.Name }}</div>
                 {% endfor %}
             </div>
 
-            <div class="categUnit">Arrosage
+            <div class="categUnit">
+            <div class="categClass">Arrosage</div>
                 {# {% for color in plant.colors %}
                 <div class="categComponent">{{ color.Name }}</div>
                 {% endfor %} #}
             </div>
 
-            <div class="categUnit">Couleurs
+            <div class="categUnit">
+            <div class="categClass">Couleurs</div>
                 {% for color in plant.colors %}
                 <div class="categComponent">{{ color.Name }}</div>
                 {% endfor %}

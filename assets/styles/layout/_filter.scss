@@ -4,3 +4,13 @@
     flex-direction: row;
     width: 100%;
 }
+
+.filters {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.filterGroup {
+    padding: 0.5em 1em 0.5em 1em;
+}
