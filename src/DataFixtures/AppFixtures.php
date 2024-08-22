@@ -19,6 +19,7 @@ use Doctrine\Persistence\ObjectManager;
 use App\DataFixtures\CategoriesFixtures;
 use App\Validator\Constraints\Uppercase;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\DataFixtures\Providers\PlantsProvider;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -29,13 +30,16 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
     private Generator $faker;
 
     public function __construct(
-        private UserPasswordHasherInterface $hasher
+        private UserPasswordHasherInterface $hasher,
+        PlantsProvider $plantsProvider // Injection du provider
     ) {
         $this->faker = Factory::create('fr_FR');
+        $this->plantsProvider = $plantsProvider; // Initialisation du provider
     }
 
     public function load(ObjectManager $manager): void
     {
+        
         // Fixture for admin user
         $user = (new Users)
             ->setEmail('admin@test.com')
@@ -88,9 +92,13 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   // Fixtures for Families
   $families = [];
   $familyNames = [
-      '', 'APIACÉES', 'ASTÉRACÉES', 'BRASSICACÉES', 'CARYOPHYLLACÉES',
+      'APIACÉES', 'ASTÉRACÉES', 'BRASSICACÉES', 'CARYOPHYLLACÉES',
       'CYPERACÉES', 'FABACÉES', 'LAMIACÉES', 'POACÉES',
-      'RENONCULACÉES', 'ROSACÉES'
+      'RENONCULACÉES', 'ROSACÉES', 'ACTINIDIACEAE', 'ADOXACEAE',
+      'AGAVACEAE', 'AIZOACEAE', 'AKANIACEAE', 'ALOACEAE', 
+      'AMARANTHEACEAE', 'BROMELIACEAE', 'CACTACEAE', 'CUCURBITACEAE',
+      'GINKGOAACEAE', 'LILIACEAE', 'LAMIACEAE', 'ORCHIDACEAE', 'PASSIFLORACEAE', 
+      'POACEAE', 'RUTACEAE', 'SOLANACEAE'
   ];
   
   foreach ($familyNames as $familyName) {
@@ -103,9 +111,16 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   // Fixtures for Species
   $species = [];
   $speciesNames = [
-      '', 'Amaranthe', 'Anémone', 'Achilée', 'Choux',
+      'Amaranthe', 'Anémone', 'Achilée', 'Choux',
       'Hélianthème', 'Jonc', 'Lys', 'Rose',
-      'Valériane', 'Sauge'
+      'Valériane', 'Sauge', 'Cumin', 'Origan', 
+      'Calendula', 'Violette', 'Thym', 'Houx', 
+      'Luzerne', 'Chanvre', 'Menthe', 'Dipledenia', 
+      'Astrolomère', 'If', 'Chène', 'Nymphea', 'Mimosa', 
+      'Jasmin', 'Taraxacum', 'Mauve', 'Héllébore', 'Charme',
+      'Marguerite', 'Belle-de-Nuit', 'Platane', 'Badiane',
+      'Romarin', 'Marjolaine', 'Basilic', 'Carotte', 'Tournesol',
+      'Camomille', 'Valeriane', 'Chardon'
   ];
 
   foreach ($speciesNames as $speciesName) {
@@ -118,7 +133,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
   // Fixtures for Diseases
   $diseases = [];
   $diseasesNames = [
-      '', 'Alternariose', 'Mildiou', 'Rouille', 'Acariens',
+      'Alternariose', 'Mildiou', 'Rouille', 'Acariens',
       'Feu bactérien ', 'Marsonia', 'Botrytis', 'Tavelure',
       'Carence en fer '
   ];
@@ -170,7 +185,7 @@ $manager->flush();
     
             // Création des fixtures pour Watering
             $wateringList = [];
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i < 50; $i++) {
                 $watering = (new Watering())
                     ->setNote($this->faker->sentence())
                     ->setFrequency($this->faker->numberBetween(1, 7))
@@ -180,15 +195,18 @@ $manager->flush();
                 $manager->persist($watering);
                 $wateringList[] = $watering;
             }
+            
 
         // Fixture pour ajouter des plantes avec les autres entitées reliées.
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 50; $i++) {
+            $image = $this->plantsProvider->uploadImage();
+
             $plant = (new Plants)
                 ->setName($this->faker->word())
                 ->setDescription($this->faker->sentence(20, true))
                 ->setEnable($this->faker->boolean)
-                ->setWatering($this->faker->randomElement($wateringList));
-                // ->setImage($this->uploadImage());
+                ->setWatering($this->faker->randomElement($wateringList))
+                ->setImage($image);
                  // Set random Family
             $plant->setFamilies($this->faker->randomElement($families));
 
@@ -219,6 +237,17 @@ $manager->flush();
         $manager->flush();
     }
 
+    // public function uploadImage(): UploadedFile
+    // {
+    //     $files =  glob(\dirname(__DIR__) . '/images/Plants/*.*');
+
+    //     $index = array_rand($files);
+
+    //     $file = new File($files[$index]);
+    //     $file = new UploadedFile($file, $file->getFileName());
+
+    //     return $file;
+    // }
     
 
     public function getDependencies(): array

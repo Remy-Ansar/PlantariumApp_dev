@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 class PlantDetailsController extends AbstractController
@@ -34,24 +35,41 @@ class PlantDetailsController extends AbstractController
     }
     
 #[Route('/users/plantarium/{name}/details', name: 'plantarium.details', methods: ['GET', 'POST'])]
-public function PlantariumDetail(string $name): Response | RedirectResponse
+public function PlantariumDetail(string $name, Request $request, PaginatorInterface $paginator): Response | RedirectResponse
 {
+    $session = $request->getSession();
+        $page = $request->query->getInt('page', 1);
+        $session->set('plants_page', $page);
+
     $plant = $this->plantsRepository->findOneBy(['Name' => $name]);
 
     if (!$plant) {
         $this->addFlash('error', 'Cette plante n\'existe pas');
 
-        return $this->redirectToRoute('editor.plants.index',  [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('editor.plants.index',  ['page' => $page], Response::HTTP_SEE_OTHER);
     }
+
+    $plants = $this->plantsRepository->findAll(); 
+
+            $pagination = $paginator->paginate(
+                $plants,
+                $page,
+                6
+            );
 
     return $this->render('Frontend/PlantDetails/PlantariumDetails.html.twig', [
         'plant' => $plant,
+        'pagination' => $pagination,
     ]);
 }
 
 #[Route('/users/{name}/details', name: 'userPlants.details', methods: ['GET'])]
-public function UserPlantDetails(string $name): Response
+public function UserPlantDetails(string $name, Request $request, PaginatorInterface $paginator): Response
 {
+    $session = $request->getSession();
+        $page = $request->query->getInt('page', 1);
+        $session->set('plants_page', $page);
+
     $plant = $this->plantsRepository->findOneBy(['Name' => $name]);
 
     if (!$plant) {
@@ -82,16 +100,29 @@ public function UserPlantDetails(string $name): Response
         $this->em->flush();
     }
 
+    $plants = $this->plantsRepository->findAll(); 
+
+            $pagination = $paginator->paginate(
+                $plants,
+                $page,
+                6
+            );
+
 
     return $this->render('Frontend/PlantDetails/UserPlantsDetails.html.twig', [
         'plant' => $plant,
         'plantdetail' => $plantDetail,
+        'pagination' => $pagination,
     ]);
 }
 
 #[Route('/users/{name}/details/{id}/edit', name: 'userPlants.details.edit', methods: ['GET', 'POST'])]
-public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail $plantDetail, ?Plants $plant, ?HealthStatus $healthStatus, ?Diseases $diseases): Response
+public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail $plantDetail, ?Plants $plant, ?HealthStatus $healthStatus, ?Diseases $diseases, PaginatorInterface $paginator): Response
 {
+
+    $session = $request->getSession();
+        $page = $request->query->getInt('page', 1);
+        $session->set('plants_page', $page);
     $plant = $plantDetail->getPlant(); 
 
     if (!$plantDetail) {
@@ -120,16 +151,28 @@ public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail
         return $this->redirectToRoute('userPlants.details', ['name' => $name]);
     }
 
+    $plants = $this->plantsRepository->findAll(); 
+
+            $pagination = $paginator->paginate(
+                $plants,
+                $page,
+                6
+            );
+
     return $this->render('Frontend/PlantDetails/edit.html.twig', [
         'form' => $form,
         'plantdetail' => $plantDetail,
         'plant' => $plant,
+        'pagination' => $pagination,
 
     ]);
 }
 #[Route('/users/{name}/details/{id}/delete', name: 'userPlants.details.delete', methods: ['POST'])]
-public function deletePlantDetail(?PlantDetail $plantDetail, ?UserPlants $userPlant, Request $request): RedirectResponse
+public function deletePlantDetail(?PlantDetail $plantDetail, ?UserPlants $userPlant, Request $request, PaginatorInterface $paginator): RedirectResponse
 {
+    $session = $request->getSession();
+        $page = $request->query->getInt('page', 1);
+        $session->set('plants_page', $page);
 
     if (!$plantDetail && !$userPlant) {
         $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son identification?');
@@ -158,6 +201,14 @@ public function deletePlantDetail(?PlantDetail $plantDetail, ?UserPlants $userPl
     // } elseif ($userPlant) {
     //     $this->addFlash('danger', 'Le token CSRF est invalide pour la suppression de la plante du profil.');
     // }
+
+    $plants = $this->plantsRepository->findAll(); 
+
+            $pagination = $paginator->paginate(
+                $plants,
+                $page,
+                6
+            );
 
     return $this->redirectToRoute('users.index');
 }

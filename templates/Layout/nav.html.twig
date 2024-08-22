@@ -1,11 +1,11 @@
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-<nav>
-    <div>
+    <nav>
+
         <ul class="menu">
             <li class="menuItem"><a href="{{ path('users.index') }}" class="link">Mes plantes</a></li>
             <li class="menuItem"><a href="{{ path('users.calendar') }}" class="link">Mon calendrier</a></li>
             <li class="menuItem"><a href="{{ path('users.plantarium') }}" class="link">Plantarium</a></li>
         </ul>
-    </div>
-</nav>
-  {% endif %}
+
+    </nav>
+    {% endif %}

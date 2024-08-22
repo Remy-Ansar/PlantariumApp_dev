@@ -62,8 +62,8 @@ Détail de la plante
                     <div class="categComponent">{{ disease.Name }}</div>
                     {% endfor %}
                     {% endif %}
-                    {# {% else %}
-                <p>Aucune maladie associée.</p> #}
+                    {% else %}
+                <p>Aucune maladie associée.</p>
 
                     {% endif %}
                 </div>
@@ -75,8 +75,8 @@ Détail de la plante
                     <div>{{ disease.Description }}</div>
                     {% endfor %}
                     {% endif %}
-                    {# {% else %}
-                <p>Aucune maladie associée.</p> #}
+                    {% else %}
+                <p>Aucune maladie associée.</p>
                     {% endif %}
                 </div>
 
@@ -103,9 +103,10 @@ Détail de la plante
                     </div>
 
                     <div class="categUnit">Arrosage
-                        {# {% for color in plant.colors %}
-                <div class="categComponent">{{ color.Name }}</div>
-                {% endfor %} #}
+                     {% for watering in plant.watering %}
+                        <div class="categComponent">{{ watering.frequency }}</div>
+                        <div class="categComponent">{{ watering.quantity }}</div>
+                        {% endfor %}
                     </div>
 
                     <div class="categUnit">Couleurs

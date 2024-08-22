@@ -62,6 +62,10 @@ class PlantsController extends AbstractController
     #[Route('', name: '.index', methods: ['GET'])]
     public function index(Request $request, PaginatorInterface $paginator): Response
 {
+    $session = $request->getSession();
+    $page = $request->query->getInt('page', 1);
+    $session->set('plants_page', $page);
+
     // Récupération des filtres depuis la requête
     $filters = $request->query->all();
 
@@ -88,7 +92,7 @@ class PlantsController extends AbstractController
     // Pagination des résultats filtrés
     $pagination = $paginator->paginate(
         $plants,
-        $request->query->getInt('page', 1),
+        $page,
         5
     );
 
@@ -184,8 +188,11 @@ class PlantsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
-public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em): Response
+public function plantEdit(Request $request, Plants $plant, EntityManagerInterface $em, PaginatorInterface $paginator): Response
 {
+    $session = $request->getSession();
+    $page = $session->get('plants_page', 1);
+
     if (!$plant) {
         $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son id?');
 
@@ -255,18 +262,31 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
 
         $this->addFlash('success', 'La plante a été modifiée avec succès.');
 
-        return $this->redirectToRoute('editor.plants.index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('editor.plants.index', ['page' => $page], Response::HTTP_SEE_OTHER);
     }
+
+    // Récupérer toutes les plantes pour la pagination (optionnel, peut être adapté selon votre logique)
+    $plants = $this->plantsRepository->findAll(); 
+
+    $pagination = $paginator->paginate(
+        $plants,
+        $page,
+        5
+    );
 
     return $this->render('Backend/Plants/edit.html.twig', [
         'plants' => $plant,
         'form' => $form,
+        'pagination' => $pagination,
     ]);
 }
 
     #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
     public function deletePlant(?Plants $plant, Request $request): RedirectResponse
     {
+        $session = $request->getSession();
+        $page = $session->get('plants_page', 1);
+
         if (!$plant) {
             $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son identification?');
 

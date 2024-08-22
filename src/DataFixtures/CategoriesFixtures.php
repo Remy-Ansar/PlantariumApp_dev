@@ -11,11 +11,10 @@ class CategoriesFixtures extends Fixture
 {   
     //liste des couleurs utilisables pour les fixtures
     public const CATEGORIES_REFERENCES = [
-        null => null,
-        'houseplant' => 'Plante d\'intérieur',
-        'outsideplant' => 'Plante d\'extérieur',
-        'greenhousePlante en serre' => 'Plante en serre',
-        'exotic' => 'Plante exotique',
+        'Plante d\'intérieur' => 'Plante d\'intérieur',
+        'Plante d\'extérieur' => 'Plante d\'extérieur',
+        'Plante en serre' => 'Plante en serre',
+        'Plante exotique' => 'Plante exotique',
     ];
 
     //fonction pour ajouter les fixtures liées à la relation MtM entre Colors et Plants.
@@ -24,7 +23,7 @@ class CategoriesFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         foreach (self::CATEGORIES_REFERENCES as $name => $reference) {
-            $cleanName = str_replace('-', '', $name);
+            // $cleanName = str_replace('-', '', $name);
 
             $categorie = new Categories();
             $categorie->setName($name);

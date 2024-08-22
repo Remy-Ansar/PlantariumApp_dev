@@ -84,6 +84,10 @@ class UserPlantsController extends AbstractController
     #[Route('/plantarium', name: '.plantarium', methods: ['GET', 'POST'])]
     public function plantariumList(Request $request, PaginatorInterface $paginator): Response
     {
+        $session = $request->getSession();
+        $page = $request->query->getInt('page', 1);
+        $session->set('plants_page', $page);
+
         // Récupération des filtres depuis la requête
         $filters = $request->query->all();
 
@@ -106,6 +110,7 @@ class UserPlantsController extends AbstractController
             $plants = $this->plantsRepository->findAll();
         }
 
+        // Pagination des résultats filtrés
         $pagination = $paginator->paginate(
             $plants,
             $request->query->getInt('page', 1),
@@ -131,8 +136,11 @@ class UserPlantsController extends AbstractController
 
 
     #[Route('/plantarium/addPlant', name: '.plantarium.addPlant', methods: ['GET','POST'])]
-    public function addPlant(Request $request): Response
+    public function addPlant(Request $request, PaginatorInterface $paginator): Response
         {
+            $session = $request->getSession();
+            $page = $session->get('plants_page', 1);
+
             // Step 2: Fetch the Current User and Selected Plant
             $user = $this->getUser();
             if (!$user instanceof Users) {
@@ -162,6 +170,15 @@ class UserPlantsController extends AbstractController
             $this->em->persist($userPlant, $plantDetail);
             $this->em->flush();
     
+            $plants = $this->plantsRepository->findAll(); 
+
+
+            $pagination = $paginator->paginate(
+                $plants,
+                $page,
+                6
+            );
+
             $this->addFlash('success', 'Votre plante a bien été ajoutée.');
             return $this->redirectToRoute('users.plantarium');
         }

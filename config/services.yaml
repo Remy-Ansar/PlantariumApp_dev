@@ -23,6 +23,21 @@ services:
     App\Factory\UserPlantFactory:
         autowire: true
 
+    App\DataFixtures\Providers\PlantsProvider:
+        autowire: true
+        autoconfigure: false
+        tags: [{ name: nelmio_alice.faker.provider }]
+
+    App\DataFixtures\AppFixtures:
+        autowire: true
+        autoconfigure: false
+        # Ajouter des tags si nécessaire, par exemple :
+        tags:
+            - { name: 'doctrine.fixture.orm' }
+
+    # App\DataFixtures\:
+    #     resource: '../src/DataFixtures'
+    #     tags: ['doctrine.fixture.orm']
     # UserPlant manager to add a plant to the user's own collection 
     # App\Manager\UserPlantManager:
     #     autowire: true
@@ -48,12 +63,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\DataFixtures\:
-        resource: '../src/DataFixtures'
-        tags: ['doctrine.fixture.orm']
+    # App\DataFixtures\:
+    #     resource: '../src/DataFixtures'
+    #     tags: ['doctrine.fixture.orm']
 
-    App\DataFixtures\Providers\PlantsProviders:
-        tags: [{ name: nelmio_alice.faker.provider }]
+    # App\DataFixtures\Providers\PlantsProvider:
+    #     tags: [{ name: nelmio_alice.faker.provider }]
 
     App\Repository\:
         resource: '../src/Repository'

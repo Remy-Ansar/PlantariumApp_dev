@@ -1,17 +1,18 @@
-.menu {
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
+.nav {
+    width: 100%;
     align-items: center;
-    height: 4em;
-    @include font-primary;
+    }
+
+.menu {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr ;
 
 }
 
 .menuItem {
-    border-bottom: 1em;
-    // border-color: #36E719;
-    text-align: start;
-    justify-content: flex-start;
-
+    font-size: 2em;
+    @include font-primary;
+    width: auto;
 }

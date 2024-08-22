@@ -6,6 +6,7 @@ Administration des utilisateurs
 {% endblock %}
 {% block body %}
             {% include "Layout/nav.html.twig" %}
+
             <main>
             <div class="headerMain">
 <h1>Plantarium</h1>
@@ -44,8 +45,17 @@ Administration des utilisateurs
                 <td>{{ user.roles|join(', ') }}</td>
                 <td>{{ user.UserInfos.getFullName() }}</td>
                 <td>{{ user.UserInfos.getLevel() }}</td>
-                <td><img src="{{ vich_uploader_asset( user.UserInfos, 'image') }}" alt="{{ user.UserInfos }}"
-                        loading="lazy" class="rounded" width="100px" height="100px"></td>
+                
+                {% if user.UserInfos.imageName %}
+                <td class="appPics">
+             <img src="{{ vich_uploader_asset(user.UserInfos, 'image') }}" alt="{{ user.UserInfos }}" 
+             class="profilePic rounded" loading="lazy" width="100" height="100">
+             </td>
+                {% else %}
+                <td>
+             
+             </td>
+{% endif %}
 
                 <td><a href="{{ path('admin.users.edit', {id: user.id}) }}"><button class="modifyButton">Modifier</button></a></td>
                 <td>

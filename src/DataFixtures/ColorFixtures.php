@@ -11,7 +11,6 @@ class ColorFixtures extends Fixture
 {   
     //liste des couleurs utilisables pour les fixtures
     public const COLOR_REFERENCES = [
-        null =>  null,
         'Rouge' => 'red',
         'Vert' => 'green',
         'Bleu' => 'blue',
@@ -20,7 +19,7 @@ class ColorFixtures extends Fixture
         'Noir' => 'black',
         'Orange' => 'orange',
         'Violet' => 'purple',
-        'Rose' => 'Pink'
+        'Rose' => 'pink'
     ];
 
     //fonction pour ajouter les fixtures liées à la relation MtM entre Colors et Plants.

@@ -11,7 +11,6 @@ class SeasonsFixtures extends Fixture
 {   
     //liste des saisons utilisables pour les fixtures
     public const SEASONS_REFERENCES = [
-        null => null,
         'Printemps' => 'spring',
         'Eté' => 'summer',
         'Automne' => 'autumn',
