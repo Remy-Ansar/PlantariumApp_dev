@@ -11,7 +11,6 @@ Détail de la plante
     <a href="{{ path('users.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
 </span>
 <main>
-
     <div class="plantCard">
         <div class="plantHeader">
             <div>
@@ -27,7 +26,6 @@ Détail de la plante
                     <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
                     <button type="submit" class="removePlant">
                         <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
-
                     </button>
                 </form>
             </div>
@@ -36,89 +34,126 @@ Détail de la plante
         <div class="plantPic">
             <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
         </div>
+
         <div class="plantInfos">
-            <p>Description:</p>
-            <p>{{ plant.Description }}</p>
-
-            <p>Famille: {{ plant.families.Name }}</p>
-            <p>Espèce: {{ plant.species.Name }}</p>
-
+            <div class="categUnit">
+                <span>Description:
+                    <p class="description">{{ plant.Description }}</p>
+                </span>
+            </div>
+            <div class="categUnit">
+                <span>Famille:
+                    <span class="fontDistinction"> {{ plant.families.Name }}</span>
+                </span>
+            </div>
+            <div class="categUnit">
+                <span>Espèce:
+                    <span class="fontDistinction"> {{ plant.species.Name }}</span>
+                </span>
+            </div>
             <div class="categFields">
                 <div class="categUnit">
                     <div>Statut de la plante:</div>
                     {% if plantdetail.HealthStatus %}
                     <div class="categComponent">{{ plantdetail.HealthStatus.Name }}</div>
-                    <div class="categComponent">Description du statut: {{ plantdetail.HealthStatus.Description }}</div>
+
                     {% else %}
-                    <p>Aucun statut de santé disponible.</p>
+                    <p>Aucun statut de santé précisé.</p>
                     {% endif %}
                 </div>
 
-                {% if plantdetail.diseases|length > 0 %}
                 <div class="categUnit">
-                    {% if plantdetail.HealthStatus.Name == "Malade" %}
-                    {% for disease in plantdetail.diseases %}
-                    <div>Maladies associées:</div>
-                    <div class="categComponent">{{ disease.Name }}</div>
-                    {% endfor %}
-                    {% endif %}
-                    {% else %}
-                <p>Aucune maladie associée.</p>
+                    <div>Maladies: </div>
+                    <div class="categClass">
+                        {% if plantdetail.diseases|length > 0 %}
+                        {% if plantdetail.HealthStatus.Name == "Malade" %}
 
-                    {% endif %}
+                        {% for disease in plantdetail.diseases %}
+
+                        <div class="categComponent">{{ disease.Name }}</div>
+                        {% endfor %}
+                        {% else %}
+                        <p>Aucune maladie précisée.</p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-                {% if plantdetail.diseases|length > 0 %}
+
                 <div class="categUnit">
+                    {% if plantdetail.diseases|length > 0 %}
                     {% if plantdetail.HealthStatus.Name == "Malade" %}
-                    {% for disease in plantdetail.diseases %}
                     <div>Description de la maladie:</div>
+                    {% for disease in plantdetail.diseases %}
                     <div>{{ disease.Description }}</div>
                     {% endfor %}
+
                     {% endif %}
-                    {% else %}
-                <p>Aucune maladie associée.</p>
                     {% endif %}
                 </div>
 
                 <div class="categUnit">
-                    <div>Journal:</div>
-                    {% if plantdetail.Journal %}
-                    <p>{{ plantdetail.Journal }}</p>
-                    {% else %}
-                    <p>Aucun journal disponible.</p>
-                    {% endif %}
+                    <span>Journal: </span>
+                    <div class="categClass">
+                        {% if plantdetail.Journal %}
+                        <div class="diaryClass">{{ plantdetail.Journal|nl2br }}</div>
+                        {% else %}
+                        <p>Aucun journal disponible.</p>
+                        {% endif %}
+                    </div>
                 </div>
-                
-                    <div class="categUnit">
-                        <div>Catégorie(s)</div>
+
+                <div class="categUnit">
+                    <span>Catégorie(s)</span>
+                    <div class="categClass">
                         {% for category in plant.categories %}
                         <div class="categComponent">{{ category.Name }}</div>
                         {% endfor %}
                     </div>
+                </div>
 
-                    <div class="categUnit">Saisonalité
+                <div class="categUnit">
+                    <span>Saisonalité</span>
+                    <div class="categClass">
                         {% for season in plant.seasons %}
                         <div class="categComponent">{{ season.Name }}</div>
                         {% endfor %}
                     </div>
+                </div>
 
-                    <div class="categUnit">Arrosage
-                     {% for watering in plant.watering %}
-                        <div class="categComponent">{{ watering.frequency }}</div>
-                        <div class="categComponent">{{ watering.quantity }}</div>
-                        {% endfor %}
+                <div class="categUnit">
+                    <span>Arrosage</span>
+                    <div class="categClass">
+
+                        {% if plant.watering %}
+                        <div class="categComponent">{{ plant.watering.quantity }} ml</div>
+                        {% else %}
+                        <div class="categComponent">Aucun arrosage défini</div>
+                        {% endif %}
+
+                        {% if plant.watering %}
+                        <div class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</div>
+                        {% else %}
+                        <div class="categComponent">Aucun arrosage défini</div>
+                        {% endif %}
                     </div>
+                </div>
 
-                    <div class="categUnit">Couleurs
+                <div class="categUnit">
+                    <span>Couleurs</span>
+                    <div class="categClass">
                         {% for color in plant.colors %}
                         <div class="categComponent">{{ color.Name }}</div>
                         {% endfor %}
                     </div>
-                
-                <div>
-                    <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}"><button
-                            class="modifyButton">Modification de votre plante</button></a>
                 </div>
             </div>
+
+            <div>
+                <a href="{{ path('userPlants.details.edit', {name: plant.Name, id: plantdetail.id}) }}">
+                    <button class="modifyButton">Modification de votre plante</button>
+                </a>
+            </div>
+        </div>
+    </div>
 </main>
 {% endblock %}

@@ -104,10 +104,23 @@
 .plantHeader {
     text-align: start;
     margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align titles to the left */
 }
 
-.plantHeader h2 {
-    text-align: start;
+.plantHeader h2, .plantHeader h3, .plantInfos p.fontDistinction {
+    text-align: left; /* Align HTML titles to the left */
+    width: 100%;
+}
+
+.plantInfos .categComponent,
+.plantInfos .description,
+.plantInfos .categClass {
+    text-align: center; /* Center the data from the database */
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .plantPic {
@@ -126,16 +139,18 @@
 
 
 .categUnit {
-    margin-bottom: 0.5em;
+    margin-bottom: 3em;
     display: flex;
     margin-right: 2em;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
-// .categSpacing {
-//     display: flex;
-//     row-gap: 2em;
-// }
+.categClass {
+    margin-left: 2em;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 .categComponent {
     display: flex;
@@ -146,8 +161,6 @@
     color: $white-font;
     background: $pine-green;
     margin-right: 5em;
-    
-
 }
 
 .plantInfos p {
@@ -169,9 +182,26 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 0.5em;
+    justify-content: center;
     
 }
 
-.categClass {
-    margin-right: 2em;
+.description {
+    font-size: 1.2em;
+    padding: 2em;
+}
+
+.fontDistinction {
+    font-size: 1.5em;
+    margin-left: 1em;
+}
+
+.diaryClass {
+   text-align: left;
+    border-radius: 10px 12px;
+    padding: 0.5em 1em 0.5em 1em;
+    color: $dark-font;
+    background: $white-font;
+    margin-right: 5em;
+
 }

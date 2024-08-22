@@ -37,44 +37,54 @@ Détail de la plante
             </form>
         </div>
 
-        <p>Famille {{ plant.families.Name }}</p>
-        <p>Espèce {{ plant.species.Name }}</p>
+        <div class="plantInfos">
 
-        <div class="categFields">
-        
-            <div class="categUnit">
-                <div class="categClass">Catégorie(s)</div>
+            <p class="fontDistinction">Famille: {{ plant.families.Name }}</p>
+            <p class="fontDistinction">Espèce: {{ plant.species.Name }}</p>
+
+            <div class="categFields">
+
+                <div class="categUnit">
+                    <span>Catégorie(s)</span>
+                    <div class="categClass">
+                        {% for category in plant.categories %}
+                        <div class="categComponent">{{ category.Name }}</div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="categSpacing">
-                {% for category in plant.categories %}
-                <div class="categComponent">{{ category.Name }}</div>
-                {% endfor %}
+
+                <div class="categUnit">
+                    <span>Saisonalité</span>
+                    <div class="categClass">
+                        {% for season in plant.seasons %}
+                        <div class="categComponent">{{ season.Name }}</div>
+                        {% endfor %}
+                    </div>
                 </div>
-            
 
-            <div class="categUnit">
-            <div class="categClass">Saisonalité</div>
-                {% for season in plant.seasons %}
-                <div class="categComponent">{{ season.Name }}</div>
-                {% endfor %}
+                <div class="categUnit">
+                    <span>Arrosage</span>
+                    <div class="categClass">
+                        {% if plant.watering %}
+                        <div class="categComponent">{{ plant.watering.quantity }} ml</div>
+                        <div class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</div>
+                        {% else %}
+                        <div class="categComponent">Aucun arrosage défini</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="categUnit">
+                    <span>Couleurs</span>
+                    <div class="categClass">
+                        {% for color in plant.colors %}
+                        <div class="categComponent">{{ color.Name }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
 
-            <div class="categUnit">
-            <div class="categClass">Arrosage</div>
-                {# {% for color in plant.colors %}
-                <div class="categComponent">{{ color.Name }}</div>
-                {% endfor %} #}
-            </div>
-
-            <div class="categUnit">
-            <div class="categClass">Couleurs</div>
-                {% for color in plant.colors %}
-                <div class="categComponent">{{ color.Name }}</div>
-                {% endfor %}
-            </div>
         </div>
-
     </div>
 </div>
-
-{% endblock %}
+    {% endblock %}
