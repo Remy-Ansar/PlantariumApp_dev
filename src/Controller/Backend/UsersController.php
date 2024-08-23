@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Knp\Component\Pager\PaginatorInterface;
 
 #[Route('/admin/users', name: 'admin.users')]
 class UsersController extends AbstractController
@@ -26,14 +27,33 @@ class UsersController extends AbstractController
     }
 
     #[Route('', name: '.index', methods: ['GET'])]
-    public function index(): Response
-    {
-        return $this->render('Backend/Users/index.html.twig', [
-            'users' => $this->usersRepository->findAll(),
-            'usersInfos' => $this->userInfosRepository->findAll(),
-            'header' => $this
-        ]);
-    }
+public function index(Request $request, PaginatorInterface $paginator): Response
+{
+    $session = $request->getSession();
+    $page = $request->query->getInt('page', 1);
+    $session->set('users_page', $page);
+
+    // Récupération des filtres depuis la requête
+    $firstName = $request->query->get('FirstName');
+    $lastName = $request->query->get('LastName');
+
+    // Utilisation de la méthode de recherche
+    $userInfos = $this->userInfosRepository->findByFullName($firstName, $lastName);
+
+    // Pagination des résultats filtrés
+    $pagination = $paginator->paginate(
+        $userInfos,
+        $page,
+        5 // Nombre d'éléments par page
+    );
+
+    return $this->render('Backend/Users/index.html.twig', [
+        'users' => $this->usersRepository->findAll(),
+        'usersInfos' => $userInfos, // Résultats filtrés
+        'header' => $this,
+        'pagination' => $pagination,
+    ]);
+}
 
     #[Route('/{id}/edit', name: '.edit', methods: ['GET', 'POST'])]
     public function edit(?Users $users, ?UserInfos $userInfos, Request $request): Response|RedirectResponse

@@ -14,8 +14,11 @@ class WateringType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Frequency', IntegerType::class)
+            ->add('Frequency', IntegerType::class, [
+                'label' => 'Choisissez la fréquence la fréquence d\'arrosage :',
+            ]) 
             ->add('Quantity', NumberType::class, [
+                'label' => 'Choisissez la quantité d\'eau (en mililitres) :',
                 'required' => false,
             ]);
     }

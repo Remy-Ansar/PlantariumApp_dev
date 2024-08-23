@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\UX\TogglePassword\Form\TogglePasswordType;
 
 class UsersType extends AbstractType
 {
@@ -30,20 +31,21 @@ class UsersType extends AbstractType
                     'class' => 'formDisplay',
                 ]
             ])
-            ->add('password', PasswordType::class, [
+            ->add('password', TogglePasswordType::class, [
+                'toggle' => true,
+                'hidden_label' => 'Masquer',
+                'visible_label' => 'Afficher',
                 'invalid_message' => 'Les mots de passe entrés ne sont pas identiques.',
                 'required' => true,
                 'mapped' => false,
                 'constraints' => [
                     new Assert\Regex([
                         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                        'message' => 'Votre mot de passe doit contenur au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
+                        'message' => 'Votre mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
                     ]),
                     new Assert\NotBlank(),
-                    new Assert\Length(
-                        max: 4096,
-                    ),
-                ]
+                    new Assert\Length(max: 4096),
+                ],
             ])
             ->add('userInfos', ProfileType::class, [
                 'label' => false,

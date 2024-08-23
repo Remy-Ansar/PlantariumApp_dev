@@ -5,7 +5,64 @@
     padding: 1em;
     text-align: center;
 }
-// .navigation p {
-//     display: flex;
-//     justify-content: center;
-// }
+/* Conteneur principal de la pagination */
+.pagination {
+    display: flex; /* Aligne les éléments en ligne */
+    list-style-type: none; /* Supprime les puces de liste */
+    padding: 0; /* Supprime le padding */
+    margin: 1em 0; /* Ajoute un espace autour de la pagination */
+    justify-content: center; /* Centre la pagination horizontalement */
+    gap: 1em;
+    align-items: center;
+  
+}
+
+/* Style des éléments de la pagination */
+.pagination li {
+    margin: 0 0.25em; /* Ajoute de l'espace entre les éléments */
+}
+
+/* Style des liens de la pagination */
+.pagination a {
+    display: block; /* Assure que tout l'élément soit cliquable */
+    padding: 0.5em 1em; /* Ajoute de l'espace autour du texte */
+    color: $dark-font; /* Couleur du texte */
+    text-decoration: none; /* Supprime la décoration de lien par défaut */
+    border: 2px solid $obscure-green; /* Ajoute une bordure */
+    border-radius: 4px; /* Arrondit les coins */
+    transition: background-color 0.3s, color 0.3s;
+    background: $glassmorphism; 
+}
+
+/* Effet de survol sur les liens de la pagination */
+.pagination a:hover {
+    background-color: $obscure-green; /* Change le fond au survol */
+    color: white; /* Change la couleur du texte au survol */
+}
+
+/* Style des liens de la pagination active */
+.pagination .active a {
+    background-color: $light-green; /* Fond différent pour le lien actif */
+    color: white; /* Couleur de texte différent pour le lien actif */
+    cursor: default; /* Change le curseur pour indiquer que le lien est déjà actif */
+    pointer-events: none; /* Désactive le clic sur le lien actif */
+    border: 5px solid $white-font; /* Ajoute une bordure */
+}
+
+/* Style des liens désactivés (pour les boutons de navigation précédente/suivante, etc.) */
+.pagination .disabled a {
+    color: #ddd; /* Couleur de texte désactivée */
+    border-color: #ddd; /* Couleur de bordure désactivée */
+    cursor: not-allowed; /* Curseur non permis */
+    pointer-events: none; /* Désactive le clic */
+}
+
+.current {
+    display: block; /* Assure que tout l'élément soit cliquable */
+    padding: 0.5em 1em; /* Ajoute de l'espace autour du texte */
+    color: $white-font; /* Couleur du texte */
+    text-decoration: none; /* Supprime la décoration de lien par défaut */
+    border: 3px solid $white-font; /* Ajoute une bordure */
+    border-radius: 4px; /* Arrondit les coins */
+    transition: background-color 0.3s, color 0.3s;
+}

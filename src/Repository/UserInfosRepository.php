@@ -25,6 +25,31 @@ class UserInfosRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['LastName' => $lastname]);
     }
+    
+    public function findByFullName(?string $firstName = null, ?string $lastName = null)
+{
+    $qb = $this->createQueryBuilder('ui')
+        ->leftJoin('ui.users', 'u');
+
+    // Vérification des champs et application des filtres
+    if ($firstName) {
+        $qb->andWhere('ui.FirstName LIKE :firstName')
+           ->setParameter('firstName', '%' . $firstName . '%');
+    }
+
+    if ($lastName) {
+        $qb->andWhere('ui.LastName LIKE :lastName')
+           ->setParameter('lastName', '%' . $lastName . '%');
+    }
+
+    // Si aucune condition n'est remplie, ne retourner aucun résultat
+    if (!$firstName && !$lastName) {
+        return [];
+    }
+
+    return $qb->getQuery()->getResult();
+}
+}
 
     //    /**
     //     * @return UserInfos[] Returns an array of UserInfos objects
@@ -50,4 +75,4 @@ class UserInfosRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
-}
+

@@ -35,7 +35,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class PlantsController extends AbstractController
 {
 
-    
     private $plantsRepository;
     private $speciesRepository;
     private $familiesRepository;
@@ -321,24 +320,19 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
         ]);
     }
 
-    #[Route('/search/{name}', name: '.search', methods: ['GET'])]
-    public function search(string $name): JsonResponse
+    #[Route('/toggle/{id}', name: '.toggle', methods: ['POST'])]
+    public function toggle(Plants $plant, EntityManagerInterface $entityManager, Request $request): JsonResponse
     {
-        $result = $this->plantsRepository->findOneByName($name);
+        // Vérifie si la requête est une requête AJAX
+        if ($request->isXmlHttpRequest()) {
+            // Inverse l'état du champ `enable`
+            $plant->setEnable(!$plant->getEnable());
+            $entityManager->flush();
 
-        if ($result) {
-            $data = [
-                'name' => $result->getName(),
-                'family' => $result->getFamilies() ? $result->getFamilies()->getName() : null,
-                'species' => $result->getSpecies() ? $result->getSpecies()->getName() : null,
-                'colors' => $result->getColors()->map(fn($color) => $color->getName())->toArray(),
-                'categories' => $result->getCategories()->map(fn($category) => $category->getName())->toArray(),
-                'seasons' => $result->getSeasons()->map(fn($season) => $season->getName())->toArray(),
-            ];
-
-            return new JsonResponse($data);
+            // Retourne une réponse JSON
+            return new JsonResponse(['success' => true, 'enabled' => $plant->getEnable()]);
         }
 
-        return new JsonResponse(['message' => 'Plante non trouvée'], Response::HTTP_NOT_FOUND);
+        return new JsonResponse(['success' => false], 400);
     }
 }

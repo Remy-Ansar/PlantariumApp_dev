@@ -67,10 +67,6 @@ aside {
   justify-content: center;
 }
 
-// main section {
-// display: flex;
-// }
-
 .profilePic {
   border: 4px solid $white-font;
   border-radius: 100px;
@@ -95,4 +91,10 @@ aside {
 .headerMain {
   display: flex;
   flex-direction: column;
+}
+
+#inscription_CGU {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
 }

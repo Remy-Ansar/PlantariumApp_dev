@@ -29,11 +29,13 @@ thead th:nth-child(5) {
   }
 
 thead th:nth-child(10) {
-    width: 2em;
+    width: 6em;
   }
+  
 .fieldAdd {
+  margin: 1em 0 1em 0;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 2em;
 }
 tbody td {
@@ -60,4 +62,5 @@ height: 200px;
   .table-container {
     width: 100%;
     overflow-x: auto; /* Enable horizontal scrolling */
+    background: $glassmorphism;
 }

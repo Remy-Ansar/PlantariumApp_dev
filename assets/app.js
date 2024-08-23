@@ -9,6 +9,9 @@ import './javascript/activeLinks.js';
 import './javascript/sort.js'
 // import './javascript/diseasesField.js'
 import './javascript/calendar.js'
+import './javascript/carrousel.js'
+import './javascript/toggleButton.js'
+import './javascript/togglePassword.js'
 
 
 // start the Stimulus application

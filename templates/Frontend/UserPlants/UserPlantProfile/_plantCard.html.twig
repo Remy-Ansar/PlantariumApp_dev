@@ -1,19 +1,12 @@
 <div class="cardUser">
     <div class="img-container">
-        
-    <a href="{{ path('userPlants.details', {name: userPlant.plant.Name}) }}">
-        <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}">
-        <div class="gradient-overlay"></div></a>
+        <a href="{{ path('userPlants.details', {name: userPlant.plant.Name}) }}">
+            <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}">
+            <div class="gradient-overlay"></div>
+        </a>
     </div>
-        <div class="plantTitle">
-        <p> {{ userPlant.plant.species.Name }}</p>
-        <p> {{ userPlant.plant.name }} </p>
-        </div>
-
-    {# <form action="{{path('users.delete', {id: userPlant.id}) }}" method="POST"
-            onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"
-            enctype="multipart/form-data">
-            <input type="hidden" name="token" value="{{ csrf_token('delete'~ userPlant.id) }}">
-            <button type="submit">Supprimer cette plante</button> #}
-
+    <div class="plantTitle">
+        <p>{{ userPlant.plant.species.Name }}</p>
+        <p>{{ userPlant.plant.name }}</p>
+    </div>
 </div>

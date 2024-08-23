@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
   
-
     setActiveLink();
-  
 
     for (let i = 0; i < hypertext.length; i++) {
       hypertext[i].addEventListener('click', function(event) {

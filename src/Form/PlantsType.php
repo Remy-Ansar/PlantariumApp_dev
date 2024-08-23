@@ -85,6 +85,10 @@ class PlantsType extends AbstractType
             'by_reference' => true,
         ])
 
+        ->add('watering', WateringType::class, [
+            'label' => false,
+        ])
+
         ->add('image', VichImageType::class, [
             'label' => 'Ajouter une image ou une photo de la plante :',
             'required' => false,

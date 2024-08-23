@@ -20,10 +20,10 @@ Administration des plantes
                     <button type="submit" class="searchSubmit">
                         <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
                     </button>
-                </div> 
-  <p>Trier les plantes par :</p>
+                </div>
+                <p>Trier les plantes par :</p>
                 <div class="filters">
-                
+
                     <div class="filterGroup">
                         <label for="species">Espèce</label>
                         <select name="species" id="species">
@@ -73,23 +73,11 @@ Administration des plantes
                             {% endfor %}
                         </select>
                     </div>
-            </div>
-                    <button type="submit" class="tagsButton">Rechercher</button>
-            </form>
-        </div>
+                </div>
+                <button type="submit" class="tagsButton">Rechercher</button>
 
-        {# Affichage des résultats #}
-        {# <div class="results">
-    {% if pagination.items is not empty %}
-        <ul>
-            {% for plant in pagination.items %}
-                <li>{{ plant.name }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucun résultat ne correspond à votre recherche.</p>
-    {% endif %}
-</div> #}
+        </div>
+        </form>
 
         <div class="fieldAdd">
             <div>
@@ -153,7 +141,7 @@ Administration des plantes
                     <td>
                         <div class="categTags">
                             {% for categorie in plant.categories %}
-                            {{ categorie.Name }}
+                            {{ categorie.Name|nl2br }}
                             {% endfor %}
                         </div>
                     </td>
@@ -163,7 +151,11 @@ Administration des plantes
                                 class="profilePic" width="100px" height="100px">
                         </a>
                     </td>
-                    <td>{{ plant.enable ? 'Oui' : 'Non' }}</td>
+                    <td>
+                        <button class="toggle-plant" data-id="{{ plant.id }}" data-url="{{ path('editor.plants.toggle', {'id': plant.id}) }}">
+                             <img src="{{ asset('images/components/toggle.png') }}" alt="Bouton toggle d'activation">
+                        </button>
+                    </td>
                     <td>
                         <a href="{{ path('editor.plants.edit', {id: plant.id}) }}">
                             <button class="modifyButton">Modifier une plante</button>
@@ -184,13 +176,11 @@ Administration des plantes
         </table>
     </div>
 
-    <div class="navigation">
-        <p>page(s) {{ knp_pagination_render(pagination) }}</p>
-    </div>
 </main>
 
+<div class="navigation">
+        <span>Page(s){{ knp_pagination_render(pagination)  }}</span>
+    </div>
+
 {% endblock %}
 
-{% block javascripts %}
-<script src="{{ asset('javascript/sort.js') }}"></script>
-{% endblock %}

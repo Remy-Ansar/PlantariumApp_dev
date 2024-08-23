@@ -12,13 +12,13 @@
         <h2>Trier mes plantes par</h2>
         <main>
             <div class="mainCardsUser">
-                {% for userPlant in userPlants %}
-                    {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+                {% if userPlants is not empty %}
+                    {% include 'Frontend/UserPlants/UserPlantProfile/_carrousel.html.twig' %}
                 {% else %}
                     <div>
                         <p>Vous n'avez pas encore de plantes dans votre profil</p>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
         </main>
     </body>

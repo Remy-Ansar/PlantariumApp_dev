@@ -3,36 +3,37 @@
     justify-content: center;
     align-items: center;
     margin: 20px;
-    outline: none; /* Remove default outline */
+    outline: none; 
 }
 
 .searchBar {
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-radius: 10px 12px 12px 10px;
     background: $white-font;
-    outline: none; /* Remove default outline */
+    outline: none; 
 }
 
 .searchText {
     padding: 10px;
     font-size: 16px;
-    outline: none; /* Remove default outline */
-    border: none; /* Remove border */
+    outline: none; 
+    border: none; 
     border-radius: 10px 12px 12px 10px;
-
 }
 
 .searchText:focus {
-    outline: none; /* Ensure no outline on focus */
-    border: none; /* Ensure no border on focus */
+    outline: none; 
+    border: none; 
 }
 
 .searchSubmit {
-    border: none; /* Remove default border */
-    background: none; /* Remove default background */
-    cursor: pointer; /* Show pointer cursor on hover */
-    outline: none; /* Remove default outline */
+    border: none; 
+    background: none; 
+    cursor: pointer; 
+    outline: none; 
     display: flex;
     align-items: center;
     border-radius: 10px 12px 12px 10px;
@@ -41,7 +42,8 @@
 }
 
 .searchSubmit img {
-    width: 20px; /* Adjust the size as needed */
-    height: 20px; /* Adjust the size as needed */
-    outline: none; /* Remove default outline */
+    width: 20px; 
+    height: 20px; 
+    outline: none; 
+    justify-content: flex-end;
 }
