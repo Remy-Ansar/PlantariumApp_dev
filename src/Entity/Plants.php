@@ -164,7 +164,6 @@ class Plants
         return $this;
     }
 
-
     /**
      * @return Collection<int, Seasons>
      */

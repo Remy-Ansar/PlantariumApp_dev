@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\UX\TogglePassword\Form\TogglePasswordType;
 
 class InscriptionType extends AbstractType
 {
@@ -20,23 +19,20 @@ class InscriptionType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Votre adresse email',
+                'label' => 'Votre addresse email',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'exemple@mail.fr',
                     'class' => 'formDisplay',
-                ],
+                ]
             ])
             ->add('password', RepeatedType::class, [
-                'type' => TogglePasswordType::class,
+                'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe entrés ne sont pas identiques.',
-                'mapped' => false,
                 'required' => true,
+                'mapped' => false,
                 'first_options' => [
                     'label' => 'Mot de passe',
-                    'toggle' => true,
-                    'hidden_label' => 'Masquer',
-                    'visible_label' => 'Afficher',
                     'attr' => [
                         'placeholder' => 'Motdepasse85-',
                         'class' => 'formDisplay',
@@ -44,28 +40,27 @@ class InscriptionType extends AbstractType
                     'constraints' => [
                         new Assert\Regex([
                             'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                            'message' => 'Votre mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
+                            'message' => 'Votre mot de passe doit contenur au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
                         ]),
                         new Assert\NotBlank(),
-                        new Assert\Length([
-                            'max' => 4096,
-                        ]),
+                        new Assert\Length(
+                            max:4096,
+                        ),
+                    ]
                     ],
-                ],
-                'second_options' => [
-                    'label' => 'Répéter le mot de passe',
-                    'toggle' => true,
-                    'hidden_label' => 'Masquer',
-                    'visible_label' => 'Afficher',
-                    'attr' => [
-                        'placeholder' => 'Motdepasse85-',
-                        'class' => 'formDisplay',
-                    ],
-                ],
+                    'second_options' => [
+                        'label' => 'Répéter le mot de passse',
+                        'attr' => [
+                            'placeholder' => 'Motdepasse85-',
+                            'class' => 'formDisplay',
+                        ],
+                        ],
             ])
+
             ->add('CGU', CheckboxType::class, [
                 'required' => true,
-                'label' => 'Je confirme avoir pris connaissance des conditions générales d\'utilisation',
+                'label' => 'Je confirme avoir pris connaissance des
+                            conditions générales d\'utilisation',
             ]);
 
         if ($options['isAdmin']) {
@@ -81,6 +76,7 @@ class InscriptionType extends AbstractType
                     'expanded' => true,
                 ]);
         }
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

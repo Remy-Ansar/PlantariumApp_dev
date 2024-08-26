@@ -82,14 +82,16 @@ class UserPlantsController extends AbstractController
     }
 
     #[Route('/plantarium', name: '.plantarium', methods: ['GET', 'POST'])]
-    public function plantariumList(Request $request, PaginatorInterface $paginator): Response
+    public function plantariumList(Request $request, PaginatorInterface $paginator, PlantsRepository $plantsRepository): Response
     {
+
         $session = $request->getSession();
         $page = $request->query->getInt('page', 1);
         $session->set('plants_page', $page);
 
         // Récupération des filtres depuis la requête
         $filters = $request->query->all();
+        $query = $plantsRepository->findEnabledPlantsQuery($filters);
 
         // Application des filtres
         $plants = [];
@@ -107,32 +109,32 @@ class UserPlantsController extends AbstractController
         } elseif (!empty($filters['categories'])) { 
             $plants = $this->plantsRepository->findPlantsByCategories((int)$filters['categories']);
         } else {
-            $plants = $this->plantsRepository->findAll();
+            $plants = $this->plantsRepository->findEnabledPlantsQuery($filters);
         }
 
-        // Pagination des résultats filtrés
-        $pagination = $paginator->paginate(
-            $plants,
-            $request->query->getInt('page', 1),
-            6
-        );
+    // Pagination des résultats filtrés
+    $pagination = $paginator->paginate(
+        $query,
+        $request->query->getInt('page', 1),
+        6
+    );
 
-        // Récupération des valeurs nécessaires pour les filtres
-        $species = $this->speciesRepository->findAll();
-        $families = $this->familiesRepository->findAll();
-        $colors = $this->colorsRepository->findAll();
-        $seasons = $this->seasonsRepository->findAll();
-        $categories = $this->categoriesRepository->findAll();
+    // Récupération des valeurs nécessaires pour les filtres
+    $species = $this->speciesRepository->findAll();
+    $families = $this->familiesRepository->findAll();
+    $colors = $this->colorsRepository->findAll();
+    $seasons = $this->seasonsRepository->findAll();
+    $categories = $this->categoriesRepository->findAll();
 
-        return $this->render('Frontend/UserPlants/PlantList/index.html.twig',  [
-            'pagination' => $pagination,
-            'species' => $species,
-            'families' => $families,
-            'colors' => $colors,
-            'seasons' => $seasons,
-            'categories' => $categories,
-        ]);
-    }
+    return $this->render('Frontend/UserPlants/PlantList/index.html.twig', [
+        'pagination' => $pagination,
+        'species' => $species,
+        'families' => $families,
+        'colors' => $colors,
+        'seasons' => $seasons,
+        'categories' => $categories,
+    ]);
+}
 
 
     #[Route('/plantarium/addPlant', name: '.plantarium.addPlant', methods: ['GET','POST'])]

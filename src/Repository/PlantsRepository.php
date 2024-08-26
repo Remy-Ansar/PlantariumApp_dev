@@ -94,6 +94,64 @@ public function findPlantsByCategories(int $categoryId)
         ->getQuery()
         ->getResult();
 }
+
+/**
+     * @return Plants[] Returns an array of Plants objects with enable = 1
+     */
+    public function findEnabledPlants()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.enable = :enabled')
+            ->setParameter('enabled', 1)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+    
+    public function findEnabledPlantsQuery(array $filters)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.enable = :enabled')
+            ->setParameter('enabled', 1);
+    
+        if (!empty($filters['name'])) {
+            $qb->andWhere('p.name LIKE :name')
+                ->setParameter('name', '%' . $filters['name'] . '%');
+        }
+    
+        if (!empty($filters['species'])) {
+            $qb->join('p.species', 's') // Joindre l'entité Species
+                ->andWhere('s.id = :species')
+                ->setParameter('species', (int)$filters['species']);
+        }
+    
+        if (!empty($filters['families'])) {
+            $qb->join('p.family', 'f') // Joindre l'entité Families
+                ->andWhere('f.id = :family')
+                ->setParameter('family', (int)$filters['families']);
+        }
+    
+        if (!empty($filters['colors'])) {
+            $qb->join('p.colors', 'c') // Joindre l'entité Colors
+                ->andWhere('c.id = :color')
+                ->setParameter('color', (int)$filters['colors']);
+        }
+    
+        if (!empty($filters['seasons'])) {
+            $qb->join('p.seasons', 'se') // Joindre l'entité Seasons
+                ->andWhere('se.id = :season')
+                ->setParameter('season', (int)$filters['seasons']);
+        }
+    
+        if (!empty($filters['categories'])) {
+            $qb->join('p.categories', 'ca') // Joindre l'entité Categories
+                ->andWhere('ca.id = :category')
+                ->setParameter('category', (int)$filters['categories']);
+        }
+    
+        return $qb->getQuery();
+    }
 }
     //    /**
     //     * @return Plants[] Returns an array of Plants objects

@@ -32,4 +32,16 @@ trait EnableTrait
 
         return $this;
     }
+
+    
+    /**
+     * Check if enable is true
+     *
+     * @return bool
+     */
+    public function isEnable(): bool
+    {
+        return $this->enable ?? false;
+    }
+
 }

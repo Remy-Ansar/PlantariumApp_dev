@@ -12,7 +12,7 @@ import './javascript/calendar.js'
 import './javascript/carrousel.js'
 import './javascript/toggleButton.js'
 import './javascript/togglePassword.js'
-
+import './javascript/form.js'
 
 // start the Stimulus application
 // import './bootstrap.js';

@@ -14,7 +14,7 @@ Administration des plantes
         <h2>Administration des plantes</h2>
 
         <div class="wrap">
-            <form method="get" action="{{ path('users.plantarium') }}">
+            <form method="get" action="{{ path('editor.plants.index') }}">
                 <div class="searchBar">
                     <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
                     <button type="submit" class="searchSubmit">
@@ -74,7 +74,11 @@ Administration des plantes
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="tagsButton">Rechercher</button>
+                <div class="buttonAlign">
+                    <button type="submit" class="tagsButton">Rechercher</button>
+                    <button class="resetButton"><a href="{{ path('editor.plants.index') }}">Réinitialiser votre
+                            recherche</a></button>
+                </div>
 
         </div>
         </form>
@@ -152,10 +156,13 @@ Administration des plantes
                         </a>
                     </td>
                     <td>
-                        <button class="toggle-plant" data-id="{{ plant.id }}" data-url="{{ path('editor.plants.toggle', {'id': plant.id}) }}">
-                             <img src="{{ asset('images/components/toggle.png') }}" alt="Bouton toggle d'activation">
+                        <button class="toggle-plant" data-id="{{ plant.id }}"
+                            data-url="{{ path('editor.plants.switch', {'id': plant.id}) }}">
+                            <img src="{{ plant.isEnable() ? asset('images/components/commutateur_on.png') : asset('images/components/commutateur_off.png') }}"
+                                alt="{{ plant.isEnable() ? 'Désactiver' : 'Activer' }}">
                         </button>
                     </td>
+
                     <td>
                         <a href="{{ path('editor.plants.edit', {id: plant.id}) }}">
                             <button class="modifyButton">Modifier une plante</button>
@@ -179,8 +186,7 @@ Administration des plantes
 </main>
 
 <div class="navigation">
-        <span>Page(s){{ knp_pagination_render(pagination)  }}</span>
-    </div>
+    <span>Page(s){{ knp_pagination_render(pagination)  }}</span>
+</div>
 
 {% endblock %}
-

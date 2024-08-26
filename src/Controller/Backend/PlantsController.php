@@ -320,19 +320,22 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
         ]);
     }
 
-    #[Route('/toggle/{id}', name: '.toggle', methods: ['POST'])]
-    public function toggle(Plants $plant, EntityManagerInterface $entityManager, Request $request): JsonResponse
-    {
-        // Vérifie si la requête est une requête AJAX
-        if ($request->isXmlHttpRequest()) {
-            // Inverse l'état du champ `enable`
-            $plant->setEnable(!$plant->getEnable());
-            $entityManager->flush();
+    #[Route('/{id}/switch', name: '.switch', methods: ['POST'])]
+public function togglePlant(int $id, PlantsRepository $plantsRepository, EntityManagerInterface $entityManager): JsonResponse
+{
+    $plant = $entityManager->getRepository(Plants::class)->find($id);
 
-            // Retourne une réponse JSON
-            return new JsonResponse(['success' => true, 'enabled' => $plant->getEnable()]);
-        }
-
-        return new JsonResponse(['success' => false], 400);
+    if (!$plant) {
+        return new JsonResponse(['success' => false, 'message' => 'Plant not found'], 404);
     }
+
+    // Inverse la valeur du champ 'enable'
+    $plant->setEnable(!$plant->getEnable());
+
+    // Sauvegarde les modifications
+    $entityManager->flush();
+
+    return new JsonResponse(['success' => true, 'enabled' => $plant->getEnable()]);
+}
+
 }

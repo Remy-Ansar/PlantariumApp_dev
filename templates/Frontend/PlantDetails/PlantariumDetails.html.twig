@@ -21,9 +21,13 @@ Détail de la plante
     <div class="plantPic">
         <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
     </div>
+
     <div class="plantInfos">
-        <p>Description </p>
-        <p>{{ plant.Description }}</p>
+        <div class="categUnit">
+            <span>Description:
+                <p class="description">{{ plant.Description }}</p>
+            </span>
+        </div>
         <div class="addButton">
 
             <form action="{{ path('users.plantarium.addPlant') }}" method="post">
@@ -39,8 +43,8 @@ Détail de la plante
 
         <div class="plantInfos">
 
-            <p class="fontDistinction">Famille: {{ plant.families.Name }}</p>
-            <p class="fontDistinction">Espèce: {{ plant.species.Name }}</p>
+            <p class="fontDistinction">Famille: {{ plant.families.Name|capitalize }}</p>
+            <p class="fontDistinction">Espèce: {{ plant.species.Name|capitalize }}</p>
 
             <div class="categFields">
 
@@ -87,4 +91,4 @@ Détail de la plante
         </div>
     </div>
 </div>
-    {% endblock %}
+{% endblock %}
