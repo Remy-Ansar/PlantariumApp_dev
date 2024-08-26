@@ -41,34 +41,34 @@ Administration des utilisateurs
                 </tr>
             </thead>
             <tbody>
-                {% for userInfo in usersInfos %}
-                <tr>
-                    <td>{{ userInfo.users.id }}</td>
-                    <td>{{ userInfo.users.email }}</td>
-                    <td>{{ userInfo.users.roles|join(', ') }}</td>
-                    <td>{{ userInfo.getFullName() }}</td>
-                    <td>{{ userInfo.getLevel() }}</td>
-                    <td>
-                        <a href="#">
-                            {% if userInfo.imageName %}
-                            <img src="{{ vich_uploader_asset(userInfo, 'image') }}" alt="{{ userInfo }}"
-                                class="profilePic" loading="lazy" width="100px" height="100px">
-                            {% endif %}
-                        </a>
-                    </td>
-                    <td><a href="{{ path('admin.users.edit', {id: userInfo.users.id}) }}"><button
-                                class="modifyButton">Modifier</button></a></td>
-                    <td>
-                        <form action="{{ path('admin.users.delete', {id: userInfo.users.id}) }}" method="POST"
-                            onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cet utilisateur? Cette action est irréversible')"
-                            enctype="multipart/form-data">
-                            <input type="hidden" name="token" value="{{ csrf_token('delete'~ userInfo.users.id) }}">
-                            <button type="submit" class="deleteButton">Supprimer</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.roles|join(', ') }}</td>
+        <td>{{ user.getFullName() }}</td>
+        <td>{{ user.getUserLevel() }}</td>
+        <td>
+            <a href="#">
+                {% if user.UserInfos and user.UserInfos.imageName %}
+                <img src="{{ vich_uploader_asset(user.UserInfos, 'image') }}" alt="{{ user.getFullName() }}"
+                    class="profilePic" loading="lazy" width="100px" height="100px">
+                {% endif %}
+            </a>
+        </td>
+        <td><a href="{{ path('admin.users.edit', {id: user.id}) }}"><button
+                    class="modifyButton">Modifier</button></a></td>
+        <td>
+            <form action="{{ path('admin.users.delete', {id: user.id}) }}" method="POST"
+                onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cet utilisateur? Cette action est irréversible')"
+                enctype="multipart/form-data">
+                <input type="hidden" name="token" value="{{ csrf_token('delete'~ user.id) }}">
+                <button type="submit" class="deleteButton">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
         </table>
     </div>
 </main>

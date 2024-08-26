@@ -33,7 +33,7 @@ class UserPlants
     /**
      * @var Collection<int, PlantDetail>
      */
-    #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants', cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: PlantDetail::class, mappedBy: 'userPlants', cascade: ['persist'], orphanRemoval: true)]
     private Collection $plantDetail;
 
     /**
@@ -84,7 +84,7 @@ class UserPlants
         return $this->plantDetail;
     }
 
-    public function addPlantDetail(PlantDetail $plantDetail): static
+    public function addPlantDetail(PlantDetail $plantDetail): self
     {
         if (!$this->plantDetail->contains($plantDetail)) {
             $this->plantDetail->add($plantDetail);
@@ -94,7 +94,7 @@ class UserPlants
         return $this;
     }
 
-    public function removePlantDetail(PlantDetail $plantDetail): static
+    public function removePlantDetail(PlantDetail $plantDetail): self
     {
         if ($this->plantDetail->removeElement($plantDetail)) {
             // set the owning side to null (unless already changed)

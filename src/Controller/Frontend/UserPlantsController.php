@@ -137,53 +137,60 @@ class UserPlantsController extends AbstractController
 }
 
 
-    #[Route('/plantarium/addPlant', name: '.plantarium.addPlant', methods: ['GET','POST'])]
-    public function addPlant(Request $request, PaginatorInterface $paginator): Response
-        {
-            $session = $request->getSession();
-            $page = $session->get('plants_page', 1);
+#[Route('/plantarium/addPlant', name: '.plantarium.addPlant', methods: ['GET', 'POST'])]
+public function addPlant(Request $request, PaginatorInterface $paginator): Response
+{
+    $session = $request->getSession();
+    $page = $session->get('plants_page', 1);
 
-            // Step 2: Fetch the Current User and Selected Plant
-            $user = $this->getUser();
-            if (!$user instanceof Users) {
-                $this->addFlash('danger', 'Vous n\'êtes pas authorisé.');
-                return $this->redirectToRoute('app_login');
-            }
-    
-            $plantId = $request->request->get('plant_id'); // Ensure the form sends plant_id as POST parameter
-            if (!$plantId) {
-                $this->addFlash('danger', 'Plant ID is missing.');
-                return $this->redirectToRoute('users.plantarium');
-            }
-    
-            $plant = $this->em->getRepository(Plants::class)->find($plantId);
-            if (!$plant) {
-                $this->addFlash('danger', 'La plante n\'existe pas.');
-                return $this->redirectToRoute('users.plantarium');
-            }
-    
-            // Create and Persist the UserPlant Entity and the related plantDetail 
-            $userPlant = new UserPlants();
-            $plantDetail = new PlantDetail();
-            $userPlant->setUser($user, $plantDetail);
-            $userPlant->setPlant($plant, $plantDetail);
-            
-    
-            $this->em->persist($userPlant, $plantDetail);
-            $this->em->flush();
-    
-            $plants = $this->plantsRepository->findAll(); 
+    // Fetch the Current User
+    $user = $this->getUser();
+    if (!$user instanceof Users) {
+        $this->addFlash('danger', 'Vous n\'êtes pas autorisé.');
+        return $this->redirectToRoute('app_login');
+    }
 
+    // Get the Plant ID from the request
+    $plantId = $request->request->get('plant_id');
+    if (!$plantId) {
+        $this->addFlash('danger', 'Plant ID is missing.');
+        return $this->redirectToRoute('users.plantarium');
+    }
 
-            $pagination = $paginator->paginate(
-                $plants,
-                $page,
-                6
-            );
+    // Fetch the Plant Entity
+    $plant = $this->em->getRepository(Plants::class)->find($plantId);
+    if (!$plant) {
+        $this->addFlash('danger', 'La plante n\'existe pas.');
+        return $this->redirectToRoute('users.plantarium');
+    }
 
-            $this->addFlash('success', 'Votre plante a bien été ajoutée.');
-            return $this->redirectToRoute('users.plantarium');
-        }
+    // Fetch or create UserPlants entity
+    $userPlant = $this->em->getRepository(UserPlants::class)->findOneBy(['User' => $user]);
+
+    if ($userPlant === null) {
+        $userPlant = new UserPlants();
+        $userPlant->setUser($user);
+        $userPlant->setPlant($plant);
+        $this->em->persist($userPlant);
+    }
+
+    // Create and persist the PlantDetail entity
+    $plantDetail = new PlantDetail();
+    $plantDetail->setUserPlants($userPlant); // Set the existing UserPlants instance
+    $plantDetail->setPlant($plant);
+    $this->em->persist($plantDetail);
+
+    // Flush changes to the database
+    $this->em->flush();
+
+    // Fetch and paginate the plants for the view
+    $plants = $this->plantsRepository->findAll();
+    $pagination = $paginator->paginate($plants, $page, 6);
+
+    // Add a success message and redirect
+    $this->addFlash('success', 'Votre plante a bien été ajoutée.');
+    return $this->redirectToRoute('users.plantarium');
+}
 
         // #[Route('/{id}/delete', name: '.delete', methods: ['POST'])]
         // public function deleteUserPlant(?UserPlants $userPlant, Request $request): RedirectResponse

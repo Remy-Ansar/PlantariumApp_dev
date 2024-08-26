@@ -28,7 +28,7 @@ class PlantDetail
     private ?UserPlants $userPlants = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'plantDetails')]
+    #[ORM\ManyToOne(targetEntity: Plants::class, inversedBy: 'plantDetails')]
     private ?Plants $Plant = null;
 
     /**
@@ -87,7 +87,7 @@ class PlantDetail
         return $this->Plant;
     }
 
-    public function setPlant(?Plants $Plant): static
+    public function setPlant(?Plants $Plant): self
     {
         $this->Plant = $Plant;
 

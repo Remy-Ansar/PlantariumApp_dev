@@ -94,7 +94,7 @@ public function UserPlantDetails(string $name, Request $request, PaginatorInterf
             $this->em->flush(); 
         }
 
-        $plantDetail->setUserPlants($userPlant);
+        $plantDetail->getUserPlants($userPlant);
 
         $this->em->persist($plantDetail);
         $this->em->flush();
