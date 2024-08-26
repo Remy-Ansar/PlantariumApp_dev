@@ -74,10 +74,34 @@ Modification de votre plante
                     </div>
                 </div>
             </div>
-            <button class="modifyButton">Modifier</button>
+            <button type="submit" class="modifyButton">Modifier</button>
             {{ form_end(form) }}
 
         </div>
 </main>
 
+{% endblock %}
+
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Prevent form submission when fields change
+        const form = document.querySelector('form');
+        const modifyButton = document.querySelector('.modifyButton');
+        
+        // Add event listeners to all select elements
+        const selectElements = form.querySelectorAll('select');
+        selectElements.forEach(function(select) {
+            select.addEventListener('change', function(event) {
+                event.stopImmediatePropagation(); // Prevent default form submission on change
+            });
+        });
+
+        // Allow form submission only when the modify button is clicked
+        modifyButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default action
+            form.submit(); // Manually submit the form
+        });
+    });
+</script>
 {% endblock %}
