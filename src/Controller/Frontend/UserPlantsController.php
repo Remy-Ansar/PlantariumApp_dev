@@ -9,16 +9,17 @@ use App\Entity\PlantDetail;
 use App\Factory\UserPlantFactory;
 use App\Manager\UserPlantManager;
 use App\Repository\UsersRepository;
+use App\Repository\ColorsRepository;
 use App\Repository\PlantsRepository;
+use App\Repository\SeasonsRepository;
+use App\Repository\SpeciesRepository;
+use App\Repository\FamiliesRepository;
 use App\Repository\UserInfosRepository;
+use App\Repository\CategoriesRepository;
 use App\Repository\UserPlantsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\PlantDetailRepository;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Repository\FamiliesRepository;
-use App\Repository\SpeciesRepository;
-use App\Repository\ColorsRepository;
-use App\Repository\SeasonsRepository;
-use App\Repository\CategoriesRepository;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,8 +60,15 @@ class UserPlantsController extends AbstractController
     }
     
     #[Route('', name: '.index', methods: ['GET'])]
-    public function index(): Response
+    public function index(PaginatorInterface $paginator, Request $request, ?PlantDetailRepository $plantDetailRepository): Response
     {
+        $session = $request->getSession();
+        $page = $request->query->getInt('page', 1);
+        $session->set('plants_page', $page);
+
+        $filters = $request->query->all();
+
+
         $user = $this->getUser();
         if (!$user instanceof Users) {
             $this->addFlash('danger', 'Vous n\'êtes pas autorisé.');
@@ -70,8 +78,16 @@ class UserPlantsController extends AbstractController
         // Utiliser la méthode findUserPlantsByUser pour récupérer les plantes de cet utilisateur
         $userPlants = $this->userPlantsRepository->findUserPlantsByUser($user);
     
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            6
+        );
+
         return $this->render('Frontend/UserPlants/UserPlantProfile/index.html.twig', [
-            'userPlants' => $userPlants
+            'userPlants' => $userPlants,
+            'pagination' => $pagination,
+            'plantDetail' => $plantDetail
         ]);
     }
 

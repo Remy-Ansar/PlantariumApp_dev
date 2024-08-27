@@ -1,12 +1,9 @@
-<div class="carousel-container">
-    <div class="carousel-track">
-        {% for userPlant in userPlants %}
-            <div class="carousel-item">
-                {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
-            </div>
-        {% endfor %}
-    </div>
-
-    <button class="carousel-button prev">❮</button>
-    <button class="carousel-button next">❯</button>
+<div class="grid-container">
+    {% for userPlant in userPlants %}
+        <div class="grid-item">
+            {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+        </div>
+    {% else %}
+        <p>Vous n'avez pas encore de plantes dans votre profil.</p>
+    {% endfor %}
 </div>

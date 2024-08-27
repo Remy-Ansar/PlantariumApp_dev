@@ -1,10 +1,10 @@
 <div class="cardUser">
-    <div class="img-container">
-        <a href="{{ path('userPlants.details', {name: userPlant.plant.Name}) }}">
+    <a href="{{ path('userPlants.details', {name: userPlant.plant.Name, id: userPlant.id}) }}">
+        <div class="img-container">
             <img src="{{ vich_uploader_asset(userPlant.plant, 'image') }}" alt="{{ userPlant.plant.name }}">
             <div class="gradient-overlay"></div>
-        </a>
-    </div>
+        </div>
+    </a>
     <div class="plantTitle">
         <p>{{ userPlant.plant.species.Name }}</p>
         <p>{{ userPlant.plant.name }}</p>

@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -47,9 +46,7 @@ class Plants
         mimeTypes: ['image/*'],
         maxSize: '8M',
         detectCorrupted: true,
-    )]
-    // #[Assert\NotBlank()]
-    
+    )]  
     private ?File $image = null;
 
     #[ORM\Column(length:255, nullable:true)]

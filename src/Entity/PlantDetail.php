@@ -8,9 +8,11 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
 use App\Repository\PlantDetailRepository;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: PlantDetailRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+// #[Vich\Uploadable]
 class PlantDetail
 {
     use DateTimeTrait;
@@ -23,13 +25,14 @@ class PlantDetail
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Journal = null;
 
-    #[ORM\ManyToOne(targetEntity: UserPlants::class, inversedBy: 'plantDetails',  cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: UserPlants::class, inversedBy: 'plantDetail',  cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?UserPlants $userPlants = null;
 
 
     #[ORM\ManyToOne(targetEntity: Plants::class, inversedBy: 'plantDetails')]
     private ?Plants $Plant = null;
+
 
     /**
      * @var Collection<int, Diseases>
@@ -170,4 +173,6 @@ class PlantDetail
 
         return $this;
     }
+
+  
 }

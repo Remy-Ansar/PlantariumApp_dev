@@ -55,6 +55,29 @@ class UserInfos
     #[ORM\OneToOne(targetEntity:"App\Entity\Users", mappedBy: 'UserInfos', cascade: ['persist', 'remove'])]
     private ?Users $users = null;
 
+    public function __serialize(): array 
+    {
+        return [
+            'id' => $this->id,
+            'FirstName' => $this->FirstName,
+            'LastName' => $this->LastName,
+            'Level' => $this->Level,
+            'imageName' => $this->imageName,
+            'users' => $this->users, 
+        ];
+    }
+    
+    public function __unserialize(array $data): void 
+    {
+        $this->id = $data['id'];
+        $this->FirstName = $data['FirstName'];
+        $this->LastName = $data['LastName'];
+        $this->Level = $data['Level'];
+        $this->imageName = $data['imageName'];
+        $this->users = $data['users'];
+
+    }
+
     public function getId(): ?int
     {
         return $this->id;

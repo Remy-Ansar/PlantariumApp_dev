@@ -63,21 +63,22 @@ public function PlantariumDetail(string $name, Request $request, PaginatorInterf
     ]);
 }
 
-#[Route('/users/{name}/details', name: 'userPlants.details', methods: ['GET'])]
-public function UserPlantDetails(string $name, Request $request, PaginatorInterface $paginator): Response
+#[Route('/users/{name}/details/{id}', name: 'userPlants.details', methods: ['GET'])]
+public function UserPlantDetails(string $name, Request $request, PaginatorInterface $paginator, int $id): Response
 {
     $session = $request->getSession();
         $page = $request->query->getInt('page', 1);
         $session->set('plants_page', $page);
 
     $plant = $this->plantsRepository->findOneBy(['Name' => $name]);
+    $plantDetail = $this->plantDetailRepository->find($id);
 
     if (!$plant) {
         $this->addFlash('error', 'Cette plante n\'existe pas');
         return $this->redirectToRoute('editor.plants.index');
     }
 
-    $plantDetail = $this->em->getRepository(PlantDetail::class)->findOneBy(['Plant' => $plant]);
+    // $plantDetail = $this->em->getRepository(PlantDetail::class)->findOneBy(['Plant' => $plant]);
 
     if (!$plantDetail) {
         $plantDetail = new PlantDetail();
@@ -148,7 +149,7 @@ public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail
         $this->em->flush();
 
         $this->addFlash('success', 'Les détails de la plante ont été modifiés avec succès.');
-        return $this->redirectToRoute('userPlants.details', ['name' => $name]);
+        return $this->redirectToRoute('userPlants.details', ['name' => $name, 'id' => $plantDetail->getId()]);
     }
 
     $plants = $this->plantsRepository->findAll(); 

@@ -6,6 +6,8 @@ use App\Entity\Users;
 use App\Entity\UserPlants;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use App\Entity\Plants;
 
 /**
  * @extends ServiceEntityRepository<UserPlants>
@@ -22,14 +24,11 @@ class UserPlantsRepository extends ServiceEntityRepository
         return $this->findOneBy(['id' => $id]);
     }
 
+    public function findOneByName(string $name): ?Plants
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
     
-
-    /**
-     * Récupère les plantes d'un utilisateur spécifique
-     *
-     * @param Users $user
-     * @return UserPlants[]
-     */
     public function findUserPlantsByUser(Users $user): array
     {
         return $this->createQueryBuilder('o')
@@ -38,95 +37,113 @@ class UserPlantsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
     public function paginationOrder()
     {
     return $this->createQueryBuilder('p')
         ->orderBy('p.id', 'ASC');
     }
-
-    public function findPlantsByName(string $name)
+    
+    public function findUserPlantsByName(string $name)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.Name LIKE :name')
+        return $this->createQueryBuilder('up')
+            ->andWhere('up.plant.Name LIKE :name')
             ->setParameter('name', '%' . $name . '%')
             ->orderBy('p.Name', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
-    public function findPlantsBySpecies(int $speciesId)
+    public function findUserPlantsBySpecies(int $speciesId)
     {
-        return $this->createQueryBuilder('p')
-            ->join('p.species', 's')
+        return $this->createQueryBuilder('up')
+            ->join('up.plant.species', 's')
             ->andWhere('s.id = :speciesId')
             ->setParameter('speciesId', $speciesId)
             ->getQuery()
             ->getResult();
     }
 
-    public function findPlantsByFamilies(int $familyId)
+    public function findUserPlantsByFamilies(int $familyId)
     {
-        return $this->createQueryBuilder('p')
-            ->join('p.families', 'f')
+        return $this->createQueryBuilder('up')
+            ->join('up.plant.families', 'f')
             ->andWhere('f.id = :familyId')
             ->setParameter('familyId', $familyId)
             ->getQuery()
             ->getResult();
     }
 
-    public function findPlantsByColors(int $colorId)
+    public function findUserPlantsByColors(int $colorId)
     {
-        return $this->createQueryBuilder('p')
-            ->join('p.colors', 'c')
-            ->andWhere('c.id = :colorId')
+        return $this->createQueryBuilder('up')
+            ->join('up.plant.colors', 'c') // Utilisez un alias 'c' pour clarity
+            ->andWhere('c.id = :colorId') // Utilisez 'colorId' comme paramètre ici
             ->setParameter('colorId', $colorId)
             ->getQuery()
             ->getResult();
     }
 
-    public function findPlantsBySeasons(int $seasonId)
+    public function findUserPlantsBySeasons(int $seasonId)
     {
-        return $this->createQueryBuilder('p')
-            ->join('p.seasons', 's')
-            ->andWhere('s.id = :seasonId')
+        return $this->createQueryBuilder('up')
+            ->join('up.plant.seasons', 's') 
+            ->andWhere('s.id = :seasonId') 
             ->setParameter('seasonId', $seasonId)
             ->getQuery()
             ->getResult();
     }
 
     public function findPlantsByCategories(int $categoryId)
+{
+    return $this->createQueryBuilder('up')
+        ->join('up.plant.categories', 'c') 
+        ->andWhere('c.id = :categoryId') 
+        ->setParameter('categoryId', $categoryId)
+        ->getQuery()
+        ->getResult();
+}
+public function findEnabledPlantsQuery(array $filters)
     {
-        return $this->createQueryBuilder('p')
-            ->join('p.categories', 'c')
-            ->andWhere('c.id = :categoryId')
-            ->setParameter('categoryId', $categoryId)
-            ->getQuery()
-            ->getResult();
-    }
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.enable = :enabled')
+            ->setParameter('enabled', 1);
     
-    //    /**
-    //     * @return UserPlants[] Returns an array of UserPlants objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('u.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+        if (!empty($filters['name'])) {
+            $qb->andWhere('p.name LIKE :name')
+                ->setParameter('name', '%' . $filters['name'] . '%');
+        }
+    
+        if (!empty($filters['species'])) {
+            $qb->join('p.species', 's') // Joindre l'entité Species
+                ->andWhere('s.id = :species')
+                ->setParameter('species', (int)$filters['species']);
+        }
+    
+        if (!empty($filters['families'])) {
+            $qb->join('p.family', 'f') // Joindre l'entité Families
+                ->andWhere('f.id = :family')
+                ->setParameter('family', (int)$filters['families']);
+        }
+    
+        if (!empty($filters['colors'])) {
+            $qb->join('p.colors', 'c') // Joindre l'entité Colors
+                ->andWhere('c.id = :color')
+                ->setParameter('color', (int)$filters['colors']);
+        }
+    
+        if (!empty($filters['seasons'])) {
+            $qb->join('p.seasons', 'se') // Joindre l'entité Seasons
+                ->andWhere('se.id = :season')
+                ->setParameter('season', (int)$filters['seasons']);
+        }
+    
+        if (!empty($filters['categories'])) {
+            $qb->join('p.categories', 'ca') // Joindre l'entité Categories
+                ->andWhere('ca.id = :category')
+                ->setParameter('category', (int)$filters['categories']);
+        }
+    
+        return $qb->getQuery();
+    }
 
-    //    public function findOneBySomeField($value): ?UserPlants
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

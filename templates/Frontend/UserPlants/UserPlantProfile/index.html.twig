@@ -8,18 +8,17 @@
 {% block body %}
     {% include "Layout/nav.html.twig" %}
 
-    <body class="main">
-        <h2>Trier mes plantes par</h2>
-        <main>
-            <div class="mainCardsUser">
-                {% if userPlants is not empty %}
-                    {% include 'Frontend/UserPlants/UserPlantProfile/_carrousel.html.twig' %}
-                {% else %}
-                    <div>
-                        <p>Vous n'avez pas encore de plantes dans votre profil</p>
-                    </div>
-                {% endif %}
-            </div>
-        </main>
-    </body>
+    <div class="main">
+<main>
+    <section class="mainGrid">
+        <div class="mainCardsPlantarium">
+            {% include 'Frontend/UserPlants/UserPlantProfile/_plantList.html.twig' %}
+        </div>
+    </section>
+
+</main>
+
+    <div class="navigation">
+        <span>Page(s){{ knp_pagination_render(pagination)  }}</span>
+    </div>
 {% endblock %}
