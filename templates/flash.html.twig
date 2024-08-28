@@ -1,0 +1,27 @@
+{% for flash in app.flashes('error') %}
+    <div class="alert alert-danger" role="alert">
+        <img src="{{ asset('images/components/erreur.png') }}" alt="Icône d'erreur" width="100px" height="100px">
+        {{flash}}
+    </div>
+{% endfor %}
+
+{% for flash in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        <img src="{{ asset('images/components/succes.png') }}" alt="Icône de réussite" width="100px" height="100px">
+        {{flash}}
+    </div>
+{% endfor %}
+
+{% for flash in app.flashes('warning') %}
+    <div class="alert alert-warning" role="alert">
+        <img src="{{ asset('images/components/attention.png') }}" alt="Icône de danger" width="100px" height="100px">       
+        {{flash}}
+    </div>
+{% endfor %}
+
+{% for flash in app.flashes('info') %}
+    <div class="alert alert-info" role="alert">
+        <img src="{{ asset('images/components/info.png') }}" alt="Icône d'information" width="100px" height="100px">
+        {{flash}}
+    </div>
+{% endfor %}

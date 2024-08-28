@@ -24,7 +24,8 @@ Détail de la plante
                     onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
                     enctype="multipart/form-data">
                     <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
-                    <button type="submit" class="removePlant">
+                    <label for="removePlant">Supprimer cette plante de ma collection</label>
+                    <button type="submit" class="removePlant" id="removePlant">
                         <img src="{{ asset('images/components/minus.png') }}" alt="Bouton de suppression moins">
                     </button>
                 </form>

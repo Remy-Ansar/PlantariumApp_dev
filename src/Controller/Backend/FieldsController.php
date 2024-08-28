@@ -50,48 +50,11 @@ class FieldsController extends AbstractController
         ]);
     }
 
-    // #[Route('/new', name: '.new', methods:['GET', 'POST'])]
-    // public function newField(EntityManagerInterface $em, Request $request): Response | RedirectResponse
-    // {
-    //     $specie = new Species();
-    //     $family = new Families();
-    //     $color = new Colors();
-
-
-    //     $form = $this->createForm(FieldsType::class, [
-    //         'species' => $specie,
-    //         'families' => $family,
-    //         'colors' => $color,
-    //     ]);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-
-    //         $em->persist($specie);
-    //         $em->persist($family);
-    //         $em->persist($color);
-
-    //         $em->flush();
-
-    //         $this->addFlash('success', 'Les nouveautées ont bien été ajoutées.');
-
-    //         return $this->redirectToRoute('editor.plants.index', [], Response::HTTP_SEE_OTHER);
-    //     } else {
-    //         // Debugging output for invalid form
-    //         dump($form->getErrors(true, false));
-    //     }
-        
-    //     return $this->render('Backend/Plants/Fields/newfield.html.twig', [
-    //         'form' => $form,
-    //     ]);
-    //  }     
-
-    //Nouveaux champs 
-
+    //Création des champs 
+    
     #[Route('/family/new', name: '.family.new', methods:['GET', 'POST'])]
     public function newFamily(EntityManagerInterface $em, Request $request): Response | RedirectResponse
     {
-
         $family = new Families();
 
         $form = $this->createForm(FamiliesType::class,$family);
@@ -105,9 +68,6 @@ class FieldsController extends AbstractController
             $this->addFlash('success', 'Les nouveautées ont bien été ajoutées.');
 
             return $this->redirectToRoute('editor.plants.field.index', [], Response::HTTP_SEE_OTHER);
-        } else {
-            // Debugging output for invalid form
-            dump($form->getErrors(true, false));
         }
         
         return $this->render('Backend/Plants/Fields/newFamily.html.twig', [
@@ -118,7 +78,6 @@ class FieldsController extends AbstractController
     #[Route('/species/new', name: '.specie.new', methods:['GET', 'POST'])]
     public function newSpecie(EntityManagerInterface $em, Request $request): Response | RedirectResponse
     {
-
         $specie = new Species();
 
         $form = $this->createForm(SpeciesType::class,$specie);
@@ -132,9 +91,6 @@ class FieldsController extends AbstractController
             $this->addFlash('success', 'Les nouveautées ont bien été ajoutées.');
 
             return $this->redirectToRoute('editor.plants.field.index', [], Response::HTTP_SEE_OTHER);
-        } else {
-            // Debugging output for invalid form
-            dump($form->getErrors(true, false));
         }
         
         return $this->render('Backend/Plants/Fields/newSpecie.html.twig', [
@@ -158,9 +114,6 @@ class FieldsController extends AbstractController
             $this->addFlash('success', 'Les nouveautées ont bien été ajoutées.');
 
             return $this->redirectToRoute('editor.plants.field.index', [], Response::HTTP_SEE_OTHER);
-        } else {
-            // Debugging output for invalid form
-            dump($form->getErrors(true, false));
         }
         
         return $this->render('Backend/Plants/Fields/newColor.html.twig', [

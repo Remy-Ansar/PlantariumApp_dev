@@ -102,11 +102,13 @@ class UserPlantsRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
 }
-public function findEnabledPlantsQuery(array $filters)
+public function findEnabledUserPlantsQuery(array $filters, Users $user)
     {
         $qb = $this->createQueryBuilder('p')
-            ->where('p.enable = :enabled')
-            ->setParameter('enabled', 1);
+            // ->andWhere('p.enable = :enabled')
+            ->andWhere('p.User = :User')
+            // ->setParameter('enabled', 1)
+            ->setParameter('User', $user);
     
         if (!empty($filters['name'])) {
             $qb->andWhere('p.name LIKE :name')
@@ -132,9 +134,10 @@ public function findEnabledPlantsQuery(array $filters)
         }
     
         if (!empty($filters['seasons'])) {
-            $qb->join('p.seasons', 'se') // Joindre l'entité Seasons
-                ->andWhere('se.id = :season')
-                ->setParameter('season', (int)$filters['seasons']);
+            $qb->join('p.plant', 'pl') // Joindre l'entité Seasons
+                ->join('pl.seasons', 'se')
+                ->andWhere('se.id = :seasonId')
+                ->setParameter('seasonId', (int)$filters['seasons']);
         }
     
         if (!empty($filters['categories'])) {
@@ -142,6 +145,7 @@ public function findEnabledPlantsQuery(array $filters)
                 ->andWhere('ca.id = :category')
                 ->setParameter('category', (int)$filters['categories']);
         }
+    dd($qb->getQuery()->getSQL(), $filters);
     
         return $qb->getQuery();
     }

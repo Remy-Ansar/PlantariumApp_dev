@@ -29,20 +29,7 @@
         display: flex;
         height: 20px;
       }
-      .resetButton {
-        width: 10em;
-        border-radius: 10px 12px;
-        padding: 0 5px 0 5px;
-        background-color: $bright-green;
-        color: white;
-        text-align: center;
-        text-decoration: none;
-        border: none;
-      }
       
-      .resetButton:hover {
-        background-color: $obscure-green;
-      }
 
 form {
 display: flex;

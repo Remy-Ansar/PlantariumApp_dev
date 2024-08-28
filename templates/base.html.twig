@@ -23,9 +23,11 @@
 
     {% endblock %}
     {% block body %}{% endblock %}
+    {% include "flash.html.twig" %}
     {% block footer %}
     {% include "Layout/footer.html.twig" %}
     {% endblock %}
+    {% include "flash.html.twig" %}
 </body>
 
 </html>

@@ -169,39 +169,29 @@ public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail
     ]);
 }
 #[Route('/users/{name}/details/{id}/delete', name: 'userPlants.details.delete', methods: ['POST'])]
-public function deletePlantDetail(?PlantDetail $plantDetail, ?UserPlants $userPlant, Request $request, PaginatorInterface $paginator): RedirectResponse
+public function deletePlantDetail(?Plants $plant, ?PlantDetail $plantDetail, Request $request, PaginatorInterface $paginator): RedirectResponse
 {
     $session = $request->getSession();
         $page = $request->query->getInt('page', 1);
         $session->set('plants_page', $page);
 
+        // $plantDetail = $this->plantDetailRepository->find($id);
+        // $userPlant =$plantDetail->getUserPlants(); 
+
     if (!$plantDetail && !$userPlant) {
         $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son identification?');
         return $this->redirectToRoute('users.index');
     }
-    $userPlant =$plantDetail->getUserPlants(); 
 
     if ($this->isCsrfTokenValid('delete' . $plantDetail->getId(), $request->request->get('token'))) {
         $this->em->remove($plantDetail);
-        
-        if ($userPlant) {
-            $this->em->remove($userPlant);
-            $this->em->flush(); // Flush the changes to persist deletion of UserPlants
-        }
+        $this->em->flush();
 
-        $this->addFlash('success', 'Le détail de la plante a été supprimé avec succès.');
+        $this->addFlash('success', 'La plante a été supprimé avec succès.');
     } elseif ($plantDetail) {
-        $this->addFlash('danger', 'Le token CSRF est invalide pour la suppression du détail de la plante.');
+        $this->addFlash('danger', 'Le token CSRF est invalide pour la suppression de la plante.');
     }
 
-    // // Check if the CSRF token for UserPlants is valid and remove UserPlants if it exists
-    // if ($userPlant && $this->isCsrfTokenValid('delete' . $userPlant->getId(), $request->request->get('token'))) {
-    //     $this->em->remove($userPlant);
-    //     $this->em->flush();
-    //     $this->addFlash('success', 'La plante a été supprimée de votre profil avec succès.');
-    // } elseif ($userPlant) {
-    //     $this->addFlash('danger', 'Le token CSRF est invalide pour la suppression de la plante du profil.');
-    // }
 
     $plants = $this->plantsRepository->findAll(); 
 

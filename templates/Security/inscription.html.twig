@@ -9,14 +9,14 @@
     
 
 
-<h1>Plantarium</h1>
-
+<h1>PlantariumApp</h1>
+<h2>Inscription</h2>
 
 
     <main>
     <div>
     <span>
-    <p> Première étape : 
+    <p class="animP"> Première étape : 
     </p>
     </span>
     {{form_start(form)}}
@@ -30,12 +30,7 @@
     </div>
     </main>
 
-        {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
+
 
 </body>
 {% endblock %}

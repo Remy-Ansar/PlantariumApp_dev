@@ -64,6 +64,12 @@
   cursor: pointer;
 }
 
+.modifyButton:hover {
+  background-color: $obscure-green;
+  color: $white-font;
+  border: $white-font;
+}
+
 .deleteButton {
   border: 2px solid $pine-green;
   border-radius: 12px 10px;
@@ -73,6 +79,12 @@
   overflow: hidden;
   padding: 5px;
   cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: $obscure-green;
+  color: $white-font;
+  border: $white-font;
 }
 
 .tagsButton {
@@ -88,6 +100,12 @@
   cursor: pointer;
 }
 
+.tagsButton:hover {
+  background-color: $obscure-green;
+  color: $white-font;
+  border: $obscure-green;
+}
+
 .categTags {
   border: 2px solid $white-font;
   border-radius: 10px 12px;
@@ -97,8 +115,28 @@
   text-align: center;
 }
 
+.categTags:hover {
+  background-color: $obscure-green;
+  color: $obscure-green;
+}
+
 .toggle-plant {
   border: 0 transparent;
   background: transparent;
 }
 
+.resetButton {
+  width: 10em;
+  border-radius: 10px 12px;
+  padding: 0 5px 0 5px;
+  background-color: $bright-green;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+}
+
+.resetButton:hover {
+  background-color: $obscure-green;
+  color: white;
+}

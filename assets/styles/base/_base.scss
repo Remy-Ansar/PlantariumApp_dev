@@ -98,3 +98,52 @@ aside {
   height: 20px;
   border-radius: 10px;
 }
+
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .img {
+    width: 100px;
+    height: 100px;
+  }
+    .alert-danger{
+
+    }
+
+    .alert-success{
+
+    }
+
+    .alert-warning{
+
+    }
+
+    .alert-info{
+      display: flex;
+      justify-content: center;
+    }
+}
+
+.animP {
+  opacity: 0; /* Starts with the text invisible */
+  transform: translateX(100%); /* Starts off-screen to the right */
+  margin-bottom: 2em;
+  animation: slideIn 1s ease-out forwards; /* Applies the animation */
+  animation-delay: 0.5s; /* Delays the start of the animation */
+  width: 50%;
+}
+
+/* Keyframes for the slideIn animation */
+@keyframes slideIn {
+  0% {
+      opacity: 0; /* Fully transparent */
+      transform: translateX(100%); /* Fully to the right */
+
+  }
+  100% {
+      opacity: 1; /* Fully visible */
+      transform: translateX(0); /* At its final position */
+
+  }
+}

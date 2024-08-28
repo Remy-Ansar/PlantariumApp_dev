@@ -1,8 +1,11 @@
-{% for plant in pagination.items %}
-    {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+{% for plantDetail in pagination.items %}
+
+     {% include 'Frontend/UserPlants/UserPlantProfile/_plantCard.html.twig' %}
+
+   
 {% else %}
     <div class="alert-info" id="plant-no-image">
-        <p>Cette plante ne possède pas encore d'image.</p>
+        <p>Votre profil est vide, allez sur Plantarium pour en ajouter</p>
     </div>
 {% endfor %}
 
