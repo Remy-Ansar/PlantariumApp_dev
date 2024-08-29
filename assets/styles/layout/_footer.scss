@@ -18,3 +18,16 @@ text-align: center;
 .creditList li{
     margin-bottom: 1em;
 }
+
+.footerContainer{
+    margin: 0 2em 0 2em;
+    display: inline;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.footerUnit {
+    display: block;
+
+}

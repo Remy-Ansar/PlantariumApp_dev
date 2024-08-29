@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+FAQ
+{{ parent() }}
+{% endblock %}
+{% block body %}
+   {% include "Layout/nav.html.twig" %}
+    <h1>FAQ</h1>
+    <main>
+    <div class="footerContainer">
+        <h3>Comment ajouter des plantes ? </h3>
+        <p>Ajouter des plantes et simple. PlantariumApp comprends une base de donnée, non exhaustive, de plantes. Pour naviguer, allez sur Plantarium. Là vous pourrez faire une Rechercher
+        par saison, couleurs, nom, catégorie, espèce et famille. Vous pouvez aussi naviguer de pages en pages. Cliquer sur une photo de plante. Maintenant, cliquez sur "Ajouter cette 
+        plante à ma collection" symbolisé par un +. Retourner sur la page Mes plantes pour retrouver votre plante !</p>
+    </div>
+    </main>
+
+{% endblock %}

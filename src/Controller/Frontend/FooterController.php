@@ -50,4 +50,11 @@ class FooterController extends AbstractController
         $this->logger->info('Conditions générales page accessed');
         return $this->render('Footer/conditions_generales.html.twig');
     }
+
+    #[Route('/faq', name: 'faq')]
+    public function faq(): Response
+    {
+        $this->logger->info('faq page accessed');
+        return $this->render('Footer/faq.html.twig');
+    }
 }
