@@ -78,8 +78,6 @@ public function UserPlantDetails(string $name, Request $request, PaginatorInterf
         return $this->redirectToRoute('editor.plants.index');
     }
 
-    // $plantDetail = $this->em->getRepository(PlantDetail::class)->findOneBy(['Plant' => $plant]);
-
     if (!$plantDetail) {
         $plantDetail = new PlantDetail();
         $plantDetail->setPlant($plant);
@@ -109,7 +107,6 @@ public function UserPlantDetails(string $name, Request $request, PaginatorInterf
                 6
             );
 
-
     return $this->render('Frontend/PlantDetails/UserPlantsDetails.html.twig', [
         'plant' => $plant,
         'plantdetail' => $plantDetail,
@@ -138,7 +135,7 @@ public function UserPlantDetailsEdit(string $name, Request $request, PlantDetail
 
         $newJournalEntry = $form->get('newJournalEntry')->getData();
 
-            // Append the new entry to the existing journal content
+            // Ajoute une nouvelle entrée à celles existantes.
             if ($newJournalEntry) {
                 $currentDateTime = new \DateTime();
                 $journalEntry = sprintf("[%s] %s\n\n", $currentDateTime->format('Y-m-d H:i:s'), $newJournalEntry);
@@ -174,9 +171,6 @@ public function deletePlantDetail(?Plants $plant, ?PlantDetail $plantDetail, Req
     $session = $request->getSession();
         $page = $request->query->getInt('page', 1);
         $session->set('plants_page', $page);
-
-        // $plantDetail = $this->plantDetailRepository->find($id);
-        // $userPlant =$plantDetail->getUserPlants(); 
 
     if (!$plantDetail && !$userPlant) {
         $this->addFlash('danger', 'Cette plante est introuvable. Êtes-vous certain de son identification?');

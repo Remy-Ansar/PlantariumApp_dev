@@ -103,26 +103,47 @@ aside {
   display: flex;
   align-items: center;
   justify-content: center;
+
   .img {
     width: 100px;
     height: 100px;
   }
-    .alert-danger{
 
-    }
+  // Styles pour les différents types de messages d'alerte
 
-    .alert-success{
+  &.alert-danger {
+    background-color: #f2dede;
+    color: #a94442;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 
-    }
+  &.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 
-    .alert-warning{
+  &.alert-warning {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 
-    }
-
-    .alert-info{
-      display: flex;
-      justify-content: center;
-    }
+  &.alert-info {
+    display: flex;
+    justify-content: center;
+    background-color: #d9edf7;
+    color: #31708f;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 }
 
 .animP {
@@ -146,4 +167,9 @@ aside {
       transform: translateX(0); /* At its final position */
 
   }
+}
+
+.text-center {
+  display: flex;
+  justify-content: center;
 }

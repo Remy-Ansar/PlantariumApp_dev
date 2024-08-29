@@ -78,7 +78,7 @@ class Families
     public function removePlant(Plants $plant): static
     {
         if ($this->Plants->removeElement($plant)) {
-            // set the owning side to null (unless already changed)
+
             if ($plant->getFamilies() === $this) {
                 $plant->setFamilies(null);
             }

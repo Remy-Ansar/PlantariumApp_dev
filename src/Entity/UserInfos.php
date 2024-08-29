@@ -44,7 +44,6 @@ class UserInfos
         maxSize: '8M',
         detectCorrupted: true,
     )]
-    // #[Assert\NotBlank()]
     
     private ?File $image = null;
 
@@ -138,12 +137,12 @@ class UserInfos
 
     public function setUsers(?Users $users): static
     {
-        // unset the owning side of the relation if necessary
+
         if ($users === null && $this->users !== null) {
             $this->users->setUserInfos(null);
         }
 
-        // set the owning side of the relation if necessary
+
         if ($users !== null && $users->getUserInfos() !== $this) {
             $users->setUserInfos($this);
         }
@@ -158,8 +157,7 @@ class UserInfos
         $this->image = $imageFile;
 
         if (null !== $imageFile) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
+
             $this->updatedAt = new \DateTimeImmutable();
         }
 
@@ -185,8 +183,7 @@ class UserInfos
 
     public function __toString(): string
     {
-        // return $this->getFirstName();
-        // return $this->getLastName();
+
         return $this->getFullName();
         
     }

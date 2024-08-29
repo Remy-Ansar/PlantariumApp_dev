@@ -117,7 +117,7 @@ class Warnings
     public function removeWatering(Watering $watering): static
     {
         if ($this->Watering->removeElement($watering)) {
-            // set the owning side to null (unless already changed)
+
             if ($watering->getWarnings() === $this) {
                 $watering->setWarnings(null);
             }
@@ -159,7 +159,7 @@ class Warnings
     public function removePlantDetailWatering(PlantDetailWatering $plantDetailWatering): static
     {
         if ($this->PlantDetailWatering->removeElement($plantDetailWatering)) {
-            // set the owning side to null (unless already changed)
+
             if ($plantDetailWatering->getWarnings() === $this) {
                 $plantDetailWatering->setWarnings(null);
             }

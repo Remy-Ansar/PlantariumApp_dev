@@ -58,3 +58,13 @@ select {
   justify-content: space-around;
   align-items: center;
 }
+
+.hidden {
+  display: none;
+}
+
+#diary {
+  display: flex;
+  flex-direction: column;
+  
+}

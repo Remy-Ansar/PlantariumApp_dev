@@ -86,7 +86,7 @@ class Weather
     public function removeWarning(Warnings $warning): static
     {
         if ($this->warnings->removeElement($warning)) {
-            // set the owning side to null (unless already changed)
+            
             if ($warning->getWeather() === $this) {
                 $warning->setWeather(null);
             }

@@ -48,10 +48,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             )
             ->setRoles(['ROLE_ADMIN'])
             ->setCGU(true);
-        // $userPlant = new UserPlants();
-        // $userPlant->setUser($user);
         $manager->persist($user);
-        // $manager->persist($userPlant);
         
         $userInfos = (new UserInfos)
             ->setFirstName('Remy')
@@ -63,7 +60,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->persist($userInfos);
 
-        // Fixture for regular users
+        // Fixture pour les utilisateurs
         for ($i = 0; $i < 10; $i++) {
             $user = (new Users)
                 ->setEmail($this->faker->unique()->email())
@@ -77,7 +74,6 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
            
             $manager->persist($user);
 
-
             $userInfos = (new UserInfos)
                 ->setFirstName($this->faker->firstName())
                 ->setLastName($this->faker->lastName())
@@ -89,7 +85,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($userInfos);
         }
 
-  // Fixtures for Families
+  // Fixtures pour Families
   $families = [];
   $familyNames = [
       'APIACÉES', 'ASTÉRACÉES', 'BRASSICACÉES', 'CARYOPHYLLACÉES',
@@ -108,7 +104,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
       $families[] = $family;
   }
 
-  // Fixtures for Species
+  // Fixtures pour Species
   $species = [];
   $speciesNames = [
       'Amaranthe', 'Anémone', 'Achilée', 'Choux',
@@ -130,7 +126,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
       $species[] = $specie;
   }
 
-  // Fixtures for Diseases
+  // Fixtures pour Diseases
   $diseases = [];
   $diseasesNames = [
       'Alternariose', 'Mildiou', 'Rouille', 'Acariens',
@@ -144,7 +140,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
     $manager->persist($disease);
     $diseases[] = $disease; // Add the disease to the array
   }
-    // Fixtures for HealthStatus
+    // Fixtures pour HealthStatus
     $healthStatuses = [];
     $healthStatusNames = [
         'En bonne santé', 'Malade', 'Morte'
@@ -235,20 +231,7 @@ $manager->flush();
         }
 
         $manager->flush();
-    }
-
-    // public function uploadImage(): UploadedFile
-    // {
-    //     $files =  glob(\dirname(__DIR__) . '/images/Plants/*.*');
-
-    //     $index = array_rand($files);
-
-    //     $file = new File($files[$index]);
-    //     $file = new UploadedFile($file, $file->getFileName());
-
-    //     return $file;
-    // }
-    
+    }  
 
     public function getDependencies(): array
     {
@@ -259,19 +242,4 @@ $manager->flush();
         ];
     }
 
-    
-
-    
-
-    // private function uploadImage(): UploadedFile
-    // {
-    //     $files = glob(__DIR__ . '/images/Plant/*.*');
-
-    //     $index = array_rand($files);
-
-    //     $file = new File($files[$index]);
-    //     $file = new UploadedFile($file, $file->getFilename());
-
-    //     return $file;
-    // }
 }

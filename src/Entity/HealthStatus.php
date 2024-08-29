@@ -123,7 +123,7 @@ class HealthStatus
     public function removePlantDetail(PlantDetail $plantDetail): static
     {
         if ($this->plantDetails->removeElement($plantDetail)) {
-            // set the owning side to null (unless already changed)
+
             if ($plantDetail->getHealthStatus() === $this) {
                 $plantDetail->setHealthStatus(null);
             }

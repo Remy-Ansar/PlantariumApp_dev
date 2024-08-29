@@ -97,7 +97,7 @@ class UserPlants
     public function removePlantDetail(PlantDetail $plantDetail): self
     {
         if ($this->plantDetail->removeElement($plantDetail)) {
-            // set the owning side to null (unless already changed)
+
             if ($plantDetail->getUserPlants() === $this) {
                 $plantDetail->setUserPlants(null);
             }

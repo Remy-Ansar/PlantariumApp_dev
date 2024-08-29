@@ -41,6 +41,7 @@ class SecurityController extends AbstractController
 
     }
 
+    // Première étape de l'inscription : Compléter l'entité Users
     #[Route('/inscription', name: 'app.inscription', methods: ['GET', 'POST'])]
     public function register(Request $request, EntityManagerInterface $em): Response|RedirectResponse
     {
@@ -59,8 +60,6 @@ class SecurityController extends AbstractController
             $em->flush();
             $userId =$request->getSession()->set('user.id', $users->getId());
 
-            $this->addFlash('success', 'Votre compte a bien été créé.');
-        // dd($userId);
             return $this->redirectToRoute('app.profile', ['users'=>$users->getId()] );
         }
 
@@ -76,8 +75,6 @@ class SecurityController extends AbstractController
         $userId = $request->getSession()->get('user.id');
         $users = $this->em->getRepository(Users::class)->find($userId);
         
- 
-
         $userInfos = new UserInfos();
         $form = $this->createForm(ProfileType::class, $userInfos);
         $form->handleRequest($request);
@@ -88,6 +85,7 @@ class SecurityController extends AbstractController
             $this->em->persist($userInfos);
             $this->em->flush();
 
+            $this->addFlash('success', 'Votre compte a bien été créé.');
             // Rediriger vers la page d'accueil après inscription réussie
             return $this->redirectToRoute('app.connexion');
         }
@@ -100,6 +98,6 @@ class SecurityController extends AbstractController
     #[Route('logout', name: 'app_logout')]
     public function logout()
     {
-        // The security layer will intercept this request
+        // La couche de sécurité va intercepter la requête
     }
 }

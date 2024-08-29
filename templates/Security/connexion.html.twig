@@ -11,6 +11,12 @@ Connexion
 
 	<h1>PlantariumApp</h1>
 <h2>Se connecter</h2>
+<span>{% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}</span>
 	<main>
 		
 		<form class="formDisplay" action="{{ path('app.connexion') }}" method="post">
@@ -31,11 +37,5 @@ Connexion
 
 		<p>Mot de passe oublié ? <br> Cliquez ici pour le réinitialiser</p>
 	</main>
-	        {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
 </body>
 {% endblock %}

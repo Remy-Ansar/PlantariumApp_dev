@@ -208,7 +208,6 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
 
     if ($form->isSubmitted() && $form->isValid()) {
 
-        // Handle removal of Seasons
         foreach ($originalSeasons as $season) {
             if (!$plant->getSeasons()->contains($season)) {
                 $season->removePlant($plant);
@@ -216,7 +215,6 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
             }
         }
 
-        // Handle removal of Colors
         foreach ($originalColors as $color) {
             if (!$plant->getColors()->contains($color)) {
                 $color->removePlant($plant);
@@ -224,7 +222,6 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
             }
         }
 
-        // Handle removal of Categories
         foreach ($originalCategories as $category) {
             if (!$plant->getCategories()->contains($category)) {
                 $category->removePlant($plant);
@@ -232,7 +229,6 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
             }
         }
 
-        // Handle addition of Seasons
         foreach ($plant->getSeasons() as $season) {
             if (!$originalSeasons->contains($season)) {
                 $season->addPlant($plant);
@@ -240,7 +236,6 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
             }
         }
 
-        // Handle addition of Colors
         foreach ($plant->getColors() as $color) {
             if (!$originalColors->contains($color)) {
                 $color->addPlant($plant);
@@ -248,7 +243,6 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
             }
         }
 
-        // Handle addition of Categories
         foreach ($plant->getCategories() as $category) {
             if (!$originalCategories->contains($category)) {
                 $category->addPlant($plant);
@@ -264,7 +258,7 @@ public function plantEdit(Request $request, Plants $plant, EntityManagerInterfac
         return $this->redirectToRoute('editor.plants.index', ['page' => $page], Response::HTTP_SEE_OTHER);
     }
 
-    // Récupérer toutes les plantes pour la pagination (optionnel, peut être adapté selon votre logique)
+    // Récupérer toutes les plantes pour la pagination
     $plants = $this->plantsRepository->findAll(); 
 
     $pagination = $paginator->paginate(

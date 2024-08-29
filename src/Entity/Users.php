@@ -88,6 +88,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles = ['ROLE_USER'];
         $this->userPlants = new ArrayCollection();
     }
+
     /**
      * @see UserInterface
      *
@@ -190,7 +191,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeUserPlant(UserPlants $userPlant): self
     {
         if ($this->userPlants->removeElement($userPlant)) {
-            // set the owning side to null (unless already changed)
+
             if ($userPlant->getUser() === $this) {
                 $userPlant->setUser(null);
             }

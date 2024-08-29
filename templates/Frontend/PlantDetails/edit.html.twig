@@ -8,7 +8,7 @@ Modification de votre plante
 {% block body %}
 
 <span class="return">
-    <a href="{{ path('users.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
+    <a href="{{ path('users.index') }}"><img src="{{ asset('img/components/cross.svg') }}" alt="Retour arrière"></a>
 </span>
 
 <main>
@@ -29,10 +29,19 @@ Modification de votre plante
             <p class="fontDistinction">Famille: {{ plant.families.Name }}</p>
             <p class="fontDistinction">Espèce: {{ plant.species.Name }}</p>
 
-            {{ form_start(form)}}
+            {{ form_start(form) }}
 
-            {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
+            <div class="formDisplay">
+                {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
 
+                <div id="diseases-container" class="hidden">
+                    {{ form_row(form.diseases) }}
+                </div>
+
+                <div> 
+               {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary'}}) }}
+                </div>
+            </div>
             <div class="categFields">
 
                 <div class="categUnit">
@@ -88,7 +97,6 @@ Modification de votre plante
         // Prevent form submission when fields change
         const form = document.querySelector('form');
         const modifyButton = document.querySelector('.modifyButton');
-        
         // Add event listeners to all select elements
         const selectElements = form.querySelectorAll('select');
         selectElements.forEach(function(select) {
@@ -96,12 +104,11 @@ Modification de votre plante
                 event.stopImmediatePropagation(); // Prevent default form submission on change
             });
         });
-
         // Allow form submission only when the modify button is clicked
         modifyButton.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default action
             form.submit(); // Manually submit the form
         });
     });
-</script>
+    </script>
 {% endblock %}

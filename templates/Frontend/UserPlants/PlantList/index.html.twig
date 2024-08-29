@@ -8,12 +8,33 @@ Administration des plantes
 {% block body %}
 {% include "Layout/nav.html.twig" %}
 <h2>Rechercher une plante</h2>
+<div>
+ {# Messages flash pour les succès #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    {# Messages flash pour les informations #}
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+
+    {# Messages flash pour les erreurs #}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+        </div>
+</div>
+        </div>
+</div>
+
 <div class="wrap">
     <form method="get" action="{{ path('users.plantarium') }}">
         <div class="searchBar">
             <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
             <button type="submit" class="searchSubmit">
-                <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
+                <img src="{{ asset('img/components/loupe.png') }}" alt="Loupe grossissante">
             </button>
         </div>
         <p>Trier les plantes par :</p>

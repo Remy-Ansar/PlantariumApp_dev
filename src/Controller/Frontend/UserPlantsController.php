@@ -25,6 +25,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -49,7 +50,7 @@ class UserPlantsController extends AbstractController
     
     //Page recensant toutes les plantes d'un utilisateur
     #[Route('', name: '.index', methods: ['GET'])]
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function index(Request $request, PaginatorInterface $paginator, SessionInterface $session): Response
     {
         // Verification de la connexion de l'utilisateur
         $user = $this->getUser();
@@ -61,6 +62,12 @@ class UserPlantsController extends AbstractController
         $session = $request->getSession();
         $page = $request->query->getInt('page', 1);
         $session->set('plants_page', $page);
+
+        if (!$session->get('first_visit')) {
+            $this->addFlash('info', 'Bienvenue sur votre espace utilisateurs ! Ici vous trouverez les plantes de votre profil
+            et vous pourrez les gérer comme vous le souhaitez.');
+            $session->set('first_visit', true);
+        }
 
         // Récupération des filtres depuis la requête
         $filters = $request->query->all();
@@ -93,19 +100,30 @@ class UserPlantsController extends AbstractController
 
     //Page de calendrier de l'utilisateur (travail en cours)
     #[Route('/calendar', name: '.calendar', methods : ['GET', 'POST'])]
-    public function calendar(): Response
+    public function calendar(SessionInterface $session): Response
     {
+        if (!$session->get('first_visit_calendar')) {
+            $this->addFlash('info', 'La page Calendar n\'est pas encore disponible. Revenez régulèrement pour voir son avancement.');
+            $session->set('first_visit_calendar', true);
+        }
+
         return $this->render('Frontend/UserPlants/Calendar/index.html.twig');
     }
 
     //Page listant les plantes disponibles à l'ajout pour les utilisateurs
     #[Route('/plantarium', name: '.plantarium', methods: ['GET', 'POST'])]
-    public function plantariumList(Request $request, PaginatorInterface $paginator, PlantsRepository $plantsRepository): Response
+    public function plantariumList(SessionInterface $session, Request $request, PaginatorInterface $paginator, PlantsRepository $plantsRepository): Response
     {
 
         $session = $request->getSession();
         $page = $request->query->getInt('page', 1);
         $session->set('plants_page', $page);
+
+        if (!$session->get('first_visit_plantarium')) {
+            $this->addFlash('info', 'La page Plantarium permet de rechercher des plantes dans la base de donnée.
+            Clique sur l\'image de la plante qui te plait, puis choisi "ajouter cette plante à ma collection"');
+            $session->set('first_visit_plantarium', true);
+        }
 
         // Récupération des filtres depuis la requête
         $filters = $request->query->all();
@@ -142,14 +160,14 @@ class UserPlantsController extends AbstractController
         $session = $request->getSession();
         $page = $session->get('plants_page', 1);
 
-        // Fetch the Current User
+        // Récupération de l'User
         $user = $this->getUser();
         if (!$user instanceof Users) {
             $this->addFlash('danger', 'Vous n\'êtes pas autorisé.');
             return $this->redirectToRoute('app_login');
         }
 
-        // Get the Plant ID from the request
+        // Récupération de l'Id pour la requête
         $plantId = $request->request->get('plant_id');
         if (!$plantId) {
             $this->addFlash('danger', 'Plant ID is missing.');

@@ -118,7 +118,7 @@ class Watering
     public function removePlant(Plants $plant): static
     {
         if ($this->plants->removeElement($plant)) {
-            // set the owning side to null (unless already changed)
+
             if ($plant->getWatering() === $this) {
                 $plant->setWatering(null);
             }
