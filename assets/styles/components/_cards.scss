@@ -175,6 +175,14 @@
     margin-right: 5em;
 }
 
+.textareaClass {
+    width: 100%; /* Assure que le textarea prend toute la largeur disponible */
+    margin-top: 1em; /* Ajoute un espace au-dessus du textarea */
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
 .plantInfos p {
     margin-bottom: 2em;
 }
@@ -200,11 +208,15 @@
 .description {
     font-size: 1.2em;
     padding: 2em;
+    border-radius: 10px 12px;
+    background: $border-green;
+    margin-top: 1em;
+
 }
 
 .fontDistinction {
     font-size: 1.1em;
-    margin-left: 1em;
+    // margin-left: 1em;
     font-style: italic;
 }
 

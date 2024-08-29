@@ -51,6 +51,11 @@ class UserPlantDetailFormType extends AbstractType
             'label' => 'Journal',
             'mapped' => false,
             'required' => false,
+            'attr' => [
+                    'placeholder' => 'Mon journal',
+                    'rows' => 12,
+                    'cols' => 52
+                ],
         ]);
         
         // ->add('Warnings', WarningsType::class, [

@@ -8,7 +8,7 @@ Modification de votre plante
 {% block body %}
 
 <span class="return">
-    <a href="{{ path('users.index') }}"><img src="{{ asset('img/components/cross.svg') }}" alt="Retour arrière"></a>
+    <a href="{{ path('users.index') }}"><img src="{{ asset('img/components/Cross.svg') }}" alt="Retour arrière"></a>
 </span>
 
 <main>
@@ -38,8 +38,8 @@ Modification de votre plante
                     {{ form_row(form.diseases) }}
                 </div>
 
-                <div> 
-               {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary'}}) }}
+                <div>
+                    {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary', 'class': 'textareaClass'}}) }}
                 </div>
             </div>
             <div class="categFields">
@@ -92,6 +92,9 @@ Modification de votre plante
 {% endblock %}
 
 {% block javascript %}
+{# <script>
+    src = "{{ asset('/assets/javascript/diseasesField.js') }}"
+</script> #}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Prevent form submission when fields change
@@ -110,5 +113,5 @@ Modification de votre plante
             form.submit(); // Manually submit the form
         });
     });
-    </script>
+</script>
 {% endblock %}

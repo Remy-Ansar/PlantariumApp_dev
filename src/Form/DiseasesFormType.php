@@ -25,7 +25,8 @@ class DiseasesFormType extends AbstractType
                 'label' => 'Description de la maladie: ',
                 'attr' => [
                     'placeholder' => 'Les symptômes comprennent...',
-                    'row' => 2,
+                    'rows' => 12,
+                    'cols' => 52
                 ],
                 'required' => false,
                 'sanitize_html' => true,
