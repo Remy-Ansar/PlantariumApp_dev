@@ -2,21 +2,20 @@
 body {
     @include font-secondary; // Default font for the body
 
-    height: 100%;
+    height: 100vh;
     background-image: url(../../../public/images/background/MainBackground.png);
     background-size: cover;
-    margin-left: 2em;
+    margin-left: 3em;
     margin-right: 3em;
     overflow-x: auto; /* Enable horizontal scrolling */
+    display: flex;
+    flex-direction: column;
+    
   }
   
   h1, h2, h3, h4, h5, h6 {
     @include font-primary; // Primary font for headings
   }
-  
-  // p {
-  //   @include font-primary; // Tertiary font for paragraphs
-  // }
 
   .quote {
     @include font-quaternary; // Quaternary font for quotes or specific elements
@@ -38,26 +37,27 @@ header div ul li{
 }
 
 nav {
-  height: 25%;
-  margin-bottom: 5em;
+  // height: 25%;
+  margin-bottom: 1em;
+  border-bottom: $bright-green;
 }
 
 main {
   height: auto;
-  width: 100%;
+  // width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 2em;
+  // margin-top: 2em;
   .mainGrid {
     height: auto;
-    width: 100%;
+    // width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 3em;
+    // margin-top: 3em;
   
 
 }
@@ -172,4 +172,8 @@ aside {
 .text-center {
   display: flex;
   justify-content: center;
+}
+
+.mainTitle::first-letter {
+  color: $bright-green;
 }

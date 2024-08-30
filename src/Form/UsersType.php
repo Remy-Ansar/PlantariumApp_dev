@@ -31,7 +31,7 @@ class UsersType extends AbstractType
                     'class' => 'formDisplay',
                 ]
             ])
-            ->add('password', TogglePasswordType::class, [
+            ->add('password', PasswordType::class, [
                 'toggle' => true,
                 'hidden_label' => 'Masquer',
                 'visible_label' => 'Afficher',

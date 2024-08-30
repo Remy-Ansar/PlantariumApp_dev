@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240826155613 extends AbstractMigration
+final class Version20240830090820 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -32,6 +32,7 @@ final class Version20240826155613 extends AbstractMigration
         $this->addSql('CREATE TABLE plant_detail_warnings (plant_detail_id INT NOT NULL, warnings_id INT NOT NULL, INDEX IDX_CE38F8C95D9C9023 (plant_detail_id), INDEX IDX_CE38F8C97EC71F19 (warnings_id), PRIMARY KEY(plant_detail_id, warnings_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE plant_detail_watering (id INT AUTO_INCREMENT NOT NULL, warnings_id INT DEFAULT NULL, note LONGTEXT DEFAULT NULL, frequency INT DEFAULT NULL, quantity DOUBLE PRECISION DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_26FE83EA7EC71F19 (warnings_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE plants (id INT AUTO_INCREMENT NOT NULL, families_id INT DEFAULT NULL, species_id INT DEFAULT NULL, watering_id INT DEFAULT NULL, name VARCHAR(255) DEFAULT NULL, description LONGTEXT DEFAULT NULL, image_name VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', enable TINYINT(1) NOT NULL, INDEX IDX_A5AEDC165DFECCD4 (families_id), INDEX IDX_A5AEDC16B2A1D860 (species_id), INDEX IDX_A5AEDC16FA0020F0 (watering_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE reset_password_request (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, selector VARCHAR(20) NOT NULL, hashed_token VARCHAR(100) NOT NULL, requested_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', expires_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', INDEX IDX_7CE748AA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE seasons (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(100) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE seasons_plants (seasons_id INT NOT NULL, plants_id INT NOT NULL, INDEX IDX_D73DE5D216EB9F66 (seasons_id), INDEX IDX_D73DE5D262091EAB (plants_id), PRIMARY KEY(seasons_id, plants_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE species (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\', UNIQUE INDEX UNIQ_NAME_SPECIES (Name), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -58,6 +59,7 @@ final class Version20240826155613 extends AbstractMigration
         $this->addSql('ALTER TABLE plants ADD CONSTRAINT FK_A5AEDC165DFECCD4 FOREIGN KEY (families_id) REFERENCES families (id)');
         $this->addSql('ALTER TABLE plants ADD CONSTRAINT FK_A5AEDC16B2A1D860 FOREIGN KEY (species_id) REFERENCES species (id)');
         $this->addSql('ALTER TABLE plants ADD CONSTRAINT FK_A5AEDC16FA0020F0 FOREIGN KEY (watering_id) REFERENCES watering (id)');
+        $this->addSql('ALTER TABLE reset_password_request ADD CONSTRAINT FK_7CE748AA76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
         $this->addSql('ALTER TABLE seasons_plants ADD CONSTRAINT FK_D73DE5D216EB9F66 FOREIGN KEY (seasons_id) REFERENCES seasons (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE seasons_plants ADD CONSTRAINT FK_D73DE5D262091EAB FOREIGN KEY (plants_id) REFERENCES plants (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE user_plants ADD CONSTRAINT FK_C0FCC72BA76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
@@ -87,6 +89,7 @@ final class Version20240826155613 extends AbstractMigration
         $this->addSql('ALTER TABLE plants DROP FOREIGN KEY FK_A5AEDC165DFECCD4');
         $this->addSql('ALTER TABLE plants DROP FOREIGN KEY FK_A5AEDC16B2A1D860');
         $this->addSql('ALTER TABLE plants DROP FOREIGN KEY FK_A5AEDC16FA0020F0');
+        $this->addSql('ALTER TABLE reset_password_request DROP FOREIGN KEY FK_7CE748AA76ED395');
         $this->addSql('ALTER TABLE seasons_plants DROP FOREIGN KEY FK_D73DE5D216EB9F66');
         $this->addSql('ALTER TABLE seasons_plants DROP FOREIGN KEY FK_D73DE5D262091EAB');
         $this->addSql('ALTER TABLE user_plants DROP FOREIGN KEY FK_C0FCC72BA76ED395');
@@ -108,6 +111,7 @@ final class Version20240826155613 extends AbstractMigration
         $this->addSql('DROP TABLE plant_detail_warnings');
         $this->addSql('DROP TABLE plant_detail_watering');
         $this->addSql('DROP TABLE plants');
+        $this->addSql('DROP TABLE reset_password_request');
         $this->addSql('DROP TABLE seasons');
         $this->addSql('DROP TABLE seasons_plants');
         $this->addSql('DROP TABLE species');

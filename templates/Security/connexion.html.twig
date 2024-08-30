@@ -32,10 +32,10 @@ Connexion
 				<input type="password" id="password" name="_password"="form-control" placeholder="S3CR3T">
 
 				<div><input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-					<button class="button" type="submit">Connexion</button></div>
+					<button class="validationButton" type="submit">Connexion</button></div>
 		</form>
 
-		<p>Mot de passe oublié ? <br> Cliquez ici pour le réinitialiser</p>
+		<p>Mot de passe oublié ? <br> Cliquez <a href="{{ path('app_forgot_password_request') }}"><u>ici</u></a> pour le réinitialiser</p>
 	</main>
 </body>
 {% endblock %}

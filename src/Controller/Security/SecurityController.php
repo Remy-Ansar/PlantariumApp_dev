@@ -87,7 +87,7 @@ class SecurityController extends AbstractController
 
             $this->addFlash('success', 'Votre compte a bien été créé.');
             // Rediriger vers la page d'accueil après inscription réussie
-            return $this->redirectToRoute('app.connexion');
+            return $this->redirectToRoute('users.index', ['users'=>$users->getUserIdentifier()]);
         }
 
         return $this->render('Security/profil.html.twig', [

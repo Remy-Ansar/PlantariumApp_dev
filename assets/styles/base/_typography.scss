@@ -34,10 +34,15 @@ body {
   }
 
   #homeTitle {
-    height: auto;
+
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin-bottom: 20vh;
+    // margin-bottom: 20vh;
   }
+
+  .homeTitle::first-letter {
+    color: $bright-green; /* Change la couleur de la première lettre */
+    font-weight: bold; /* Optionnel : rend la première lettre plus grasse */
+}

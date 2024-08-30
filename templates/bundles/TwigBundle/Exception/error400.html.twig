@@ -3,10 +3,12 @@
 {% block title %}Page non trouvée{% endblock %}
 
 {% block body %}
+<h2>Aie la page demandée n'a pas été trouvée !</h2>
 <main>
-    <h1>Aie la page demandée n'a pas été trouvée !</h1>
-    
-    <p>Le code est : {{status_code}}</p>
-    <p>Le texte est : {{status_text}}</p>
+   <ul>
+    <li><img src="{{ asset('img/components/erreur-du-serveur-de-donnees.png') }}" alt="Erreur serveur"></li>
+    <li>Le code est : {{status_code}}</li>
+   </ul>
 </main>
 {% endblock %}
+

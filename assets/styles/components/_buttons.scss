@@ -140,3 +140,29 @@
   background-color: $obscure-green;
   color: white;
 }
+
+.activeButton {
+  background: transparent;
+/* Applique un border-radius de 12px uniquement à l'angle inférieur droit */
+  /* Ajoute une bordure de 2px en bas */
+  border: none;
+  padding: 0.5em;
+  outline: none;  
+  cursor: pointer;  
+}
+
+.activeButton:hover {
+  border: 3px solid $white-font;
+  border-radius: 12px 10px;
+  background: $white-font;
+  color: $white-font;
+  box-sizing: border-box;
+  padding: 5px;
+  background: transparent;
+}
+
+.validationButton {
+  border: 3px solid $white-font;
+  border-radius: 12px 10px;
+  padding: 1em 0.5em 1em 0.5em;
+}

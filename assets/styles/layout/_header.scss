@@ -6,9 +6,19 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5em;
-  margin-top: 2em;
+  box-shadow: 1px 2px 4px $dark-font;
+  // margin-bottom: 5em;
+  // margin-top: 2em;
+
 }
+
+header:hover {
+  border-bottom: solid 1px $dark-font;
+  box-shadow: 1px 2px 4px $dark-font;
+  background: rgb(188, 223, 188);
+}
+
+
 
 ul  {
   list-style: none;
@@ -35,11 +45,14 @@ li a {
 
 .logginHeader{
   width: 100%;
+
 }
 
 .loggin {
   display: flex;
-flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 
 }
 
