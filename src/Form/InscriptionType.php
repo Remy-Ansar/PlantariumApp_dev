@@ -19,11 +19,11 @@ class InscriptionType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Votre addresse email',
+                'label' => 'Votre addresse email *',
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'exemple@mail.fr',
-                    'class' => 'formDisplay',
+                    
                 ]
             ])
             ->add('password', RepeatedType::class, [
@@ -32,15 +32,15 @@ class InscriptionType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'first_options' => [
-                    'label' => 'Mot de passe',
+                    'label' => 'Mot de passe *',
                     'attr' => [
                         'placeholder' => 'Motdepasse85-',
-                        'class' => 'formDisplay',
+                        
                     ],
                     'constraints' => [
                         new Assert\Regex([
                             'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
-                            'message' => 'Votre mot de passe doit contenur au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
+                            'message' => 'Votre mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.',
                         ]),
                         new Assert\NotBlank(),
                         new Assert\Length(
@@ -49,18 +49,19 @@ class InscriptionType extends AbstractType
                     ]
                     ],
                     'second_options' => [
-                        'label' => 'Répéter le mot de passse',
+                        'label' => 'Veuillez répéter le mot de passe',
                         'attr' => [
                             'placeholder' => 'Motdepasse85-',
-                            'class' => 'formDisplay',
+                            
                         ],
                         ],
             ])
 
             ->add('CGU', CheckboxType::class, [
                 'required' => true,
-                'label' => 'Je confirme avoir pris connaissance des
-                            conditions générales d\'utilisation',
+                'label' => 'Je confirme avoir pris connaissance <a href="https://plantariumapp.com/conditions-generales" target="_blank">des
+                            conditions générales d\'utilisation</a>',
+                'label_html' => true,
             ]);
 
         if ($options['isAdmin']) {

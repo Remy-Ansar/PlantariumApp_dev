@@ -45,6 +45,8 @@ class SecurityController extends AbstractController
     #[Route('/inscription', name: 'app.inscription', methods: ['GET', 'POST'])]
     public function register(Request $request, EntityManagerInterface $em): Response|RedirectResponse
     {
+        $urlCGU = $this->generateUrl('footer_conditions_generales');
+
         $users = new Users();
 
         $form = $this->createForm(InscriptionType::class, $users);

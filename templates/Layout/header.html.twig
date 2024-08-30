@@ -1,61 +1,72 @@
 <header>
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    {% if app.user.UserInfos %}
-    <div class="userInfo">
-        <ul>
-            {% if app.user.UserInfos.imageName %}
+    <div class="headerContainer">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% if app.user.UserInfos %}
+        <div class="userInfo">
+            <ul>
+                {% if app.user.UserInfos.imageName %}
 
-            <li class="profilPicHeader">
-                <img src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
-                    alt="{{ app.user.UserInfos.getFullName() }}" loading="lazy" class="rounded">
-            </li>
+                <li class="profilPicHeader">
+                    <img src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
+                        alt="{{ app.user.UserInfos.getFullName() }}" loading="lazy" class="rounded">
+                </li>
+                {% endif %}
+            </ul>
+
+            <div class="fullName">
+                <li>
+                    <p>{{ app.user.UserInfos.getFirstName() }}</p>
+                </li>
+                <li>
+                    <p>{{ app.user.UserInfos.getLastName() }}</p>
+                </li>
+            </div>
             {% endif %}
-        </ul>
-
-        <div class="fullName">
-            <li>
-                <p>{{ app.user.UserInfos.getFirstName() }}</p>
-            </li>
-            <li>
-                <p>{{ app.user.UserInfos.getLastName() }}</p>
-            </li>
-        </div>
-        {% endif %}
-    
-
-    {% if is_granted('ROLE_ADMIN') %}
-
-    <div class="headerIcons">
-        <ul>
-            <li><a href="{{ path('admin.users.index') }}"><img
-                        src="{{ asset('img/components/tabler_hexagon-letter-a.png') }}" width="50px" height="50"
-                        alt=""></a></li>
-
-            <li><a href="{{ path('editor.plants.index') }}"><img
-                        src="{{ asset('img/components/tabler_hexagon-letter-e.png') }}" width="50px" height="50"
-                        alt=""></a></li>
-        </ul>
-    </div>
-    {% endif %}
-
-    {% if is_granted('ROLE_EDITOR') %}
-    <div class="headerIcons">
-        <ul>
-            <li><a href="{{ path('editor.plants.index') }}"><img
-                        src="{{ asset('img/components/tabler_hexagon-letter-e.png') }}" width="50px" height="50"
-                        alt=""></a></li>
-        </ul>
-    </div>
-
-    {% endif %}
 </div>
-    <div class="disconnect">
-        <ul>
-            <li><a href="{{ path('app_logout') }}" class="link"><button>Se déconnecter</button></a></li>
-        </ul>
-    </div>
-    {% else %}
-    {% include "Layout/_loggin.html.twig" %}
-    {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
 
+            <div class="headerIcons">
+                <ul>
+                    <li><a href="{{ path('admin.users.index') }}"><img
+                                src="{{ asset('img/components/tabler_hexagon-letter-a.png') }}" width="50px" height="50"
+                                alt=""></a></li>
+
+                    <li><a href="{{ path('editor.plants.index') }}"><img
+                                src="{{ asset('img/components/tabler_hexagon-letter-e.png') }}" width="50px" height="50"
+                                alt=""></a></li>
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if is_granted('ROLE_EDITOR') %}
+            <div class="headerIcons">
+                <ul>
+                    <li><a href="{{ path('editor.plants.index') }}"><img
+                                src="{{ asset('img/components/tabler_hexagon-letter-e.png') }}" width="50px" height="50"
+                                alt=""></a></li>
+                </ul>
+            </div>
+
+            {% endif %}
+        
+
+        <nav>
+
+            <ul class="menu">
+                <li class="menuItem"><a href="{{ path('users.index') }}" class="link">Mes plantes</a></li>
+                <li class="menuItem"><a href="{{ path('users.calendar') }}" class="link">Mon calendrier</a></li>
+                <li class="menuItem"><a href="{{ path('users.plantarium') }}" class="link">Plantarium</a></li>
+            </ul>
+
+        </nav>
+
+        <div class="disconnect">
+            <ul>
+                <li><a href="{{ path('app_logout') }}" class="link"><button>Se déconnecter</button></a></li>
+            </ul>
+        
+        {% else %}
+        
+        {% endif %}
+</div>
 </header>

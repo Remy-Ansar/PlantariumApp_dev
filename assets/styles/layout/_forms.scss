@@ -1,75 +1,110 @@
-.formDisplay {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        justify-content: center;
-        background: $white-font;
-        padding: 1em;
-        border-radius: 12px;
-    
-        input {
-          padding: 0.5em;
-          border: 1px solid $dark-font;
-          border-radius: 6px;
-          width: 100%;
-          margin-bottom: 1em;
-          background: $white-font;
-        }
-      }
+// .formDisplay {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         gap: 0.5rem;
+//         margin-bottom: 1rem;
+//         justify-content: center;
+//         background: $white-font;
+//         padding: 1em;
+//         border-radius: 12px;
 
-      label {
-          font-weight: bold;
-          padding: 5px;
-          
-        }
+//         input {
+//           padding: 0.5em;
+//           border: 1px solid $dark-font;
+//           border-radius: 6px;
+//           width: 100%;
+//           margin-bottom: 1em;
+//           background: $white-font;
+//         }
+//       }
 
-      select {
-        display: flex;
-        margin-bottom: 1em;
-      }
+//       label {
+//           font-weight: bold;
+//           padding: 5px;
 
-      input[type='submit'] {
-        display: flex;
-        height: 20px;
-      }
-      
+//         }
 
+//       select {
+//         display: flex;
+//         margin-bottom: 1em;
+//       }
+
+//       input[type='submit'] {
+//         display: flex;
+//         height: 20px;
+//       }
+
+
+// form {
+// display: flex;
+// justify-content: center;
+// gap: 1em;
+// flex-direction: column;
+// height: 100%;
+// width: 80vw;
+// }
+
+// .formSearch {
+//   display: flex;
+//   flex-direction: row;
+// }
+
+// label {
+// margin-right: 1em;
+// }
+
+// select {
+//   background: $glassmorphism;
+//   border-radius: 6px 6px;
+//   padding: 5px;
+// }
+
+// .buttonAlign {
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+// }
+
+// .hidden {
+//   display: none;
+// }
+
+// #diary {
+//   display: flex;
+//   flex-direction: column;
+
+// }
+section {
+  display: flex;
+  justify-content: center;
+}
 form {
-display: flex;
-justify-content: center;
-gap: 1em;
-flex-direction: column;
-}
-
-.formSearch {
+  height: auto;
   display: flex;
-  flex-direction: row;
-}
-
-label {
-margin-right: 1em;
-}
-
-select {
-  background: $glassmorphism;
-  border-radius: 6px 6px;
-  padding: 5px;
-}
-
-.buttonAlign {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.hidden {
-  display: none;
-}
-
-#diary {
-  display: flex;
+  justify-content: center;
   flex-direction: column;
+  align-items: center;
+  padding: 1em 2em 1em 2em;
+  background: whitesmoke;
+  width: 80%;
+  border-radius: 12px;
   
+  label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+  }
+
+  input {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+  }
 }

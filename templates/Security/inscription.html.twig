@@ -1,36 +1,45 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    inscription
+inscription
 {{ parent() }}
 {% endblock %}
 {% block body %}
+
 <body class="inscription">
-    
-
-
-<h1>PlantariumApp</h1>
-<h2>Inscription</h2>
-
 
     <main>
-    <div>
-    <span>
-    <p class="animP"> Première étape : 
-    </p>
-    </span>
-    {{form_start(form)}}
-    <div>
-    {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
-    </div>
-        <div>
-              <button class="button"type="submit">Valider</button>
-        </div>
-    {{form_end(form)}}
-    </div>
+
+        <h1>PlantariumApp</h1>
+        <h2>Inscription</h2>
+
+            <span>
+                <p class="animP">Première étape :</p>
+            </span>
+
+            {{ form_start(form) }}
+
+            {{ form_widget(form) }}
+
+            <button class="validationButton" type="submit">Valider</button>
+
+        {{ form_end(form) }}
+
+        <section class="logReg">
+            <ul>
+                <li>
+                    <a href="{{ path('app.inscription') }}" class="link">
+                        <button class="menuButton">S'inscrire</button>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app.connexion') }}" class="link">
+                        <button class="menuButton">Se connecter</button>
+                    </a>
+                </li>
+            </ul>
+        </section>
     </main>
-
-
 
 </body>
 {% endblock %}

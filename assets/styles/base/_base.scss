@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
+
 body {
     @include font-secondary; // Default font for the body
 
-    height: 100vh;
     background-image: url(../../../public/images/background/MainBackground.png);
     background-size: cover;
-    margin-left: 3em;
-    margin-right: 3em;
-    overflow-x: auto; /* Enable horizontal scrolling */
+    margin-left: 5em;
+    margin-right: 5em;
     display: flex;
-    flex-direction: column;
-    
+    justify-content: center;
+
+    flex-wrap: wrap;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -25,134 +25,53 @@ li {
   list-style: none;
 }
 
-header div ul {
-  display: flex;
-  flex-direction: row;
-}
 
-header div ul li{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
 
-nav {
-  // height: 25%;
-  margin-bottom: 1em;
-  border-bottom: $bright-green;
-}
+// nav {
+//   // height: 25%;
+//   margin-bottom: 1em;
+//   border-bottom: $bright-green;
+// }
 
 main {
-  height: auto;
-  // width: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  // margin-top: 2em;
+  flex-direction: column;
+
   .mainGrid {
     height: auto;
-    // width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    // margin-top: 3em;
-  
+
+  }
 
 }
-}
+
 aside {
-  display: flex;
+  width: 50%;
+}
+
+#homeTitle {
+  font-size: 3em;
+  flex-direction: center;
   justify-content: center;
 }
 
-.profilePic {
-  border: 4px solid $white-font;
-  border-radius: 100px;
-  width: 125px;
-  height: 125px;
-  display: flex;
-  justify-content: center;
-}
-
-.userPic {
-  border: 4px solid $white-font;
-  border-radius: 100px;
-  width: 125px;
-  height: 125px;
-}
-
-
-#diseases-field {
-  display: none;
-}
-
-.headerMain {
-  display: flex;
-  flex-direction: column;
-}
-
-#inscription_CGU {
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-}
-
-.alert {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .img {
-    width: 100px;
-    height: 100px;
-  }
-
-  // Styles pour les différents types de messages d'alerte
-
-  &.alert-danger {
-    background-color: #f2dede;
-    color: #a94442;
-    border-radius: 5px;  // Ajout du border-radius
-    padding: 10px;  // Ajout du padding
-    margin-bottom: 15px;  // Ajout de la marge
-  }
-
-  &.alert-success {
-    background-color: #dff0d8;
-    color: #3c763d;
-    border-radius: 5px;  // Ajout du border-radius
-    padding: 10px;  // Ajout du padding
-    margin-bottom: 15px;  // Ajout de la marge
-  }
-
-  &.alert-warning {
-    background-color: #fcf8e3;
-    color: #8a6d3b;
-    border-radius: 5px;  // Ajout du border-radius
-    padding: 10px;  // Ajout du padding
-    margin-bottom: 15px;  // Ajout de la marge
-  }
-
-  &.alert-info {
-    display: flex;
-    justify-content: center;
-    background-color: #d9edf7;
-    color: #31708f;
-    border-radius: 5px;  // Ajout du border-radius
-    padding: 10px;  // Ajout du padding
-    margin-bottom: 15px;  // Ajout de la marge
-  }
-}
-
-.animP {
+.homemessage {
+  margin-top: 1em;
+  padding: 10px;
+  font-size: 1em;
   opacity: 0; /* Starts with the text invisible */
   transform: translateX(100%); /* Starts off-screen to the right */
-  margin-bottom: 2em;
   animation: slideIn 1s ease-out forwards; /* Applies the animation */
-  animation-delay: 0.5s; /* Delays the start of the animation */
-  width: 50%;
+  animation-delay: 2s; /* Delays the start of the animation */
+  width: 70%;
 }
 
 /* Keyframes for the slideIn animation */
@@ -169,11 +88,162 @@ aside {
   }
 }
 
-.text-center {
-  display: flex;
-  justify-content: center;
+.logReg {
+  // display: flex;
+  // justify-content: center;
+  // flex-direction: row;
+  margin-top: 1em; /* Ajoutez une marge si nécessaire */
+  margin-bottom: 1em;
+  width: 100%;
 }
 
-.mainTitle::first-letter {
-  color: $bright-green;
+
+.logReg ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%; /* Assure que les éléments remplissent la largeur disponible */
+  padding-left: 0px;
 }
+
+#homeTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centre le titre initialement */
+  opacity: 0;
+  animation: moveUp 2s ease-out forwards; /* Applique l'animation */
+}
+
+// Animation pour h1
+@keyframes moveUp {
+  0% {
+    top: 50%;
+    opacity: 0;
+  }
+  100% {
+    top: 10%; /* Ajuste selon le niveau actuel */
+    opacity: 1;
+  }
+}
+
+
+
+// }
+// aside {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .profilePic {
+//   border: 4px solid $white-font;
+//   border-radius: 100px;
+//   width: 125px;
+//   height: 125px;
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .userPic {
+//   border: 4px solid $white-font;
+//   border-radius: 100px;
+//   width: 125px;
+//   height: 125px;
+// }
+
+
+// #diseases-field {
+//   display: none;
+// }
+
+// .headerMain {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// #inscription_CGU {
+//   width: 20px;
+//   height: 20px;
+//   border-radius: 10px;
+// }
+
+// .alert {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   .img {
+//     width: 100px;
+//     height: 100px;
+//   }
+
+//   // Styles pour les différents types de messages d'alerte
+
+//   &.alert-danger {
+//     background-color: #f2dede;
+//     color: #a94442;
+//     border-radius: 5px;  // Ajout du border-radius
+//     padding: 10px;  // Ajout du padding
+//     margin-bottom: 15px;  // Ajout de la marge
+//   }
+
+//   &.alert-success {
+//     background-color: #dff0d8;
+//     color: #3c763d;
+//     border-radius: 5px;  // Ajout du border-radius
+//     padding: 10px;  // Ajout du padding
+//     margin-bottom: 15px;  // Ajout de la marge
+//   }
+
+//   &.alert-warning {
+//     background-color: #fcf8e3;
+//     color: #8a6d3b;
+//     border-radius: 5px;  // Ajout du border-radius
+//     padding: 10px;  // Ajout du padding
+//     margin-bottom: 15px;  // Ajout de la marge
+//   }
+
+//   &.alert-info {
+//     display: flex;
+//     justify-content: center;
+//     background-color: #d9edf7;
+//     color: #31708f;
+//     border-radius: 5px;  // Ajout du border-radius
+//     padding: 10px;  // Ajout du padding
+//     margin-bottom: 15px;  // Ajout de la marge
+//   }
+// }
+
+.animP {
+  opacity: 0; /* Starts with the text invisible */
+  transform: translateX(100%); /* Starts off-screen to the right */
+  margin-bottom: 2em;
+  animation: slideIn 1s ease-out forwards; /* Applies the animation */
+  animation-delay: 0.5s; /* Delays the start of the animation */
+  width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* Keyframes for the slideIn animation */
+@keyframes slideIn {
+  0% {
+      opacity: 0; /* Fully transparent */
+      transform: translateX(100%); /* Fully to the right */
+
+  }
+  100% {
+      opacity: 1; /* Fully visible */
+      transform: translateX(0); /* At its final position */
+
+  }
+}
+
+// .text-center {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .mainTitle::first-letter {
+//   color: $bright-green;
+// }

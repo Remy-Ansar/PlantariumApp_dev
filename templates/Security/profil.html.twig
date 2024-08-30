@@ -8,9 +8,10 @@ inscription
 
 <body class="inscription">
 
-    <h1 class="mainTitle">PlantariumApp</h1>
+ 
 
     <main>
+       <h1 class="mainTitle">PlantariumApp</h1>
         {{form_start(form)}}
         <span>
     <p class="animP"> Deuxième étape : 
@@ -18,8 +19,22 @@ inscription
     </span>
 
          {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
-        <button class="button" type="submit">Valider</button>
+        <button class="validationButton" type="submit">Valider</button>
         {{form_end(form)}}
+        <section class="logReg">
+			<ul>
+				<li>
+					<a href="{{ path('app.inscription') }}" class="link">
+						<button class="menuButton">S'inscrire</button>
+					</a>
+				</li>
+				<li>
+					<a href="{{ path('app.connexion') }}" class="link">
+						<button class="menuButton">Se connecter</button>
+					</a>
+				</li>
+			</ul>
+		</section>
     </main>
 </body>
 {% endblock %}

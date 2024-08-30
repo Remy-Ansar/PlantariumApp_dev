@@ -1,168 +1,208 @@
-.button {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  @include font-secondary;
-  background: $glassmorphism;
-  color: $dark-font;
-  border-radius: 8px;
-  cursor: pointer;
-}
+// .button {
+//   margin-top: 1em;
+//   margin-bottom: 1em;
+//   @include font-secondary;
+//   background: $glassmorphism;
+//   color: $dark-font;
+//   border-radius: 8px;
+//   cursor: pointer;
+// }
 
-.return {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 5em;
-  cursor: pointer;
-}  
+// .return {
+//   display: flex;
+//   justify-content: flex-end;
+//   margin-right: 5em;
+//   cursor: pointer;
+// }  
 
-.return img {
-  width: 1.5em;
-  height: 1.5em;
-}
+// .return img {
+//   width: 1.5em;
+//   height: 1.5em;
+// }
 
-.addPlant {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+// .addPlant {
+//   background: transparent;
+//   border: none;
+//   cursor: pointer;
+// }
 
-.addPlant img {
-  display: flex;
-  width: 1.5em;
-  height: 1.5em;
-  align-items: center;
-}
+// .addPlant img {
+//   display: flex;
+//   width: 1.5em;
+//   height: 1.5em;
+//   align-items: center;
+// }
 
-.removePlant {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+// .removePlant {
+//   background: transparent;
+//   border: none;
+//   cursor: pointer;
+// }
 
-.removePlant img {
-  display: flex;
-  width: 1.5em;
-  height: 1.5em;
-  align-items: center;
-}
-.addButton {
-  display: flex;
-  height: 2em;
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
+// .removePlant img {
+//   display: flex;
+//   width: 1.5em;
+//   height: 1.5em;
+//   align-items: center;
+// }
+// .addButton {
+//   display: flex;
+//   height: 2em;
+//   align-items: center;
+//   box-sizing: border-box;
+//   cursor: pointer;
 
-}
+// }
 
-.modifyButton {
-  border: 3px solid $pine-green;
-  border-radius: 12px 10px;
+// .modifyButton {
+//   border: 3px solid $pine-green;
+//   border-radius: 12px 10px;
+//   background: $white-font;
+//   color: $dark-font;
+//   box-sizing: border-box;
+//   padding: 5px;
+//   cursor: pointer;
+// }
+
+// .modifyButton:hover {
+//   background-color: $obscure-green;
+//   color: $white-font;
+//   border: $white-font;
+// }
+
+// .deleteButton {
+//   border: 2px solid $pine-green;
+//   border-radius: 12px 10px;
+//   background: $pine-green;
+//   color: $white-font;
+//   box-sizing: border-box;
+//   overflow: hidden;
+//   padding: 5px;
+//   cursor: pointer;
+// }
+
+// .deleteButton:hover {
+//   background-color: $obscure-green;
+//   color: $white-font;
+//   border: $white-font;
+// }
+
+// .tagsButton {
+//   display: flex;
+//   justify-content: center;
+//   width: 10em;
+//   border: 2px solid $pine-green;
+//   border-radius: 10px 12px;
+//   padding: 0 5px 0 5px;
+//   color: $white-font;
+//   background: $pine-green;
+//   box-sizing: border-box;
+//   cursor: pointer;
+// }
+
+// .tagsButton:hover {
+//   background-color: $obscure-green;
+//   color: $white-font;
+//   border: $obscure-green;
+// }
+
+// .categTags {
+//   border: 2px solid $white-font;
+//   border-radius: 10px 12px;
+//   padding: 0.5em 0.1em 0.5em 0.1em;
+//   color: $white-font;
+//   background: $pine-green;
+//   text-align: center;
+// }
+
+// .categTags:hover {
+//   background-color: $obscure-green;
+//   color: $obscure-green;
+// }
+
+// .toggle-plant {
+//   border: 0 transparent;
+//   background: transparent;
+// }
+
+// .resetButton {
+//   width: 10em;
+//   border-radius: 10px 12px;
+//   padding: 0 5px 0 5px;
+//   background-color: $bright-green;
+//   color: white;
+//   text-align: center;
+//   text-decoration: none;
+//   border: none;
+// }
+
+// .resetButton:hover {
+//   background-color: $obscure-green;
+//   color: white;
+// }
+
+// .activeButton {
+//   background: transparent;
+// /* Applique un border-radius de 12px uniquement à l'angle inférieur droit */
+//   /* Ajoute une bordure de 2px en bas */
+//   border: none;
+//   padding: 0.5em;
+//   outline: none;  
+//   cursor: pointer;  
+// }
+
+// .activeButton:hover {
+//   border: 3px solid $white-font;
+//   border-radius: 12px 10px;
+//   background: $white-font;
+//   color: $white-font;
+//   box-sizing: border-box;
+//   padding: 5px;
+//   background: transparent;
+// }
+
+// .validationButton {
+//   border: 3px solid $white-font;
+//   border-radius: 12px 10px;
+//   padding: 1em 0.5em 1em 0.5em;
+//   display: inline-block; /* S'assurer qu'il est en ligne avec les autres éléments */
+// }
+
+.menuButton {
+  border-radius: 24px;
   background: $white-font;
   color: $dark-font;
-  box-sizing: border-box;
-  padding: 5px;
-  cursor: pointer;
+  border: 2px solid #115220;
+  padding: 8px 12px 8px 12px;
+  font-weight: bold;
 }
 
-.modifyButton:hover {
-  background-color: $obscure-green;
+.menuButton:hover {
+  border-radius: 24px;
+  background: #115220;
   color: $white-font;
-  border: $white-font;
+  border: 2px solid #115220;
+  padding: 8px 12px 8px 12px;
+  font-weight: bold;
+  transform: scale(1.5); /* Agrandit le bouton de 10% */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-.deleteButton {
-  border: 2px solid $pine-green;
-  border-radius: 12px 10px;
-  background: $pine-green;
-  color: $white-font;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.deleteButton:hover {
-  background-color: $obscure-green;
-  color: $white-font;
-  border: $white-font;
-}
-
-.tagsButton {
-  display: flex;
-  justify-content: center;
-  width: 10em;
-  border: 2px solid $pine-green;
-  border-radius: 10px 12px;
-  padding: 0 5px 0 5px;
-  color: $white-font;
-  background: $pine-green;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.tagsButton:hover {
-  background-color: $obscure-green;
-  color: $white-font;
-  border: $obscure-green;
-}
-
-.categTags {
-  border: 2px solid $white-font;
-  border-radius: 10px 12px;
-  padding: 0.5em 0.1em 0.5em 0.1em;
-  color: $white-font;
-  background: $pine-green;
-  text-align: center;
-}
-
-.categTags:hover {
-  background-color: $obscure-green;
-  color: $obscure-green;
-}
-
-.toggle-plant {
-  border: 0 transparent;
-  background: transparent;
-}
-
-.resetButton {
-  width: 10em;
-  border-radius: 10px 12px;
-  padding: 0 5px 0 5px;
-  background-color: $bright-green;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-}
-
-.resetButton:hover {
-  background-color: $obscure-green;
-  color: white;
-}
-
-.activeButton {
-  background: transparent;
-/* Applique un border-radius de 12px uniquement à l'angle inférieur droit */
-  /* Ajoute une bordure de 2px en bas */
-  border: none;
-  padding: 0.5em;
-  outline: none;  
-  cursor: pointer;  
-}
-
-.activeButton:hover {
-  border: 3px solid $white-font;
-  border-radius: 12px 10px;
-  background: $white-font;
-  color: $white-font;
-  box-sizing: border-box;
-  padding: 5px;
-  background: transparent;
+/* Style des boutons lorsque vous souhaitez gérer d'autres états */
+.menuButton:active {
+  transform: scale(1); /* Réduit à la taille normale lorsque le bouton est cliqué */
 }
 
 .validationButton {
-  border: 3px solid $white-font;
-  border-radius: 12px 10px;
-  padding: 1em 0.5em 1em 0.5em;
+
+  padding: 8px 12px 8px 12px;
+  border-radius: 24px;
+  border: none;
+  background: $bright-green;
+}
+
+.validationButton:hover {
+  border: 2px solid #115220;
+  background: $light-green;
+  color: $obscure-green;
 }

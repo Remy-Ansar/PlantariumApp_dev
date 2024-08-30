@@ -1,75 +1,108 @@
 .header {
   @include font-primary;
 }
+
+// header div ul {
+//   display: flex;
+//   flex-direction: row;
+// }
+
+// header div ul li{
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: flex-end;
+// }
+
 header {
-  padding: 5px;
+height: fit-content;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 1px 2px 4px $dark-font;
-  // margin-bottom: 5em;
-  // margin-top: 2em;
-
-}
-
-header:hover {
-  border-bottom: solid 1px $dark-font;
-  box-shadow: 1px 2px 4px $dark-font;
-  background: rgb(188, 223, 188);
+  width: 100vw;
+  justify-content: center;
+  font-size: 0.7em;
+  
 }
 
 
 
-ul  {
-  list-style: none;
-}
+// .HomeImage {
+//   width: 100vw;
+//   height: 10vh;
+// }
 
-li a {
-  padding: 1em;
-}
+// // header:hover {
+// //   position: sticky;
+// // display: flex;
+// // justify-content: center;
+// // background: rgb(188, 223, 188);
+// // }
 
-.registerLogin {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
-  gap: 2em;
-  font-size: 1.5em;
-}
 
-.active {
-  font-weight: bold;
-  text-align: center;
-  align-items: flex-start;
-  font-size: 1.5em;
-}
 
-.logginHeader{
-  width: 100%;
+// .headerContainer {
+//   padding: 5px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   border-bottom: solid 1px $dark-font;
+//   width: 80%;
 
-}
+// }
 
-.loggin {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
+// // .headerContainer:hover {
+// //   border-bottom: none;
+// // }
 
-}
 
-.userInfo {
-  width: 35%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
+// ul  {
+//   list-style: none;
+// }
 
-.disconnect {
-  margin-right: 4em;
-}
+// li a {
+//   padding: 1em;
+// }
 
-.fullName {
-font-weight: bold;
-font-size: 1.2em;
+// .registerLogin {
+//   display: flex;
+//   align-items: flex-end;
+//   flex-direction: column;
+//   gap: 2em;
+//   font-size: 1.5em;
+// }
 
-}
+// .active {
+//   font-weight: bold;
+//   text-align: center;
+//   align-items: flex-start;
+//   font-size: 1.5em;
+// }
+
+// .logginHeader{
+//   width: 100%;
+
+// }
+
+// .loggin {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: flex-end;
+//   align-items: center;
+
+// }
+
+// .userInfo {
+//   width: 35%;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+//   align-items: center;
+// }
+
+// .disconnect {
+//   margin-right: 4em;
+// }
+
+// .fullName {
+// font-weight: bold;
+// font-size: 1.2em;
+
+// }
