@@ -1,3 +1,5 @@
+_form 
+
 // .formDisplay {
 //         display: flex;
 //         flex-direction: column;
@@ -76,20 +78,22 @@
 
 // }
 section {
+  width: 90%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
 }
 form {
-  height: auto;
-  display: flex;
+  display: block;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   padding: 1em 2em 1em 2em;
-  background: whitesmoke;
-  width: 80%;
+  background: $white-font;
+  width: 100%;
   border-radius: 12px;
-  
+
   label {
     margin-bottom: 0.5em;
     font-weight: bold;

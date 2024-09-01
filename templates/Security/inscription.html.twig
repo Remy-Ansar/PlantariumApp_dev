@@ -9,22 +9,21 @@ inscription
 <body class="inscription">
 
     <main>
-
         <h1>PlantariumApp</h1>
         <h2>Inscription</h2>
 
-            <span>
-                <p class="animP">Première étape :</p>
-            </span>
-
+        <span>
+            <p class="animP">Première étape :</p>
+        </span>
+        <section>
             {{ form_start(form) }}
 
             {{ form_widget(form) }}
 
             <button class="validationButton" type="submit">Valider</button>
 
-        {{ form_end(form) }}
-
+            {{ form_end(form) }}
+        </section>
         <section class="logReg">
             <ul>
                 <li>

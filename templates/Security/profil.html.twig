@@ -8,20 +8,20 @@ inscription
 
 <body class="inscription">
 
- 
+	<main>
+		<h1 class="mainTitle">PlantariumApp</h1>
+		<h2>Personalisation de votre profil</h2>
+		<span>
+			<p class="animP">Première étape :</p>
+		</span>
+		<section>
+			{{form_start(form)}}
+			{{form_widget(form) }}
+			<button class="validationButton" type="submit">Valider</button>
+			{{form_end(form)}}
 
-    <main>
-       <h1 class="mainTitle">PlantariumApp</h1>
-        {{form_start(form)}}
-        <span>
-    <p class="animP"> Deuxième étape : 
-    </p>
-    </span>
-
-         {{form_widget(form, {'attr': {'class': 'formDisplay'}}) }}
-        <button class="validationButton" type="submit">Valider</button>
-        {{form_end(form)}}
-        <section class="logReg">
+		</section>
+		<section class="logReg">
 			<ul>
 				<li>
 					<a href="{{ path('app.inscription') }}" class="link">
@@ -35,6 +35,6 @@ inscription
 				</li>
 			</ul>
 		</section>
-    </main>
+	</main>
 </body>
 {% endblock %}

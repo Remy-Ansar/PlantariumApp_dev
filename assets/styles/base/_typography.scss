@@ -1,48 +1,48 @@
 // body {
-//     @include font-secondary; // Default font for the body
-//     font-size: 1.5em;
-//   }
+    //     @include font-secondary; // Default font for the body
+    //     font-size: 1.5em;
+    //   }
+      
+    //   h1, h2, h3, h4, h5, h6 {
+    //     @include font-primary; // Primary font for headings
+    //   }
+      
+    h1 {
+      font-size: 3em;
+      color: $dark-font;
+      text-align: center;
+      // margin-bottom: 2em;
+      @include font-primary;
+    }
   
-//   h1, h2, h3, h4, h5, h6 {
-//     @include font-primary; // Primary font for headings
-//   }
+  //   h2 {
+  //     font-size: 2em;
+  //     color: #111212;
+  //     text-align: center;
+  //   }
   
-  h1 {
-    font-size: 3em;
-    color: $dark-font;
-    text-align: center;
-    margin-bottom: 2em;
-    @include font-primary;
-  }
-
-//   h2 {
-//     font-size: 2em;
-//     color: #111212;
-//     text-align: center;
-//   }
-
-//   a {
-//     text-decoration: none;
-//     color: $dark-font;
-//   }
-//   p {
-//     @include font-tertiary; // Tertiary font for paragraphs
-//   }
+  //   a {
+  //     text-decoration: none;
+  //     color: $dark-font;
+  //   }
+  //   p {
+  //     @include font-tertiary; // Tertiary font for paragraphs
+  //   }
+    
+  //   .quote {
+  //     @include font-quaternary; // Quaternary font for quotes or specific elements
+  //   }
   
-//   .quote {
-//     @include font-quaternary; // Quaternary font for quotes or specific elements
-//   }
-
-//   #homeTitle {
-
-//     display: flex;
-//     justify-content: center;
-//     text-align: center;
-//     align-items: center;
-//     // margin-bottom: 20vh;
-//   }
-
-//   .homeTitle::first-letter {
-//     color: $bright-green; /* Change la couleur de la première lettre */
-//     font-weight: bold; /* Optionnel : rend la première lettre plus grasse */
-// }
+  //   #homeTitle {
+  
+  //     display: flex;
+  //     justify-content: center;
+  //     text-align: center;
+  //     align-items: center;
+  //     // margin-bottom: 20vh;
+  //   }
+  
+  //   .homeTitle::first-letter {
+  //     color: $bright-green; /* Change la couleur de la première lettre */
+  //     font-weight: bold; /* Optionnel : rend la première lettre plus grasse */
+  // }
