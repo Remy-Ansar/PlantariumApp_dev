@@ -27,6 +27,7 @@ class FieldsType extends AbstractType
     {
         $resolver->setDefaults([
             // No data_class specified because it's a composite form
+            'sanitize_html' => true,
         ]);
     }
 }

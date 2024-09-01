@@ -29,7 +29,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(max: 180)]
     #[Assert\NotBlank()]
     #[Assert\Email]
-    private ?string $email = null;
+    private ?string $email;
 
     /**
      * @var list<string> The user roles
@@ -45,7 +45,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToOne(targetEntity: UserInfos::class, inversedBy: "users", cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: "user_infos_id", referencedColumnName: "id")]
-    private ?UserInfos $UserInfos = null;
+    private ?UserInfos $UserInfos;
 
     /**
      * @var Collection<int, UserPlants>
@@ -54,7 +54,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $userPlants;
 
     #[ORM\Column]
-    private ?bool $CGU = null;
+    #[Assert\NotBlank()]
+    private ?bool $CGU;
 
     public function getId(): ?int
     {
