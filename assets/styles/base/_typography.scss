@@ -11,7 +11,6 @@
       font-size: 3em;
       color: $dark-font;
       text-align: center;
-      // margin-bottom: 2em;
       @include font-primary;
     }
   
@@ -25,9 +24,10 @@
   //     text-decoration: none;
   //     color: $dark-font;
   //   }
-  //   p {
-  //     @include font-tertiary; // Tertiary font for paragraphs
-  //   }
+    p {
+      @include font-tertiary; 
+      font-size: 1em;
+    }
     
   //   .quote {
   //     @include font-quaternary; // Quaternary font for quotes or specific elements
