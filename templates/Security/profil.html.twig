@@ -12,13 +12,16 @@ inscription
 		<h1 class="mainTitle">PlantariumApp</h1>
 		<h2>Personalisation de votre profil</h2>
 		<span>
-			<p class="animP">Première étape :</p>
+			<p class="animP">Deuxième étape :</p>
 		</span>
+
 		<section>
-			{{form_start(form)}}
-			{{form_widget(form) }}
-			<button class="validationButton" type="submit">Valider</button>
-			{{form_end(form)}}
+			<div class="formDisplay">
+				{{form_start(form)}}
+				{{form_widget(form) }}
+				<button class="validationButton" type="submit">Valider</button>
+				{{form_end(form)}}
+			</div>
 
 		</section>
 		<section class="logReg">

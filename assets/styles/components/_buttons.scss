@@ -54,21 +54,94 @@
 
 // }
 
-// .modifyButton {
-//   border: 3px solid $pine-green;
-//   border-radius: 12px 10px;
-//   background: $white-font;
-//   color: $dark-font;
-//   box-sizing: border-box;
-//   padding: 5px;
-//   cursor: pointer;
-// }
+.modifyButton {
+  border: 3px solid $white-font;
+  border-radius: 12px 10px;
+  background:$pine-green;
+  color: $white-font;
+  padding: 5px;
+  cursor: pointer;
+}
 
-// .modifyButton:hover {
-//   background-color: $obscure-green;
-//   color: $white-font;
-//   border: $white-font;
-// }
+.modifyButton:hover {
+  background-color: $obscure-green;
+  color: $white-font;
+  border: $white-font;
+}
+
+.resetButton {
+  border-radius: 10px 12px;
+  padding: 0 5px 0 5px;
+  background-color: $white-font;
+  color: $dark-font;
+  text-align: center;
+  text-decoration: none;
+  border: 3px solid $pine-green;
+  box-sizing: border-box;
+  a {
+    text-decoration: none;
+  }
+}
+
+.resetButton:hover {
+  background-color: $obscure-green;
+  color: white;
+  border: 3px solid $dark-font;
+}
+
+
+.menuButton {
+  border-radius: 24px;
+  background: $white-font;
+  color: $dark-font;
+  border: 2px solid #115220;
+  padding: 8px 12px 8px 12px;
+  font-weight: bold;
+}
+
+.menuButton:hover {
+  border-radius: 24px;
+  background: #115220;
+  color: $white-font;
+  border: 2px solid #115220;
+  padding: 8px 12px 8px 12px;
+  font-weight: bold;
+  transform: scale(1.5); /* Agrandit le bouton de 10% */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Style des boutons lorsque vous souhaitez gérer d'autres états */
+.menuButton:active {
+  transform: scale(1); /* Réduit à la taille normale lorsque le bouton est cliqué */
+}
+
+.validationButton {
+
+  padding: 8px 12px 8px 12px;
+  border-radius: 24px;
+  border: none;
+  background: $bright-green;
+}
+
+.validationButton:hover {
+  border: 2px solid #115220;
+  background: $light-green;
+  color: $obscure-green;
+}
+
+
+
+
+
+.loggout {
+  padding: 8px 12px 8px 12px;
+  border-radius: 24px;  
+  background: $glassmorphism;
+  border: 2px solid $white-font;
+  color: $dark-font;
+  cursor: pointer;
+}
+
 
 // .deleteButton {
 //   border: 2px solid $pine-green;
@@ -125,21 +198,7 @@
 //   background: transparent;
 // }
 
-// .resetButton {
-//   width: 10em;
-//   border-radius: 10px 12px;
-//   padding: 0 5px 0 5px;
-//   background-color: $bright-green;
-//   color: white;
-//   text-align: center;
-//   text-decoration: none;
-//   border: none;
-// }
 
-// .resetButton:hover {
-//   background-color: $obscure-green;
-//   color: white;
-// }
 
 // .activeButton {
 //   background: transparent;
@@ -167,42 +226,3 @@
 //   padding: 1em 0.5em 1em 0.5em;
 //   display: inline-block; /* S'assurer qu'il est en ligne avec les autres éléments */
 // }
-
-.menuButton {
-  border-radius: 24px;
-  background: $white-font;
-  color: $dark-font;
-  border: 2px solid #115220;
-  padding: 8px 12px 8px 12px;
-  font-weight: bold;
-}
-
-.menuButton:hover {
-  border-radius: 24px;
-  background: #115220;
-  color: $white-font;
-  border: 2px solid #115220;
-  padding: 8px 12px 8px 12px;
-  font-weight: bold;
-  transform: scale(1.5); /* Agrandit le bouton de 10% */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-/* Style des boutons lorsque vous souhaitez gérer d'autres états */
-.menuButton:active {
-  transform: scale(1); /* Réduit à la taille normale lorsque le bouton est cliqué */
-}
-
-.validationButton {
-
-  padding: 8px 12px 8px 12px;
-  border-radius: 24px;
-  border: none;
-  background: $bright-green;
-}
-
-.validationButton:hover {
-  border: 2px solid #115220;
-  background: $light-green;
-  color: $obscure-green;
-}

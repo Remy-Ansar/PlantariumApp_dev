@@ -10,20 +10,20 @@ inscription
 
     <main>
         <h1>PlantariumApp</h1>
-        <h2>Inscription</h2>
+        <h2>Inscription et création de votre compte</h2>
 
         <span>
             <p class="animP">Première étape :</p>
         </span>
 
         <section>
-            {{ form_start(form) }}
+           <div class="formDisplay">
+				{{form_start(form)}}
+				{{form_widget(form) }}
+				<button class="validationButton" type="submit">Valider</button>
+				{{form_end(form)}}
+			</div>
 
-            {{ form_widget(form) }}
-
-            <button class="validationButton" type="submit">Valider</button>
-
-            {{ form_end(form) }}
         </section>
 
         <section class="logReg">

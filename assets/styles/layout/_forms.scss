@@ -1,20 +1,24 @@
-// .formSearch {
-//   display: flex;
-//   flex-direction: row;
-// }
+.formSearch {
+  display: flex;
+  justify-content: center;
+  .input {
+    padding: 1em;
+  }
+}
 
+select {
+  background: $glassmorphism;
+  border-radius: 6px 6px;
+  padding: 5px;
+}
 
-// select {
-//   background: $glassmorphism;
-//   border-radius: 6px 6px;
-//   padding: 5px;
-// }
+.buttonAlign {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-// .buttonAlign {
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-// }
 
 // .hidden {
 //   display: none;
@@ -25,38 +29,103 @@
 //   flex-direction: column;
 
 // }
-section {
+
+
+
+
+.filterDisplay {
   width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  // box-sizing: border-box;
-}
-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 1em 2em 1em 2em;
-  background: $white-font;
-  width: 80%;
-  border-radius: 12px;
-
-  label {
-    margin-bottom: 0.5em;
-    font-weight: bold;
-  }
-
-  input {
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    width: 90%;
-    border-radius: 4px;
-  }
-
-  button {
+  background: $glassmorphism;
+  form {
     display: flex;
     justify-content: center;
-    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 2em 1em 2em;
+
+    width: 80%;
+    border-radius: 12px;
+    label {
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    input {
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      width: 90%;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      width: 50%;
+    }
+  
+
+  .filterButton {
+    padding: 8px 12px 8px 12px;
+    width: 100%;
+    border-radius: 24px;  
+    color: $dark-font;
+    border: none;
+    background: $light-green;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: darken($bright-green, 10%);
+    }
+  }
+  
+  .filters {
+    display: none; // Par défaut, la div est masquée
+  
+    &.visible {
+      display: block; // Affiche la div quand la classe 'visible' est ajoutée
+    }
+  }
+}
+}
+.formDisplay {
+  display: flex;
+  justify-content: center;
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 2em 1em 2em;
+    background: $white-font;
+    width: 80%;
+    border-radius: 12px;
+
+    label {
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    input {
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      width: 90%;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      width: 50%;
+    }
   }
 }

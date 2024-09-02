@@ -13,6 +13,8 @@ import './javascript/calendar.js'
 import './javascript/toggleButton.js'
 import './javascript/togglePassword.js'
 import './javascript/form.js'
+import './javascript/filterButton.js'
+import './javascript/dropdown.js'
 // import './img/components/Cross.svg'
 
 // start the Stimulus application

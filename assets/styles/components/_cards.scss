@@ -1,54 +1,66 @@
-// .mainCardsUser {
-//     display: grid;
-//     grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-//     gap: 1em;
-//     justify-content: center; 
-// }
+.plantContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    background: whitesmoke;
 
-// // Stylisation des cards de users/plantarium
-// .mainCardsPlantarium {
-//     display: grid;
-//     grid-template-columns: repeat(1, 1fr); 
-//     gap: 1em; 
-//     justify-content: center; 
+    .mainCardsUser {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
 
-//     @media (min-width: 768px) {
-//         grid-template-columns: repeat(2, 1fr);
-//     }
+        .mainCardsPlantarium {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); 
+            gap: 1em; 
+            justify-content: center; 
+        
+            @media (min-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        
+            @media (min-width: 1200px) {
+                grid-template-columns: repeat(3, 1fr); 
+            }
+        }
+    }
+}
 
-//     @media (min-width: 1200px) {
-//         grid-template-columns: repeat(3, 1fr); 
-//     }
-// }
 
-// .cardUser {
-//     width: 100%;
-//     max-width: 20em;
-//     position: relative;
-// }
 
-// .img-container {
-//     width: 100%;
-//     height: auto;
-//     position: relative;
-// }
+// Stylisation des cards de users/plantarium
 
-// .img-container img {
-//     width: 100%;
-//     height: auto;
-//     border-radius: 16px;
-// }
 
-// .gradient-overlay {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
-//     border-radius: 16px;
-//     z-index: 1;
-// }
+.cardUser {
+    width: 100%;
+    max-width: 20em;
+    // position: relative;
+}
+
+.img-container {
+    width: 100%;
+    height: auto;
+    // position: relative;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
+    border-radius: 16px;
+    z-index: 1;
+}
 
 // .plantTitle {
 //     color: #fff;
@@ -92,17 +104,17 @@
 //     }
 // }
 
-// .plantTitle {
-//     color: $white-font;
-//     text-align: center;
-//     transform: translateY(-10%);
-//     font-size: 2em;
-//     font-style: italic;
-//     position: absolute;
-//     width: 100%;
-//     bottom: 0;
-//     z-index: 2;
-// }
+.plantTitle {
+    color: $white-font;
+    text-align: center;
+    transform: translateY(-10%);
+    font-size: 2em;
+    font-style: italic;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 2;
+}
 
 // .plantCard {
 //     margin-left: 2em;
@@ -149,117 +161,117 @@
 //     }
 // }
 
-// .categUnit {
-//     margin-bottom: 3em;
-//     display: flex;
-//     margin-right: 2em;
-//     justify-content: space-between;
-//     align-items: center;
-// }
+.categUnit {
+    margin-bottom: 3em;
+    display: flex;
+    margin-right: 2em;
+    justify-content: space-between;
+    align-items: center;
+}
 
-// .categClass {
-//     margin-left: 2em;
-//     display: flex;
-//     justify-content: center;
-//     width: 100%;
-// }
+.categClass {
+    margin-left: 2em;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
-// .categComponent {
-//     display: flex;
-//     align-items: center;
-//     border: 2px solid $pine-green;
-//     border-radius: 10px 12px;
-//     padding: 0.5em 1em 0.5em 1em;
-//     color: $white-font;
-//     background: $pine-green;
-//     margin-right: 5em;
-// }
+.categComponent {
+    display: flex;
+    align-items: center;
+    border: 2px solid $pine-green;
+    border-radius: 10px 12px;
+    padding: 0.5em 1em 0.5em 1em;
+    color: $white-font;
+    background: $pine-green;
+    margin-right: 5em;
+}
 
-// .textareaClass {
-//     width: 100%; /* Assure que le textarea prend toute la largeur disponible */
-//     margin-top: 1em; /* Ajoute un espace au-dessus du textarea */
-//     padding: 0.5em;
-//     border-radius: 5px;
-//     border: 1px solid #ccc;
-// }
+.textareaClass {
+    width: 100%; /* Assure que le textarea prend toute la largeur disponible */
+    margin-top: 1em; /* Ajoute un espace au-dessus du textarea */
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-// .plantInfos p {
-//     margin-bottom: 2em;
-// }
+.plantInfos p {
+    margin-bottom: 2em;
+}
 
-// .addButton form {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     flex-direction: row;
-// }
+.addButton form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
 
-// .addButton form label {
-//     margin-right: 10em;
-// }
+.addButton form label {
+    margin-right: 10em;
+}
 
-// .categFields {
-//     display: flex;
-//     flex-direction: column;
-//     padding-bottom: 0.5em;
-//     justify-content: center;
-// }
+.categFields {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.5em;
+    justify-content: center;
+}
 
-// .description {
-//     font-size: 1.2em;
-//     padding: 2em;
-//     border-radius: 10px 12px;
-//     background: $border-green;
-//     margin-top: 1em;
+.description {
+    font-size: 1.2em;
+    padding: 2em;
+    border-radius: 10px 12px;
+    background: $border-green;
+    margin-top: 1em;
 
-// }
+}
 
-// .fontDistinction {
-//     font-size: 1.1em;
-//     // margin-left: 1em;
-//     font-style: italic;
-// }
+.fontDistinction {
+    font-size: 1.1em;
+    // margin-left: 1em;
+    font-style: italic;
+}
 
-// .diaryClass {
-//    text-align: left;
-//     border-radius: 10px 12px;
-//     padding: 0.5em 1em 0.5em 1em;
-//     color: $dark-font;
-//     background: $white-font;
-//     margin-right: 5em;
-// }
+.diaryClass {
+   text-align: left;
+    border-radius: 10px 12px;
+    padding: 0.5em 1em 0.5em 1em;
+    color: $dark-font;
+    background: $white-font;
+    margin-right: 5em;
+}
 
-// .cardUser, .cardPlantarium { 
-//     width: 20em; 
-//     height: 20em;
-//     position: relative;
-//     overflow: hidden; 
-//     border-radius: 16px; 
-// }
+.cardUser, .cardPlantarium { 
+    width: 20em; 
+    height: 20em;
+    position: relative;
+    overflow: hidden; 
+    border-radius: 16px; 
+}
 
-// .cardUser .img-container, 
-// .cardPlantarium .img-container {
-//     position: relative;
-//     width: 100%;
-//     height: 100%;
-// }
+.cardUser .img-container, 
+.cardPlantarium .img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
-// .cardUser img, 
-// .cardPlantarium img {
-//     width: 100%; 
-//     height: 100%;
-//     object-fit: cover; 
-//     border-radius: 16px; 
-// }
+.cardUser img, 
+.cardPlantarium img {
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 16px; 
+}
 
-// .cardUser .gradient-overlay, 
-// .cardPlantarium .gradient-overlay {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
-//     border-radius: 16px; 
-//     z-index: 1; 
-// }
+.cardUser .gradient-overlay, 
+.cardPlantarium .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
+    border-radius: 16px; 
+    z-index: 1; 
+}

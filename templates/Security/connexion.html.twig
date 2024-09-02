@@ -11,6 +11,9 @@ Connexion
 	<main>
 		<h1>PlantariumApp</h1>
 		<h2>Se connecter</h2>
+		<span>
+            <p class="animP">Authentification</p>
+        </span>
 		<span>{% for message in app.flashes('success') %}
 			<div class="alert alert-success">{{ message }}</div>
 			{% endfor %}
@@ -18,26 +21,30 @@ Connexion
 			<div class="alert alert-danger">{{ message }}</div>
 			{% endfor %}</span>
 
-		<section>
-			<form action="{{ path('app.connexion') }}" method="post">
-				
+		<section id="connectFile">
+			<div class="formDisplay">
+
+				<form action="{{ path('app.connexion') }}" method="post">
+
 					<label for="email">Veuillez entrer votre adresse mail</label>
 					<input type="email" id="email" name="_username" value="{{ lastUsername }}"
 						placeholder="john@example.com">
-				
+
 					<label for="password">Votre mot de passe</label>
 					<input type="password" id="password" name="_password"="form-control" placeholder="S3CR3T">
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 					<button class="validationButton" type="submit">Connexion</button>
-					
-			</form>
+
+				</form>
+			</div>
 		</section>
 
 		<span>
-		<p>Mot de passe oublié ? <br> Cliquez <a href="{{ path('app_forgot_password_request') }}"><u>ici</u></a> pour le
-			réinitialiser</p>
-			</span>
+			<p>Mot de passe oublié ? <br> Cliquez <a href="{{ path('app_forgot_password_request') }}"><u>ici</u></a>
+				pour le
+				réinitialiser</p>
+		</span>
 
 		<section class="logReg">
 			<ul>
