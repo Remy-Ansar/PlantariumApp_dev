@@ -1,252 +1,63 @@
 .plantContainer {
+    margin-top: 1em;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    flex-direction: column;
-    height: auto;
+    height: 100vh; 
     overflow-y: auto;
-    background: whitesmoke;
+    background: transparent;
+    box-sizing: border-box;
+}
+.plantContainer img {
+    max-width: 100%; /* S'assurer que les images ne débordent pas */
+    height: auto;
+}
+/* Conteneur des cartes principales */
+.mainCardsUser {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    max-height: 100vh; /* Limite la hauteur totale pour éviter les débordements */
+    overflow-y: auto;
+    border-radius: 16px;
+}
 
-    .mainCardsUser {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+/* Grille des cartes Plantarium */
+.mainCardsPlantarium {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    gap: 1em; 
+    justify-content: center; 
+}
 
-        .mainCardsPlantarium {
-            display: grid;
-            grid-template-columns: repeat(1, 1fr); 
-            gap: 1em; 
-            justify-content: center; 
-        
-            @media (min-width: 768px) {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        
-            @media (min-width: 1200px) {
-                grid-template-columns: repeat(3, 1fr); 
-            }
-        }
+@media (min-width: 768px) {
+    .mainCardsPlantarium {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-
-
-// Stylisation des cards de users/plantarium
-
-
-.cardUser {
-    width: 100%;
-    max-width: 20em;
-    // position: relative;
+@media (min-width: 1200px) {
+    .mainCardsPlantarium {
+        grid-template-columns: repeat(3, 1fr); 
+    }
 }
 
-.img-container {
-    width: 100%;
-    height: auto;
-    // position: relative;
+/* Taille des icônes SVG */
+.size-svg {
+    width: 25px;
+    height: 25px;
 }
 
-.img-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-}
-
-.gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
-    border-radius: 16px;
-    z-index: 1;
-}
-
-// .plantTitle {
-//     color: #fff;
-//     text-align: center;
-//     transform: translateY(-10%);
-//     font-size: 1.5em;
-//     font-style: italic;
-//     position: absolute;
-//     width: 100%;
-//     bottom: 0;
-//     z-index: 2;
-//     margin: 0;
-//     padding: 0.5em;
-// }
-
-// .cardPlantarium { 
-//     width: 15em;
-//     height: 15em;
-//     position: relative;
-
-//     .img-container {
-//         position: relative;
-//         width: 100%;
-//         height: 100%;
-//     }
-
-//     img {
-//         width: 100%;
-//         height: 100%;
-//         border-radius: 16px;
-//     }
-//     // Gradient dans la partie inférieur des cards pour plus de lisibilité.
-//     .gradient-overlay {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//         height: 100%;
-//         background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%,rgba(11, 12, 11, 1) 100%); // Adjust gradient as needed
-//         border-radius: 16px;
-//     }
-// }
-
-.plantTitle {
-    color: $white-font;
-    text-align: center;
-    transform: translateY(-10%);
-    font-size: 2em;
-    font-style: italic;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    z-index: 2;
-}
-
-// .plantCard {
-//     margin-left: 2em;
-//     margin-right: 2em;
-//     display: flex;
-//     justify-content: space-evenly;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     padding: 3em;
-// }
-
-// .plantHeader {
-//     text-align: start;
-//     margin-bottom: 2em;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start; 
-// }
-
-// .plantHeader h2, .plantHeader h3, .plantInfos p.fontDistinction {
-//     text-align: left; 
-//     width: 100%;
-// }
-
-// .plantInfos .categComponent,
-// .plantInfos .description,
-// .plantInfos .categClass {
-//     text-align: center; 
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-// }
-
-// .plantPic {
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-
-//      img {
-//         width: 25em;
-//         height: 25em;
-//         border-radius: 16px;
-//         margin-bottom: 4em;
-//     }
-// }
-
-.categUnit {
-    margin-bottom: 3em;
-    display: flex;
-    margin-right: 2em;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.categClass {
-    margin-left: 2em;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.categComponent {
-    display: flex;
-    align-items: center;
-    border: 2px solid $pine-green;
-    border-radius: 10px 12px;
-    padding: 0.5em 1em 0.5em 1em;
-    color: $white-font;
-    background: $pine-green;
-    margin-right: 5em;
-}
-
-.textareaClass {
-    width: 100%; /* Assure que le textarea prend toute la largeur disponible */
-    margin-top: 1em; /* Ajoute un espace au-dessus du textarea */
-    padding: 0.5em;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.plantInfos p {
-    margin-bottom: 2em;
-}
-
-.addButton form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-}
-
-.addButton form label {
-    margin-right: 10em;
-}
-
-.categFields {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 0.5em;
-    justify-content: center;
-}
-
-.description {
-    font-size: 1.2em;
-    padding: 2em;
-    border-radius: 10px 12px;
-    background: $border-green;
-    margin-top: 1em;
-
-}
-
-.fontDistinction {
-    font-size: 1.1em;
-    // margin-left: 1em;
-    font-style: italic;
-}
-
-.diaryClass {
-   text-align: left;
-    border-radius: 10px 12px;
-    padding: 0.5em 1em 0.5em 1em;
-    color: $dark-font;
-    background: $white-font;
-    margin-right: 5em;
-}
-
+/* Stylisation des cartes (User et Plantarium) */
 .cardUser, .cardPlantarium { 
     width: 20em; 
     height: 20em;
     position: relative;
     overflow: hidden; 
-    border-radius: 16px; 
+    border-radius: 24px; 
+    border: 10px solid $white-font;
 }
 
 .cardUser .img-container, 
@@ -254,6 +65,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    border-radius: 24px; /* Uniformisation de la bordure */
 }
 
 .cardUser img, 
@@ -261,7 +73,7 @@
     width: 100%; 
     height: 100%;
     object-fit: cover; 
-    border-radius: 16px; 
+    border-radius: 16px; /* Uniformisation de la bordure */
 }
 
 .cardUser .gradient-overlay, 
@@ -274,4 +86,81 @@
     background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
     border-radius: 16px; 
     z-index: 1; 
+}
+
+/* Titre des plantes */
+.plantTitle {
+    color: $white-font;
+    text-align: center;
+    transform: translateY(-10%);
+    font-size: 2em;
+    font-style: italic;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 2;
+}
+
+/* Styles divers */
+.categUnit, .categClass, .categComponent, .textareaClass, .plantInfos p, .addButton form, .description, .fontDistinction, .diaryClass {
+    margin-bottom: 3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categClass {
+    margin-left: 2em;
+    justify-content: center;
+    width: 100%;
+}
+
+.categComponent {
+    align-items: center;
+    border: 2px solid $pine-green;
+    border-radius: 10px 12px;
+    padding: 0.5em 1em;
+    color: $white-font;
+    background: $pine-green;
+    margin-right: 5em;
+}
+
+.textareaClass {
+    width: 100%;
+    margin-top: 1em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.addButton form label {
+    margin-right: 10em;
+}
+
+.categFields {
+    flex-direction: column;
+    padding-bottom: 0.5em;
+    justify-content: center;
+}
+
+.description {
+    font-size: 1.2em;
+    padding: 2em;
+    border-radius: 10px 12px;
+    background: $border-green;
+    margin-top: 1em;
+}
+
+.fontDistinction {
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+.diaryClass {
+    text-align: left;
+    border-radius: 10px 12px;
+    padding: 0.5em 1em;
+    color: $dark-font;
+    background: $white-font;
+    margin-right: 5em;
 }

@@ -4,7 +4,7 @@
   }
   
   .dropdown-toggle {
-    background-color: $pine-green;
+    background-color: transparent;
     padding: 8px 12px 8px 12px;
     border-radius: 24px;  
     color: white;
@@ -16,11 +16,13 @@
   .dropdown-menu {
     display: none; /* Masqué par défaut */
     position: absolute;
-    background-color: $bright-green;
+    background-color: $border-green;
+    transform: translate(-35%, 10px);
     min-width: 200px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-    z-index: 1;
+    z-index: 11;
     padding: 10px 0;
+    margin-bottom: 1em;
   }
   
   .dropdown-menu ul {
@@ -32,6 +34,7 @@
   .dropdown-menu ul li {
     padding: 8px 16px;
     text-align: left;
+
   }
   
   .dropdown-menu ul li a {
@@ -43,4 +46,7 @@
   .dropdown-menu ul li a:hover {
     background-color: #f1f1f1;
   }
-  
+   
+#separator {
+  border-top: 1px solid $dark-font;
+}

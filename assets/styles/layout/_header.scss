@@ -1,107 +1,203 @@
-header {
-position: sticky;
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  font-size: 0.7em;
-  margin-bottom: 2em;
-}
+// // header div ul {
+// //   display: flex;
+// //   flex-direction: row;
+// // }
 
-header div ul {
-  display: flex;
-  flex-direction: row;
-}
+// // header div ul li{
+// //   display: flex;
+// //   flex-direction: row;
+// //   justify-content: flex-end;
+// // }
 
-header div ul li{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.headerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1em;
-}
-
-.headerNav {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-}
-
-
-// .HomeImage {
-//   width: 100vw;
-//   // height: 10vh;
-// }
-
-// header:hover {
-//   position: sticky;
-// display: flex;
-// justify-content: center;
-// background: rgb(188, 223, 188);
-// }
-
-
-
-// // .headerContainer:hover {
-// //   border-bottom: none;
+// // .profilPicHeader {
+// //   margin-left: 0;
 // // }
 
 
-// ul  {
-//   list-style: none;
+//   // align-items: center;
+//   // flex-direction: row;
+//   // justify-content: space-between;
+//   // padding: 0 1em;
 // }
 
-// li a {
-//   padding: 1em;
-// }
+// // .headerNav {
+// //   display: flex;
+// //   align-items: center;
+// //   width: 100%;
+// //   justify-content: space-between;
+// // }
 
-// .registerLogin {
-//   display: flex;
-//   align-items: flex-end;
-//   flex-direction: column;
-//   gap: 2em;
-//   font-size: 1.5em;
-// }
 
-// .active {
-//   font-weight: bold;
-//   text-align: center;
-//   align-items: flex-start;
-//   font-size: 1.5em;
-// }
-
-// .logginHeader{
-//   width: 100%;
+.userInfo ul li img {}
 
 // }
-
-// .loggin {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: flex-end;
-//   align-items: center;
-
-// }
-
-// .userInfo {
-//   width: 35%;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   align-items: center;
-// }
-
-// .disconnect {
-//   margin-right: 4em;
-// }
-
 // .fullName {
-// font-weight: bold;
-// font-size: 1.2em;
+//   display: flex;
+//   justify-content: center;
+// }
+// // .HomeImage {
+// //   width: 100vw;
+// //   // height: 10vh;
+// // }
 
+// // header:hover {
+// //   position: sticky;
+// // display: flex;
+// // justify-content: center;
+// // background: rgb(188, 223, 188);
+// // }
+
+
+
+// // // .headerContainer:hover {
+// // //   border-bottom: none;
+// // // }
+
+
+// // ul  {
+// //   list-style: none;
+// // }
+
+// // li a {
+// //   padding: 1em;
+// // }
+
+// // .registerLogin {
+// //   display: flex;
+// //   align-items: flex-end;
+// //   flex-direction: column;
+// //   gap: 2em;
+// //   font-size: 1.5em;
+// // }
+
+
+
+// // .logginHeader{
+// //   width: 100%;
+
+// // }
+
+// // .loggin {
+// //   display: flex;
+// //   flex-direction: row;
+// //   justify-content: flex-end;
+// //   align-items: center;
+
+// // }
+
+
+
+// // .disconnect {
+// //   margin-right: 4em;
+// // }
+
+// // .fullName {
+// // font-weight: bold;
+// // font-size: 1.2em;
+
+// // }
+/* Header fixed */
+#toggle-header-button {
+  position: fixed;
+  transform: translateX(-160px);
+  top: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 0.75em 1.5em;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+#toggle-header-button:hover {
+  background-color: transparent;
+}
+
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 200px;
+  align-items: center;
+  width: 100vw;
+
+  background: $glassmorphism;
+
+  transition: transform 0.3s ease;
+  z-index: 999;
+
+}
+
+/* Header Hidden State */
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* Conteneur pour les éléments du header */
+.headerContainer {
+  align-items: center;
+  flex-wrap: nowrap;
+
+
+  // overflow-x: auto; /* Permet le scroll horizontal si nécessaire */
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  li {
+    margin-right: 1em;
+  }
+
+  img {
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+  }
+}
+
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+
+// .userInfo img {
+//   max-width: 100%;
+//   height: auto;
+// }
+
+/* Nav Sticky */
+
+
+
+// .userInfo, .fullName, .adminAccess, .disconnect {
+//   flex: 0 0 auto; /* Assurer que les éléments ne se compressent pas */
+//   margin-right: 1em; /* Espacement entre les éléments */
+//   display: flex; /* Utiliser flexbox pour centrer le contenu interne */
+//   align-items: center; /* Centrer les enfants sur l'axe Y */
+// }
+
+
+// .fullName ul, .adminAccess ul, .disconnect ul {
+//   list-style-type: none; /* Retire les puces des listes */
+//   padding: 0;
+//   margin: 0;
+// }
+
+// .fullName ul li, .adminAccess ul li, .disconnect ul li {
+//   text-align: left; /* Aligne le texte à gauche */
+//   margin: 0;
+//   padding: 0;
+// }
+
+// .fullName p, .adminAccess p, .disconnect p {
+//   margin: 0;
 // }

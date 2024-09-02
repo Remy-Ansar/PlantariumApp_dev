@@ -6,6 +6,7 @@ html {
   width: 100%;
   margin: 0;
   padding: 0;
+  overflow-y: auto;
 }
 
 body {
@@ -15,8 +16,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-image: url(../../img/background/HomeBackground.png);
-  background-size: cover;
+  // background: $bg-home;
+  background-image: url(../../img/background/MainBackground.png);
+  background-size:cover;
   box-sizing: border-box;
   @include font-secondary;
   overflow-y: auto;
@@ -29,6 +31,7 @@ h4,
 h5,
 h6 {
   @include font-primary;
+  z-index: 1;
 }
 
 .quote {
@@ -40,20 +43,15 @@ li {
 }
 
 main {
-  min-height: 100%;
-  min-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  align-items: center;
-  height: 100%;
-  // overflow-y: auto;
+  height: 100%; /* S'assurer que main occupe toute la hauteur */
 }
 
 section {
-  height: auto;
+  flex: 1;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -132,8 +130,8 @@ section {
 .profilePic {
   border: 4px solid $white-font;
   border-radius: 100px;
-  width: 125px;
-  height: 125px;
+  width: 75px;
+  height: 75px;
   display: flex;
   justify-content: center;
 }

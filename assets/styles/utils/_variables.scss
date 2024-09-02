@@ -35,6 +35,54 @@ $bg-inscription : url(../../../public/images/background/RegisterBackground.png);
 $bg-connexion : url(../../../public/images/background/ConnexionBackground.png);
 
 $bg-main : url(../../../public/images/background/MainBackground.png);
+
+// Déclaration des couleurs en variables SCSS
+$color-start: rgba(174, 252, 125, 36);
+
+$color-end: rgba(222, 255, 201, 100);
+
+// Déclaration de l'angle du dégradé en variable SCSS
+$gradient-angle: 145deg;
+
+// Déclaration de la variable pour le background
+$bg-home: linear-gradient($gradient-angle, $color-start 0%, $color-end 100%);
+
+// Application du background
+.element {
+  background: $color-start; // Couleur de fond pour les navigateurs qui ne supportent pas les gradients
+  background: -moz-linear-gradient($gradient-angle, $color-start 0%, $color-end 69%);
+  background: -webkit-linear-gradient($gradient-angle, $color-start 0%, $color-end 69%);
+  background: $bg-home;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220", endColorstr="#31c351", GradientType=1); // Pour IE9 et versions antérieures
+}
+
+
+// background: rgb(17,82,32);
+// background: -moz-linear-gradient(180deg, rgba(17,82,32,0.7035014689469538) 0%, rgba(43,173,72,0.7) 25%, rgba(49,195,81,0.7) 69%);
+// background: -webkit-linear-gradient(180deg, rgba(17,82,32,0.7035014689469538) 0%, rgba(43,173,72,0.7) 25%, rgba(49,195,81,0.7) 69%);
+// background: linear-gradient(180deg, rgba(17,82,32,0.7035014689469538) 0%, rgba(43,173,72,0.7) 25%, rgba(49,195,81,0.7) 69%);
+// filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220",endColorstr="#31c351",GradientType=1);
+
+
+// // Déclaration des couleurs en variables SCSS avec opacité
+// $color-start-secondary: rgba(17, 82, 32, 0.703);
+// $color-middle-secondary: rgba(43, 173, 72, 0.7);
+// $color-end-secondary: rgba(49, 195, 81, 0.7);
+
+// // Déclaration de l'angle du dégradé en variable SCSS
+// $gradient-angle-secondary: 180deg;
+
+// // Déclaration de la variable pour le background
+// $bg-secondary: linear-gradient($gradient-angle-secondary, $color-start-secondary 0%, $color-middle-secondary 25%, $color-end-secondary 69%);
+
+// // Application du background
+// .element {
+//   background: $color-start-secondary; // Couleur de fond pour les navigateurs qui ne supportent pas les gradients
+//   background: -moz-linear-gradient($gradient-angle-secondary, $color-start-secondary 0%, $color-middle-secondary 25%, $color-end-secondary 69%);
+//   background: -webkit-linear-gradient($gradient-angle-secondary, $color-start-secondary 0%, $color-middle-secondary 25%, $color-end-secondary 69%);
+//   background: $bg-secondary;
+//   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220", endColorstr="#31c351", GradientType=1); // Pour IE9 et versions antérieures
+// }
 /* Border bottom */
 
 // $border-botom:( rgba(222, 255, 201, 1), border-radius: 0, 24px, 24px, 0 height: 6px);

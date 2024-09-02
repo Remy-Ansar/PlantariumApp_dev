@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     filterButton.addEventListener('click', function () {
       if (filters.classList.contains('visible')) {
         filters.classList.remove('visible');
-        filterButton.textContent = 'Trier mes plantes par :'; // Texte du bouton lorsqu'il est fermé
+        filterButton.textContent = 'Tri avancés :'; // Texte du bouton lorsqu'il est fermé
       } else {
         filters.classList.add('visible');
         filterButton.textContent = 'Masquer les filtres'; // Texte du bouton lorsqu'il est ouvert

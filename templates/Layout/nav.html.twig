@@ -1,11 +1,17 @@
-    {# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    <nav>
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+<nav>
 
-        <ul class="menu">
-            <li class="menuItem"><a href="{{ path('users.index') }}" class="link">Mes plantes</a></li>
-            <li class="menuItem"><a href="{{ path('users.calendar') }}" class="link">Mon calendrier</a></li>
-            <li class="menuItem"><a href="{{ path('users.plantarium') }}" class="link">Plantarium</a></li>
-        </ul>
+    <ul class="menu">
+        <li class="menuItem"> <h3 class="link"><a href="{{ path('users.index') }}">
+               Collection</h3>
+            </a></li>
+        <li class="menuItem"><h3 class="link"><a href="{{ path('users.calendar') }}">
+                Calendrier</h3>
+            </a></li>
+        <li class="menuItem"><h3 class="link"><a href="{{ path('users.plantarium') }}">
+                Plantarium</h3>
+            </a></li>
+    </ul>
 
-    </nav>
-    {% endif %} #}
+</nav>
+{% endif %}

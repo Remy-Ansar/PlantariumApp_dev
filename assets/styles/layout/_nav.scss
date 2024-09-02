@@ -1,32 +1,72 @@
 nav {
+    // position: sticky;
+    // top: 60px; /* Ajuster la valeur selon la hauteur réelle du header */
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-
-    }
-
-.menu {
+    z-index: 9;
+    background-color: transparent; /* Couleur de fond par défaut */
+    padding: 0.5em;
+    transition: background-color 0.3s ease; /* Animation douce pour le changement de couleur */
+  }
+  
+//   /* Styles pour nav lorsqu'elle devient sticky */
+//   nav.sticky-active {
+//     background-color: #000; /* Remplacer par la couleur désirée */
+//   }
+  
+  .userProfile{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .adminAccess {
+    display: flex;
+    flex-direction: column;
+  }
+  /* Menu styling */
+  .menu {
     padding-left: 0;
     width: 100%;
-    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: center;
-
-}
-
-.menuItem {
+    align-items: center;
+  }
+  
+  .menuItem {
     font-size: 1em;
-    @include font-primary;
     width: auto;
-    justify-content: center;
     text-decoration: none;
     padding: 0.5em;
-}
-
-.menuItem a{
-
+    text-align: center;
+  }
+  
+  .menuItem a {
     text-decoration: none;
-}
+  }
 
+  
+.active {
+    // font-weight: bold;
+    // text-align: center;
+    // align-items: flex-start;
+    // font-size: 1.5em;
+    position: relative;
+    z-index: 0;
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 8px; // épaisseur de la bordure
+      background-color: $border-green; // couleur de la bordure
+      transform: translateY(-0.1em); // déplacement vers le bas
+      border-radius: 10px 0 10px 0;
+      z-index: -1;
+      width: 100%;
+    }
+  }
+  

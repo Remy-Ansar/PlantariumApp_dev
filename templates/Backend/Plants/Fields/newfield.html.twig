@@ -6,9 +6,10 @@
 {% endblock %}
 
 {% block body %}
-	<section>
-		<h1>Ajouter des champs de selection</h1>
 
+<main>
+		<h1>Ajouter des champs de selection</h1>
+	<section>
 		{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
 		<a href="{{ path('editor.plants.index') }}" class="button">Retour à la liste des plantes</a>
                 {% for message in app.flashes('success') %}
@@ -17,4 +18,5 @@
         </div>
     {% endfor %}
 	</section>
+</main>
 {% endblock %}

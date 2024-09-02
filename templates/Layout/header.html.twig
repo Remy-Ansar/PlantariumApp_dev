@@ -1,37 +1,42 @@
-<header>
+{# <button id="toggleHeaderButton">Afficher/Masquer le Header</button>        ☰ Menu #}
+  <button id="toggle-header-button" aria-expanded="true" aria-controls="main-header">
+  PlantariumApp
+    </button>
+   <header id="main-header" class="header-hidden">
     <div class="headerContainer">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
-        {# {% if app.user.UserInfos %}
-        <div class="userInfo">
-            <ul>
-                {% if app.user.UserInfos.imageName %}
+        {% if app.user.UserInfos %}
 
-                <li class="profilPicHeader">
-                    <img src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
-                        alt="{{ app.user.UserInfos.getFullName() }}" loading="lazy" class="rounded">
-                </li>
-                {% endif %}
-            </ul>
+        {% if app.user.UserInfos.imageName %}
+        <ul>
+            <li>
+                <img src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
+                    alt="{{ app.user.UserInfos.getFullName() }}" loading="lazy" class="rounded">
+            </li>
 
-            <div class="fullName">
-                <li>
-                    <p>{{ app.user.UserInfos.getFirstName() }}</p>
-                </li>
-                <li>
-                    <p>{{ app.user.UserInfos.getLastName() }}</p>
-                </li>
-            </div>
+            {% endif %}
 
-        {% endif %} #}
+            <li>
+                <p>{{ app.user.UserInfos.getFirstName() }}</p>
 
-        {% if is_granted('ROLE_ADMIN') %}
-        <div class="dropdown">
-            <button type="button" class="dropdown-toggle">Administration</button>
+                <p>{{ app.user.UserInfos.getLastName() }}</p>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+ {% if is_granted('ROLE_ADMIN') %}
+<div class="dropdown">
+    <button type="button" class="dropdown-toggle"><img src="{{ asset('img/components/feuille.png')}}" width="25px" height="25px" alt="Bouton feuille"></button>
+
+    <div class="adminAccess">
+           
+        
+            {# <button type="button" class="dropdown-toggle">Administration</button> #}
             <div class="dropdown-menu">
                 <ul>
                     <li><a href="{{ path('admin.users.index') }}">Administration des utilisateurs</a></li>
-                    <li><a href="{{ path('editor.plants.index') }}">Administration des plantes</a></li>
+                    <li id="separator"><a href="{{ path('editor.plants.index') }}">Administration des plantes</a></li>
                 </ul>
             </div>
         </div>
@@ -47,26 +52,24 @@
             </div>
         </div>
         {% endif %}
+    </div>
 
-       
 
-        <div class="disconnect">
-            <ul>
-                <li><a href="{{ path('app_logout') }}" class="link"><button class="loggout">Se déconnecter</button></a></li>
-            </ul>
+    <div>
+        <ul>
+            <li>
+                <a href="{{ path('app_logout') }}" class="link">
+                    <button class="loggout">
+                        <img src="{{ asset('img/components/deconnexion.png') }}" width="25px" height="25px"
+                            alt="Icône de deconnexion">
+                    </button>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    {% else %}
 
-            {% else %}
+    {% endif %}
 
-            {% endif %}
-        </div>
 </header>
-
- <nav>
-
-            <ul class="menu">
-                <li class="menuItem"><a href="{{ path('users.index') }}" class="link">Mes plantes</a></li>
-                <li class="menuItem"><a href="{{ path('users.calendar') }}" class="link">Mon calendrier</a></li>
-                <li class="menuItem"><a href="{{ path('users.plantarium') }}" class="link">Plantarium</a></li>
-            </ul>
-
-        </nav>

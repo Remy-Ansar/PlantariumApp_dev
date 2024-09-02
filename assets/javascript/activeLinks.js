@@ -1,34 +1,24 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const hypertext = document.querySelectorAll('.link');
-  
-    let setActiveLink = function() {
+  // Sélectionne tous les liens à l'intérieur des éléments menuItem
+  const hypertext = document.querySelectorAll('nav .menu .menuItem a');
 
-      let currentPath = window.location.pathname;
-      
+  const setActiveLink = () => {
+    const currentPath = window.location.pathname;
 
-      for (let i = 0; i < hypertext.length; i++) {
+    hypertext.forEach(link => {
+      const linkPath = link.getAttribute('href'); // Obtenir l'attribut href directement de <a>
+      link.classList.toggle('active', currentPath === linkPath); // Comparer currentPath avec linkPath
+    });
+  };
 
-        let linkPath = hypertext[i].getAttribute('href');
-        
+  setActiveLink();
 
-        if (currentPath === linkPath) {
-          hypertext[i].classList.add('active');
-        } else {
-          hypertext[i].classList.remove('active');
-        }
-      }
-    };
-  
-    setActiveLink();
-
-    for (let i = 0; i < hypertext.length; i++) {
-      hypertext[i].addEventListener('click', function(event) {
-
-        for (let j = 0; j < hypertext.length; j++) {
-          hypertext[j].classList.remove('active');
-        }
-
-        event.currentTarget.classList.add('active');
-      });
-    }
+  hypertext.forEach(link => {
+    link.addEventListener('click', function(event) {
+      // Supprimer la classe 'active' de tous les liens
+      hypertext.forEach(link => link.classList.remove('active'));
+      // Ajouter la classe 'active' à l'élément cliqué
+      event.currentTarget.classList.add('active');
+    });
   });
+});

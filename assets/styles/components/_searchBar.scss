@@ -1,45 +1,101 @@
-// .wrap {
+// // .wrap {
+// //     display: flex;
+// //     justify-content: center;
+// //     align-items: center;
+// //     margin: 20px;
+// //     outline: none; 
+// // }
+
+// .formSearch {
 //     display: flex;
 //     justify-content: center;
+//     .input {
+//       padding: 1em;
+//     }
+//   }
+
+// .searchBar {
+//     display: flex;
+//     flex-direction: row;
 //     align-items: center;
-//     margin: 20px;
+//     padding: 2em;
 //     outline: none; 
 // }
 
-.searchBar {
+// .searchText {
+//     font-size: 1em;
+//     outline: none; 
+//     border: none; 
+//     border-radius: 10px 12px 12px 10px;
+// }
+
+// .searchText:focus {
+//     outline: none; 
+//     border: none; 
+// }
+
+// .searchSubmit {
+//     border: none; 
+//     background: none; 
+//     cursor: pointer; 
+//     outline: none; 
+//     display: flex;
+//     align-items: center;
+//     background: $white-font;
+//     margin: none;
+// }
+
+// .searchSubmit img {
+//     width: 20px; 
+//     height: 20px; 
+//     outline: none; 
+//     justify-content: flex-end;
+// }
+
+.formSearch {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 2em;
-    outline: none; 
-}
+    justify-content: center;
+    .searchBar {
+      display: flex;
+      align-items: center;
+      border-radius: 10px 12px 12px 10px;    
+      overflow: hidden;
+      width: 100%; // Adaptable à la largeur du conteneur
+    //   max-width: 400px; // Limite la largeur maximale
+      outline: none; 
+      padding: 2em;
 
-.searchText {
-    font-size: 1em;
-    outline: none; 
-    border: none; 
-    border-radius: 10px 12px 12px 10px;
-}
-
-.searchText:focus {
-    outline: none; 
-    border: none; 
-}
-
-.searchSubmit {
-    border: none; 
-    background: none; 
-    cursor: pointer; 
-    outline: none; 
-    display: flex;
-    align-items: center;
-    background: $white-font;
-    margin: none;
-}
-
-.searchSubmit img {
-    width: 20px; 
-    height: 20px; 
-    outline: none; 
-    justify-content: flex-end;
-}
+      .searchText {
+        display: flex;
+    flex-direction: row;
+    justify-content: center;
+        padding: 10px 15px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        color: #333;
+        border-radius: 10px 12px 12px 10px;       
+         &::placeholder {
+          color: #999;
+        }
+      }
+  
+      .searchSubmit {
+        background-color: $white-font;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0 12px 12px 0; // Coins arrondis pour le côté droit
+        padding: 0.8em;
+        transform: translateX(-10px);
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }

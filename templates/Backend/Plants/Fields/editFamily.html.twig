@@ -6,9 +6,11 @@
 {% endblock %}
 
 {% block body %}
+<main>
     <h1>Ajouter une nouvelle famille de plante</h1>
     {{ form_start(form) }}
         {{ form_row(form.Name) }}
         <button type="submit">Ajouter</button>
     {{ form_end(form) }}
+</main>
 {% endblock %}

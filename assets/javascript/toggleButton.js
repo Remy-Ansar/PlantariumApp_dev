@@ -39,3 +39,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+// Sélection des éléments
+const toggleButton = document.getElementById('toggle-header-button');
+const header = document.getElementById('main-header');
+
+// État initial
+let isHeaderVisible = true;
+
+// Fonction pour toggler le header
+function toggleHeader() {
+    isHeaderVisible = !isHeaderVisible;
+    if (isHeaderVisible) {
+        header.classList.remove('header-hidden');
+        toggleButton.setAttribute('aria-expanded', 'true');
+    } else {
+        header.classList.add('header-hidden');
+        toggleButton.setAttribute('aria-expanded', 'false');
+    }
+}
+
+// Écouteur d'événement sur le bouton
+toggleButton.addEventListener('click', toggleHeader);

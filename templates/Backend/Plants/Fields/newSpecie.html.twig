@@ -6,11 +6,13 @@ Ajouter une espèce
 {% endblock %}
 
 {% block body %}
-	<section>
-		<h1>Ajouter une nouvelle espèce</h1>
-{# <a href="{{ path('editor.plants.field.new') }}">Ajouter des champs</a> #}
+<main>
 
+	<h1>Ajouter une nouvelle espèce</h1>
+	{# <a href="{{ path('editor.plants.field.new') }}">Ajouter des champs</a> #}
+	<section>
 		{% include 'Backend/Plants/Fields/_form.html.twig' with {button_label: 'Créer'} %}
 		<a href="{{ path('editor.plants.index') }}" class="button">Retour à la liste</a>
 	</section>
+</main>
 {% endblock %}

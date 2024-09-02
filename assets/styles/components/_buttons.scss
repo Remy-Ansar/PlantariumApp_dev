@@ -71,7 +71,7 @@
 
 .resetButton {
   border-radius: 10px 12px;
-  padding: 0 5px 0 5px;
+  padding: 5px;
   background-color: $white-font;
   color: $dark-font;
   text-align: center;
@@ -134,11 +134,12 @@
 
 
 .loggout {
+  margin-right: 2em;
   padding: 8px 12px 8px 12px;
   border-radius: 24px;  
-  background: $glassmorphism;
-  border: 2px solid $white-font;
-  color: $dark-font;
+  background: transparent;
+  border:none;
+  // color: $dark-font;
   cursor: pointer;
 }
 

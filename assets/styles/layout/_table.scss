@@ -1,66 +1,66 @@
-// table {
-//     table-layout: fixed;
-//     width: 100%;
-//     border-collapse: collapse;
-//     border-top: 3px solid $dark-font;
-//     // border-bottom: 3px solid $light-green;
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 3px solid $dark-font;
+    // border-bottom: 3px solid $light-green;
+    overflow-x: auto;
+    margin: 1em;
+}
+thead {
+    margin-right: 2em;
+}
+tbody {
+    margin-top: 5em;
+}
 
-//     margin: 1em;
-// }
-// thead {
-//     margin-right: 2em;
-// }
-// tbody {
-//     margin-top: 5em;
-// }
+th,
+td {
+  padding: 10px;
+  width: 15em;
+}
 
-// th,
-// td {
-//   padding: 10px;
-//   width: 15em;
-// }
+thead th:nth-child(1) {
+  width: 2em;
+}
 
-// thead th:nth-child(1) {
-//   width: 2em;
-// }
+thead th:nth-child(5) {
+    width: 15em;
+  }
 
-// thead th:nth-child(5) {
-//     width: 15em;
-//   }
-
-// thead th:nth-child(10) {
-//     width: 6em;
-//   }
+thead th:nth-child(10) {
+    width: 6em;
+  }
   
-// .fieldAdd {
-//   margin: 1em 0 1em 0;
-//     display: flex;
-//     justify-content: center;
-//     gap: 2em;
-// }
-// tbody td {
-//     text-align: center;
-//   }
-// tbody tr {
-//     text-align: center;
-//   }
+.fieldAdd {
+  margin: 1em 0 1em 0;
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+tbody td {
+    text-align: center;
+  }
+tbody tr {
+    text-align: center;
+  }
   
-// td {
-//     letter-spacing: 1px;
-//     text-align: center;
-//   }
+td {
+    letter-spacing: 1px;
+    text-align: center;
+  }
 
-// td a {
-//   display: flex;
-//   justify-content: center;
-// }
+td a {
+  display: flex;
+  justify-content: center;
+}
 
-// td a img {
-// width: 200px;
-// height: 200px;
-// }
-//   .table-container {
-//     width: 100%;
-//     overflow-x: auto; /* Enable horizontal scrolling */
-//     background: $glassmorphism;
-// }
+td a img {
+width: 200px;
+height: 200px;
+}
+  .table-container {
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    background: $glassmorphism;
+}

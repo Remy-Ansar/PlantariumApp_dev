@@ -15,6 +15,7 @@ import './javascript/togglePassword.js'
 import './javascript/form.js'
 import './javascript/filterButton.js'
 import './javascript/dropdown.js'
+import './javascript/navbar.js'
 // import './img/components/Cross.svg'
 
 // start the Stimulus application
