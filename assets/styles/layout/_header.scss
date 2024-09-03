@@ -1,120 +1,27 @@
-// // header div ul {
-// //   display: flex;
-// //   flex-direction: row;
-// // }
-
-// // header div ul li{
-// //   display: flex;
-// //   flex-direction: row;
-// //   justify-content: flex-end;
-// // }
-
-// // .profilPicHeader {
-// //   margin-left: 0;
-// // }
-
-
-//   // align-items: center;
-//   // flex-direction: row;
-//   // justify-content: space-between;
-//   // padding: 0 1em;
-// }
-
-// // .headerNav {
-// //   display: flex;
-// //   align-items: center;
-// //   width: 100%;
-// //   justify-content: space-between;
-// // }
-
-
-.userInfo ul li img {}
-
-// }
-// .fullName {
-//   display: flex;
-//   justify-content: center;
-// }
-// // .HomeImage {
-// //   width: 100vw;
-// //   // height: 10vh;
-// // }
-
-// // header:hover {
-// //   position: sticky;
-// // display: flex;
-// // justify-content: center;
-// // background: rgb(188, 223, 188);
-// // }
-
-
-
-// // // .headerContainer:hover {
-// // //   border-bottom: none;
-// // // }
-
-
-// // ul  {
-// //   list-style: none;
-// // }
-
-// // li a {
-// //   padding: 1em;
-// // }
-
-// // .registerLogin {
-// //   display: flex;
-// //   align-items: flex-end;
-// //   flex-direction: column;
-// //   gap: 2em;
-// //   font-size: 1.5em;
-// // }
-
-
-
-// // .logginHeader{
-// //   width: 100%;
-
-// // }
-
-// // .loggin {
-// //   display: flex;
-// //   flex-direction: row;
-// //   justify-content: flex-end;
-// //   align-items: center;
-
-// // }
-
-
-
-// // .disconnect {
-// //   margin-right: 4em;
-// // }
-
-// // .fullName {
-// // font-weight: bold;
-// // font-size: 1.2em;
-
-// // }
-/* Header fixed */
 #toggle-header-button {
-  position: sticky;
-  // transform: translateX(-160px);
-  // top: 20px;
-  // right: 20px;
   background-color: $glassmorphism;
   color: $dark-font;
-  border: 3px solid  #4CAF50;
   padding: 0.75em 1.5em;
   font-size: 1.2em;
   cursor: pointer;
-  border-radius: 5px;
+
   z-index: 1000;
-  transition: background-color 0.3s ease;
+  border: none;
+  // transition: background-color 0.3s ease;
+  align-items: center; /* Aligne l'image en haut du bouton */
+  justify-content: flex-start; 
+  // $container-width: 300px; // Vous pouvez ajuster cette valeur selon vos besoins
+
+  img {
+    width: 150px;/* Limite la largeur de l'image à celle du conteneur */
+    height: auto; /* Garde le ratio original de l'image */
+    object-fit: cover; /* Assure que l'image couvre son conteneur sans être déformée */
+  }
 }
 
 #toggle-header-button:hover {
   background-color: transparent;
+  border: 3px solid $white-font;
 }
 
 
@@ -125,9 +32,7 @@ header {
   height: 200px;
   align-items: center;
   width: 100vw;
-
   background: $glassmorphism;
-
   transition: transform 0.3s ease;
   z-index: 999;
 

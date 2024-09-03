@@ -20,31 +20,7 @@
 //   height: 1.5em;
 // }
 
-.addPlant {
-  background: transparent;
-  border: none;
-  width: 3em;
-  height: 3em;
-  cursor: pointer;
-  transition: transform 0.3s ease
-}
 
-.addPlant:hover {
-  transform: scale(1.5);
-}
-
-.removePlant {
-  background: transparent;
-  border: none;
-  width: 3em;
-  height: 3em;
-  cursor: pointer;
-  transition: transform 0.3s ease
-}
-
-.removePlant:hover {
-  transform: scale(1.5);
-}
 
 // .addPlant img {
 //   display: flex;
@@ -67,17 +43,59 @@
 // }
 .addButton {
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-sizing: border-box;
+  z-index: 1;
   cursor: pointer;
   background: transparent;
   form {
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
   }
+  img {
+    transform: translate(10px, 10px);
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.addPlant {
+  background: transparent;
+  border: none;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  transition: transform 0.3s ease
+}
+
+.addPlant:hover {
+  transform: scale(1.5);
+}
+
+.addPlantCard {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  img{
+    object-fit: cover;
+  }
+}
+
+.addPlant:hover {
+  transform: scale(1.5);
+}
+
+.removePlant {
+  background: transparent;
+  border: none;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  transition: transform 0.3s ease
+}
+
+.removePlant:hover {
+  transform: scale(1.5);
 }
 
 .delButton {
@@ -108,6 +126,10 @@
   background-color: $obscure-green;
   color: $white-font;
   border: $white-font;
+}
+
+.modifyField{
+height: auto;
 }
 
 .resetButton {

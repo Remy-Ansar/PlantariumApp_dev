@@ -47,7 +47,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%; /* S'assurer que main occupe toute la hauteur */
+  // height: auto;
+  // min-height: 100%; /* S'assurer que main occupe toute la hauteur */
 }
 
 section {
@@ -159,52 +160,52 @@ section {
 //   border-radius: 10px;
 // }
 
-// .alert {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-//   .img {
-//     width: 100px;
-//     height: 100px;
-//   }
+  .img {
+    width: 100px;
+    height: 100px;
+  }
 
-//   // Styles pour les différents types de messages d'alerte
+  // Styles pour les différents types de messages d'alerte
 
-//   &.alert-danger {
-//     background-color: #f2dede;
-//     color: #a94442;
-//     border-radius: 5px;  // Ajout du border-radius
-//     padding: 10px;  // Ajout du padding
-//     margin-bottom: 15px;  // Ajout de la marge
-//   }
+  &.alert-danger {
+    background-color: #f2dede;
+    color: #a94442;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 
-//   &.alert-success {
-//     background-color: #dff0d8;
-//     color: #3c763d;
-//     border-radius: 5px;  // Ajout du border-radius
-//     padding: 10px;  // Ajout du padding
-//     margin-bottom: 15px;  // Ajout de la marge
-//   }
+  &.alert-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 
-//   &.alert-warning {
-//     background-color: #fcf8e3;
-//     color: #8a6d3b;
-//     border-radius: 5px;  // Ajout du border-radius
-//     padding: 10px;  // Ajout du padding
-//     margin-bottom: 15px;  // Ajout de la marge
-//   }
+  &.alert-warning {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
 
-//   &.alert-info {
-//     display: flex;
-//     justify-content: center;
-//     background-color: #d9edf7;
-//     color: #31708f;
-//     border-radius: 5px;  // Ajout du border-radius
-//     padding: 10px;  // Ajout du padding
-//     margin-bottom: 15px;  // Ajout de la marge
-//   }
-// }
+  &.alert-info {
+    display: flex;
+    justify-content: center;
+    background-color: #d9edf7;
+    color: #31708f;
+    border-radius: 5px;  // Ajout du border-radius
+    padding: 10px;  // Ajout du padding
+    margin-bottom: 15px;  // Ajout de la marge
+  }
+}
 
 .animP {
   opacity: 0;

@@ -1,4 +1,5 @@
 {% for plant in pagination.items %}
+          
     {% include 'Frontend/UserPlants/PlantList/_plantCard.html.twig' %}
 {% else %}
     <div class="alert-info" id="plant-no-image">

@@ -1,13 +1,33 @@
 <div class="cardPlantarium">
-    <div class="img-container">
-    <a href="{{ path('plantarium.details', {name: plant.Name}) }}">
-        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
-        <div class="gradient-overlay"></div></a>
+
+    <div class="addButtonCard">
+        <form action="{{ path('users.plantarium.addPlant') }}" method="post">
+            <input type="hidden" name="plant_id" value="{{ plant.id }}">
+
+            <span class="addLabel">Ajouter cette plante</span> <!-- Label ajouté -->
+            <button type="submit" class="addPlantCard">
+                <img src="{{ asset('img/components/ajouter.png') }}" alt="Bouton d'ajout plus" width="20px"
+                    height="20px">
+            </button>
+
+        </form>
     </div>
-        <div class="plantTitle">
+
+    <div class="img-container">
+
+        <a href="{{ path('plantarium.details', {name: plant.Name}) }}">
+            <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
+            <div class="gradient-overlay"></div>
+        </a>
+
+    </div>
+
+    <div class="plantTitle">
+
         <p> {{ plant.species.Name }}</p>
         <p> {{ plant.name }} </p>
-        </div>
+
+    </div>
 
     {# <form action="{{path('users.delete', {id: userPlant.id}) }}" method="POST"
             onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante de votre profil ? Cette action est irréversible')"

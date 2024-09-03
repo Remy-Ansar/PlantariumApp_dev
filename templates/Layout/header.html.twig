@@ -71,6 +71,8 @@
     {% endif %}
 
 </header>
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
  <button id="toggle-header-button" aria-expanded="true" aria-controls="main-header">
-  PlantariumApp
+<img src="{{ asset('img/components/PlantariumApp.png')}}" alt="Logo de PlantariumApp" object-fit="cover">
     </button>
+       {% endif %}
