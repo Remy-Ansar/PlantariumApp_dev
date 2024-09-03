@@ -98,13 +98,13 @@
 // // }
 /* Header fixed */
 #toggle-header-button {
-  position: fixed;
-  transform: translateX(-160px);
-  top: 20px;
-  right: 20px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
+  position: sticky;
+  // transform: translateX(-160px);
+  // top: 20px;
+  // right: 20px;
+  background-color: $glassmorphism;
+  color: $dark-font;
+  border: 3px solid  #4CAF50;
   padding: 0.75em 1.5em;
   font-size: 1.2em;
   cursor: pointer;
@@ -135,7 +135,7 @@ header {
 
 /* Header Hidden State */
 .header-hidden {
-  transform: translateY(-100%);
+  display: none;
 }
 
 /* Conteneur pour les éléments du header */

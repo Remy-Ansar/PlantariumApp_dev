@@ -1,15 +1,19 @@
 footer {
-    height: 100%;
-    margin-top: 2em;
+    height:auto;
+    // margin-top: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     justify-content: space-around;
     background: $glassmorphism;
+
+    a {
+        color: $white-font;
+    }
 }
 
 .footerUnit {
-    padding: 2em;
+    padding: 1em;
 }
 
 .footerUnit p {

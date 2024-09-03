@@ -6,89 +6,98 @@ Détail de la plante
 {% endblock %}
 
 {% block body %}
-
-<span class="return">
-    <a href="{{ path('users.plantarium') }}"><img src="{{ asset('img/components/Cross.svg') }}"
-            alt="Retour arrière"></a>
-</span>
-
-<div class="plantCard">
-    <div class="plantHeader">
-        <h2>Plante : {{ plant.Name }}</h2>
-        <h3>Espèce : {{ plant.species.Name }}</h3>
-    </div>
-
+<aside>
+    <span class="return">
+        <a href="{{ path('users.plantarium') }}"><img src="{{ asset('img/components/Cross.svg') }}"
+                alt="Retour arrière"></a>
+    </span>
     <div class="plantPic">
         <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
     </div>
 
-    <div class="plantInfos">
-        <div class="categUnit">
-            <span>Description:
-                <p class="description">{{ plant.Description }}</p>
-            </span>
-        </div>
-        <div class="addButton">
+</aside>
+<main>
+    <div class="plantCard">
+        <div class="cardText">
 
-            <form action="{{ path('users.plantarium.addPlant') }}" method="post">
-                <input type="hidden" name="plant_id" value="{{ plant.id }}">
+            <div class="addButton">
+                <form action="{{ path('users.plantarium.addPlant') }}" method="post">
+                    <input type="hidden" name="plant_id" value="{{ plant.id }}">
 
-                <label for="plant_id">Ajouter cette plante à ma collection</label>
-                <button type="submit" class="addPlant">
-                    <img src="{{ asset('images/components/plus.png') }}" alt="Bouton d'ajout plus">
-                </button>
+                    <label for="plant_id">Ajouter cette plante à ma collection</label>
+                    <button type="submit" class="addPlant">
+                        <img src="{{ asset('images/components/plus.png') }}" alt="Bouton d'ajout plus">
+                    </button>
 
-            </form>
-        </div>
-
-        <div class="plantInfos">
-
-            <p class="fontDistinction">Famille: {{ plant.families.Name|capitalize }}</p>
-            <p class="fontDistinction">Espèce: {{ plant.species.Name|capitalize }}</p>
-
-            <div class="categFields">
-
-                <div class="categUnit">
-                    <span>Catégorie(s)</span>
-                    <div class="categClass">
-                        {% for category in plant.categories %}
-                        <div class="categComponent">{{ category.Name }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="categUnit">
-                    <span>Saisonalité</span>
-                    <div class="categClass">
-                        {% for season in plant.seasons %}
-                        <div class="categComponent">{{ season.Name }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="categUnit">
-                    <span>Arrosage</span>
-                    <div class="categClass">
-                        {% if plant.watering %}
-                        <div class="categComponent">{{ plant.watering.quantity }} ml</div>
-                        <div class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</div>
-                        {% else %}
-                        <div class="categComponent">Aucun arrosage défini</div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="categUnit">
-                    <span>Couleurs</span>
-                    <div class="categClass">
-                        {% for color in plant.colors %}
-                        <div class="categComponent">{{ color.Name }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
+                </form>
             </div>
 
+            <section>
+                <div class="plantHeader">
+                    <h2>Plante : {{ plant.Name }}</h2>
+                    <h4>Espèce : {{ plant.species.Name }}</h4>
+                </div>
+
+                <div class="plantInfos">
+                    <div class="categUnit">
+                        <span>Description:
+                            <p class="description">{{ plant.Description }}</p>
+                        </span>
+                    </div>
+            </section>
+
+            <section>
+                <div class="categFields">
+          
+                    <div class="categUnit">
+                        <span>Catégorie(s)</span>
+                        <div class="categClass">
+                            <p>Famille: {{ plant.families.Name|capitalize }}</p>
+                        </div>
+
+                        <span>Catégorie(s)</span>
+                        <div class="categClass">
+                            {% for category in plant.categories %}
+                            <p class="categComponent">{{ category.Name }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="categUnit">
+                        <span>Saisonalité</span>
+                        <div class="categClass">
+                            {% for season in plant.seasons %}
+                            <p class="categComponent">{{ season.Name }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="categUnit">
+                        <span>Arrosage</span>
+                        <div class="categClass">
+                            {% if plant.watering %}
+                            <div class="categComponent">{{ plant.watering.quantity }} ml</div>
+                            <p class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</p>
+                            {% else %}
+                            <p class="categComponent">Aucun arrosage défini</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="categUnit">
+                        <span>Couleurs</span>
+                        <div class="categClass">
+                            {% for color in plant.colors %}
+                            <p class="categComponent">{{ color.Name }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
         </div>
+        </section>
     </div>
-</div>
+ 
+
+</main>
 {% endblock %}

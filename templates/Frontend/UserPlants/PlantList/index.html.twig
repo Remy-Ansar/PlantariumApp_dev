@@ -42,7 +42,10 @@ Administration des plantes
 
         <div class="filterDisplay">
 
-            <button class="filterButton" type="button">Trier mes plantes par : </button>
+           <button class="filterButton" type="button">
+                <img src="{{ asset('img/components/entonnoir.png')}}" width="25px" height="25px"
+                    alt="Icône d'entonnoir">Tri avancés
+            </button>
 
             <div class="filters hidden">
                 <div class="filterGroup">
@@ -119,4 +122,8 @@ Administration des plantes
     
 
 </main>
+
+<div class="navigation">
+        <span>Page(s){{ knp_pagination_render(pagination)  }}</span>
+    </div>
 {% endblock %}

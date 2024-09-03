@@ -78,6 +78,7 @@
     border-radius: 5px;
     margin-bottom: 15px;
     transition: background-color 0.3s;
+    transform: translateX(130px);
     
     &:hover {
       background-color: darken($bright-green, 10%);
