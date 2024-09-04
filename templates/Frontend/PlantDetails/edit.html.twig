@@ -6,87 +6,101 @@ Modification de votre plante
 {% endblock %}
 
 {% block body %}
+{% include "Layout/nav.html.twig" %}
+<aside>
+    <div class="plantPic">
+        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
+    </div>
 
-<span class="return">
-    <a href="{{ path('users.index') }}"><img src="{{ asset('img/components/Cross.svg') }}" alt="Retour arrière"></a>
-</span>
-
+</aside>
 <main>
     <div class="plantCard">
-        <div class="plantHeader">
-            <h2>Plante : {{ plant.name ? plant.name|capitalize  : 'Nom inconnu' }}</h2>
-            <h3>Espèce : {{ plant.species ? plant.species.name|capitalize  : 'Espèce inconnue' }}</h3>
+        <div class="cardText">
 
+            <section>
+                <div class="plantHeader">
+                    <h2>Plante : {{ plant.Name }}</h2>
+                    <h4>Espèce: {{ plant.species.Name }}</h4>
+                </div>
+
+                <div class="plantInfos">
+                    <div class="categInfos">
+                        <span class="categFont">Description:
+                            <p class="categDescription">{{ plant.Description }}</p>
+                        </span>
+                    </div>
+            </section>
+
+            <section>
+                <div class="categFields">
+
+                    {{form_start(form)}}
+
+                    <div class="categFont">
+                        {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
+                    </div>
+                    
+                    <div id="diseases-container" class="hidden">
+                        {{ form_row(form.diseases) }}
+                    </div>
+
+                    <div class="categFont">
+                        {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary', 'class': 'textareaClass'}}) }}
+                    </div>
+
+                    <span class="categFont">Catégorie(s)</span>
+                    <div class="categUnit">
+                        <div class="categClass">
+                            {% for category in plant.categories %}
+                            <span class="categComponent">{{ category.Name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <span class="categFont">Saisonalité</span>
+                    <div class="categUnit">
+                        <div class="categClass">
+                            {% for season in plant.seasons %}
+                            <div class="categComponent">{{ season.Name }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <span class="categFont">Arrosage</span>
+                    <div class="SelectUnit">
+                        <div class="selectClass">
+
+                            {% if plant.watering %}
+                            <div class="categComponent">{{ plant.watering.quantity }} ml</div>
+                            {% else %}
+                            <div class="categComponent">Aucun arrosage défini</div>
+                            {% endif %}
+
+                            {% if plant.watering %}
+                            <div class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</div>
+                            {% else %}
+                            <div class="categComponent">Aucun arrosage défini</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <span class="categFont">Couleurs</span>
+                    <div class="categUnit">
+                        <div class="categClass">
+                            {% for color in plant.colors %}
+                            <div class="categComponent">{{ color.Name }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            </section>
         </div>
 
-        <div class="plantPic">
-            <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
-        </div>
-        <div class="plantInfos">
-            <p>Description:</p>
-            <p>{{ plant.description }}</p>
+        <button type="submit" class="modifyButton">Modifier</button>
+        {{ form_end(form) }}
 
-            <p class="fontDistinction">Famille: {{ plant.families.Name }}</p>
-            <p class="fontDistinction">Espèce: {{ plant.species.Name }}</p>
-
-            {{ form_start(form) }}
-
-            <div class="formDisplay">
-                {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
-
-                <div id="diseases-container" class="hidden">
-                    {{ form_row(form.diseases) }}
-                </div>
-
-                <div>
-                    {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary', 'class': 'textareaClass'}}) }}
-                </div>
-            </div>
-            <div class="categFields">
-
-                <div class="categUnit">
-                    <span>Catégorie(s)</span>
-                    <div class="categClass">
-                        {% for category in plant.categories %}
-                        <div class="categComponent">{{ category.Name }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="categUnit">
-                    <span>Saisonalité</span>
-                    <div class="categClass">
-                        {% for season in plant.seasons %}
-                        <div class="categComponent">{{ season.Name }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="categUnit">
-                    <span>Arrosage</span>
-                    <div class="categClass">
-                        {% if plant.watering %}
-                        <div class="categComponent">{{ plant.watering.quantity }} ml</div>
-                        <div class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</div>
-                        {% else %}
-                        <div class="categComponent">Aucun arrosage défini</div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="categUnit">
-                    <span>Couleurs</span>
-                    <div class="categClass">
-                        {% for color in plant.colors %}
-                        <div class="categComponent">{{ color.Name }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="modifyButton">Modifier</button>
-            {{ form_end(form) }}
-
-        </div>
+    </div>
 </main>
 
 {% endblock %}

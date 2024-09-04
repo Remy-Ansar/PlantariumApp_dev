@@ -24,7 +24,7 @@
     height: auto;
     max-height: 100vh;
     /* Limite la hauteur totale pour éviter les débordements */
-    overflow-y: auto;
+    overflow-y:auto;
     border-radius: 16px;
 }
 
@@ -228,6 +228,12 @@ aside {
     background: $combined-background;
 }
 
+section{
+    h4{
+        margin-bottom: 2em;
+    }
+}
+
 .cardText {
     padding: 0.5em;
     display: flex;
@@ -241,6 +247,7 @@ aside {
         align-items: center;
         justify-content: center;
         width: 100%;
+        margin-bottom: 2em;
     }
 
     .categFields {
@@ -249,20 +256,36 @@ aside {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(1, 1fr);
         gap: 2em;
+
+        .SelectUnit{
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1em;
+        }
     }
 
     .categClass {
         display: flex;
         flex-direction: row;
     }
-
-    .categUnit {
-        display: flex;
-        flex-direction: row;
-        padding-bottom: 1em;
     
-
+    span {
+        margin-right: 2em;
     }
+
+    .categInfos{
+        display: flex;
+        justify-content: center;
+        .categUnit {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 1em;
+        
+    
+        }
+    }
+    
+    
 
     .categFont {
         font-weight: bold;
@@ -272,14 +295,20 @@ aside {
         border-bottom: none;
     }
     .categComponent {
-        padding: 5px 4px 5px 4px;
+        padding: 5px 8px 5px 8px;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        background: $medium-green;
+        background: $obscure-green;
+        color: $white-font;
         border-radius: 6px;
         margin-right: 1em;
     }
+}
+
+.categDescription {
+    font-weight: 500;
+    font-size: 1.1em;
 }
 
 .categUnit {
@@ -289,3 +318,8 @@ aside {
 
 }
 
+.categFont {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+    }

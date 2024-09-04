@@ -15,9 +15,7 @@ select {
 }
 
 
-// .hidden {
-//   display: none;
-// }
+
 
 // #diary {
 //   display: flex;
@@ -25,7 +23,9 @@ select {
 
 // }
 
-
+.hidden {
+  display: none;
+}
 
 .formDisplay {
   display: flex;
@@ -40,6 +40,8 @@ form {
     background: $white-font;
     width: 80%;
     border-radius: 12px;
+
+
 
     label {
       margin-bottom: 0.5em;

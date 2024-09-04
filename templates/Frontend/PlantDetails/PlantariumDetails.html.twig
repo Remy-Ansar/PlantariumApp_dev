@@ -7,6 +7,7 @@ Détail de la plante
 
 {% block body %}
 {% include "Layout/nav.html.twig" %}
+<h1>Détail de la plante</h1>
 <aside>
     {# <span class="return">
         <a href="{{ path('users.plantarium') }}"><img src="{{ asset('img/components/Cross.svg') }}"
@@ -40,9 +41,9 @@ Détail de la plante
                 </div>
 
                 <div class="plantInfos">
-                    <div class="categUnit">
+                    <div class="categInfos">
                         <span class="categFont">Description:
-                            <p class="categComponent">{{ plant.Description }}</p>
+                            <p class="categDescription">{{ plant.Description }}</p>
                         </span>
                     </div>
             </section>
@@ -50,15 +51,16 @@ Détail de la plante
             <section>
                 <div class="categFields">
 
+                    <span class="categFont">Famille</span>
                     <div class="categUnit">
-                        <span class="categFont">Famille</span>
                         <div class="categClass">
                             <p class="categComponent">{{ plant.families.Name|capitalize }}</p>
                         </div>
                     </div>
 
+                    <span class="categFont">Catégorie(s)</span>
                     <div class="categUnit">
-                        <span class="categFont">Catégorie(s)</span>
+
                         <div class="categClass">
                             {% for category in plant.categories %}
                             <p class="categComponent">{{ category.Name }}</p>
@@ -66,8 +68,8 @@ Détail de la plante
                         </div>
                     </div>
 
+                    <span class="categFont">Saisonalité</span>
                     <div class="categUnit">
-                        <span class="categFont">Saisonalité</span>
                         <div class="categClass">
                             {% for season in plant.seasons %}
                             <p class="categComponent">{{ season.Name }}</p>
@@ -75,8 +77,8 @@ Détail de la plante
                         </div>
                     </div>
 
+                    <span class="categFont">Arrosage</span>
                     <div class="categUnit">
-                        <span class="categFont">Arrosage</span>
                         <div class="categClass">
                             {% if plant.watering %}
                             <div class="categComponent">{{ plant.watering.quantity }} ml</div>
@@ -87,8 +89,8 @@ Détail de la plante
                         </div>
                     </div>
 
+                    <span class="categFont">Couleurs</span>
                     <div class="categUnit">
-                        <span class="categFont">Couleurs</span>
                         <div class="categClass">
                             {% for color in plant.colors %}
                             <p class="categComponent">{{ color.Name }}</p>
