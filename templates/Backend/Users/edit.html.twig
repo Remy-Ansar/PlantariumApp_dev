@@ -8,9 +8,14 @@
 {% block body %}
 <main>
 		<h1>Modif d'un user</h1>
+				
+				<div class="mainContainer">
+				<a href="{{ path('admin.users.index') }}"><button class="alternativeTagsButton">Retourner aux utilisateurs</button></a>
+
 			<section>
 		{% include 'Backend/Users/_form.html.twig' %}
 	</section>
+	</div>
 </main>
 
 {% endblock %}

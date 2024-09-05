@@ -53,8 +53,7 @@ Administration des utilisateurs
                 {% endif %}
             </a>
         </td>
-        <td><a href="{{ path('admin.users.edit', {id: user.id}) }}"><button
-                    class="modifyButton">Modifier</button></a></td>
+        <td><a href="{{ path('admin.users.edit', {id: user.id}) }}" ><button type="button" class="modifyButton">Modifier</button></a></td>
         <td>
             <form action="{{ path('admin.users.delete', {id: user.id}) }}" method="POST"
                 onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cet utilisateur? Cette action est irréversible')"

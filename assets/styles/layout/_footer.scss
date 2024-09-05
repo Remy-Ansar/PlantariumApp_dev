@@ -1,6 +1,5 @@
 footer {
     height:auto;
-    // margin-top: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -25,13 +24,16 @@ text-align: center;
     margin-bottom: 1em;
 }
 
-// .footerContainer{
-//     margin: 0 2em 0 2em;
-//     display: inline;
-//     justify-content: flex-start;
-//     flex-direction: column;
-//     padding: 2em;
-// }
+.footerContainer{
+    margin: 0 2em 0 2em;
+    display: inline;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 2em;
+    min-height: 50vh;
+    background: $combined-background;
+    overflow-y: auto;
+}
 
 .footerUnit {
     display: block;

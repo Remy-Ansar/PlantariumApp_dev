@@ -45,14 +45,14 @@ $color-end: rgba(222, 255, 201, 100);
 $gradient-angle: 145deg;
 
 // Déclaration de la variable pour le background
-$bg-home: linear-gradient($gradient-angle, $color-start 0%, $color-end 100%);
+$bg-gradient: linear-gradient($gradient-angle, $color-start 0%, $color-end 100%);
 
 // Application du background
 .element {
   background: $color-start; // Couleur de fond pour les navigateurs qui ne supportent pas les gradients
   background: -moz-linear-gradient($gradient-angle, $color-start 0%, $color-end 69%);
   background: -webkit-linear-gradient($gradient-angle, $color-start 0%, $color-end 69%);
-  background: $bg-home;
+  background: $bg-gradient;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220", endColorstr="#31c351", GradientType=1); // Pour IE9 et versions antérieures
 }
 

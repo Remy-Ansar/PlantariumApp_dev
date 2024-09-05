@@ -12,11 +12,11 @@ html {
 body {
 
   display: flex;
-  flex-direction: column; // Empile les éléments verticalement
+  flex-direction: column;
   height: 100%;
   margin: 0;
   padding: 0;
-  // background: $bg-home;
+
   background-image: url(../../img/background/MainBackground.png);
   background-size:cover;
   box-sizing: border-box;
@@ -47,9 +47,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // height: auto;
-  // min-height: 100%; /* S'assurer que main occupe toute la hauteur */
 }
+
 .mainContainer {
   display: flex;
   flex-direction: column;

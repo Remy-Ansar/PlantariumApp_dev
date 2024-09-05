@@ -22,9 +22,9 @@ Connexion
 			{% endfor %}</span>
 
 		<section id="connectFile">
-			<div class="formDisplay">
+			<div class="formDisplay ">
 
-				<form action="{{ path('app.connexion') }}" method="post">
+				<form action="{{ path('app.connexion') }}" method="post" class="formLog">
 
 					<label for="email">Veuillez entrer votre adresse mail</label>
 					<input type="email" id="email" name="_username" value="{{ lastUsername }}"
