@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-
+{% include "Layout/nav.html.twig" %}
 <main>
     <h2>{{ plant.Name }}</h2>
     <p>Espèce: {{ plant.species.Name }}</p>

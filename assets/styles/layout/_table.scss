@@ -1,4 +1,10 @@
-table {
+.table-containerMain {
+  width: 100%;
+  overflow-x: auto;
+  /* Enable horizontal scrolling */
+  background: $glassmorphism;
+
+  table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
@@ -6,61 +12,151 @@ table {
     // border-bottom: 3px solid $light-green;
     overflow-x: auto;
     margin: 1em;
-}
-thead {
+  }
+
+  thead {
     margin-right: 2em;
-}
-tbody {
+  }
+
+  tbody {
     margin-top: 5em;
-}
+  }
 
-th,
-td {
-  padding: 10px;
-  width: 15em;
-}
-
-thead th:nth-child(1) {
-  width: 2em;
-}
-
-thead th:nth-child(5) {
+  th,
+  td {
+    padding: 10px;
     width: 15em;
   }
 
-thead th:nth-child(10) {
+  thead th:nth-child(1) {
+    width: 2em;
+  }
+
+  thead th:nth-child(5) {
+    width: 15em;
+  }
+
+  thead th:nth-child(10) {
     width: 6em;
   }
-  
-.fieldAdd {
-  margin: 1em 0 1em 0;
-    display: flex;
-    justify-content: center;
-    gap: 2em;
-}
-tbody td {
+
+
+  tbody td {
     text-align: center;
   }
-tbody tr {
+
+  tbody tr {
     text-align: center;
   }
-  
-td {
+
+  td {
     letter-spacing: 1px;
     text-align: center;
+    font-size: 1.5em;
+    // font-weight: bold;
   }
 
-td a {
-  display: flex;
-  justify-content: center;
+  td a {
+    display: flex;
+    justify-content: center;
+  }
+
+  td a img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .tagFont {
+    font-weight: bold;
+    background: #115220;
+    color: $white-font;
+    border: 2px solid #115220;
+    border-radius: 6px;
+  }
 }
 
-td a img {
-width: 200px;
-height: 200px;
+.fieldAdd {
+  margin: 1em 0 1em 0;
+  display: flex;
+
+  flex-direction: row;
+  gap: 2em;
+  overflow-x: auto;
+  width: 100vw;
 }
-  .table-container {
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+
+  background: $glassmorphism;
+
+  table {
+    table-layout: fixed;
+    width: 100vw;
+    border-collapse: collapse;
+    border-top: 3px solid $dark-font;
+    overflow-x: auto;
+    margin: 1em;
+  }
+
+  thead {
+    margin-right: 2em;
+  }
+  thead th:nth-child(4) {
+    width: 20em;
+  }
+
+  tbody {
+    margin-top: 5em;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    width: 15em;
+  }
+
+  tbody td {
+    text-align: center;
+  }
+
+  tbody tr {
+    text-align: center;
+  }
+
+  td {
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+
+  ul {
+    padding: 5px 8px 5px 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: $white-font;
+    color: $pine-green;
+    
+    border: 2px solid #115220;
+    border-radius: 6px;
+    margin-right: 1em;
+    font-size: 1.2em;
+  }
+
+  td a {
+    display: flex;
+    justify-content: center;
+    width: 10em;
+  }
+
+  .modifyField{
+    display: flex;
     width: 100%;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    background: $glassmorphism;
+    flex-direction: row;
+    .modifyButton{
+      padding: 5px 20px 5px 20px;
+    }
+  }
 }

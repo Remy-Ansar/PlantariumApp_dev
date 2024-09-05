@@ -1,22 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Ajouter des champs de selection
-	{{ parent() }}
+Ajouter des champs de selection
+{{ parent() }}
 {% endblock %}
 
 {% block body %}
-
+{% include "Layout/nav.html.twig" %}
 <main>
-		<h1>Ajouter des champs de selection</h1>
-	<section>
-		{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
-		<a href="{{ path('editor.plants.index') }}" class="button">Retour à la liste des plantes</a>
-                {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-	</section>
+	<h1>Ajouter des champs de selection</h1>
+
+	<div class="mainContainer">
+		<section>
+			{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
+
+			{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+			{% endfor %}
+		</section>
+		<a href="{{ path('editor.plants.field.index') }}" class="alternativeTagsButton">Retour à la liste des
+			plantes</a>
+
+	</div>
 </main>
 {% endblock %}

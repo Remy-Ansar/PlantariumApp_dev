@@ -8,23 +8,20 @@ Administration des utilisateurs
 {% include "Layout/nav.html.twig" %}
 
 <main>
-    <div class="headerMain">
-        <h1>PlantariumApp</h1>
-        <h2>Administration des utilisateurs</h2>
+        <h1>Administration des utilisateurs</h1>
 
-        <div class="wrap">
-            <form method="get" action="{{ path('admin.users.index' ) }}">
-                <div class="searchBar">
-                    <input type="text" name="FirstName" class="searchText" placeholder="Prénom">
-                    <input type="text" name="LastName" class="searchText" placeholder="Nom">
-                    <button type="submit" class="searchSubmit">
-                        <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
-                    </button>
-                </div>
-                 <button type="submit" class="tagsButton">Rechercher</button>
-            </form>
-        </div>
-    </div>
+        <section>
+        <div class="formSearch">
+                <form method="get" action="{{ path('admin.users.index') }}">
+                    <div class="searchBar">
+                        <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
+                        <button type="submit" class="searchSubmit">
+                            <img src="{{ asset('img/components/loupe.png') }}" alt="Loupe grossissante">
+                        </button>
+                    </div>
+        </section>
+
+    
 
     <div class="table-container">
         <table>
@@ -52,7 +49,7 @@ Administration des utilisateurs
             <a href="#">
                 {% if user.UserInfos and user.UserInfos.imageName %}
                 <img src="{{ vich_uploader_asset(user.UserInfos, 'image') }}" alt="{{ user.getFullName() }}"
-                    class="profilePic" loading="lazy" width="100px" height="100px">
+                    class="alternativProfilePic" loading="lazy">
                 {% endif %}
             </a>
         </td>

@@ -26,7 +26,7 @@ Détail de la plante
                 <form action="{{ path('users.plantarium.addPlant') }}" method="post">
                     <input type="hidden" name="plant_id" value="{{ plant.id }}">
 
-                    <label for="plant_id">Ajouter cette plante à ma collection</label>
+                    <label for="plant_id" class="categFont">Ajouter cette plante à ma collection</label>
                     <button type="submit" class="addPlant">
                         <img src="{{ asset('images/components/plus.png') }}" alt="Bouton d'ajout plus">
                     </button>
@@ -42,9 +42,8 @@ Détail de la plante
 
                 <div class="plantInfos">
                     <div class="categInfos">
-                        <span class="categFont">Description:
-                            <p class="categDescription">{{ plant.Description }}</p>
-                        </span>
+                        <span class="categFont">Description:</span>
+                        <p class="categDescription">{{ plant.Description }}</p>
                     </div>
             </section>
 
@@ -81,7 +80,7 @@ Détail de la plante
                     <div class="categUnit">
                         <div class="categClass">
                             {% if plant.watering %}
-                            <div class="categComponent">{{ plant.watering.quantity }} ml</div>
+                            <p class="categComponent">{{ plant.watering.quantity }} ml</p>
                             <p class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</p>
                             {% else %}
                             <p class="categComponent">Aucun arrosage défini</p>

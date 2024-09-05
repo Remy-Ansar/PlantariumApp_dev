@@ -50,6 +50,13 @@ main {
   // height: auto;
   // min-height: 100%; /* S'assurer que main occupe toute la hauteur */
 }
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
 
 section {
   flex: 1;
@@ -133,6 +140,15 @@ section {
   border-radius: 100px;
   width: 75px;
   height: 75px;
+  display: flex;
+  justify-content: center;
+}
+
+.alternativProfilePic {
+  border: 4px solid $white-font;
+  border-radius: 100px;
+  width: 150px;
+  height: 150px;
   display: flex;
   justify-content: center;
 }

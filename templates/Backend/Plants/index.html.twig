@@ -9,21 +9,28 @@ Administration des plantes
 {% include "Layout/nav.html.twig" %}
 
 <main>
-    <div class="headerMain">
-        <h1>PlantariumApp</h1>
-        <h2>Administration des plantes</h2>
+    
+        <h1>Administration des plantes</h1>
 
-        <div class="wrap">
-            <form method="get" action="{{ path('editor.plants.index') }}">
-                <div class="searchBar">
-                    <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
-                    <button type="submit" class="searchSubmit">
-                        <img src="{{ asset('images/components/loupe.png') }}" alt="Loupe grossissante">
-                    </button>
-                </div>
-                <p>Trier les plantes par :</p>
-                <div class="filters">
+        <section>
+            <div class="formSearch">
+                <form method="get" action="{{ path('editor.plants.index') }}">
+                    <div class="searchBar">
+                        <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
+                        <button type="submit" class="searchSubmit">
+                            <img src="{{ asset('img/components/loupe.png') }}" alt="Loupe grossissante">
+                        </button>
+                    </div>
 
+            </div>
+            <div class="filterDisplay">
+
+                <button class="filterButton" type="button">
+                    <img src="{{ asset('img/components/entonnoir.png')}}" width="25px" height="25px"
+                        alt="Icône d'entonnoir">Tri avancés
+                </button>
+
+                <div class="filters hidden">
                     <div class="filterGroup">
                         <label for="species">Espèce</label>
                         <select name="species" id="species">
@@ -65,7 +72,7 @@ Administration des plantes
                     </div>
 
                     <div class="filterGroup">
-                        <label for="categories">Catégorie</label>
+                        <label for="categories">Catégorie </label>
                         <select name="categories" id="categories">
                             <option value="">-- Choisir une catégorie --</option> <!-- Corrigé ici -->
                             {% for category in categories %}
@@ -73,15 +80,17 @@ Administration des plantes
                             {% endfor %}
                         </select>
                     </div>
-                </div>
-                <div class="buttonAlign">
-                    <button type="submit" class="tagsButton">Rechercher</button>
-                    <button class="resetButton"><a href="{{ path('editor.plants.index') }}">Réinitialiser votre
-                            recherche</a></button>
+
+                    <div class="buttonAlign">
+                        <button type="submit" class="modifyButton">Rechercher</button>
+                        <button class="resetButton"><a href="{{ path('users.index') }}">Réinitialiser</a>
+                        </button>
+                    </div>
                 </div>
 
-        </div>
-        </form>
+                </form>
+            </div>
+        </section>
 
         <div class="fieldAdd">
             <div>
@@ -95,9 +104,9 @@ Administration des plantes
                 </a>
             </div>
         </div>
-    </div>
+   
 
-    <div class="table-container">
+    <div class="table-containerMain">
         <table>
             <thead>
                 <tr>
@@ -128,22 +137,22 @@ Administration des plantes
                     <td>{{ plant.Name }}</td>
                     <td>{{ plant.Families.Name }}</td>
                     <td>{{ plant.description }}</td>
-                    <td>
-                        <div class="categTags">
+                    <td >
+                        <div class="tagFont">
                             {% for color in plant.colors %}
                             {{ color.Name }}
                             {% endfor %}
                         </div>
                     </td>
                     <td>
-                        <div class="categTags">
+                        <div class="tagFont">
                             {% for season in plant.seasons %}
                             {{ season.Name }}
                             {% endfor %}
                         </div>
                     </td>
                     <td>
-                        <div class="categTags">
+                        <div class="tagFont">
                             {% for categorie in plant.categories %}
                             {{ categorie.Name|nl2br }}
                             {% endfor %}

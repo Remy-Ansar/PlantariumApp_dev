@@ -6,13 +6,19 @@
 {% endblock %}
 
 {% block body %}
+{% include "Layout/nav.html.twig" %}
 <main>
-	<section>
-		<h1>Ajouter une nouvelle plante</h1>
 
+{# <span class="return">
+    <a href="{{ path('editor.plants.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
+</span> #}
+	
+		<h1>Ajouter une nouvelle plante</h1>
+		<button class="alternativeTagsButton"><a href="{{ path('editor.plants.index') }}" class="categFont">Retour à la liste</a></button>
+	<section class="formEdit">
 
 		{% include 'Backend/Plants/_form.html.twig' with {button_label: 'Créer'} %}
-		<a href="{{ path('editor.plants.index') }}">Retour à la liste</a>
+		
 	</section>
 </main>
 {% endblock %}

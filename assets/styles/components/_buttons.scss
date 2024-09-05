@@ -43,18 +43,16 @@
 // }
 .addButton {
   display: flex;
+  justify-content: center;
   align-items: center;
-  z-index: 1;
+  box-sizing: border-box;
   cursor: pointer;
   background: transparent;
   form {
     width: 100%;
-
-  }
-  img {
-    transform: translate(10px, 10px);
-    width: 15px;
-    height: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 }
 
@@ -114,16 +112,26 @@
 }
 
 .modifyButton {
-  border: 3px solid $pine-green;
-  border-radius: 12px 10px;
-  background:$pine-green;
-  color: $white-font;
-  padding: 5px;
+  border: 2px solid $pine-green;
+  border-radius: 30px;
+  background:$white-font;
+  color: $dark-font;
+  padding: 15px 10px 15px 10px;
+  font-weight: bold;
   cursor: pointer;
 }
 
+.deleteButton {
+  border: 2px solid $white-font;
+  border-radius: 30px;
+  background:$pine-green;
+  color: $white-font;
+  padding: 15px 10px 15px 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 .modifyButton:hover {
-  background-color: $obscure-green;
+  background-color: $pine-green;
   color: $white-font;
   border: $white-font;
 }
@@ -224,18 +232,43 @@ height: auto;
 //   border: $white-font;
 // }
 
-// .tagsButton {
-//   display: flex;
-//   justify-content: center;
-//   width: 10em;
-//   border: 2px solid $pine-green;
-//   border-radius: 10px 12px;
-//   padding: 0 5px 0 5px;
-//   color: $white-font;
-//   background: $pine-green;
-//   box-sizing: border-box;
-//   cursor: pointer;
-// }
+.tagsButton {
+  display: flex;
+  justify-content: center;
+  width: 10em;
+  border: 2px solid $pine-green;
+  border-radius: 10px 12px;
+  padding: 0 5px 0 5px;
+  color: $white-font;
+  background: $pine-green;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.alternativeTagsButton {
+  display: flex;
+  justify-content: center;
+  // width: 10em;
+  border: 2px solid $white-font;
+  border-radius: 4px;
+  padding: 0 5px 0 5px;
+  color: $pine-green;
+  background: $white-font;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.categTagsButton {
+  display: flex;
+  text-align: center;
+  // width: 10em;
+  border: 2px solid $pine-green;
+  border-radius: 4px;
+  padding: 0 5px 0 5px;
+  color: $pine-green;
+  background: $white-font;
+  box-sizing: border-box;
+  cursor: pointer;
+}
 
 // .tagsButton:hover {
 //   background-color: $obscure-green;
@@ -257,10 +290,10 @@ height: auto;
 //   color: $obscure-green;
 // }
 
-// .toggle-plant {
-//   border: 0 transparent;
-//   background: transparent;
-// }
+.toggle-plant {
+  border: 0 transparent;
+  background: transparent;
+}
 
 
 

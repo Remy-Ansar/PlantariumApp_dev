@@ -6,11 +6,21 @@
 {% endblock %}
 
 {% block body %}
+{% include "Layout/nav.html.twig" %}
 <main>
-		<h1>Modification d'une couleur</h1>
+	<h1>Modification d'une couleur</h1>
+
+	<div class="mainContainer">
 		<section>
-		{% include 'Backend/Plants/Fields/_form.html.twig' %}
-	</section>
+{% include 'Backend/Plants/Fields/_form.html.twig' %}
+			{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div>
+			{% endfor %}
+		</section>
+		<a href="{{ path('editor.plants.field.index') }}" class="alternativeTagsButton">Retour à la liste</a>
+	</div>
 </main>
 
 {% endblock %}

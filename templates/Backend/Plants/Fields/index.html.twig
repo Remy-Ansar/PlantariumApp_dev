@@ -6,62 +6,79 @@
 {% endblock %}
 
 {% block body %}
+{% include "Layout/nav.html.twig" %}
 <main>
-<div class="headerMain">
-<h1>PlantariumApp</h1>
-<h2>Administration des champs</h2>
+<h1>Administration des champs</h1>
     <p>
-    <a href="{{ path('editor.plants.index') }}"><button class="button">Retourner à l'administration des plantes</button></a>
+    <a href="{{ path('editor.plants.index') }}"><button class="alternativeTagsButton">Retourner à l'administration des plantes</button></a>
     </p>
 
-<div>
+<div class="fieldAdd">
     <a href="{{ path('editor.plants.field.specie.new') }}"><button class="tagsButton">Ajouter une espèce de plante</button></a>
     <a href="{{ path('editor.plants.field.family.new') }}"><button class="tagsButton">Ajouter une famille de plante</button></a>
     <a href="{{ path('editor.plants.field.color.new') }}"><button class="tagsButton">Ajouter une couleur de plante</button></a>
 </div>
-</div>
-<main>
+
+<div class="table-container">
     <table>
         <thead>
             <tr>
-                <th>Espèce</th>
-                <th>Famille</th>
+                <th>Espèces</th>
+                <th>Familles</th>
                 <th>Couleurs</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
+        {# Calcul de la longueur maximale entre les trois listes #}
+        {% set maxLength = [species|length, families|length, colors|length]|sort|last %}
+
+        {% for i in 0..maxLength - 1 %}
             <tr>
                 <td>
-                    <ul>
-                        {% for specie in species %}
-                            <li>{{ specie.name }}
-                                <a href="{{ path('editor.plants.field.specie.edit', {'name': specie.name}) }}"><button class="modifyButton">Modifier une espèce</button></a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% if species[i] is defined %}
+                        <ul>
+                            <li >{{ species[i].name }}</li>
+                        </ul>
+                    {% endif %}
                 </td>
                 <td>
-                    <ul>
-                        {% for family in families %}
-                            <li>{{ family.name }}
-                                <a href="{{ path('editor.plants.field.family.edit', {'name': family.name}) }}"><button class="modifyButton">Modifier une famille</button></a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% if families[i] is defined %}
+                        <ul>
+                            <li class="tagFont">{{ families[i].name }}</li>
+                        </ul>
+                    {% endif %}
                 </td>
                 <td>
-                    <ul>
-                        {% for color in colors %}
-                            <li>{{ color.name }}
-                                <a href="{{ path('editor.plants.field.color.edit', {'name': color.name}) }}"><button class="modifyButton">Modifier une couleur</button></a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% if colors[i] is defined %}
+                        <ul>
+                            <li class="tagFont">{{ colors[i].name }}</li>
+                        </ul>
+                    {% endif %}
+                </td>
+                <td class="modifyField">
+                    {# Bouton "Modifier" pour chaque entité (espèce, famille, couleur) #}
+                    {% if species[i] is defined %}
+                        <a href="{{ path('editor.plants.field.specie.edit', {'name': species[i].name}) }}">
+                            <button class="modifyButton">Modifier Espèce</button>
+                        </a>
+                    {% endif %}
+                    {% if families[i] is defined %}
+                        <a href="{{ path('editor.plants.field.family.edit', {'name': families[i].name}) }}">
+                            <button class="modifyButton">Modifier Famille</button>
+                        </a>
+                    {% endif %}
+                    {% if colors[i] is defined %}
+                        <a href="{{ path('editor.plants.field.color.edit', {'name': colors[i].name}) }}">
+                            <button class="modifyButton">Modifier Couleur</button>
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
+        {% endfor %}
         </tbody>
     </table>
-
+</div>
 </main>
 
 {% endblock %}

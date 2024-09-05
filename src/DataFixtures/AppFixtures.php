@@ -133,6 +133,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
       'Feu bactérien ', 'Marsonia', 'Botrytis', 'Tavelure',
       'Carence en fer '
   ];
+  
 
   foreach ($diseasesNames as $diseasesName) {
     $disease = (new Diseases())

@@ -1,3 +1,4 @@
+//Container plantarium
 .plantContainer {
     margin-top: 1em;
     display: flex;
@@ -8,6 +9,7 @@
     background: transparent;
     box-sizing: border-box;
 }
+
 
 .plantContainer img {
     max-width: 100%;
@@ -63,6 +65,51 @@
     border-radius: 24px;
     border: 10px solid $white-font;
 }
+
+/*--------------------------------------------------------------------------------------------*/
+
+// User container 
+.UserPlantContainer {
+    margin-top: 1em;
+    align-items: center;
+display: flex;
+flex-direction: row;
+width: 100vw;
+overflow-x: auto;
+background: transparent;
+box-sizing: border-box;
+}
+
+.plantContainer img {
+    max-height: 100%;
+    /* S'assurer que les images ne débordent pas */
+    min-width: 100%;
+}
+
+/* Conteneur des cartes principales */
+.alternativMainCardsUser {
+    // margin-top: 1em;
+    // display: flex;
+    // flex-direction: row;
+    // align-items: center;
+    // width: auto;
+    // max-width: 100vw;
+    // /* Limite la hauteur totale pour éviter les débordements */
+    // border-radius: 16px;
+    // overflow-x: auto;
+
+ // Les cartes ne se replient pas sur plusieurs lignes
+}
+
+/* Grille des cartes Plantarium */
+.alternativeMainCardsPlantarium {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    overflow-x: auto;
+    gap: 1.5em;
+}
+
 
 .cardPlantarium {
     position: relative;
@@ -172,12 +219,13 @@
 }
 
 .diaryClass {
+    width: 100%;
     text-align: left;
     border-radius: 10px 12px;
     padding: 0.5em 1em;
     color: $dark-font;
     background: $white-font;
-    margin-right: 5em;
+    // margin-right: 5em;
 }
 
 aside {
@@ -256,7 +304,39 @@ section{
         grid-template-columns: 1fr;
         grid-template-rows: repeat(1, 1fr);
         gap: 2em;
-
+        form{
+            display: flex;
+            gap: 0 1em;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            
+            label {
+                font-weight: bold;
+                padding-bottom: 1em;
+            }
+            select {
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
+                display: block;
+                color: $dark-font;
+               
+            }
+            .categFont {
+                font-weight: bold;
+                padding-bottom: 1em;
+            }
+            .categUnit {
+                display: flex;
+                flex-direction: row;
+            .categClass {
+                padding-bottom: 1em;
+            }
+            
+        
+            }
+            
+        }
         .SelectUnit{
             display: flex;
             flex-direction: column;
@@ -275,6 +355,8 @@ section{
 
     .categInfos{
         display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
         .categUnit {
             display: flex;
@@ -299,10 +381,11 @@ section{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        background: $obscure-green;
+        background: $pine-green;
         color: $white-font;
         border-radius: 6px;
         margin-right: 1em;
+        font-size: 1.2em;
     }
 }
 
@@ -323,3 +406,7 @@ section{
         display: flex;
         flex-direction: row;
     }
+
+.resetBackground {
+    background: transparent;
+}

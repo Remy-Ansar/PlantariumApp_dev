@@ -47,7 +47,7 @@ class PlantsType extends AbstractType
             'attr' => [
                 'placeholder' => 'Votre description de cette plante',
                 'row' => 3,
-                'class' => 'formDisplay',
+                
             ],
             'required' => false,
         ])
@@ -59,7 +59,7 @@ class PlantsType extends AbstractType
 
         ->add('seasons', EntityType::class, [
             'class' => Seasons::class,
-            'label' => 'Choisissez saisonabilité :',
+            'label' => 'Choisissez la saisonalité :',
             'choice_label' => 'Name',
             'multiple' => true,
             'expanded' => false, 

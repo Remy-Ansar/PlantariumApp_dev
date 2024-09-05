@@ -6,13 +6,11 @@
 {% endblock %}
 
 {% block body %}
+{% include "Layout/nav.html.twig" %}
 <main>
-<span class="return">
-    <a href="{{ path('editor.plants.index') }}"><img src="{{ asset('images/components/cross.svg') }}" alt="Retour arrière"></a>
-</span>
 
 		<h1>Modification d'une plante</h1>
-		<a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a>
+		<button class="alternativeTagsButton"><a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a></button>
 			<section>
 		{% include 'Backend/Plants/_form.html.twig' %}
 	</section>

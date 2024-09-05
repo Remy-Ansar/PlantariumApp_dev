@@ -29,7 +29,7 @@ Détail de la plante
                     onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
                     enctype="multipart/form-data">
                     <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
-                    <label for="removePlant">Supprimer cette plante de ma collection</label>
+                    <label for="removePlant" class="categFont">Supprimer cette plante de ma collection</label>
                     <button type="submit" class="removePlant" id="removePlant">
                         <img src="{{ asset('img/components/minus.png') }}" alt="Bouton de suppression moins">
                     </button>
@@ -39,14 +39,13 @@ Détail de la plante
             <section>
                 <div class="plantHeader">
                     <h2>Plante : {{ plant.Name }}</h2>
-                    <h4>Espèce: {{ plant.species.Name }}</h4>
+                    <h4>Espèce : {{ plant.species.Name }}</h4>
                 </div>
 
                 <div class="plantInfos">
                     <div class="categInfos">
-                        <span class="categFont">Description:
-                            <p class="categDescription">{{ plant.Description }}</p>
-                        </span>
+                        <span class="categFont">Description:</span>
+                        <p class="categDescription">{{ plant.Description }}</p>
                     </div>
             </section>
 
@@ -88,21 +87,32 @@ Détail de la plante
                             {% if plantdetail.HealthStatus.Name == "Malade" %}
 
                             {% for disease in plantdetail.diseases %}
-                            <p class="categComponent">{{ disease.Description }}</span>
+                            <p class="categDescription">{{ disease.Description }}</span>
                                 {% endfor %}
-                        {% else %}
-                            <p></p>
+                                {% else %}
+                                <p class="resetBackground"></p>
                                 {% endif %}
                                 {% endif %}
                         </div>
                     </div>
 
-                     
+                    <span class="categFont">Journal: </span>
+                    <div class="categUnit">
+
+                        <div class="categClass">
+                            {% if plantdetail.Journal %}
+                            <div class="diaryClass">{{ plantdetail.Journal|nl2br }}</div>
+                            {% else %}
+                            <p>Aucun journal disponible.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
                     <span class="categFont">Catégorie(s)</span>
                     <div class="categUnit">
                         <div class="categClass">
                             {% for category in plant.categories %}
-                            <span class="categComponent">{{ category.Name }}</span>
+                            <p class="categComponent">{{ category.Name }}</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -111,7 +121,7 @@ Détail de la plante
                     <div class="categUnit">
                         <div class="categClass">
                             {% for season in plant.seasons %}
-                            <div class="categComponent">{{ season.Name }}</div>
+                            <p class="categComponent">{{ season.Name }}</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -121,15 +131,15 @@ Détail de la plante
                         <div class="categClass">
 
                             {% if plant.watering %}
-                            <div class="categComponent">{{ plant.watering.quantity }} ml</div>
+                            <p class="categComponent">{{ plant.watering.quantity }} ml</p>
                             {% else %}
-                            <div class="categComponent">Aucun arrosage défini</div>
+                            <p class="categComponent">Aucun arrosage défini</p>
                             {% endif %}
 
                             {% if plant.watering %}
-                            <div class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</div>
+                            <p class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</p>
                             {% else %}
-                            <div class="categComponent">Aucun arrosage défini</div>
+                            <p class="categComponent">Aucun arrosage défini</p>
                             {% endif %}
                         </div>
                     </div>
@@ -138,7 +148,7 @@ Détail de la plante
                     <div class="categUnit">
                         <div class="categClass">
                             {% for color in plant.colors %}
-                            <div class="categComponent">{{ color.Name }}</div>
+                            <p class="categComponent">{{ color.Name }}</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -157,8 +167,7 @@ Détail de la plante
 </main>
 {% endblock %}
 
-
-                {# {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
+{# {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
 
                 <div id="diseases-container" class="hidden">
                     {{ form_row(form.diseases) }}
