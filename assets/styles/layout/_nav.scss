@@ -6,7 +6,7 @@ nav {
     align-items: center;
     justify-content: space-around;
     z-index: 9;
-    background-color: $dark-glass;  
+    background-color: $dark-glassMix;  
     padding: 0 0.5em 0 0.5em;
     transition: background-color 0.3s ease; 
     /* Animation douce pour le changement de couleur */
@@ -47,7 +47,7 @@ nav {
   
   .menuItem a {
     text-decoration: none;
-    color: $border-green;
+    color: $dark-font;
   }
 
   
@@ -65,7 +65,7 @@ nav {
       right: 0;
       bottom: 0;
       height: 6px; // épaisseur de la bordure
-      background-color: $pine-green; // couleur de la bordure
+      background-color: $border-green; // couleur de la bordure
       transform: translateY(-0.1em); // déplacement vers le bas
       border-radius: 10px 0 10px 0;
       z-index: -1;
@@ -84,11 +84,13 @@ nav {
     align-items: center;
     justify-content: space-around;
     z-index: 9;
-    background-color: $dark-font;    
+    background-color: $dark-glassMix; 
     padding: 0.5em;
+
   }
   nav:hover {
     background: $dark-glass;
+ 
   }
   
   .userProfile{
@@ -120,16 +122,19 @@ nav {
     text-decoration: none;
     padding: 0 0.5em 0 0.5em;
     text-align: center;
-    background-color: $dark-font;
+
+    // background-color: $dark-font;
   }
   
   .menuItem a {
     text-decoration: none;
-    color: $border-green;
+    transition: transform 0.8 ease;
+    color: $dark-font;
   }
   .menuItem a:hover {
     text-decoration: none;
     color: $white-font;
+    transform: scale(1.1);
   }
 
   
@@ -148,6 +153,7 @@ nav {
       border-radius: 10px 0 10px 0;
       z-index: -1;
       width: 100%;
+
     }
   }
 }
