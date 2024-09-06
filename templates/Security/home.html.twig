@@ -9,15 +9,13 @@ Home
 {% block body %}
 
 <body class="home">
-	{# <aside class="HomeImage">
-	 <img  src="{{ asset('img/background/pexels-julia-volk-6297518.jpg') }}" alt="Photo de Monstera" width="100vw" height="100px">
-</aside> #}
+
 	<main>
 	<div class="fadeIn">
 		<h1 id="homeTitle">PlantariumApp</h1>
 		<section class="homemessage">
 			<p>Bienvenue sur PlantariumApp,
-
+		<br>
 				Nous souhaitons proposer au jardiniers un site leurs permettant de gérer leurs plantes avec plus de
 				facilité.
 				Cela, quelque soit leurs expérience.</p>
@@ -40,12 +38,12 @@ Home
 			<ul>
 				<li>
 					<a href="{{ path('app.inscription') }}" class="link">
-						<button class="menuButton">S'inscrire</button>
+						<button class="modifyButton">S'inscrire</button>
 					</a>
 				</li>
 				<li>
 					<a href="{{ path('app.connexion') }}" class="link">
-						<button class="menuButton">Se connecter</button>
+						<button class="modifyButton">Se connecter</button>
 					</a>
 				</li>
 			</ul>

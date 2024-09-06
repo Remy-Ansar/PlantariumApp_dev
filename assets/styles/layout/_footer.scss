@@ -1,13 +1,10 @@
 footer {
-    height:auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    justify-content: space-around;
+    height: auto;
+    width: 100vw;
     background: $glassmorphism;
-font-size: 1.2em;
+  
     a {
-        color: $white-font;
+        color: $dark-font;
     }
 }
 
@@ -16,26 +13,34 @@ font-size: 1.2em;
 }
 
 .footerUnit p {
-text-align: center;
-
+    text-align: center;
 }
 
-.creditList li{
+.creditList li {
     margin-bottom: 1em;
 }
 
-.footerContainer{
-    margin: 0 2em 0 2em;
-    display: inline;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding: 2em;
-    min-height: 50vh;
-    background: $combined-background;
-    overflow-y: auto;
+.footerContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 0.8em;
+    overflow-x: auto;
 }
 
-.footerUnit {
-    display: block;
-
+.footerLogo {
+    width: 100px;
+    padding-top:10px ;
+    padding-left: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    img {
+        object-fit: cover;
+        width: auto;
+    height: auto;
+    }
 }

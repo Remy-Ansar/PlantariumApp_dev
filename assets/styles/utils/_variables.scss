@@ -1,100 +1,69 @@
-/*Palette de couleur*/
+/* ================== Palette de couleurs ================== */
 
-    /* primary colors */
+/* Primary colors */
 $light-green: rgba(54, 231, 25, 0.27);
 $medium-green: rgba(121, 177, 133, 0.63);
-$dark-gren: rgba(17, 82, 32, 0.56);
+$dark-green: rgba(17, 82, 32, 0.56);
 
-    /* secondary colors */
+/* Secondary colors */
 $obscure-green: rgba(31, 62, 38, 0.56);
 $bright-green: rgba(49, 195, 81, 0.75);
 $pine-green: rgba(17, 82, 32, 1);
 
-    /* tertiary colors */
+/* Tertiary colors */
 $border-green: rgba(222, 255, 201, 1);
-    /* Background colors */
 
+/* Background colors */
 $gradient-background: linear-gradient(#85CE95, #31C351);
-$glassmorphism: rgba(255, 255, 255, 0.5);
+$glassmorphism: rgba(255, 255, 255, 0.5); // Couleur pour l'effet glassmorphism
 $combined-background: linear-gradient(135deg, $glassmorphism, $border-green);
-    /* Fonts colors */
+$nav-background: linear-gradient(135deg, $glassmorphism, $obscure-green);
+
+/* Font colors */
 $dark-font: #111212;
 $white-font: #FAFFFC;
 
+/* Alternative background */
+$alternative-combined-background: linear-gradient(135deg, $glassmorphism, $border-green);
 
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
-$font-primary: 'lato', serif;
-$font-secondary: 'ubuntu', sans-serif;
+/* ================== Fonts ================== */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Wittgenstein:ital,wght@0,400..900;1,400..900&display=swap');
+
+$font-primary: 'Lato', serif;
+$font-secondary: 'Ubuntu', sans-serif;
 $font-tertiary: 'EB Garamond', serif;
 $font-quaternary: 'Wittgenstein', serif;
 
-$bg-home : url(../../../public/images/background/HomeBackground.png);
+/* ================== Background Images ================== */
 
-$bg-inscription : url(../../../public/images/background/RegisterBackground.png);
+$bg-home: url(../../../public/images/background/HomeBackground.png);
+$bg-inscription: url(../../../public/images/background/RegisterBackground.png);
+$bg-connexion: url(../../../public/images/background/ConnexionBackground.png);
+$bg-main: url(../../../public/images/background/MainBackground.png);
 
-$bg-connexion : url(../../../public/images/background/ConnexionBackground.png);
+/* ================== Gradient Settings ================== */
 
-$bg-main : url(../../../public/images/background/MainBackground.png);
-
-// Déclaration des couleurs en variables SCSS
-$color-start: rgba(174, 252, 125, 36);
-
-$color-end: rgba(222, 255, 201, 100);
-
-// Déclaration de l'angle du dégradé en variable SCSS
+$color-start: rgba(174, 252, 125, 0.36);
+$color-end: rgba(222, 255, 201, 1);
 $gradient-angle: 145deg;
-
-// Déclaration de la variable pour le background
 $bg-gradient: linear-gradient($gradient-angle, $color-start 0%, $color-end 100%);
 
-// Application du background
+/* Application du background avec fallback */
 .element {
-  background: $color-start; // Couleur de fond pour les navigateurs qui ne supportent pas les gradients
+  background: $color-start; // Fallback pour les anciens navigateurs
   background: -moz-linear-gradient($gradient-angle, $color-start 0%, $color-end 69%);
   background: -webkit-linear-gradient($gradient-angle, $color-start 0%, $color-end 69%);
-  background: $bg-gradient;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220", endColorstr="#31c351", GradientType=1); // Pour IE9 et versions antérieures
+  background: $bg-gradient; // Gradient moderne
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220", endColorstr="#31c351", GradientType=1); // Fallback pour IE9
 }
 
+/* ================== Glassmorphism ================== */
 
-// background: rgb(17,82,32);
-// background: -moz-linear-gradient(180deg, rgba(17,82,32,0.7035014689469538) 0%, rgba(43,173,72,0.7) 25%, rgba(49,195,81,0.7) 69%);
-// background: -webkit-linear-gradient(180deg, rgba(17,82,32,0.7035014689469538) 0%, rgba(43,173,72,0.7) 25%, rgba(49,195,81,0.7) 69%);
-// background: linear-gradient(180deg, rgba(17,82,32,0.7035014689469538) 0%, rgba(43,173,72,0.7) 25%, rgba(49,195,81,0.7) 69%);
-// filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220",endColorstr="#31c351",GradientType=1);
+$dark-glass: #111212;
+$glass-blur: 10px;
 
-
-// // Déclaration des couleurs en variables SCSS avec opacité
-// $color-start-secondary: rgba(17, 82, 32, 0.703);
-// $color-middle-secondary: rgba(43, 173, 72, 0.7);
-// $color-end-secondary: rgba(49, 195, 81, 0.7);
-
-// // Déclaration de l'angle du dégradé en variable SCSS
-// $gradient-angle-secondary: 180deg;
-
-// // Déclaration de la variable pour le background
-// $bg-secondary: linear-gradient($gradient-angle-secondary, $color-start-secondary 0%, $color-middle-secondary 25%, $color-end-secondary 69%);
-
-// // Application du background
-// .element {
-//   background: $color-start-secondary; // Couleur de fond pour les navigateurs qui ne supportent pas les gradients
-//   background: -moz-linear-gradient($gradient-angle-secondary, $color-start-secondary 0%, $color-middle-secondary 25%, $color-end-secondary 69%);
-//   background: -webkit-linear-gradient($gradient-angle-secondary, $color-start-secondary 0%, $color-middle-secondary 25%, $color-end-secondary 69%);
-//   background: $bg-secondary;
-//   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#115220", endColorstr="#31c351", GradientType=1); // Pour IE9 et versions antérieures
-// }
-/* Border bottom */
-
-// $border-botom:( rgba(222, 255, 201, 1), border-radius: 0, 24px, 24px, 0 height: 6px);
-
-//     /* select button*/
-//  $transparent-background: (rgba(255, 255, 255, 0.5), Border radius: 0 Width: 268 px Height: 45 px);
-
-//     /* form field*/
-
-// $form-field:( Background: rgba(255, 255, 255, 0.5) Border radius: 0 Width: 268 px Height: 45 px);
-
-
-//     /* info-window */
-
-// $window: (Background: rgba(255, 255, 255, 0.5) Border radius: 0 Width: 268 px Height: 45 px);
+.dark-glass {
+  background: rgba($dark-glass, 0.7); // Couleur avec opacité
+  backdrop-filter: blur($glass-blur);  // Applique l'effet glassmorphism
+}

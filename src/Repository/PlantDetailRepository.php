@@ -64,32 +64,9 @@ class PlantDetailRepository extends ServiceEntityRepository
                 ->andWhere('ca.id = :category')
                 ->setParameter('category', (int)$filters['categories']);
         }
-    // dd($qb->getQuery()->getSQL(), $filters);
+
     
         return $qb->getQuery();
     }
-    //    /**
-    //     * @return PlantDetail[] Returns an array of PlantDetail objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
 
-    //    public function findOneBySomeField($value): ?PlantDetail
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

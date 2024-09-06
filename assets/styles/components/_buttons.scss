@@ -1,325 +1,445 @@
-// .button {
-//   margin-top: 1em;
-//   margin-bottom: 1em;
-//   @include font-secondary;
-//   background: $glassmorphism;
-//   color: $dark-font;
-//   border-radius: 8px;
-//   cursor: pointer;
-// }
-
-// .return {
-//   display: flex;
-//   justify-content: flex-end;
-//   margin-right: 5em;
-//   cursor: pointer;
-// }  
-
-// .return img {
-//   width: 1.5em;
-//   height: 1.5em;
-// }
-
-
-
-// .addPlant img {
-//   display: flex;
-//   width: 1.5em;
-//   height: 1.5em;
-//   align-items: center;
-// }
-
-// .removePlant {
-//   background: transparent;
-//   border: none;
-//   cursor: pointer;
-// }
-
-// .removePlant img {
-//   display: flex;
-//   width: 1.5em;
-//   height: 1.5em;
-//   align-items: center;
-// }
-.addButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  background: transparent;
-  form {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-
-.addPlant {
-  background: transparent;
-  border: none;
-  width: 3em;
-  height: 3em;
-  cursor: pointer;
-  transition: transform 0.3s ease
-}
-
-.addPlant:hover {
-  transform: scale(1.5);
-}
-
-.addPlantCard {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  img{
-    object-fit: cover;
-  }
-}
-
-.addPlant:hover {
-  transform: scale(1.5);
-}
-
-.removePlant {
-  background: transparent;
-  border: none;
-  width: 3em;
-  height: 3em;
-  cursor: pointer;
-  transition: transform 0.3s ease
-}
-
-.removePlant:hover {
-  transform: scale(1.5);
-}
-
-.delButton {
+@media (min-width: 0px) {
+  .addButton {
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
     background: transparent;
+
     form {
       width: 100%;
       display: flex;
       justify-content: space-around;
       align-items: center;
     }
-}
+  }
 
-.modifyButton {
-  border: 2px solid $pine-green;
-  border-radius: 30px;
-  background:$white-font;
-  color: $dark-font;
-  padding: 15px 10px 15px 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
+  .addPlant {
+    background: transparent;
+    border: none;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
 
-.deleteButton {
-  border: 2px solid $white-font;
-  border-radius: 30px;
-  background:$pine-green;
-  color: $white-font;
-  padding: 15px 10px 15px 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.modifyButton:hover {
-  background-color: $pine-green;
-  color: $white-font;
-  border: $white-font;
-}
+  .addPlant:hover {
+    transform: scale(1.5);
+  }
 
-.modifyField{
-height: auto;
-}
+  .addPlantCard {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 
-.resetButton {
-  border-radius: 10px 12px;
-  padding: 5px;
-  background-color: $white-font;
-  color: $dark-font;
-  text-align: center;
-  text-decoration: none;
-  border: 3px solid $pine-green;
-  box-sizing: border-box;
-  a {
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .removePlant {
+    background: transparent;
+    border: none;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
+
+  .removePlant:hover {
+    transform: scale(1.5);
+  }
+
+  .delButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: transparent;
+
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .modifyButton {
+    border: 2px solid $pine-green;
+    border-radius: 30px;
+    background: $white-font;
+    color: $dark-font;
+    padding: 15px 10px 15px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
+
+  .modifyButton:hover {
+    background-color: $pine-green;
+    color: $white-font;
+    border: $white-font;
+    transform: scale(1.3);
+  }
+
+  .deleteButton {
+    border: 2px solid $white-font;
+    border-radius: 30px;
+    background: $pine-green;
+    color: $white-font;
+    padding: 15px 10px 15px 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+
+  .modifyField {
+    height: auto;
+  }
+
+  .resetButton {
+    border-radius:36px;
+    padding: 15px 25px 15px 25px;
+    background-color: $glassmorphism;
+    color: $dark-font;
+    text-align: center;
     text-decoration: none;
+    // border: 3px solid $pine-green;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .resetButton:hover {
+    background-color: $obscure-green;
+    color: white;
+    border: 3px solid $dark-font;
+    cursor: pointer;
+  }
+
+
+  .menuButton {
+    border-radius: 24px;
+    background: $white-font;
+    color: $dark-font;
+    border: 2px solid #115220;
+    padding: 8px 12px 8px 12px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .menuButton:hover {
+    border-radius: 24px;
+    background: #115220;
+    color: $white-font;
+    border: 2px solid #115220;
+    padding: 8px 12px 8px 12px;
+    font-weight: bold;
+    transform: scale(1.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+
+  .menuButton:active {
+    transform: scale(1);
+  }
+
+  .validationButton {
+
+    padding: 8px 12px 8px 12px;
+    border-radius: 24px;
+    border: none;
+    background: $bright-green;
+    cursor: pointer;
+  }
+
+  .validationButton:hover {
+    border: 2px solid #115220;
+    background: $light-green;
+    color: $obscure-green;
+    cursor: pointer;
+  }
+
+
+  .loggout {
+    margin-right: 2em;
+    padding: 8px 12px 8px 12px;
+    border-radius: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tagsButton {
+    display: flex;
+    justify-content: center;
+    width: 10em;
+    border: 2px solid $pine-green;
+    border-radius: 10px 12px;
+    padding: 0 5px 0 5px;
+    color: $white-font;
+    background: $pine-green;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .alternativeTagsButton {
+    display: flex;
+    justify-content: center;
+    border: 2px solid $white-font;
+    border-radius: 4px;
+    padding: 0 5px 0 5px;
+    color: $pine-green;
+    background: $white-font;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .categTagsButton {
+    display: flex;
+    text-align: center;
+    border: 2px solid $pine-green;
+    border-radius: 4px;
+    padding: 0 5px 0 5px;
+    color: $pine-green;
+    background: $white-font;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .toggle-plant {
+    border: 0 transparent;
+    background: transparent;
   }
 }
 
-.resetButton:hover {
-  background-color: $obscure-green;
-  color: white;
-  border: 3px solid $dark-font;
+
+
+@media (min-width: 768px) {
+  .addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: transparent;
+
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .addPlant {
+    background: transparent;
+    border: none;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
+
+  .addPlant:hover {
+    transform: scale(1.5);
+  }
+
+  .addPlantCard {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .removePlant {
+    background: transparent;
+    border: none;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
+
+  .removePlant:hover {
+    transform: scale(1.5);
+  }
+
+  .delButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: transparent;
+    height: 50px;
+
+    form {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .modifyButton {
+    border: 3px solid $pine-green;
+    border-radius: 30px;
+    background: $white-font;
+    color: $dark-font;
+    padding: 15px 25px 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
+
+  .modifyButton:hover {
+    background-color: $pine-green;
+    color: $white-font;
+    border: $white-font;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  .deleteButton {
+    border: 2px solid $white-font;
+    border-radius: 30px;
+    background: $pine-green;
+    color: $white-font;
+    padding: 15px 25px 15px 25px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+
+  .modifyField {
+    height: auto;
+  }
+
+  .resetButton {
+    border-radius:36px;
+    padding: 15px 25px 15px 25px;
+    background-color: $glassmorphism;
+    color: $dark-font;
+    text-align: center;
+    text-decoration: none;
+    // border: 3px solid $pine-green;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .resetButton:hover {
+    background-color: $obscure-green;
+    color: white;
+    border: 3px solid $dark-font;
+    cursor: pointer;
+  }
+
+
+  .menuButton {
+    border-radius: 36px;
+    background: $white-font;
+    color: $dark-font;
+    border: 2px solid #115220;
+    font-weight: bold;
+    transition: transform 0.5s ease;
+    padding: 1em 2em 1em 2em;
+    cursor: pointer;
+  }
+
+  .menuButton:hover {
+
+    background: #115220;
+    color: $white-font;
+    font-weight: bold;
+    transform: scale(2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  .validationButton {
+    cursor: pointer;
+    padding: 15px 25px 15px 25px;
+    border-radius: 36px;
+    border: none;
+    background: $bright-green;
+    width: auto!important;
+  }
+
+  .validationButton:hover {
+    border: 2px solid #115220;
+    background: $light-green;
+    color: $obscure-green;
+    cursor: pointer;
+  }
+
+
+  .loggout {
+    margin-right: 2em;
+    padding: 8px 12px 8px 12px;
+    border-radius: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .tagsButton {
+    display: flex;
+    justify-content: center;
+    width: 10em;
+    border: 2px solid $pine-green;
+    border-radius: 10px 12px;
+    padding: 0 5px 0 5px;
+    color: $white-font;
+    background: $pine-green;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .alternativeTagsButton {
+    display: flex;
+    justify-content: center;
+    border: 2px solid $white-font;
+    border-radius: 4px;
+    padding: 0 5px 0 5px;
+    color: $pine-green;
+    background: $white-font;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .categTagsButton {
+    display: flex;
+    text-align: center;
+    border: 2px solid $pine-green;
+    border-radius: 4px;
+    padding: 0 5px 0 5px;
+    color: $pine-green;
+    background: $white-font;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  .toggle-plant {
+    border: 0 transparent;
+    background: transparent;
+  }
+
 }
-
-
-.menuButton {
-  border-radius: 24px;
-  background: $white-font;
-  color: $dark-font;
-  border: 2px solid #115220;
-  padding: 8px 12px 8px 12px;
-  font-weight: bold;
-}
-
-.menuButton:hover {
-  border-radius: 24px;
-  background: #115220;
-  color: $white-font;
-  border: 2px solid #115220;
-  padding: 8px 12px 8px 12px;
-  font-weight: bold;
-  transform: scale(1.5); /* Agrandit le bouton de 10% */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
-
-/* Style des boutons lorsque vous souhaitez gérer d'autres états */
-.menuButton:active {
-  transform: scale(1); /* Réduit à la taille normale lorsque le bouton est cliqué */
-}
-
-.validationButton {
-
-  padding: 8px 12px 8px 12px;
-  border-radius: 24px;
-  border: none;
-  background: $bright-green;
-}
-
-.validationButton:hover {
-  border: 2px solid #115220;
-  background: $light-green;
-  color: $obscure-green;
-}
-
-
-
-
-
-.loggout {
-  margin-right: 2em;
-  padding: 8px 12px 8px 12px;
-  border-radius: 24px;  
-  background: transparent;
-  border:none;
-  // color: $dark-font;
-  cursor: pointer;
-}
-
-
-// .deleteButton {
-//   border: 2px solid $pine-green;
-//   border-radius: 12px 10px;
-//   background: $pine-green;
-//   color: $white-font;
-//   box-sizing: border-box;
-//   overflow: hidden;
-//   padding: 5px;
-//   cursor: pointer;
-// }
-
-// .deleteButton:hover {
-//   background-color: $obscure-green;
-//   color: $white-font;
-//   border: $white-font;
-// }
-
-.tagsButton {
-  display: flex;
-  justify-content: center;
-  width: 10em;
-  border: 2px solid $pine-green;
-  border-radius: 10px 12px;
-  padding: 0 5px 0 5px;
-  color: $white-font;
-  background: $pine-green;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-.alternativeTagsButton {
-  display: flex;
-  justify-content: center;
-  // width: 10em;
-  border: 2px solid $white-font;
-  border-radius: 4px;
-  padding: 0 5px 0 5px;
-  color: $pine-green;
-  background: $white-font;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.categTagsButton {
-  display: flex;
-  text-align: center;
-  // width: 10em;
-  border: 2px solid $pine-green;
-  border-radius: 4px;
-  padding: 0 5px 0 5px;
-  color: $pine-green;
-  background: $white-font;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-// .tagsButton:hover {
-//   background-color: $obscure-green;
-//   color: $white-font;
-//   border: $obscure-green;
-// }
-
-// .categTags {
-//   border: 2px solid $white-font;
-//   border-radius: 10px 12px;
-//   padding: 0.5em 0.1em 0.5em 0.1em;
-//   color: $white-font;
-//   background: $pine-green;
-//   text-align: center;
-// }
-
-// .categTags:hover {
-//   background-color: $obscure-green;
-//   color: $obscure-green;
-// }
-
-.toggle-plant {
-  border: 0 transparent;
-  background: transparent;
-}
-
-
-
-// .activeButton {
-//   background: transparent;
-// /* Applique un border-radius de 12px uniquement à l'angle inférieur droit */
-//   /* Ajoute une bordure de 2px en bas */
-//   border: none;
-//   padding: 0.5em;
-//   outline: none;  
-//   cursor: pointer;  
-// }
-
-// .activeButton:hover {
-//   border: 3px solid $white-font;
-//   border-radius: 12px 10px;
-//   background: $white-font;
-//   color: $white-font;
-//   box-sizing: border-box;
-//   padding: 5px;
-//   background: transparent;
-// }
-
-// .validationButton {
-//   border: 3px solid $white-font;
-//   border-radius: 12px 10px;
-//   padding: 1em 0.5em 1em 0.5em;
-//   display: inline-block; /* S'assurer qu'il est en ligne avec les autres éléments */
-// }

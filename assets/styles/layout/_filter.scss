@@ -5,13 +5,6 @@
     width: 100%;
 }
 
-// .filters {
-//     display: grid;
-//     grid-template-rows: 1fr;
-//     grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-
-// }
-
 .filterGroup {
     padding: 0.5em 1em 0.5em 1em;
     display: flex;
@@ -21,13 +14,13 @@
     }
 }
 
-
-
 .filterDisplay {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+
     background: transparent;
     margin-bottom: 1em;
 
@@ -71,12 +64,11 @@
     color: $dark-font;
     border: none;
     background: $border-green;
-    // padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     margin-bottom: 15px;
     transition: background-color 0.3s;
-    // transform: translateX(130px);
+
     
     &:hover {
       background-color: darken($bright-green, 10%);

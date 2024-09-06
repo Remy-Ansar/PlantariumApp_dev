@@ -32,7 +32,7 @@ class InscriptionType extends AbstractType
                 'required' => true,
                 'mapped' => false,
                 'first_options' => [
-                    'label' => 'Mot de passe *',
+                    'label' => 'Veuillez entrer votre mot de passe *',
                     'attr' => [
                         'placeholder' => 'Motdepasse85-',
                         

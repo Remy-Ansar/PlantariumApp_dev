@@ -1,15 +1,17 @@
+@media (min-width: 0px) {
 nav {
-    // position: sticky;
-    // top: 60px; /* Ajuster la valeur selon la hauteur réelle du header */
+   
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     z-index: 9;
-    background-color: transparent; /* Couleur de fond par défaut */
-    padding: 0.5em;
-    transition: background-color 0.3s ease; /* Animation douce pour le changement de couleur */
+    background-color: $dark-glass;  
+    padding: 0 0.5em 0 0.5em;
+    transition: background-color 0.3s ease; 
+    /* Animation douce pour le changement de couleur */
   }
+
   
 //   /* Styles pour nav lorsqu'elle devient sticky */
 //   nav.sticky-active {
@@ -45,6 +47,7 @@ nav {
   
   .menuItem a {
     text-decoration: none;
+    color: $border-green;
   }
 
   
@@ -61,6 +64,84 @@ nav {
       left: 0;
       right: 0;
       bottom: 0;
+      height: 6px; // épaisseur de la bordure
+      background-color: $pine-green; // couleur de la bordure
+      transform: translateY(-0.1em); // déplacement vers le bas
+      border-radius: 10px 0 10px 0;
+      z-index: -1;
+      width: 100%;
+    }
+  }
+  
+}
+@media (min-width: 768px) {
+
+  nav {
+
+    height: 3.5em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 9;
+    background-color: $dark-font;    
+    padding: 0.5em;
+  }
+  nav:hover {
+    background: $dark-glass;
+  }
+  
+  .userProfile{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .adminAccess {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .menu {
+    padding-left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // height: 0.75em;
+    font-size: 0.8em;
+    color: $pine-green;
+  }
+  
+  .menuItem {
+    font-size: 1em;
+    width: auto;
+    text-decoration: none;
+    padding: 0 0.5em 0 0.5em;
+    text-align: center;
+    background-color: $dark-font;
+  }
+  
+  .menuItem a {
+    text-decoration: none;
+    color: $border-green;
+  }
+  .menuItem a:hover {
+    text-decoration: none;
+    color: $white-font;
+  }
+
+  
+.active {
+    position: relative;
+    z-index: 0;
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
       height: 8px; // épaisseur de la bordure
       background-color: $border-green; // couleur de la bordure
       transform: translateY(-0.1em); // déplacement vers le bas
@@ -69,4 +150,4 @@ nav {
       width: 100%;
     }
   }
-  
+}

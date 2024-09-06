@@ -35,13 +35,9 @@
 
         {% for i in 0..maxLength - 1 %}
             <tr>
-                <td>
-                    {% if species[i] is defined %}
-                        <ul>
-                            <li >{{ species[i].name }}</li>
-                        </ul>
-                    {% endif %}
-                </td>
+            {% if species[i] is defined %}
+                <td>{{ species[i].name }}</td>
+                  {% endif %}
                 <td>
                     {% if families[i] is defined %}
                         <ul>

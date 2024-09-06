@@ -106,91 +106,83 @@ Administration des plantes
         </div>
    
 
-    <div class="table-containerMain">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Espèce</th>
-                    <th>Nom</th>
-                    <th>Famille</th>
-                    <th>Description</th>
-                    <th>Couleurs</th>
-                    <th>Saisons</th>
-                    <th>Catégorie</th>
-                    <th>Photo</th>
-                    <th>Visible</th>
-                    <th>Modifier</th>
-                    <th>Supprimer</th>
-                </tr>
-            </thead>
-            <tbody id='plant-list'>
-                {% if pagination.items is empty %}
-                <tr>
-                    <td colspan="12">Aucune plante ne correspond à votre recherche.</td>
-                </tr>
-                {% else %}
-                {% for plant in pagination.items %}
-                <tr>
-                    <td>{{ plant.id }}</td>
-                    <td>{{ plant.Species.Name }}</td>
-                    <td>{{ plant.Name }}</td>
-                    <td>{{ plant.Families.Name }}</td>
-                    <td>{{ plant.description }}</td>
-                    <td >
-                        <div class="tagFont">
-                            {% for color in plant.colors %}
-                            {{ color.Name }}
-                            {% endfor %}
-                        </div>
-                    </td>
-                    <td>
-                        <div class="tagFont">
-                            {% for season in plant.seasons %}
-                            {{ season.Name }}
-                            {% endfor %}
-                        </div>
-                    </td>
-                    <td>
-                        <div class="tagFont">
-                            {% for categorie in plant.categories %}
-                            {{ categorie.Name|nl2br }}
-                            {% endfor %}
-                        </div>
-                    </td>
-                    <td>
-                        <a href="{{ path('editor.plants.showPlant', {name: plant.Name}) }}">
-                            <img src="{{ vich_uploader_asset( plant, 'image') }}" alt="{{ plant.Name }}" loading="lazy"
-                                class="profilePic" width="100px" height="100px">
-                        </a>
-                    </td>
-                    <td>
-                        <button class="toggle-plant" data-id="{{ plant.id }}"
-                            data-url="{{ path('editor.plants.switch', {'id': plant.id}) }}">
-                            <img src="{{ plant.isEnable() ? asset('images/components/commutateur_on.png') : asset('images/components/commutateur_off.png') }}"
-                                alt="{{ plant.isEnable() ? 'Désactiver' : 'Activer' }}">
-                        </button>
-                    </td>
-
-                    <td>
-                        <a href="{{ path('editor.plants.edit', {id: plant.id}) }}">
-                            <button class="modifyButton">Modifier une plante</button>
-                        </a>
-                    </td>
-                    <td>
-                        <form action="{{ path('editor.plants.delete', {id: plant.id}) }}" method="POST"
-                            onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
-                            enctype="multipart/form-data">
-                            <input type="hidden" name="token" value="{{ csrf_token('delete' ~ plant.id) }}">
-                            <button type="submit" class="deleteButton">Supprimer une plante</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
+ <div class="table-containerMain">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Espèce</th>
+                <th>Nom</th>
+                <th>Famille</th>
+                <th>Description</th>
+                <th>Couleurs</th>
+                <th>Saisons</th>
+                <th>Catégorie</th>
+                <th>Photo</th>
+                <th>Visible</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if pagination.items is empty %}
+            <tr>
+                <td colspan="12">Aucune plante ne correspond à votre recherche.</td>
+            </tr>
+            {% else %}
+            {% for plant in pagination.items %}
+            <tr>
+                <td>{{ plant.id }}</td>
+                <td>{{ plant.species.name }}</td>
+                <td>{{ plant.name }}</td>
+                <td>{{ plant.families.name }}</td>
+                <td class="description">{{ plant.description }}</td>
+                <td>
+                    {% for color in plant.colors %}
+                    <p class="tagFont">{{ color.name }}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for season in plant.seasons %}
+                    <p class="tagFont">{{ season.name }}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for category in plant.categories %}
+                    <p class="tagFont">{{ category.name }}</p>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('editor.plants.showPlant', {name: plant.name}) }}">
+                        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}" loading="lazy"
+                            class="profilePic">
+                    </a>
+                </td>
+                <td>
+                    <button class="toggle-plant" data-id="{{ plant.id }}"
+                        data-url="{{ path('editor.plants.switch', {'id': plant.id}) }}">
+                        <img src="{{ plant.isEnable() ? asset('images/components/commutateur_on.png') : asset('images/components/commutateur_off.png') }}"
+                            alt="{{ plant.isEnable() ? 'Désactiver' : 'Activer' }}">
+                    </button>
+                </td>
+                <td>
+                    <a href="{{ path('editor.plants.edit', {id: plant.id}) }}">
+                        <button class="modifyButton">Modifier</button>
+                    </a>
+                </td>
+                <td>
+                    <form action="{{ path('editor.plants.delete', {id: plant.id}) }}" method="POST"
+                        onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')">
+                        <input type="hidden" name="token" value="{{ csrf_token('delete' ~ plant.id) }}">
+                        <button type="submit" class="deleteButton">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 
 </main>
 

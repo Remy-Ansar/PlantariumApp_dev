@@ -1,3 +1,4 @@
+@media (min-width: 0px) {
 .table-containerMain {
   width: 100%;
   overflow-x: auto;
@@ -72,6 +73,7 @@
     color: $white-font;
     border: 2px solid #115220;
     border-radius: 6px;
+    margin-bottom: 1em;
   }
 }
 
@@ -157,6 +159,227 @@
     flex-direction: row;
     .modifyButton{
       padding: 5px 20px 5px 20px;
+    }
+  }
+}
+}
+
+@media (min-width: 768px) {
+  .wideTable{
+    height: 100%;
+  }
+  .table-containerMain {
+    width: 100vw;
+    overflow-x: auto;
+    margin: 20px 0;
+  }
+  
+  table {
+
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Pour auto-ajuster les colonnes */
+    font-family: 'Lato', sans-serif;
+    form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+   
+  }
+  th:nth-child(6){
+    width: 8em;
+  }
+  th:nth-child(7){
+    width: 8em;
+  }
+  th:nth-child(8){
+    width: 15em;
+  }
+  th:nth-child(9){
+    width: 8em;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternance de couleur */
+  }
+  
+  // tbody tr:hover {
+  //   background-color: #f1f1f1;
+  // }
+  
+  th {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  td {
+    font-size: 0.9em;
+  }
+  
+  td p.tagFont {
+    margin: 0; /* Supprimer les marges autour des tags */
+    font-size: 0.85em;
+    padding: 5px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  .profilePic {
+    border-radius: 10px; /* Coins arrondis pour l'image */
+    object-fit: cover;
+  }
+  
+  .modifyButton, .deleteButton {
+    background-color: #31C351;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
+  }
+  
+  // .modifyButton:hover, .deleteButton:hover {
+  //   background-color: #279A43; /* Légère variation au survol */
+  // }
+  
+  td.description {
+    max-width: 300px;
+    white-space: normal; /* Autoriser les retours à la ligne */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Couper les textes trop longs avec "..." */
+  }
+  
+  .buttonAlign {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button a {
+    color: inherit; /* Garde la couleur du bouton pour le lien */
+    text-decoration: none;
+  }
+  
+  .resetButton a {
+    padding: 8px 12px;
+  }
+  
+  .profilePic {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+  }
+  
+  .fieldAdd {
+    margin-left: 10em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+    overflow-x: auto;
+    width: 100vw;
+    height: 10em;
+  }
+
+  //----------------------------------------------------------------
+  
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  height: 100%;
+    background: $glassmorphism;
+  
+    table {
+      table-layout: fixed;
+      width: 100vw;
+      border-collapse: collapse;
+      border-top: 3px solid $dark-font;
+      overflow-x: auto;
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9; /* Alternance de couleur */
+      }
+      tr{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        text-align: center;
+      }
+      form {
+        height: 20px;
+      }
+    }
+    
+    thead {
+      margin-right: 2em;
+      font-size: 1.2em;
+    }
+    thead th:nth-child(4) {
+      width: 20em;
+    }
+  
+    tbody {
+      margin-top: 0em;
+    }
+   
+    th,
+    td {
+      padding: 20px;
+      width: 15em;
+    }
+  
+    tbody td {
+      align-items: center;
+      text-align: center;
+      margin: 0;
+    }
+  
+  
+    td {
+      letter-spacing: 1px;
+      text-align: center;
+      font-size: 1.2em;
+      height: 5em;
+    }
+  
+    ul {
+      padding: 5px 8px 5px 8px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background: $white-font;
+      color: $pine-green;
+      border: 2px solid #115220;
+      border-radius: 6px;
+      margin-right: 1em;
+      font-size: 1.2em;
+    }
+  
+    td a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10em;
+      height: auto;
+    }
+  
+    .modifyField{
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      .modifyButton{
+        padding: 5px 20px 5px 20px;
+      }
     }
   }
 }

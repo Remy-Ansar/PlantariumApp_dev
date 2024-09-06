@@ -7,100 +7,101 @@ Détail de la plante
 
 {% block body %}
 {% include "Layout/nav.html.twig" %}
-<h1>Détail de la plante</h1>
-<aside>
-    {# <span class="return">
+<h1 class="h1Detail">Détail de la plante</class=>
+    <div class="detailContainer">
+        <aside>
+            {# <span class="return">
         <a href="{{ path('users.plantarium') }}"><img src="{{ asset('img/components/Cross.svg') }}"
                 alt="Retour arrière"></a>
     </span> #}
-    <div class="plantPic">
-        <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
-    </div>
-
-</aside>
-<main>
-    <div class="plantCard">
-        <div class="cardText">
-
-            <div class="addButton">
-                <form action="{{ path('users.plantarium.addPlant') }}" method="post">
-                    <input type="hidden" name="plant_id" value="{{ plant.id }}">
-
-                    <label for="plant_id" class="categFont">Ajouter cette plante à ma collection</label>
-                    <button type="submit" class="addPlant">
-                        <img src="{{ asset('images/components/plus.png') }}" alt="Bouton d'ajout plus">
-                    </button>
-
-                </form>
+            <div class="plantPic">
+                <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
             </div>
 
-            <section>
-                <div class="plantHeader">
-                    <h2>Plante : {{ plant.Name }}</h2>
-                    <h4>Espèce : {{ plant.species.Name }}</h4>
+        </aside>
+        <main>
+            <div class="plantCard">
+                <div class="cardText">
+
+                    <div class="addButton">
+                        <form action="{{ path('users.plantarium.addPlant') }}" method="post">
+                            <input type="hidden" name="plant_id" value="{{ plant.id }}">
+
+                            <label for="plant_id" class="categFont">Ajouter cette plante à ma collection</label>
+                            <button type="submit" class="addPlant">
+                                <img src="{{ asset('images/components/plus.png') }}" alt="Bouton d'ajout plus">
+                            </button>
+
+                        </form>
+                    </div>
+
+                    <section>
+                        <div class="plantHeader">
+                            <h2>Plante : {{ plant.Name }}</h2>
+                            <h4>Espèce : {{ plant.species.Name }}</h4>
+                        </div>
+
+                        <div class="plantInfos">
+                            <div class="categInfos">
+                                <span class="categFont">Description:</span>
+                                <p class="categDescription">{{ plant.Description }}</p>
+                            </div>
+                    </section>
+
+                    <section>
+                        <div class="categFields">
+
+                            <span class="categFont">Famille</span>
+                            <div class="categUnit">
+                                <div class="categClass">
+                                    <p class="categComponent">{{ plant.families.Name|capitalize }}</p>
+                                </div>
+                            </div>
+
+                            <span class="categFont">Catégorie(s)</span>
+                            <div class="categUnit">
+
+                                <div class="categClass">
+                                    {% for category in plant.categories %}
+                                    <p class="categComponent">{{ category.Name }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <span class="categFont">Saisonalité</span>
+                            <div class="categUnit">
+                                <div class="categClass">
+                                    {% for season in plant.seasons %}
+                                    <p class="categComponent">{{ season.Name }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <span class="categFont">Arrosage</span>
+                            <div class="categUnit">
+                                <div class="categClass">
+                                    {% if plant.watering %}
+                                    <p class="categComponent">{{ plant.watering.quantity }} ml</p>
+                                    <p class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</p>
+                                    {% else %}
+                                    <p class="categComponent">Aucun arrosage défini</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <span class="categFont">Couleurs</span>
+                            <div class="categUnit">
+                                <div class="categClass">
+                                    {% for color in plant.colors %}
+                                    <p class="categComponent">{{ color.Name }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
                 </div>
-
-                <div class="plantInfos">
-                    <div class="categInfos">
-                        <span class="categFont">Description:</span>
-                        <p class="categDescription">{{ plant.Description }}</p>
-                    </div>
-            </section>
-
-            <section>
-                <div class="categFields">
-
-                    <span class="categFont">Famille</span>
-                    <div class="categUnit">
-                        <div class="categClass">
-                            <p class="categComponent">{{ plant.families.Name|capitalize }}</p>
-                        </div>
-                    </div>
-
-                    <span class="categFont">Catégorie(s)</span>
-                    <div class="categUnit">
-
-                        <div class="categClass">
-                            {% for category in plant.categories %}
-                            <p class="categComponent">{{ category.Name }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <span class="categFont">Saisonalité</span>
-                    <div class="categUnit">
-                        <div class="categClass">
-                            {% for season in plant.seasons %}
-                            <p class="categComponent">{{ season.Name }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <span class="categFont">Arrosage</span>
-                    <div class="categUnit">
-                        <div class="categClass">
-                            {% if plant.watering %}
-                            <p class="categComponent">{{ plant.watering.quantity }} ml</p>
-                            <p class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</p>
-                            {% else %}
-                            <p class="categComponent">Aucun arrosage défini</p>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <span class="categFont">Couleurs</span>
-                    <div class="categUnit">
-                        <div class="categClass">
-                            {% for color in plant.colors %}
-                            <p class="categComponent">{{ color.Name }}</p>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
-        </div>
-        </section>
+                </section>
+            </div>
     </div>
-
-</main>
-{% endblock %}
+    </main>
+    {% endblock %}

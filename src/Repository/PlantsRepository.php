@@ -116,7 +116,7 @@ public function findPlantsByCategories(int $categoryId)
             ->setParameter('enabled', 1);
     
         if (!empty($filters['name'])) {
-            $qb->andWhere('p.name LIKE :name')
+            $qb->andWhere('p.Name LIKE :name')
                 ->setParameter('name', '%' . $filters['name'] . '%');
         }
     

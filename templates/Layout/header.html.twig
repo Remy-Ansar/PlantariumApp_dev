@@ -9,7 +9,7 @@
         {% if app.user.UserInfos.imageName %}
         <ul>
             <li>
-                <img src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
+                <img id="userPic" src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
                     alt="{{ app.user.UserInfos.getFullName() }}" loading="lazy">
             </li>
 
@@ -25,7 +25,7 @@
     </div>
  {% if is_granted('ROLE_ADMIN') %}
 <div class="dropdown">
-    <button type="button" class="dropdown-toggle"><img src="{{ asset('img/components/feuille.png')}}" width="25px" height="25px" alt="Bouton feuille"></button>
+    <button type="button" class="dropdown-toggle"><img id="adminButton" src="{{ asset('img/components/feuille.png')}}" width="25px" height="25px" alt="Bouton feuille"></button>
 
     <div class="adminAccess">
            
@@ -58,7 +58,7 @@
             <li>
                 <a href="{{ path('app_logout') }}" class="link">
                     <button class="loggout">
-                        <img src="{{ asset('img/components/deconnexion.png') }}" width="25px" height="25px"
+                        <img id="exit" src="{{ asset('img/components/deconnexion.png') }}" width="25px" height="25px"
                             alt="Icône de deconnexion">
                     </button>
                 </a>
