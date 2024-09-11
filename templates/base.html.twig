@@ -19,12 +19,14 @@
     {% endblock %}
 </head>
 
-<body>
+ <body  {% if is_granted('IS_AUTHENTICATED_FULLY') %}style="background-image:url('{{ asset('img/background/MainBackground.png') }}')!important"{% endif %}>
 
     {% block header %}
     {% include 'Layout/header.html.twig' %}
     {% endblock %}
-    {% block body %}{% endblock %}
+    {% block body %}
+   
+    {% endblock %}
     {% include "flash.html.twig" %}
     {% block footer %}
     {% include "Layout/footer.html.twig" %}

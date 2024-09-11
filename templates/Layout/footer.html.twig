@@ -1,35 +1,36 @@
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
         <footer>
-        <div class="footerLogo">
+            <div class="footerBlock">
+                <div class="footerLogo">
                     <img src="{{ asset('img/components/PlantariumApp.png')}}" alt="Logo de plantariumApp">
                 </div>
-            <div class="footerContainer">
-                <div class="footerUnit">
-                    <p><a href="{{ path('footer_contact') }}" class="link">Nous contacter</a></p>
-                </div>
-                <div class="footerUnit">
-                    <p><a href="{{ path('faq') }}" class="link">FAQ</a></p>
-                </div>
 
-                <div class="footerUnit">
-                    <p><a href="{{ path('footer_mentions_legales') }}" class="link">Mentions légales</a></p>
-                </div>
+                <div class="footerUnitContainer">
+                    <div class="footerUnit">
+                        <p><a href="{{ path('footer_contact') }}" class="link">Nous contacter</a></p>
+                    </div>
+                    <div class="footerUnit">
+                        <p><a href="{{ path('faq') }}" class="link">FAQ</a></p>
+                    </div>
 
-                <div class="footerUnit">
-                    <p><a href="{{ path('footer_conditions_generales') }}" class="link">Conditions générales</a></p>
-                </div>
+                    <div class="footerUnit">
+                        <p><a href="{{ path('footer_mentions_legales') }}" class="link">Mentions légales</a></p>
+                    </div>
 
-                <div class="footerUnit">
-                    <p><a href="{{ path('footer_credits') }}" class="link">Crédits</a></p>
-                </div>
+                    <div class="footerUnit">
+                        <p><a href="{{ path('footer_conditions_generales') }}" class="link">Conditions générales</a></p>
+                    </div>
 
-                <div class="footerUnit">
-                    <p><a href="{{ path('footer_copyright') }}" class="link">Copyright</a></p>
-                </div>
+                    <div class="footerUnit">
+                        <p><a href="{{ path('footer_credits') }}" class="link">Crédits</a></p>
+                    </div>
 
-                
+                    <div class="footerUnit">
+                        <p><a href="{{ path('footer_copyright') }}" class="link">Copyright</a></p>
+                    </div>
+
+                </div>
             </div>
-            
         </footer>
         {% endif %}

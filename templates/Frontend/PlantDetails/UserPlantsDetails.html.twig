@@ -6,16 +6,12 @@ Détail de la plante
 {% endblock %}
 
 {% block body %}
-
 {% include "Layout/nav.html.twig" %}
 <h1 class="h1Detail">Détail de ma plante</h1>
 <div class="detailContainer">
 
     <aside>
-        {# <span class="return">
-        <a href="{{ path('users.index') }}"><img src="{{ asset('img/components/Cross.svg') }}"
-                alt="Retour arrière"></a>
-    </span> #}
+
         <div class="plantPic">
             <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}">
         </div>
@@ -168,16 +164,3 @@ Détail de la plante
     </main>
 </div>
 {% endblock %}
-
-{# {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
-
-                <div id="diseases-container" class="hidden">
-                    {{ form_row(form.diseases) }}
-                </div>
-
-                <div>
-                    {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary', 'class': 'textareaClass'}}) }}
-                </div>
-            
-                        <button type="submit" class="modifyButton">Modifier</button>
-            {{ form_end(form) }} #}

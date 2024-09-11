@@ -8,23 +8,24 @@ Home
 {% block body_class %}home{% endblock %}
 {% block body %}
 
-<body class="home">
+<body style="background-image:url('{{ asset('img/background/ConnexionBackground.png') }}')">
 
 	<main>
 	<div class="fadeIn">
-		<h1 id="homeTitle">PlantariumApp</h1>
+		<h1 id="homeTitle"><img src="{{asset('img/components/PlantariumApp.png')}}" alt="Logo plantariumApp"></h1>
+		
 		<section class="homemessage">
-			<p>Bienvenue sur PlantariumApp,
+			<p>Bienvenue sur PlantariumApp,<br>
 		<br>
 				Nous souhaitons proposer au jardiniers un site leurs permettant de gérer leurs plantes avec plus de
 				facilité.
 				Cela, quelque soit leurs expérience.</p>
-
+<br>
 			<p>Ici, vous pourrez ajouter vos plantes à votre profil, tenir un
 				journal sur leurs états,
 				ainsi que vérifier et être informé de leurs arrosage.</p>
 			</p>
-			
+			<br>
 			<p>PlantariumApp est encore en cours de développement. D'autres fonctionnalités viendront
 				s'ajouter au fur et à mesure.
 			</p>

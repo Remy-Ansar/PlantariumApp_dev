@@ -5,75 +5,100 @@ FAQ
 {{ parent() }}
 {% endblock %}
 {% block body %}
-   {% include "Layout/nav.html.twig" %}
-    <h1>FAQ</h1>
-    <main>
+{% include "Layout/nav.html.twig" %}
+<h1>FAQ</h1>
+<main>
     <div class="footerContainer">
-    <h2>Rechercher des plantes</h2>
+        <div class="footerUnit">
+            <h2>Rechercher des plantes</h2>
 
-    <h3>Comment puis-je rechercher des plantes spécifiques ?</h3>
+            <h3>Comment puis-je rechercher des plantes spécifiques ?</h3>
 
-    <p> Vous pouvez utiliser la barre de recherche en haut de la page pour entrer le nom d'une plante, ou utiliser les filtres pour trier les plantes par catégories, familles, espèces, couleurs et saisons.</p>
+            <p> Vous pouvez utiliser la barre de recherche en haut de la page pour entrer le nom d'une plante, ou
+                utiliser
+                les filtres pour trier les plantes par catégories, familles, espèces, couleurs et saisons.</p>
 
-    <h3>Quels filtres sont disponibles pour affiner ma recherche ?</h3> 
+            <h3>Quels filtres sont disponibles pour affiner ma recherche ?</h3>
 
-    <p>Vous pouvez filtrer les plantes par nom, famille, espèce, couleurs et saisons. Cela vous permet de trouver rapidement les plantes qui correspondent à vos critères.</p>
+            <p>Vous pouvez filtrer les plantes par nom, famille, espèce, couleurs et saisons. Cela vous permet de
+                trouver
+                rapidement les plantes qui correspondent à vos critères.</p>
 
-    <h3>Puis-je rechercher une plante sans utiliser tous les filtres ?</h3> 
+            <h3>Puis-je rechercher une plante sans utiliser tous les filtres ?</h3>
 
-    <p>Oui, vous pouvez sélectionner un seul critère de filtre (par exemple, les familles ou les espèces) et laisser les autres filtres vides.</p>
- 
-    <h2>Ajouter des plantes à mon profil</h2>
+            <p>Oui, vous pouvez sélectionner un seul critère de filtre (par exemple, les familles ou les espèces) et
+                laisser
+                les autres filtres vides.</p>
 
-    <h3>Comment ajouter une plante à mon profil ?</h3> 
+            <h2>Ajouter des plantes à mon profil</h2>
 
-    <p>Lorsque vous trouvez une plante qui vous intéresse, vous pouvez cliquer sur le bouton "Ajouter à mon profil" sur la page de détail de la plante. La plante sera alors enregistrée dans votre espace personnel.</p>
-    
-    <h3>Puis-je retirer une plante de mon profil ?</h3> 
+            <h3>Comment ajouter une plante à mon profil ?</h3>
 
-    <p>Oui, vous pouvez aller dans votre espace personnel et retirer une plante de votre profil en cliquant sur "Supprimer".</p>
+            <p>Lorsque vous trouvez une plante qui vous intéresse, vous pouvez cliquer sur le bouton "Ajouter à mon
+                profil"
+                sur la page de détail de la plante. La plante sera alors enregistrée dans votre espace personnel.</p>
 
-    Combien de plantes puis-je ajouter à mon profil ? Il n'y a pas de limite au nombre de plantes que vous pouvez ajouter à votre profil.
+            <h3>Puis-je retirer une plante de mon profil ?</h3>
 
-<h2>Gérer mon profil</h2>
+            <p>Oui, vous pouvez aller dans votre espace personnel et retirer une plante de votre profil en cliquant sur
+                "Supprimer".</p>
 
-    <h3>Comment puis-je voir les plantes que j'ai ajoutées ?</h3>
-     
-    <p>Vous pouvez accéder à votre profil en cliquant sur votre avatar ou nom d'utilisateur en haut de la page. Une section "Mes plantes" vous montrera toutes les plantes que vous avez ajoutées.</p>
+            Combien de plantes puis-je ajouter à mon profil ? Il n'y a pas de limite au nombre de plantes que vous
+            pouvez
+            ajouter à votre profil.
 
-    <h3>Puis-je trier ou filtrer les plantes dans mon profil ?</h3>
-    
-    <p>Oui, vous pouvez utiliser les mêmes filtres que sur la page de recherche pour trier les plantes dans votre profil.</p>
+            <h2>Gérer mon profil</h2>
 
-    <h3>Puis-je partager mon profil de plantes avec d'autres utilisateurs ?</h3> 
-    
-    <p>Cette fonctionnalité sera bientôt disponible. Vous pourrez partager vos plantes favorites avec d'autres utilisateurs via un lien direct.</p>
+            <h3>Comment puis-je voir les plantes que j'ai ajoutées ?</h3>
 
-<h2>Compte utilisateur</h2>
+            <p>Vous pouvez accéder à votre profil en cliquant sur votre avatar ou nom d'utilisateur en haut de la page.
+                Une
+                section "Mes plantes" vous montrera toutes les plantes que vous avez ajoutées.</p>
 
-    <h3>Comment créer un compte sur le site ?</h3> 
+            <h3>Puis-je trier ou filtrer les plantes dans mon profil ?</h3>
 
-    <p>Cliquez sur "S'inscrire" en haut de la page et remplissez le formulaire avec vos informations personnelles.</p>
+            <p>Oui, vous pouvez utiliser les mêmes filtres que sur la page de recherche pour trier les plantes dans
+                votre
+                profil.</p>
 
-    <h3>Que faire si j'oublie mon mot de passe ?</h3> 
+            <h3>Puis-je partager mon profil de plantes avec d'autres utilisateurs ?</h3>
 
-    <p>Cliquez sur "Mot de passe oublié" sur la page de connexion et suivez les instructions pour réinitialiser votre mot de passe.</p>
+            <p>Cette fonctionnalité sera bientôt disponible. Vous pourrez partager vos plantes favorites avec d'autres
+                utilisateurs via un lien direct.</p>
 
-    <h3>Comment supprimer mon compte ?</h3> 
+            <h2>Compte utilisateur</h2>
 
-    <p>Vous pouvez supprimer votre compte dans la section "Paramètres" de votre profil. Attention, cette action est irréversible.</p>
+            <h3>Comment créer un compte sur le site ?</h3>
 
-<h2>Signaler un problème ou une erreur</h2>
+            <p>Cliquez sur "S'inscrire" en haut de la page et remplissez le formulaire avec vos informations
+                personnelles.
+            </p>
 
-    <h3>Puis-je suggérer une nouvelle plante pour le site ?</h3> 
+            <h3>Que faire si j'oublie mon mot de passe ?</h3>
 
-    <p>Oui, nous serions heureux de recevoir vos suggestions ! Vous pouvez nous contacter via le formulaire de contact en bas de page.</p>
+            <p>Cliquez sur "Mot de passe oublié" sur la page de connexion et suivez les instructions pour réinitialiser
+                votre mot de passe.</p>
 
-    <h3>Comment signaler un problème ou une erreur sur une fiche plante ?</h3> 
+            <h3>Comment supprimer mon compte ?</h3>
 
-    <p>Utilisez le bouton "Signaler une erreur" sur la page de détail de la plante pour nous faire part de toute inexactitude.
-</p>
+            <p>Vous pouvez supprimer votre compte dans la section "Paramètres" de votre profil. Attention, cette action
+                est
+                irréversible.</p>
+
+            <h2>Signaler un problème ou une erreur</h2>
+
+            <h3>Puis-je suggérer une nouvelle plante pour le site ?</h3>
+
+            <p>Oui, nous serions heureux de recevoir vos suggestions ! Vous pouvez nous contacter via le formulaire de
+                contact en bas de page.</p>
+
+            <h3>Comment signaler un problème ou une erreur sur une fiche plante ?</h3>
+
+            <p>Utilisez le bouton "Signaler une erreur" sur la page de détail de la plante pour nous faire part de toute
+                inexactitude.
+            </p>
+        </div>
     </div>
-    </main>
-
+</main>
+</div>
 {% endblock %}

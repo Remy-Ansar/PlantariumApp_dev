@@ -1,12 +1,50 @@
 footer {
     height: auto;
-    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    width: auto;
     background: $glassmorphism;
-  
+    
     a {
         color: $dark-font;
     }
+    h1 {
+        font-size: 2em;
+    }
+    h2{
+        font-size: 1.5em;
+    }
+
 }
+
+.footerBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.footerUnitContainer{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 0.8em;
+    overflow-x: auto;
+
+}
+.footerContainer {
+    height: auto;
+    p{
+        text-align: center;
+        padding: 1em 2em 1em 2em;
+        color: $dark-font;
+    }
+    a {
+        color: blue;
+    }
+    }
+
 
 .footerUnit {
     padding: 1em;
@@ -14,33 +52,34 @@ footer {
 
 .footerUnit p {
     text-align: center;
+    padding: 1em 2em 1em 2em;
 }
 
 .creditList li {
     margin-bottom: 1em;
 }
 
-.footerContainer {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 0.8em;
-    overflow-x: auto;
+.footerUnitContact {
+    padding: 1em;
+    margin-bottom: 11em;
 }
 
+
 .footerLogo {
-    width: 100px;
-    padding-top:10px ;
-    padding-left: 10px;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
     height: auto;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    flex-direction: column;
+    padding: 1em;
     img {
+        margin-right: 2em;
         object-fit: cover;
-        width: auto;
+        width: 500px;
     height: auto;
     }
+}
+.footerContainerCopyright {
+    height: 60vh;
 }

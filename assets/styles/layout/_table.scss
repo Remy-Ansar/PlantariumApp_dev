@@ -125,12 +125,18 @@
 
   tbody tr {
     text-align: center;
+    height: 10em;
   }
 
+
   td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     letter-spacing: 1px;
     text-align: center;
     font-size: 1.2em;
+    height: 10em;
   }
 
   ul {
