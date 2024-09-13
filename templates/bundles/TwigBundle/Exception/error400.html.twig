@@ -3,6 +3,7 @@
 {% block title %}Page non trouvée{% endblock %}
 
 {% block body %}
+<body style="background-image:url('{{ asset('img/background/ConnexionBackground.png') }}')">
 <h2>Aie la page demandée n'a pas été trouvée !</h2>
 <main>
    <ul>
@@ -10,5 +11,7 @@
     <li>Le code est : {{status_code}}</li>
    </ul>
 </main>
+
+</body>
 {% endblock %}
 
