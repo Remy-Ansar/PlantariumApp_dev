@@ -210,6 +210,9 @@
     border-bottom: 1px solid #ddd;
    
   }
+  th:nth-child(5){
+    width: 12em;
+  }
   th:nth-child(6){
     width: 12em;
   }
@@ -239,6 +242,7 @@
   
   td {
     font-size: 1.2em;
+    line-height: 1.2em;
   }
   
   td p.tagFont {

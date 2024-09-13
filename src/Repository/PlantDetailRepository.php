@@ -42,9 +42,9 @@ class PlantDetailRepository extends ServiceEntityRepository
         }
     
         if (!empty($filters['families'])) {
-            $qb->join('p.family', 'f') // Joindre l'entité Families
-                ->andWhere('f.id = :family')
-                ->setParameter('family', (int)$filters['families']);
+            $qb->join('p.families', 'f') // Joindre l'entité Families
+                ->andWhere('f.id = :families')
+                ->setParameter('families', (int)$filters['families']);
         }
     
         if (!empty($filters['colors'])) {
