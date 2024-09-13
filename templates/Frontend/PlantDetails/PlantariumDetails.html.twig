@@ -20,16 +20,7 @@ Détail de la plante
     <main>
         <div class="plantCard">
             <div class="cardText">
-                <div class="addButton">
-                    <form action="{{ path('users.plantarium.addPlant') }}" method="post">
-                        <input type="hidden" name="plant_id" value="{{ plant.id }}">
-
-                        <label for="plant_id" class="categFont">Ajouter cette plante à ma collection</label>
-                        <button type="submit" class="addPlant">
-                            <img src="{{ asset('images/components/plus.png') }}" alt="Bouton d'ajout plus">
-                        </button>
-                    </form>
-                </div>
+                
 
                 <section>
                     <div class="plantHeader">

@@ -19,8 +19,7 @@ Détail de la plante
     </aside>
     <main>
         <div class="plantCard">
-            <div class="cardText">
-                <div class="delButton">
+        <div class="delButton">
                     <form action="{{path('userPlants.details.delete', {name: plant.Name, id: plantdetail.id}) }}"
                         method="POST"
                         onsubmit="return confirm('Êtes-vous certain de vouloir supprimer cette plante? Cette action est irréversible')"
@@ -32,6 +31,8 @@ Détail de la plante
                         </button>
                     </form>
                 </div>
+            <div class="cardText">
+                
 
                 <section>
                     <div class="plantHeader">
@@ -53,7 +54,7 @@ Détail de la plante
                         <div class="categUnit">
                             <div class="categClass">
                                 {% if plantdetail.HealthStatus %}
-                                <p class="categComponent">{{ plantdetail.HealthStatus.Name }}</p>
+                                <p class="categComponentalt">{{ plantdetail.HealthStatus.Name }}</p>
 
                                 {% else %}
                                 <p>Aucun statut de santé précisé.</p>
@@ -68,7 +69,7 @@ Détail de la plante
                                 {% if plantdetail.diseases|length > 0 %}
                                 {% if plantdetail.HealthStatus.Name == "Malade" %}
                                 {% for disease in plantdetail.diseases %}
-                                <p class="categComponent">{{ disease.Name }}</p>
+                                <p class="categComponentalt">{{ disease.Name }}</p>
                                 {% endfor %}
                                 {% else %}
                                 <p>Aucune maladie précisée.</p>
@@ -95,7 +96,6 @@ Détail de la plante
 
                         <span class="categFont">Journal: </span>
                         <div class="categUnit">
-
                             <div class="categClass">
                                 {% if plantdetail.Journal %}
                                 <div class="diaryClass">{{ plantdetail.Journal|nl2br }}</div>

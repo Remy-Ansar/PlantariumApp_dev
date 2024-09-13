@@ -270,4 +270,10 @@ select {
       margin-bottom: 2em;
     }
   }
+  #diseaseForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    margin-bottom: 20em;
+  }
 }

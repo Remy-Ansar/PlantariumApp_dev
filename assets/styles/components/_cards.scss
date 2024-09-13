@@ -389,6 +389,17 @@
             margin-right: 1em;
             font-size: 1.2em;
         }
+        .categComponentalt {
+            padding: 5px 8px 5px 8px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            background: $obscure-green;
+            color: $white-font;
+            border-radius: 6px;
+            margin-right: 1em;
+            font-size: 1.2em;
+        }
     }
 
     .categDescription {

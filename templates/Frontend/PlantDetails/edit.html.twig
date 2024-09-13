@@ -18,13 +18,12 @@ Modification de votre plante
     <main>
         <div class="plantCard">
             <div class="cardText">
-
+                <!-- Section contenant des informations sur la plante -->
                 <section>
                     <div class="plantHeader">
                         <h2>Plante : {{ plant.Name }}</h2>
                         <h4>Espèce : {{ plant.species.Name }}</h4>
                     </div>
-
                     <div class="plantInfos">
                         <div class="categInfos">
                             <span class="categFont">Description:</span>
@@ -32,14 +31,11 @@ Modification de votre plante
                         </div>
                 </section>
 
+                <!-- Autre section pour le journal -->
                 <section>
                     <div class="categFields">
-
-                       
-
                         <span class="categFont">Journal: </span>
                         <div class="categUnit">
-
                             <div class="categClass">
                                 {% if plantdetail.Journal %}
                                 <div class="diaryClass">{{ plantdetail.Journal|nl2br }}</div>
@@ -48,55 +44,29 @@ Modification de votre plante
                                 {% endif %}
                             </div>
                         </div>
-
-
                 </section>
-                 {{form_start(form)}}
 
-                        <div class="categFont">
-                            {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
-                        </div>
-
-                        <div id="diseases-container" class="hidden">
-                            {{ form_row(form.diseases) }}
-                        </div>
-
-                        <div class="categFont">
-                            {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary', 'class': 'textareaClass'}}) }}
-                        </div>
-                         <button type="submit" class="modifyButton">Confirmer les modifications</button>
-            {{ form_end(form) }}
+                <!-- La balise de fermeture de plantCard est ici -->
             </div>
-            
-
-           
-
         </div>
-    </main>
-</div>
-{% endblock %}
 
-{% block javascript %}
-{# <script>
-    src = "{{ asset('/assets/javascript/diseasesField.js') }}"
-</script> #}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Prevent form submission when fields change
-        const form = document.querySelector('form');
-        const modifyButton = document.querySelector('.modifyButton');
-        // Add event listeners to all select elements
-        const selectElements = form.querySelectorAll('select');
-        selectElements.forEach(function(select) {
-            select.addEventListener('change', function(event) {
-                event.stopImmediatePropagation(); // Prevent default form submission on change
-            });
-        });
-        // Allow form submission only when the modify button is clicked
-        modifyButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default action
-            form.submit(); // Manually submit the form
-        });
-    });
-</script>
+        <!-- Ensuite, le formulaire est en dehors du div plantCard -->
+        <section id="diseaseForm">
+            {{ form_start(form) }}
+            <div class="categFont">
+                {{ form_row(form.HealthStatus, {'attr': {'id': 'health-status-select'}}) }}
+            </div>
+            <div id="diseases-container" class="hidden">
+                {{ form_row(form.diseases) }}
+            </div>
+            <div class="categFont">
+                {{ form_row(form.newJournalEntry, {'attr': {'id': 'diary', 'class': 'textareaClass'}}) }}
+            </div>
+            <button type="submit" class="modifyButton">Confirmer les modifications</button>
+            {{ form_end(form) }}
+        </section>
+
+
+</main>
+</div>
 {% endblock %}

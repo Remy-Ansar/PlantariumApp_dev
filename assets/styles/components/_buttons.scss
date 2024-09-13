@@ -251,8 +251,8 @@
   .removePlant {
     background: transparent;
     border: none;
-    width: 3em;
-    height: 3em;
+    width: 2em;
+    height: 2em;
     cursor: pointer;
     transition: transform 0.3s ease
   }
@@ -268,7 +268,10 @@
     box-sizing: border-box;
     cursor: pointer;
     background: transparent;
-    height: 50px;
+    height: 10px;
+    img {
+      width: 2em;
+    }
 
     form {
       width: 100%;

@@ -85,7 +85,7 @@
   flex-direction: row;
   gap: 2em;
   overflow-x: auto;
-  width: 100vw;
+  width: 100%;
 }
 
 .table-container {
@@ -96,7 +96,7 @@
 
   table {
     table-layout: fixed;
-    width: 100vw;
+    width: 100%;
     border-collapse: collapse;
     border-top: 3px solid $dark-font;
     overflow-x: auto;
@@ -179,7 +179,7 @@
     height: 100%;
   }
   .table-containerMain {
-    width: 100vw;
+    width: 100%;
     overflow-x: auto;
     margin: 20px 0;
     tbody {
@@ -238,7 +238,7 @@
   }
   
   td {
-    font-size: 0.9em;
+    font-size: 1.2em;
   }
   
   td p.tagFont {
@@ -297,7 +297,7 @@
     align-items: center;
     gap: 2em;
     overflow-x: auto;
-    width: 100vw;
+    width: 100%;
     height: 10em;
   }
 
@@ -305,13 +305,15 @@
   
   .table-container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
     overflow-x: auto;
     height: 100%;
     background: $glassmorphism;
    
     table {
       table-layout: fixed;
-      width: 100vw;
+      width:100%;
       border-collapse: collapse;
       border-top: 3px solid $dark-font;
       overflow-x: auto;
