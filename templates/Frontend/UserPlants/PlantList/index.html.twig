@@ -44,7 +44,7 @@ Administration des plantes
 
            <button class="filterButton" type="button">
                 <img src="{{ asset('img/components/entonnoir.png')}}" width="25px" height="25px"
-                    alt="Icône d'entonnoir">Tri avancés
+                    alt="Icône d'entonnoir">Filtres avancés
             </button>
 
             <div class="filters hidden">
@@ -99,11 +99,10 @@ Administration des plantes
                 </div>
 
                 <div class="buttonAlign">
-                    <button type="submit" class="modifyButton">Rechercher</button>
-                    <button class="resetButton"><a href="{{ path('users.index') }}">Réinitialiser</a>
-                    </button>
+                        <button type="submit" class="modifyButton">Rechercher</button>
+                        <button type="reset" class="resetButton">Tout afficher</button>
+                    </div>
                 </div>
-            </div>
 
             </form>
         </div>
@@ -126,4 +125,22 @@ Administration des plantes
 <div class="navigation">
         <span>Page(s){{ knp_pagination_render(pagination)  }}</span>
     </div>
+{% endblock %}
+{% block javascript %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const filterButton = document.querySelector('.filterButton');
+    const filters = document.querySelector('.filters');
+  
+    filterButton.addEventListener('click', function () {
+      if (filters.classList.contains('visible')) {
+        filters.classList.remove('visible');
+        filterButton.lastChild.textContent = 'Filtres avancés'; // Texte du bouton lorsqu'il est fermé
+      } else {
+        filters.classList.add('visible');
+        filterButton.lastChild.textContent = 'Masquer les filtres'; // Texte du bouton lorsqu'il est ouvert
+      }
+    });
+  });
+</script>
 {% endblock %}

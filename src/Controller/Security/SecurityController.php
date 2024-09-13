@@ -25,7 +25,7 @@ class SecurityController extends AbstractController
     }
 
 
-    #[Route('/home', name: 'app.home', methods: ['GET'])]
+    #[Route('/', name: 'app.home', methods: ['GET'])]
     public function home(): Response
     {
         return $this->render('Security/home.html.twig');

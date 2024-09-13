@@ -1,3 +1,4 @@
+@media (min-width: 0px) {
 footer {
     height: auto;
     display: flex;
@@ -82,4 +83,20 @@ footer {
 }
 .footerContainerCopyright {
     height: 60vh;
+}
+}
+@media (min-width: 768px) { 
+    footer {
+        width: auto;
+    }
+    .footerContainerCopyright {
+        height: 68vh;
+    }
+    .footerUnitContact {
+        padding: 1em;
+        margin-bottom: 25em;
+    }
+    .creditList {
+        margin-bottom: 8em;
+    }
 }

@@ -93,6 +93,7 @@
   #toggle-header-button:hover {
     background-color: transparent;
     border: 3px solid $white-font;
+    z-index: 1999;
   }
 
   header {

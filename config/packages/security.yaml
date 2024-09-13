@@ -24,7 +24,7 @@ security:
                 default_target_path: users.index # This will redirect to the home route after successful login
             logout:
                 path: /logout
-                target: /home
+                target: /
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

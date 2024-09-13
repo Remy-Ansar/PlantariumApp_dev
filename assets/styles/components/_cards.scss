@@ -73,8 +73,9 @@
     // User container 
     .UserPlantContainer {
         margin-top: 1em;
-        align-items: center;
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: row;
         width: 100vw;
         overflow-x: auto;
@@ -227,8 +228,8 @@
     }
 
     .plantPic {
-        width: 100vw;
-
+      width: auto;
+      height: auto;
         margin-top: 2em;
 
 
@@ -415,35 +416,28 @@
 
 @media (min-width: 768px) {
 
-    //Container plantarium
+    /* Container plantarium */
     .plantContainer {
         margin-top: 1em;
         display: flex;
-        flex-direction: row;
         justify-content: center;
         height: 100vh;
         overflow-y: auto;
         background: transparent;
         box-sizing: border-box;
- 
     }
-
 
     .plantContainer img {
         max-width: 100%;
-        /* S'assurer que les images ne débordent pas */
-        height: auto;
+        height: auto; /* Prévenir les débordements */
     }
 
     /* Conteneur des cartes principales */
     .mainCardsUser {
         margin-top: 1em;
         display: flex;
-        flex-direction: row;
         justify-content: center;
-        height: auto;
         max-height: 100vh;
-        /* Limite la hauteur totale pour éviter les débordements */
         overflow-y: auto;
         border-radius: 16px;
     }
@@ -474,110 +468,16 @@
         height: 25px;
     }
 
-    /* Stylisation des cartes (User et Plantarium) */
-    .cardUser {
-        width: 20em;
-        height: 20em;
-        position: relative;
-        overflow: hidden;
-        border-radius: 24px;
-        border: 10px solid $white-font;
-    }
-
-    /*--------------------------------------------------------------------------------------------*/
-
-    // User container 
-    .UserPlantContainer {
-        margin-top: 1em;
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        width: 100vw;
-        overflow-x: auto;
-        background: transparent;
-        box-sizing: border-box;
-    }
-
-    .plantContainer img {
-        max-height: 100%;
-        /* S'assurer que les images ne débordent pas */
-        min-width: 100%;
-    }
-
-    /* Conteneur des cartes principales */
-    .alternativMainCardsUser {
-        // margin-top: 1em;
-        // display: flex;
-        // flex-direction: row;
-        // align-items: center;
-        // width: auto;
-        // max-width: 100vw;
-        // /* Limite la hauteur totale pour éviter les débordements */
-        // border-radius: 16px;
-        // overflow-x: auto;
-
-        // Les cartes ne se replient pas sur plusieurs lignes
-    }
-
-    /* Grille des cartes Plantarium */
-    .alternativeMainCardsPlantarium {
-        display: flex;
-        flex-direction: row;
-        width: auto;
-        overflow-x: auto;
-        gap: 1.5em;
-    }
-
-
+    /* Stylisation des cartes */
+    .cardUser,
     .cardPlantarium {
+        width: 18em;
+        height: 18em;
         position: relative;
-        width: 20em;
-        height: 20em;
         overflow: hidden;
         border-radius: 24px;
         border: 10px solid $white-font;
-
-        .addButtonCard {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            /* Aligne verticalement le label et le bouton */
-
-            .addLabel {
-                display: none;
-                /* Cacher le label par défaut */
-                margin-right: 5px;
-                font-size: 0.8em;
-                color: $dark-font;
-            }
-
-            .addPlantCard {
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                transition: transform 0.3s ease;
-
-                img {
-                    width: 20px;
-                    height: 20px;
-                    background: $dark-font;
-                }
-
-                &:hover {
-                    transform: scale(1.5);
-
-                    .addLabel {
-                        /* Afficher le label au survol du bouton */
-                        display: inline-block;
-                    }
-                }
-            }
-        }
     }
-
 
     .cardUser .img-container,
     .cardPlantarium .img-container {
@@ -585,7 +485,6 @@
         width: 100%;
         height: 100%;
         border-radius: 24px;
-
     }
 
     .cardUser img,
@@ -594,11 +493,9 @@
         height: 100%;
         object-fit: cover;
         border-radius: 16px;
-
     }
 
-    .cardUser .gradient-overlay,
-    .cardPlantarium .gradient-overlay {
+    .gradient-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -617,240 +514,126 @@
         font-size: 2em;
         font-style: italic;
         position: absolute;
-        width: 100%;
         bottom: 0;
+        width: 100%;
         z-index: 2;
     }
 
-    .textareaClass {
-        width: 100%;
-        margin-top: 1em;
-        padding: 0.5em;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-
-
-    .fontDistinction {
-        font-size: 1.1em;
-        font-style: italic;
-    }
-
-    .diaryClass {
-        width: 100%;
-        text-align: left;
-        border-radius: 10px 12px;
-        padding: 0.5em 1em;
-        color: $dark-font;
-        background: $white-font;
-        // margin-right: 5em;
-    }
-
-
-    .return {
+    /* Stylisation des boutons d'ajout */
+    .addButtonCard {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
         display: flex;
         align-items: center;
+    }
+
+    .addLabel {
+        display: none;
+        margin-right: 5px;
+        font-size: 0.8em;
+        color: $dark-font;
+    }
+
+    .addPlantCard {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease;
 
         img {
-            background: transparent;
-            transform: translate(326px, 0);
-            width: 2em;
-            height: 2em;
-            z-index: 20;
+            width: 20px;
+            height: 20px;
+            background: $dark-font;
         }
 
+        &:hover {
+            transform: scale(1.5);
+        }
+
+        &:hover .addLabel {
+            display: inline-block;
+        }
     }
-    .detailContainer{
+
+    /* Section détails */
+    .detailContainer {
         display: flex;
         flex-direction: row;
         box-sizing: border-box;
         background: $combined-background;
-        height: auto;
-        aside{
-            .plantPic{
-                margin: 0;
-            }
+    }
+
+    .detailContainer aside {
+        width: 50%;
+        img {
+            width: 100%;
             height: 100%;
-            width: 50%;
-         
-         
-            img{
-                width: 100%;
-                height: 100%;
+        }
+    }
+
+    .detailContainer main {
+        width: 50%;
+        background: $alternative-combined-background;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .plantCard form {
+            height: 15px;
+            display: flex;
+            justify-content: flex-start;
+            label {
+                font-size: 0.9em;
             }
         }
-        main{
-            width: 50%;
-            height: 100%;
-            background: $alternative-combined-background;
+    }
 
-            .plantCard {
-       
-                display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                align-items: center;
-                height: 100%;
-                form{
-                    height: 15px;
-                    .categFont{
-                        display: flex;
-                        justify-content: flex-start;
-                    }
-                    label {
-            
-                        font-size: 0.9em;
-                }
-            }
-          
-            }
-            
-            section {
-                h4 {
-                    margin-bottom: 2em;
-                }
-            }
-        
-            .cardText {
-                padding: 0.5em;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                font-size: 1.2em;
-                .plantHeader {
-                    h2 {
-                        font-size: 4em;
-                    }
-                }
-                .plantInfos {
-                    display: flex;
-                    padding: 0.5em;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    margin-bottom: 2em;
-                }
-        
-                .categFields {
-                    padding: 0.5em;
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    grid-template-rows: repeat(1, 1fr);
-                    gap: 1.5em;
-        
-                    form {
-                        display: flex;
-                        gap: 0 1em;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: flex-start;
-        
-                        label {
-                            font-weight: bold;
-                            padding-bottom: 1em;
-                        }
-        
-                        select {
-                            margin-top: 0.5em;
-                            margin-bottom: 0.5em;
-                            display: block;
-                            color: $dark-font;
-        
-                        }
-        
-                        .categFont {
-                            font-weight: bold;
-                            padding-bottom: 1em;
-                        }
-        
-                        .categUnit {
-                            display: flex;
-                            flex-direction: row;
-        
-                            .categClass {
-                                padding-bottom: 1em;
-                            }
-        
-        
-                        }
-        
-                    }
-        
-                    .SelectUnit {
-                        display: flex;
-                        flex-direction: column;
-                        padding-bottom: 1em;
-                    }
-                }
-        
-                .categClass {
-                    display: flex;
-                    flex-direction: row;
-                }
-        
-                span {
-                    margin-right: 2em;
-                }
-        
-                .categInfos {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-        
-                    .categUnit {
-                        display: flex;
-                        flex-direction: row;
-                        padding-bottom: 1em;
-        
-        
-                    }
-                }
-                .categFont {
-                    font-weight: bold;
-                }
-        
-                .categUnit:last-child {
-                    border-bottom: none;
-                }
-        
-                .categComponent {
-                    padding: 5px 8px 5px 8px;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    background: $pine-green;
-                    color: $white-font;
-                    border-radius: 6px;
-                    margin-right: 1em;
-                    font-size: 1.2em;
-                }
-            }
-        
-            .categDescription {
-                font-weight: 500;
-                font-size: 1.1em;
-            }
-        
-            .categUnit {
-                span {
-                    text-align: center;
-                }
-        
-            }
-        
-            .categFont {
-                font-weight: bold;
-                display: flex;
-                flex-direction: row;
-            }
-        
-            .resetBackground {
-                background: transparent;
-            }
-        }
-      }
+    /* Stylisation des champs de formulaire */
+    .cardText {
+        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 1.2em;
+    }
 
-    
+    .plantInfos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 2em;
+    }
+
+    .categFields {
+        display: grid;
+        gap: 1.5em;
+    }
+
+    .categFont {
+        font-weight: bold;
+    }
+
+    .categComponent {
+        padding: 5px 8px;
+        display: flex;
+        justify-content: center;
+        background: $pine-green;
+        color: $white-font;
+        border-radius: 6px;
+        font-size: 1.2em;
+    }
+
+    .categDescription {
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    .resetBackground {
+        background: transparent;
+    }
 }

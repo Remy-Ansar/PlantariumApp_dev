@@ -17,9 +17,7 @@ Administration des plantes
                 <form method="get" action="{{ path('editor.plants.index') }}">
                     <div class="searchBar">
                         <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
-                        <button type="submit" class="searchSubmit">
-                            <img src="{{ asset('img/components/loupe.png') }}" alt="Loupe grossissante">
-                        </button>
+                   
                     </div>
 
             </div>
@@ -27,7 +25,7 @@ Administration des plantes
 
                 <button class="filterButton" type="button">
                     <img src="{{ asset('img/components/entonnoir.png')}}" width="25px" height="25px"
-                        alt="Icône d'entonnoir">Tri avancés
+                        alt="Icône d'entonnoir">Filtres avancés
                 </button>
 
                 <div class="filters hidden">
@@ -83,8 +81,7 @@ Administration des plantes
 
                     <div class="buttonAlign">
                         <button type="submit" class="modifyButton">Rechercher</button>
-                        <button class="resetButton"><a href="{{ path('users.index') }}">Réinitialiser</a>
-                        </button>
+                        <button type="reset" class="resetButton">Tout afficher</button>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
  
    <header id="main-header" class="header-hidden">
     <div class="headerContainer">
@@ -9,7 +9,7 @@
         {% if app.user.UserInfos.imageName %}
         <ul>
             <li>
-                <img id="userPic" src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="profilePic"
+                <img id="userPic" src="{{ vich_uploader_asset(app.user.UserInfos, 'image') }}" class="alternativProfilePic"
                     alt="{{ app.user.UserInfos.getFullName() }}" loading="lazy">
             </li>
 
@@ -25,7 +25,7 @@
     </div>
  {% if is_granted('ROLE_ADMIN') %}
 <div class="dropdown">
-    <button type="button" class="dropdown-toggle"><img id="adminButton" src="{{ asset('img/components/feuille.png')}}" width="25px" height="25px" alt="Bouton feuille"></button>
+    <button type="button" class="dropdown-toggle">Administration</button>
 
     <div class="adminAccess">
            
@@ -39,7 +39,7 @@
             </div>
         </div>
         {% endif %}
-
+    
         {% if is_granted('ROLE_EDITOR') %}
         <div class="dropdown">
             <button type="button" class="dropdown-toggle">Administration</button>

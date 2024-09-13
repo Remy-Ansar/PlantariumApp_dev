@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     filterButton.addEventListener('click', function () {
       if (filters.classList.contains('visible')) {
         filters.classList.remove('visible');
-        filterButton.lastChild.textContent = 'Tri avancés :'; // Texte du bouton lorsqu'il est fermé
+        filterButton.lastChild.textContent = 'Filtres avancés'; // Texte du bouton lorsqu'il est fermé
       } else {
         filters.classList.add('visible');
         filterButton.lastChild.textContent = 'Masquer les filtres'; // Texte du bouton lorsqu'il est ouvert

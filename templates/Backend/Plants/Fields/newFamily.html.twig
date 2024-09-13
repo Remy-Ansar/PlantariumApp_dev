@@ -10,7 +10,7 @@ Ajouter une famille
 <main>
 	<h1>Ajouter une nouvelle famille</h1>
 
-	<div class="mainContainer">
+	<div class="mainEmptyContainer">
 		<section>
 			{% include 'Backend/Plants/Fields/_form.html.twig' with {button_label: 'Créer'} %}
 			{% for message in app.flashes('success') %}

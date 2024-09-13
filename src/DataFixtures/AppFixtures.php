@@ -60,30 +60,30 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->persist($userInfos);
 
-        // Fixture pour les utilisateurs
-        for ($i = 0; $i < 10; $i++) {
-            $user = (new Users)
-                ->setEmail($this->faker->unique()->email())
-                ->setPassword(
-                    $this->hasher->hashPassword(new Users(), 'Test1234!')
-                )
-                ->setRoles(
-                    $this->faker->randomElements(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_EDITOR'], 1)
-                )
-                ->setCGU(true);
+        // // Fixture pour les utilisateurs
+        // for ($i = 0; $i < 10; $i++) {
+        //     $user = (new Users)
+        //         ->setEmail($this->faker->unique()->email())
+        //         ->setPassword(
+        //             $this->hasher->hashPassword(new Users(), 'Test1234!')
+        //         )
+        //         ->setRoles(
+        //             $this->faker->randomElements(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_EDITOR'], 1)
+        //         )
+        //         ->setCGU(true);
            
-            $manager->persist($user);
+        //     $manager->persist($user);
 
-            $userInfos = (new UserInfos)
-                ->setFirstName($this->faker->firstName())
-                ->setLastName($this->faker->lastName())
-                ->setLevel($this->faker->randomElement(['Débutant', 'Intermédiaire', 'Expert']));
+        //     $userInfos = (new UserInfos)
+        //         ->setFirstName($this->faker->firstName())
+        //         ->setLastName($this->faker->lastName())
+        //         ->setLevel($this->faker->randomElement(['Débutant', 'Intermédiaire', 'Expert']));
 
-            $user->setUserInfos($userInfos);
-            $userInfos->setUsers($user);
+        //     $user->setUserInfos($userInfos);
+        //     $userInfos->setUsers($user);
 
-            $manager->persist($userInfos);
-        }
+        //     $manager->persist($userInfos);
+        // }
 
   // Fixtures pour Families
   $families = [];

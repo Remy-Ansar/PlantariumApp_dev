@@ -11,48 +11,41 @@ Home
 <body style="background-image:url('{{ asset('img/background/ConnexionBackground.png') }}')">
 
 	<main>
-	<div class="fadeIn">
-		<h1 id="homeTitle"><img src="{{asset('img/components/PlantariumApp.png')}}" alt="Logo plantariumApp"></h1>
-		
-		<section class="homemessage">
-			<p>Bienvenue sur PlantariumApp,<br>
-		<br>
-				Nous souhaitons proposer au jardiniers un site leurs permettant de gérer leurs plantes avec plus de
-				facilité.
-				Cela, quelque soit leurs expérience.</p>
-<br>
-			<p>Ici, vous pourrez ajouter vos plantes à votre profil, tenir un
-				journal sur leurs états,
-				ainsi que vérifier et être informé de leurs arrosage.</p>
-			</p>
-			<br>
-			<p>PlantariumApp est encore en cours de développement. D'autres fonctionnalités viendront
-				s'ajouter au fur et à mesure.
-			</p>
-			<p>
-				N'hésitez pas à partager votre expérience et à nous faire
-				part de vos remarques.
-			</p>
-		</section>
+		<div class="fadeIn">
+			<h1 id="homeTitle"><img src="{{asset('img/components/PlantariumApp.png')}}" alt="Logo plantariumApp"></h1>
 
-		<section class="logReg">
-			<ul>
-				<li>
-					<a href="{{ path('app.inscription') }}" class="link">
-						<button class="modifyButton">S'inscrire</button>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('app.connexion') }}" class="link">
-						<button class="modifyButton">Se connecter</button>
-					</a>
-				</li>
-			</ul>
-		</section>
+			<section class="homemessage">
+				<p>Bienvenue,</p>
+				<br>
+				<p>PlantariumApp est une plateforme conçue pour faciliter la gestion et le suivi des plantes.
+					<br>
+					Que vous soyez amateur de jardinage, botaniste, ou propriétaire d'une pépinière, cette application
+					vous
+					permet de cataloguer vos plantes,
+					<br>
+					de suivre leur croissance, et de diagnostiquer leurs maladies à
+					l'aide de diverses fonctionnalités interactives.</p>
+				
+				
+			</section>
+<p>Commencez par vous inscrire ou connectez-vous pour utiliser PlantariumApp.</p>
+			<section class="logReg">
+			
+				<ul>
+					<li>
+						<a href="{{ path('app.inscription') }}" class="link">
+							<button class="modifyButton">S'inscrire</button>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('app.connexion') }}" class="link">
+							<button class="modifyButton">Se connecter</button>
+						</a>
+					</li>
+				</ul>
+			</section>
 		</div>
 	</main>
-
-		
 
 </body>
 

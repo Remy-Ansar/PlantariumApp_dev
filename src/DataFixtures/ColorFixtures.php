@@ -19,7 +19,9 @@ class ColorFixtures extends Fixture
         'Noir' => 'black',
         'Orange' => 'orange',
         'Violet' => 'purple',
-        'Rose' => 'pink'
+        'Rose' => 'pink',
+        'Mauve' => 'mauve',
+        'Bordeau' => 'Bordeau',
     ];
 
     //fonction pour ajouter les fixtures liées à la relation MtM entre Colors et Plants.

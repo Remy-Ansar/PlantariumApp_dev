@@ -30,8 +30,7 @@ select {
     flex-direction: column;
     align-items: center;
     padding: 1em 2em 1em 2em;
-
-    background: $combined-background;
+    // background: $combined-background;
     width: 80%;
     border-radius: 12px;
 
@@ -169,7 +168,7 @@ select {
       flex-direction: column;
       align-items: center;
       padding: 1em 2em 1em 2em;
-      background: $combined-background;
+      // background: $combined-background;
       width: 80%;
       border-radius: 12px;
       font-size: 0.8em;

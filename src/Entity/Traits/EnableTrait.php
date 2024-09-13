@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait EnableTrait
 {
     #[ORM\Column()]
-    private ?bool $enable = null;
+    private ?bool $enable = true;
 
     /**
      * Get the value of enable

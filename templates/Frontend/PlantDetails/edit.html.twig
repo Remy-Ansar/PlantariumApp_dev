@@ -49,51 +49,6 @@ Modification de votre plante
                             </div>
                         </div>
 
-                        <span class="categFont">Catégorie(s)</span>
-                        <div class="categUnit">
-                            <div class="categClass">
-                                {% for category in plant.categories %}
-                                <p class="categComponent">{{ category.Name }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <span class="categFont">Saisonalité</span>
-                        <div class="categUnit">
-                            <div class="categClass">
-                                {% for season in plant.seasons %}
-                                <p class="categComponent">{{ season.Name }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <span class="categFont">Arrosage</span>
-                        <div class="categUnit">
-                            <div class="categClass">
-
-                                {% if plant.watering %}
-                                <p class="categComponent">{{ plant.watering.quantity }} ml</p>
-                                {% else %}
-                                <p class="categComponent">Aucun arrosage défini</p>
-                                {% endif %}
-
-                                {% if plant.watering %}
-                                <p class="categComponent">1 fois tous les {{ plant.watering.frequency }} jours</p>
-                                {% else %}
-                                <p class="categComponent">Aucun arrosage défini</p>
-                                {% endif %}
-                            </div>
-                        </div>
-
-                        <span class="categFont">Couleurs</span>
-                        <div class="categUnit">
-                            <div class="categClass">
-                                {% for color in plant.colors %}
-                                <p class="categComponent">{{ color.Name }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
 
                 </section>
                  {{form_start(form)}}

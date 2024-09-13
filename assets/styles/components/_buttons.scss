@@ -234,7 +234,14 @@
 
 @media (min-width: 768px) {
 
-
+  .addPlant {
+    background: transparent;
+    border: none;
+    width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s ease
+  }
   .addPlant:hover {
     transform: scale(1.2);
   }
@@ -417,6 +424,8 @@
   .toggle-plant {
     border: 0 transparent;
     background: transparent;
+    width: 100px;
+    height: 100px;
   }
 
 }
