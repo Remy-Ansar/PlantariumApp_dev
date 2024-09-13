@@ -25,16 +25,14 @@
     </div>
  {% if is_granted('ROLE_ADMIN') %}
 <div class="dropdown">
-    <button type="button" class="dropdown-toggle">Administration</button>
+    <button type="button" class="dropdown-toggle"><img src="{{asset('img/components/feuille.png')}}" alt="Icone d'admin" width="50px" height="50px"></button>
 
     <div class="adminAccess">
-           
-        
             {# <button type="button" class="dropdown-toggle">Administration</button> #}
             <div class="dropdown-menu">
                 <ul>
-                    <li><a href="{{ path('admin.users.index') }}">Administration des utilisateurs</a></li>
-                    <li id="separator"><a href="{{ path('editor.plants.index') }}">Administration des plantes</a></li>
+                    <li><a href="{{ path('admin.users.index') }}">Utilisateurs</a></li>
+                    <li id="separator"><a href="{{ path('editor.plants.index') }}">Plantes</a></li>
                 </ul>
             </div>
         </div>
