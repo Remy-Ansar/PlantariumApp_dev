@@ -81,7 +81,7 @@ Administration des plantes
 
                     <div class="buttonAlign">
                         <button type="submit" class="modifyButton">Rechercher</button>
-                        <button type="reset" class="resetButton"><a href="{{ path('users.index') }}">Tout afficher</a></button>
+                        <button type="reset" class="resetButton"><a href="{{ path('editor.plants.index') }}">Tout afficher</a></button>
                     </div>
                 </div>
 
@@ -152,7 +152,7 @@ Administration des plantes
                 <td>
                     <a href="{{ path('editor.plants.showPlant', {name: plant.name}) }}">
                         <img src="{{ vich_uploader_asset(plant, 'image') }}" alt="{{ plant.name }}" loading="lazy"
-                            class="profilePic">
+                            class="plantPicprofile">
                     </a>
                 </td>
                 <td>

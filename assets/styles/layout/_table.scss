@@ -110,6 +110,19 @@
   thead th:nth-child(4) {
     width: 20em;
   }
+  thead th:nth-child(1) {
+    width: 2em;
+  }
+
+  thead th:nth-child(5) {
+    width: 15em;
+  }
+  thead th:nth-child(9) {
+    width: 25em;
+  }
+  thead th:nth-child(10) {
+    width: 6em;
+  }
 
   tbody {
     margin-top: 5em;
@@ -160,7 +173,10 @@
   td a {
     display: flex;
     justify-content: center;
-    width: 10em;
+    width: 20em;
+    img {
+      width: 20em;
+    }
   }
 
   .modifyField{
@@ -179,7 +195,7 @@
     height: 100%;
   }
   .table-containerMain {
-    width: 100%;
+    width: 100vw;
     overflow-x: auto;
     margin: 20px 0;
     tbody {
@@ -203,36 +219,20 @@
     
   }
   
+  
   th, td {
-    width: 5em;
+    width: 20em;
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
    
   }
-  th:nth-child(5){
-    width: 12em;
-  }
-  th:nth-child(6){
-    width: 12em;
-  }
-  th:nth-child(7){
-    width: 8em;
-  }
-  th:nth-child(8){
-    width: 15em;
-  }
-  th:nth-child(9){
-    width: 8em;
-  }
+  
   
   tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternance de couleur */
+    background-color: #918d8d; /* Alternance de couleur */
   }
   
-  // tbody tr:hover {
-  //   background-color: #f1f1f1;
-  // }
   
   th {
     font-size: 1.1em;
@@ -249,7 +249,7 @@
     margin: 0; /* Supprimer les marges autour des tags */
     font-size: 0.85em;
     padding: 5px;
-    background-color: #eee;
+    background-color: $white-font;
     border-radius: 4px;
     display: inline-block;
   }
@@ -261,7 +261,7 @@
   
   .modifyButton, .deleteButton {
     background-color: #31C351;
-    color: #fff;
+    color: $white-font;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -269,9 +269,6 @@
     font-size: 0.85em;
   }
   
-  // .modifyButton:hover, .deleteButton:hover {
-  //   background-color: #279A43; /* Légère variation au survol */
-  // }
   
   td.description {
     max-width: 300px;
@@ -295,100 +292,30 @@
   }
   
   .fieldAdd {
-    margin-left: 10em;
+
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2em;
-    overflow-x: auto;
     width: 100%;
     height: 10em;
+  }
+  thead th:nth-child(4) {
+    width: 20em;
+  }
+  thead th:nth-child(1) {
+    width: 2em;
+  }
+
+  thead th:nth-child(5) {
+    width: 15em;
+  }
+  thead th:nth-child(9) {
+    width: 25em;
+  }
+  thead th:nth-child(10) {
+    width: 6em;
   }
 
   //----------------------------------------------------------------
   
-  .table-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-x: auto;
-    height: 100%;
-    background: $glassmorphism;
-   
-    table {
-      table-layout: fixed;
-      width:100%;
-      border-collapse: collapse;
-      border-top: 3px solid $dark-font;
-      overflow-x: auto;
-      tbody tr:nth-child(even) {
-        background-color: #f9f9f9; /* Alternance de couleur */
-      }
-      tr{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 200px;
-        text-align: center;
-      }
-      form {
-        height: 20px;
-      }
-    }
-    
-    thead {
-      margin-right: 2em;
-      font-size: 1.2em;
-    }
-    thead th:nth-child(4) {
-      width: 20em;
-    }
-  
-    tbody {
-
-      margin-top: 0em;
-    }
-   
-    th,
-    td {
-      padding: 20px;
-      width: 15em;
-    }
-  
-    tbody td {
-      align-items: center;
-      text-align: center;
-      margin: 0;
-    }
-  
-  
-    td {
-      letter-spacing: 1px;
-      text-align: center;
-      font-size: 1.2em;
-      height: 5em;
-    }
-  
-    ul {
-      padding: 5px 8px 5px 8px;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      background: $white-font;
-      color: $pine-green;
-      border: 2px solid #115220;
-      border-radius: 6px;
-      margin-right: 1em;
-      font-size: 1.2em;
-    }
-  
-    td a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 10em;
-      height: auto;
-    }
   
     .modifyField{
       display: flex;
@@ -398,5 +325,11 @@
         padding: 5px 20px 5px 20px;
       }
     }
+
+    thead{
+    
+      th{
+        width: 25em;
+      }
+    }
   }
-}

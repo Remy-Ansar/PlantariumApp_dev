@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour afficher ou masquer le champ des maladies
     function toggleDiseasesField() {
         // Vérifie si l'option "Malade" est sélectionnée
-        if (healthStatusSelect.value === '20') {
+        if (healthStatusSelect.value === '2') {
             diseasesContainer.classList.remove('hidden'); // Affiche le champ
         } else {
             diseasesContainer.classList.add('hidden'); // Masque le champ

@@ -297,7 +297,7 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: repeat(1, 1fr);
-            gap: 2em;
+            gap: 1.8em;
 
             form {
                 display: flex;
@@ -462,189 +462,226 @@
     }
 
     @media (min-width: 768px) {
-        .mainCardsPlantarium {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
 
-    @media (min-width: 1200px) {
-        .mainCardsPlantarium {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    /* Taille des icônes SVG */
-    .size-svg {
-        width: 25px;
-        height: 25px;
-    }
-
-    /* Stylisation des cartes */
-    .cardUser,
-    .cardPlantarium {
-        width: 18em;
-        height: 18em;
-        position: relative;
-        overflow: hidden;
-        border-radius: 24px;
-        border: 10px solid $white-font;
-    }
-
-    .cardUser .img-container,
-    .cardPlantarium .img-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: 24px;
-    }
-
-    .cardUser img,
-    .cardPlantarium img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 16px;
-    }
-
-    .gradient-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
-        border-radius: 16px;
-        z-index: 1;
-    }
-
-    /* Titre des plantes */
-    .plantTitle {
-        color: $white-font;
-        text-align: center;
-        transform: translateY(-10%);
-        font-size: 2em;
-        font-style: italic;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        z-index: 2;
-    }
-
-    /* Stylisation des boutons d'ajout */
-    .addButtonCard {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-    }
-
-    .addLabel {
-        display: none;
-        margin-right: 5px;
-        font-size: 0.8em;
-        color: $dark-font;
-    }
-
-    .addPlantCard {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-
-        img {
-            width: 20px;
-            height: 20px;
-            background: $dark-font;
-        }
-
-        &:hover {
-            transform: scale(1.5);
-        }
-
-        &:hover .addLabel {
-            display: inline-block;
-        }
-    }
-
-    /* Section détails */
-    .detailContainer {
-        display: flex;
-        flex-direction: row;
-        box-sizing: border-box;
-        background: $combined-background;
-    }
-
-    .detailContainer aside {
-        width: 50%;
-        img {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .detailContainer main {
-        width: 50%;
-        background: $alternative-combined-background;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-
-        .plantCard form {
-            height: 15px;
+        /* Container plantarium */
+        .plantContainer {
+            margin-top: 1em;
             display: flex;
-            justify-content: flex-start;
-            label {
-                font-size: 0.9em;
+            justify-content: center;
+            height: 100vh;
+            overflow-y: auto;
+            background: transparent;
+            box-sizing: border-box;
+        }
+    
+        .plantContainer img {
+            max-width: 100%;
+            height: auto; /* Prévenir les débordements */
+        }
+    
+        /* Conteneur des cartes principales */
+        .mainCardsUser {
+            margin-top: 1em;
+            display: flex;
+            justify-content: center;
+            max-height: 100vh;
+            overflow-y: auto;
+            border-radius: 16px;
+        }
+    
+        /* Grille des cartes Plantarium */
+        .mainCardsPlantarium {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1em;
+            justify-content: center;
+        }
+    
+        @media (min-width: 768px) {
+            .mainCardsPlantarium {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
-    }
-
-    /* Stylisation des champs de formulaire */
-    .cardText {
-        padding: 0.5em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-size: 1.2em;
-    }
-
-    .plantInfos {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 2em;
-    }
-
-    .categFields {
-        display: grid;
-        gap: 1.5em;
-    }
-
-    .categFont {
-        font-weight: bold;
-    }
-
-    .categComponent {
-        padding: 5px 8px;
-        display: flex;
-        justify-content: center;
-        background: $pine-green;
-        color: $white-font;
-        border-radius: 6px;
-        font-size: 1.2em;
-    }
-
-    .categDescription {
-        font-weight: 500;
-        font-size: 1.1em;
-    }
-
-    .resetBackground {
-        background: transparent;
+    
+        @media (min-width: 1200px) {
+            .mainCardsPlantarium {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    
+        /* Taille des icônes SVG */
+        .size-svg {
+            width: 25px;
+            height: 25px;
+        }
+    
+        /* Stylisation des cartes */
+        .cardUser,
+        .cardPlantarium {
+            width: 15em;
+            height: 15em;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 10px solid $white-font;
+        }
+    
+        .cardUser .img-container,
+        .cardPlantarium .img-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+        }
+    
+        .cardUser img,
+        .cardPlantarium img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+    
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(11, 12, 11, 0) 50%, rgba(11, 12, 11, 1) 100%);
+            border-radius: 16px;
+            z-index: 1;
+        }
+    
+        /* Titre des plantes */
+        .plantTitle {
+            color: $white-font;
+            text-align: center;
+            transform: translateY(-10%);
+            font-size: 2em;
+            font-style: italic;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 2;
+        }
+    
+        /* Stylisation des boutons d'ajout */
+        .addButtonCard {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+    
+        .addLabel {
+            display: none;
+            margin-right: 5px;
+            font-size: 0.8em;
+            color: $dark-font;
+        }
+    
+        .addPlantCard {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+    
+            img {
+                width: 20px;
+                height: 20px;
+                background: $dark-font;
+            }
+    
+            &:hover {
+                transform: scale(1.5);
+            }
+    
+            &:hover .addLabel {
+                display: inline-block;
+            }
+        }
+    
+        /* Section détails */
+        .detailContainer {
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            background: $combined-background;
+        }
+    
+        .detailContainer aside {
+            width: 50%;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    
+        .detailContainer main {
+            width: 50%;
+            background: $alternative-combined-background;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+    
+            .plantCard form {
+                height: 15px;
+                display: flex;
+                justify-content: flex-start;
+                label {
+                    font-size: 0.9em;
+                }
+            }
+        }
+    
+        /* Stylisation des champs de formulaire */
+        .cardText {
+            padding: 0.5em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+    
+        .plantInfos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 2em;
+        }
+    
+        .categFields {
+            display: grid;
+            gap: 1.5em;
+        }
+    
+        .categFont {
+            font-weight: bold;
+        }
+    
+        .categComponent {
+            padding: 5px 8px;
+            display: flex;
+            justify-content: center;
+            background: $pine-green;
+            color: $white-font;
+            border-radius: 6px;
+            font-size: 1.2em;
+        }
+    
+        .categDescription {
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+    
+        .resetBackground {
+            background: transparent;
+        }
     }
 }

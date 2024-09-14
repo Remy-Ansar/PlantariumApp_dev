@@ -120,8 +120,8 @@ class UserPlantsController extends AbstractController
         $session->set('plants_page', $page);
 
         if (!$session->get('first_visit_plantarium')) {
-            $this->addFlash('info', 'La page Plantarium permet de rechercher des plantes dans la base de donnée.
-            Clique sur l\'image de la plante qui te plait, puis choisi "ajouter cette plante à ma collection"');
+            $this->addFlash('info', 'La page Plantarium permet de rechercher des plantes.
+            Clique sur l\'image de la plante qui te plait, puis "ajouter cette plante à ma collection"');
             $session->set('first_visit_plantarium', true);
         }
 

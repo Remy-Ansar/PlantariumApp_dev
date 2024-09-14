@@ -94,8 +94,17 @@ footer {
         height: 68vh;
     }
     .footerUnitContact {
+        
+        align-items: center;
         padding: 1em;
         margin-bottom: 25em;
+        
+        p{
+            display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+            font-size: 1.2em;
+        }
     }
     .creditList {
         margin-bottom: 8em;
