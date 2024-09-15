@@ -159,7 +159,7 @@ Administration des plantes
                     <button class="toggle-plant" data-id="{{ plant.id }}"
                         data-url="{{ path('editor.plants.switch', {'id': plant.id}) }}">
                         <img src="{{ plant.isEnable() ? asset('images/components/commutateur_on.png') : asset('images/components/commutateur_off.png') }}"
-                            alt="{{ plant.isEnable() ? 'Désactiver' : 'Activer' }}">
+                            alt="{{ plant.isEnable() ? 'Désactiver' : 'Activer' }}" width="50px" height="50px">
                     </button>
                 </td>
                 <td>

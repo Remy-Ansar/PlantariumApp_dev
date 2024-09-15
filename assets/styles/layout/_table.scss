@@ -2,71 +2,117 @@
 .table-containerMain {
   width: 100%;
   overflow-x: auto;
-  /* Enable horizontal scrolling */
   background: $glassmorphism;
 
   table {
-    table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     border-top: 3px solid $dark-font;
-    // border-bottom: 3px solid $light-green;
+
     overflow-x: auto;
     margin: 1em;
     font-size: 0.5em;
+    form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
-  thead {
-    margin-right: 2em;
+  th, td {
+    width: 20em;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+   
   }
 
   tbody {
     margin-top: 5em;
   }
+  tbody tr:nth-child(even) {
+    background-color: #918d8d; /* Alternance de couleur */
+  }
 
-  th,
+  th {
+    font-size: 1.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
   td {
-    padding: 10px;
-    width: 15em;
+    font-size: 1.2em;
+    line-height: 1.2em;
+      letter-spacing: 1px;
+      text-align: center;
+      font-size: 1.5em;
+      img {
+        max-width: 50px;
+        max-height: 50px;
+      }
+   
+  
   }
 
-  thead th:nth-child(1) {
-    width: 2em;
+  td p.tagFont {
+    margin: 0; /* Supprimer les marges autour des tags */
+    font-size: 0.85em;
+    padding: 5px;
+    background-color: $pine-green;
+    border-radius: 4px;
+    display: inline-block;
   }
 
-  thead th:nth-child(5) {
-    width: 15em;
+  .profilePic {
+    border-radius: 10px; /* Coins arrondis pour l'image */
+    object-fit: cover;
   }
+  
+  .modifyButtoncolor{
 
-  thead th:nth-child(10) {
-    width: 6em;
+  background: #31C351;
+  color: $white-font;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85em;
+}
+  
+  .deleteButton {
+    color: $white-font;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85em;
   }
-
+  
+  td.description {
+    max-width: 300px;
+    white-space: normal; /* Autoriser les retours à la ligne */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Couper les textes trop longs avec "..." */
+  }
 
   tbody td {
     text-align: center;
+    
   }
 
   tbody tr {
     text-align: center;
   }
 
-  td {
-    letter-spacing: 1px;
-    text-align: center;
-    font-size: 1.5em;
-    // font-weight: bold;
-  }
+
 
   td a {
     display: flex;
     justify-content: center;
   }
 
-  td a img {
-    width: 200px;
-    height: 200px;
-  }
+
 
   .tagFont {
     font-weight: bold;
@@ -79,105 +125,27 @@
 }
 
 .fieldAdd {
-  margin: 1em 0 1em 0;
-  display: flex;
 
-  flex-direction: row;
-  gap: 2em;
-  overflow-x: auto;
+  display: flex;
   width: 100%;
+  height: 10em;
+}
+thead th:nth-child(4) {
+  width: 20em;
+}
+thead th:nth-child(1) {
+  width: 2em;
 }
 
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-
-  background: $glassmorphism;
-
-  table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-    border-top: 3px solid $dark-font;
-    overflow-x: auto;
-    margin: 1em;
-    
-  }
-
-  thead {
-    margin-right: 2em;
-  }
-  thead th:nth-child(4) {
-    width: 20em;
-  }
-  thead th:nth-child(1) {
-    width: 2em;
-  }
-
-  thead th:nth-child(5) {
-    width: 15em;
-  }
-  thead th:nth-child(9) {
-    width: 25em;
-  }
-  thead th:nth-child(10) {
-    width: 6em;
-  }
-
-  tbody {
-    margin-top: 5em;
-    display: flex;
-    flex-direction: row;
-  }
-
-  th,
-  td {
-    padding: 10px;
-    width: 15em;
-  }
-
-  tbody td {
-    text-align: center;
-  }
-
-  tbody tr {
-    text-align: center;
-    height: 10em;
-  }
-
-
-  td {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    letter-spacing: 1px;
-    text-align: center;
-    font-size: 1.2em;
-    height: 10em;
-  }
-
-  ul {
-    padding: 5px 8px 5px 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background: $white-font;
-    color: $pine-green;
-    
-    border: 2px solid #115220;
-    border-radius: 6px;
-    margin-right: 1em;
-    font-size: 1.2em;
-  }
-
-  td a {
-    display: flex;
-    justify-content: center;
-    width: 20em;
-    img {
-      width: 20em;
-    }
-  }
+thead th:nth-child(5) {
+  width: 15em;
+}
+thead th:nth-child(9) {
+  width: 25em;
+}
+thead th:nth-child(10) {
+  width: 15em;
+}
 
   .modifyField{
     display: flex;
@@ -188,7 +156,7 @@
     }
   }
 }
-}
+
 
 @media (min-width: 768px) {
   .wideTable{
@@ -198,6 +166,7 @@
     width: 100vw;
     overflow-x: auto;
     margin: 20px 0;
+    background: $glassmorphism;
     tbody {
       height: 1em;
       line-height: 1em;
@@ -205,10 +174,9 @@
   }
   
   table {
-
     width: 100%;
     border-collapse: collapse;
-    table-layout: auto; /* Pour auto-ajuster les colonnes */
+    table-layout: auto;
     font-family: 'Lato', sans-serif;
     form{
       display: flex;
@@ -243,6 +211,7 @@
   td {
     font-size: 1.2em;
     line-height: 1.2em;
+    
   }
   
   td p.tagFont {
@@ -276,6 +245,18 @@
     overflow: hidden;
     text-overflow: ellipsis; /* Couper les textes trop longs avec "..." */
   }
+  td {
+      img {
+        min-width: 150px;
+        min-height: 150px;
+      }
+      button {
+        img {
+          max-width: 50px;
+        max-height: 50px;
+        }
+      }
+    }
   
   .buttonAlign {
     display: flex;
@@ -311,7 +292,10 @@
     width: 25em;
   }
   thead th:nth-child(10) {
-    width: 6em;
+    width: 25em;
+  }
+  thead th:nth-child(10) {
+    width: 25em;
   }
 
   //----------------------------------------------------------------
@@ -332,4 +316,15 @@
         width: 25em;
       }
     }
+    #binaryButton{
+      max-width: 50px;
+      max-height: 50px;
+    }
+    #toggleheader {
+      width: 50px;
+    }
+    td a {
+      margin-left: 5em;
+    }
+
   }

@@ -10,14 +10,6 @@ Administration des utilisateurs
 <main class="wideTable">
     <h1>Administration des utilisateurs</h1>
 
-    {# <section>
-        <div class="formSearch">
-            <form method="get" action="{{ path('admin.users.index') }}">
-                <div class="searchBar">
-                    <input type="text" name="name" class="searchText" placeholder="Rechercher par nom">
-                </div>
-    </section> #}
-
     <div class="table-containerMain">
         <table>
             <thead>
@@ -41,7 +33,7 @@ Administration des utilisateurs
                     <td>{{ user.getFullName() }}</td>
                     <td>{{ user.getUserLevel() }}</td>
                     <td>
-                        <a href="#">
+                        <a href="#" width="20px" height="20px">
                             {% if user.UserInfos and user.UserInfos.imageName %}
                             <img src="{{ vich_uploader_asset(user.UserInfos, 'image') }}" alt="{{ user.getFullName() }}"
                                 class="alternativProfilePic" loading="lazy">
@@ -67,23 +59,5 @@ Administration des utilisateurs
 <div class="navigation">
     <span>{{ knp_pagination_render(pagination)  }}</span>
 </div>
-
-{% endblock %}
-{% block javascript %}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const filterButton = document.querySelector('.filterButton');
-    const filters = document.querySelector('.filters');
-  
-    filterButton.addEventListener('click', function () {
-      if (filters.classList.contains('visible')) {
-        filters.classList.remove('visible');
-        filterButton.lastChild.textContent = 'Filtres avancés'; // Texte du bouton lorsqu'il est fermé
-      } else {
-        filters.classList.add('visible');
-        filterButton.lastChild.textContent = 'Masquer les filtres'; // Texte du bouton lorsqu'il est ouvert
-      }
-    });
-  });
-</script>
+<div id="userLayout"></div>
 {% endblock %}

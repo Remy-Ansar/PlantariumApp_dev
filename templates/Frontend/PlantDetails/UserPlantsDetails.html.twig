@@ -26,8 +26,8 @@ Détail de la plante
                         enctype="multipart/form-data">
                         <input type="hidden" name="token" value="{{ csrf_token('delete'~ plantdetail.id) }}">
                         <label for="removePlant" class="categFont">Supprimer cette plante</label>
-                        <button type="submit" class="removePlant" id="removePlant" width="1.5em" height="1.5em">
-                            <img src="{{ asset('img/components/minus.png') }}" alt="Bouton de suppression moins">
+                        <button type="submit" class="removePlant" id="removePlant" width="20px" height="20px">
+                            <img src="{{ asset('img/components/minus.png') }}" alt="Bouton de suppression moins" width="20px" height="20px">
                         </button>
                     </form>
                 </div>

@@ -49,11 +49,20 @@ main {
 }
 
 .mainEmptyContainer {
+  margin-top: 5em;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  min-height: 60vh;
+  form {
+    margin-bottom: 10em;
+  }
+  img {
+    max-width: 150px;
+    max-height: 150px;
+  }
 }
 
 section {
@@ -134,8 +143,8 @@ padding: 1em 4em 1em 4em;
 .alternativProfilePic {
   border: 4px solid $white-font;
   border-radius: 100px;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
 }
@@ -222,7 +231,9 @@ padding: 1em 4em 1em 4em;
 }
 
 }
-
+#userLayout{
+  min-height: 18vh;
+}
 
 // =================================================================DESKTOP
 @media (min-width: 768px) {
@@ -286,6 +297,13 @@ padding: 1em 4em 1em 4em;
     align-items: center;
     min-height: 90vh;
     margin-bottom: 2em;
+    form {
+      margin-bottom: 10em;
+    }
+    img {
+      max-width: 250px;
+      max-height: 250px;
+    }
   }
   
   section {
