@@ -155,7 +155,7 @@ Administration des plantes
                             class="plantPicprofile">
                     </a>
                 </td>
-                <td>
+                <td id="toggleheader">
                     <button class="toggle-plant" data-id="{{ plant.id }}"
                         data-url="{{ path('editor.plants.switch', {'id': plant.id}) }}">
                         <img src="{{ plant.isEnable() ? asset('images/components/commutateur_on.png') : asset('images/components/commutateur_off.png') }}"

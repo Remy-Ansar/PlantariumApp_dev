@@ -11,8 +11,11 @@
 
 		<h1>Modification d'une plante</h1>
 		<button class="alternativeTagsButton"><a href="{{ path('editor.plants.field.index') }}">Ajouter des champs</a></button>
+			<div class="mainEmptyContainerPlants">
 			<section>
 		{% include 'Backend/Plants/_form.html.twig' %}
 	</section>
+	<div class="mainEmptyContainerPlants">
+	</div>
 </main>
 {% endblock %}

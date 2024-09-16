@@ -306,6 +306,21 @@ padding: 1em 4em 1em 4em;
     }
   }
   
+  .mainEmptyContainerPlants {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-bottom: 2em;
+    form {
+      margin-bottom: 10em;
+    }
+    img {
+      max-width: 250px;
+      max-height: 250px;
+    }
+  }
   section {
     width: 100%;
     display: flex;
